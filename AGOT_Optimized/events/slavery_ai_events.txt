@@ -1,0 +1,290 @@
+namespace = slavery_ai
+#***********************************
+# slv_ai.1  - Slavery AI script call -- Randomize day
+# slv_ai.2  - Slave Trade AI script
+# slv_ai.4  - Ai enters slave trade
+# slv_ai.10 - Slavery Laws Check
+# slv_ai.11 - Anti Slavery Laws Check
+#***********************************
+#Reason for that is to enable more adavenced mechanics in the fuuuture,
+# for now is off
+character_event = {
+	# Slavery AI script call -- Randomize day
+	id = slavery_ai.1
+	is_triggered_only = yes
+	ai = yes
+	has_character_flag = slaver
+	hide_window = yes
+	option = {
+		name = "Ok"
+		character_event = {
+			id = slavery_ai.2
+			days = 200
+			random = 100
+		}
+	}
+}
+
+#***********************************
+character_event = {
+	#Slave Trade AI script
+	id = slavery_ai.2
+	is_triggered_only = yes
+	ai = yes
+	has_character_flag = slaver
+	hide_window = yes
+	immediate = {
+		#********** Ai Slave profits *********
+		#export_to_variable = {
+		#	which = slave_profit
+		#	value = realm_stewardship
+		#}
+		#multiply_variable = {
+		#	which = slave_profit
+		#	which = num_slaves
+		#}
+		refresh_slave_bonus_ai = yes
+		wealth = 100
+	}
+	#*********************
+	option = {
+		# SELL *
+		name = "Sell"
+		trigger = {
+			#**Do not sell if
+			check_variable = {
+				which = num_slaves
+				value = 3000
+			}
+			#ai min
+		}
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 10
+				OR = {
+					#I want to sell slaves
+					wealth < 190					#Low Cash
+				}
+			}
+			modifier = {
+				factor = 1000
+				OR = {
+					#**I have no cash
+					wealth < 0
+					AND = {
+						monthly_income < 0
+						wealth < 100
+					}
+				}
+			}
+		}
+		if = {
+			#Do sell
+			limit = {
+				#Re-Check bc events are async
+				check_variable = {
+					which = num_slaves
+					value = 1000
+				}
+			}
+			subtract_variable = {
+				which = num_slaves
+				value = 1000
+			}
+			wealth = 400
+		}
+	}
+	#*********************
+	option = {
+		# BUY *
+		name = "Buy"
+		trigger = {
+			OR = {
+				#**Do not Buy if
+				wealth < 200				#Not much Cash
+				check_variable = {
+					which = num_slaves
+					value = 50
+				}
+				#ai max
+				AND = {
+					monthly_income < 0
+					wealth < 100
+				}
+			}
+		}
+		ai_chance = {
+			factor = 10			#**I want to buy slaves
+			modifier = {
+				#Fat cat
+				factor = 2
+				wealth > 1000
+			}
+			modifier = {
+				#Invest
+				factor = 5
+				wealth > 500
+			}
+		}
+		change_variable = {
+			which = num_slaves
+			value = 1000
+		}
+		wealth = -200
+	}
+	#*********************
+	option = {
+		#Stand
+		name = "Do nothing"
+		ai_chance = {
+			factor = 1			# fallback, increase for a bit more performance
+		}
+	}
+}
+
+#***********************************
+character_event = {
+	#Ai enters slave trade
+	id = slavery_ai.4
+	is_triggered_only = yes	#On_actions
+	ai = yes
+	only_playable = yes
+	hide_window = yes
+	trigger = {
+		NOT = {
+			trait = slave_owner
+		}
+		has_full_slavery_trigger = yes		# Slavery must be Legal
+		is_nomadic = no
+		NOT = {
+			culture_group = unoccupied_group
+		}
+		NOT = {
+			trait = liberator
+		}
+		# Won't do this for obvious reasons
+		OR = {
+			is_patrician = yes
+			higher_tier_than = COUNT
+			wealth = 500
+		}
+	}
+	immediate = {
+		add_trait = slave_owner
+		set_character_flag = slaver
+		set_dynasty_flag = flag_slaver_tradition
+		set_variable = {
+			which = num_slaves
+			value = 5000
+		}
+	}
+}
+
+#***********************************
+#Slavery Laws AI - Pro Slavery
+#***********************************
+character_event = {
+	id = slv_ai.10
+	is_triggered_only = yes
+	ai = yes
+	only_rulers = yes
+	only_independent = yes
+	trigger = {
+		is_full_independent_trigger = yes
+		is_pro_slavery_trigger = yes
+		crownlaw_title = {
+			OR = {
+				has_law = slavery_0
+				has_law = slavery_1
+			}
+		}
+	}
+	option = {
+		name = "Move to 1"
+		trigger = {
+			crownlaw_title = {
+				has_law = slavery_0
+			}
+		}
+		crownlaw_title = {
+			revoke_law = slavery_0
+			add_law = slavery_1
+		}
+	}
+	option = {
+		name = "Move to 2"
+		trigger = {
+			crownlaw_title = {
+				has_law = slavery_1
+			}
+			NOT = {
+				culture_group = iron_isles_culture
+			}
+		}
+		crownlaw_title = {
+			revoke_law = slavery_1
+			add_law = slavery_2
+		}
+	}
+	option = {
+		name = "Move to 3"
+		trigger = {
+			crownlaw_title = {
+				has_law = slavery_1
+			}
+			culture_group = iron_isles_culture
+		}
+		crownlaw_title = {
+			revoke_law = slavery_1
+			add_law = slavery_3
+		}
+	}
+}
+
+#***********************************
+character_event = {
+	id = slv_ai.11
+	is_triggered_only = yes
+	ai = yes
+	only_rulers = yes
+	only_independent = yes
+	trigger = {
+		is_full_independent_trigger = yes
+		is_anti_slavery_trigger = yes
+		crownlaw_title = {
+			OR = {
+				has_law = slavery_2
+				has_law = slavery_3
+			}
+		}
+	}
+	option = {
+		name = "Move to 0"
+		trigger = {
+			crownlaw_title = {
+				has_law = slavery_1
+			}
+		}
+		crownlaw_title = {
+			revoke_law = slavery_1
+			add_law = slavery_0
+		}
+	}
+	option = {
+		name = "Move to 1"
+		trigger = {
+			crownlaw_title = {
+				OR = {
+					has_law = slavery_2
+					has_law = slavery_3
+				}
+			}
+		}
+		crownlaw_title = {
+			revoke_law = slavery_2
+			revoke_law = slavery_3
+			add_law = slavery_1
+		}
+	}
+}

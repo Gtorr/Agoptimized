@@ -1,0 +1,251 @@
+castle = {
+	ca_olive_orchard = {
+		desc = ct_olive_orchard_desc
+		potential = {
+			region = world_meereen
+		}
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		ai_creation_factor = 1000
+		gold_cost = 300
+		build_time = 365
+		tax_income = 2
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ca_arbor_vineyard = {
+		desc = ca_arbor_vineyard_desc
+		potential = {
+			FROMFROM = {
+				title = c_the_arbor				# The Arbor
+			}
+		}
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		ai_creation_factor = 1000
+		gold_cost = 400
+		build_time = 365
+		tax_income = 2
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ca_rainwood = {
+		desc = ca_rainwood_desc
+		potential = {
+			region = world_rainwood			# Rainwood
+		}
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		ai_creation_factor = 1100
+		gold_cost = 150
+		build_time = 365
+		fort_level = 2
+		tax_income = 3
+		build_time_modifier = -0.2
+		#extra_tech_building_start = 10		# Never get at start of game
+	}
+	ca_maidenpool = {
+		desc = ca_maidenpool_desc
+		potential = {
+			FROMFROM = {
+				title = b_maidenpoolcastle				# Maidenpool
+			}
+		}
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		ai_creation_factor = 1100
+		gold_cost = 150
+		build_time = 365
+		tax_income = 1.05
+		liege_piety = 0.5
+		fertility = 0.2
+		health = 1
+		#extra_tech_building_start = 10		# Never get at start of game
+	}
+	ca_yiti_market = {
+		desc = ca_yiti_market_desc
+		potential = {
+			FROMFROM = {
+				OR = {
+					title = b_yin					# Yin
+					title = b_piqui					# Piqui
+					title = b_trader_town					# Trader Town
+					title = b_xin					# Xin
+					title = b_tiqui					# Tiqui
+					title = b_jinqi					# Jinqi
+					title = b_linqi					# Linqi
+					title = b_hidden_city					# Si Qo
+				}
+			}
+		}
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		ai_creation_factor = 1000
+		gold_cost = 250
+		build_time = 365
+		tax_income = 4
+		#extra_tech_building_start = 10		# Never get at start of game
+	}
+	ca_oldtown_port = {
+		desc = ca_oldtown_port_desc
+		potential = {
+			FROMFROM = {
+				title = b_the_hightower				# Oldtown
+			}
+		}
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		ai_creation_factor = 1000
+		gold_cost = 200
+		build_time = 365
+		tax_income = 3
+		#extra_tech_building_start = 10		# Never get at start of game
+	}
+	ca_old_mint = {
+		desc = ca_old_mint_desc
+		potential = {
+			FROMFROM = {
+				title = b_newcastle				# White Harbor
+			}
+		}
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		ai_creation_factor = 1000
+		gold_cost = 150
+		build_time = 365
+		tax_income = 3
+		#extra_tech_building_start = 10		# Never get at start of game
+	}
+	ca_lannisport_artisan = {
+		desc = ca_lannisport_artisan_desc
+		potential = {
+			FROMFROM = {
+				title = b_lannisport				# Lannisport
+			}
+		}
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		ai_creation_factor = 1000
+		gold_cost = 100
+		build_time = 365
+		tax_income = 3
+		#extra_tech_building_start = 10		# Never get at start of game
+	}
+	ca_beesbury_apiary = {
+		desc = ca_beesbury_apiary_desc
+		potential = {
+			FROMFROM = {
+				title = b_honeyholt				# Honeyholt
+			}
+		}
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		ai_creation_factor = 1000
+		gold_cost = 100
+		build_time = 365
+		tax_income = 2
+		#extra_tech_building_start = 10		# Never get at start of game
+	}
+	ca_chandlery = {
+		desc = ca_chandlery_desc
+		potential = {
+			FROMFROM = {
+				title = b_wickenden				# Wickenden
+			}
+		}
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		ai_creation_factor = 1000
+		gold_cost = 100
+		build_time = 365
+		tax_income = 2
+		#extra_tech_building_start = 10		# Never get at start of game
+	}
+	ca_gulltown_port = {
+		desc = ca_gulltown_port_desc
+		potential = {
+			FROMFROM = {
+				title = b_grafton_keep				# Gulltown
+			}
+		}
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		ai_creation_factor = 1000
+		gold_cost = 100
+		build_time = 365
+		tax_income = 3
+		#extra_tech_building_start = 10		# Never get at start of game
+	}
+	ca_fishing_port = {
+		desc = ca_fishing_port_desc
+		potential = {
+			region = world_iron_isles			# Iron Islands
+		}
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		ai_creation_factor = 1000
+		gold_cost = 100
+		build_time = 365
+		tax_income = 2
+		#extra_tech_building_start = 10		# Never get at start of game
+	}
+	ca_butterwell_fields = {
+		desc = ca_butterwell_fields_desc
+		potential = {
+			FROMFROM = {
+				title = b_butter_hall				# Butterwell
+			}
+		}
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		ai_creation_factor = 1000
+		gold_cost = 100
+		build_time = 365
+		tax_income = 2
+		#extra_tech_building_start = 10		# Never get at start of game
+	}
+	ca_lordsport = {
+		desc = ca_lordsport_desc
+		potential = {
+			FROMFROM = {
+				title = b_lordsport_keep				# Lordsport
+			}
+		}
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		ai_creation_factor = 1000
+		gold_cost = 100
+		build_time = 365
+		tax_income = 2
+	#	extra_tech_building_start = 10		# Never get at start of game
+	}
+	ca_sealords_zoo = {
+		desc = ca_sealords_zoo_desc
+		potential = {
+			FROMFROM = {
+				title = b_sealordpalace				# Braavos,Sealord's palace.
+			}
+		}
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		ai_creation_factor = 1000
+		gold_cost = 100
+		build_time = 365
+		tax_income = 1
+		liege_prestige = 1.5
+	#	extra_tech_building_start = 10		# Never get at start of game
+	}
+}

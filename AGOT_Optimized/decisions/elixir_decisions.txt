@@ -1,0 +1,93 @@
+#
+decisions = {
+    love_elixir_decision = {
+        only_playable = yes
+        is_high_prio = yes
+        ai = no
+        potential = {
+            ai = no
+            has_character_flag = has_love_elixir
+        }
+        allow = {
+            age = 14
+            prisoner = no
+            NOT = { trait = incapable }
+            NOT = { is_inaccessible_trigger = yes }
+        }
+        effect = {
+            random = {
+                chance = 25
+                character_event = { id = elixir_events.10 }
+                modifier = {
+                    factor = 0
+                    has_character_modifier = iron_stomach
+                }
+            }
+            add_character_modifier = {
+                name = love_elixir
+                duration = 365
+            }
+            clr_character_flag = has_love_elixir
+        }
+
+    }
+    battle_elixir_decision = {
+        only_playable = yes
+        is_high_prio = yes
+        ai = no
+        potential = {
+            ai = no
+            has_character_flag = has_battle_elixir
+        }
+        allow = {
+            age = 14
+            prisoner = no
+            NOT = { trait = incapable }
+            NOT = { is_inaccessible_trigger = yes }
+        }
+        effect = {
+            random = {
+                chance = 25
+                character_event = { id = elixir_events.20 }
+                modifier = {
+                    factor = 0
+                    has_character_modifier = iron_stomach
+                }
+            }
+            add_character_modifier = {
+                name = battle_elixir
+                duration = 365
+            }
+            clr_character_flag = has_battle_elixir
+        }
+    }
+    health_elixir_decision = {
+        only_playable = yes
+        is_high_prio = yes
+        ai = no
+        potential = {
+            ai = no
+            has_character_flag = has_health_elixir
+        }
+        allow = {
+            age = 14
+            prisoner = no
+            NOT = { is_inaccessible_trigger = yes }
+        }
+        effect = {
+            random = {
+                chance = 25
+                character_event = { id = elixir_events.30 }
+                modifier = {
+                    factor = 0
+                    has_character_modifier = iron_stomach
+                }
+            }
+            add_character_modifier = {
+                name = health_elixir
+                duration = 365
+            }
+            clr_character_flag = has_health_elixir
+        }
+    }
+}

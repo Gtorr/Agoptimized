@@ -1,0 +1,474 @@
+namespace = high_valyrian
+#check high valyrian OVERRIDE - Gt
+character_event = {
+	id = high_valyrian.1
+	desc = "EVTDESC999900071"
+	picture = "GFX_valyria_dragon"
+	ai = yes
+	is_triggered_only = yes
+	hide_from = yes
+	culture = high_valyrian
+	trigger = {
+		NOT = {
+			has_dynasty_flag = high_valyrian
+		}
+		NOT = {
+			has_character_flag = high_valyrian
+		}
+		has_game_rule = {
+			name = high_valyrian_cull
+			value = on
+		}
+	}
+	immediate = {
+		if = {
+			#Check if they could be western or eastern valyrian
+			limit = {
+				location = {
+					OR = {
+						culture_group = andal
+						culture_group = dornish
+						culture_group = first_men
+						culture_group = free_folk
+						culture_group = iron_isles_culture
+						culture = western_valyrian
+					}
+					NOT = {
+						culture = rhoynar
+					}
+				}
+			}
+			set_character_flag = western_valyrian
+		}
+		if = {
+			#Check if they could be become high valyrian
+			limit = {
+				OR = {
+					#Location is high valyrian (e.g. valyria in pre-doom)
+					capital_scope = {
+						culture = high_valyrian
+					}
+					AND = {
+						is_ruler = no
+						liege = {
+							capital_scope = {
+								culture = high_valyrian
+							}
+						}
+					}
+				}
+			}
+			set_character_flag = can_become_high_valyrian
+		}
+	}
+	option = {
+		name = "EVTOPTB999900071"		#Valid High Valyrian families
+		trigger = {
+			high_valyrian_dynasty_trigger = yes
+		}
+		set_dynasty_flag = high_valyrian
+	}
+	option = {
+		name = "EVTOPTA999900071"		#Yes
+		trigger = {
+			ai = yes
+			NOT = {
+				high_valyrian_dynasty_trigger = yes
+			}
+		}
+		#historical high valyrians
+		if = {
+			limit = {
+				trait = high_valyrian
+			}
+			set_character_flag = high_valyrian
+			hidden_tooltip = {
+				remove_trait = high_valyrian
+			}
+			break = yes
+		}
+		#Randomly generated who can be high valyrian
+		if = {
+			limit = {
+				NOT = {
+					father_even_if_dead = {
+						always = yes
+					}
+				}
+				NOT = {
+					mother_even_if_dead = {
+						always = yes
+					}
+				}
+				NOT = {
+					real_father_even_if_dead = {
+						always = yes
+					}
+				}
+				has_character_flag = can_become_high_valyrian
+			}
+			random_list = { #wtf
+				#50% chance to be high valyrian, else east/west
+				50 = {
+					modifier = {
+						factor = 0.33
+						is_ruler = yes
+					}
+					if = {
+						limit = {
+							has_character_flag = western_valyrian
+						}
+						culture = western_valyrian
+						set_graphical_culture = western_valyrian
+					}
+					else = {
+						culture = eastern_valyrian
+						set_graphical_culture = eastern_valyrian
+					}
+				}
+				50 = {
+					modifier = {
+						factor = 0.33
+						is_lowborn = yes
+					}
+					modifier = {
+						#Alt start, always start as high valyrian
+						factor = 5
+						is_lowborn = no
+						is_alternate_start = yes
+						NOT = {
+							total_years_played = 2
+						}
+					}
+					if = {
+						limit = {
+							dynasty = none
+						}
+						set_character_flag = high_valyrian
+					}
+					else = {
+						#dynasty becomes permanently high valyrian
+						set_dynasty_flag = high_valyrian
+						if = {
+							limit = {
+								NOT = {
+									any_owned_bloodline = {
+										has_bloodline_flag = blood_of_the_dragon
+									}
+								}
+							}
+							create_bloodline = {
+								type = blood_of_the_dragon
+							}
+						}
+					}
+				}
+			}
+			break = yes
+		}
+		#non-high_valyrian dynasty with high valyrian dynasty parentage
+		if = {
+			limit = {
+				OR = {
+					mother_even_if_dead = {
+						high_valyrian_dynasty_trigger = yes
+					}
+					father_even_if_dead = {
+						high_valyrian_dynasty_trigger = yes
+					}
+					real_father_even_if_dead = {
+						high_valyrian_dynasty_trigger = yes
+					}
+				}
+			}
+			random_list = {
+				95 = {
+					modifier = {
+						factor = 0.33
+						has_character_flag = can_become_high_valyrian
+						is_ruler = yes
+					}
+					if = {
+						limit = {
+							has_character_flag = western_valyrian
+						}
+						culture = western_valyrian
+					}
+					else = {
+						culture = eastern_valyrian
+					}
+				}
+				5 = {
+					modifier = {
+						factor = 20
+						has_character_flag = can_become_high_valyrian
+					}
+					modifier = {
+						factor = 0.33
+						has_character_flag = can_become_high_valyrian
+						dynasty = none
+					}
+					if = {
+						limit = {
+							is_lowborn = no
+							has_character_flag = can_become_high_valyrian
+						}
+						set_dynasty_flag = high_valyrian						#dynasty becomes permanently high valyrian
+						if = {
+							limit = {
+								NOT = {
+									any_owned_bloodline = {
+										has_bloodline_flag = blood_of_the_dragon
+									}
+								}
+							}
+							create_bloodline = {
+								type = blood_of_the_dragon
+							}
+						}
+					}
+					else = {
+						set_character_flag = high_valyrian
+					}
+				}
+			}
+			break = yes
+		}
+		#non-high_valyrian dynasty with high valyrian parentage
+		if = {
+			limit = {
+				OR = {
+					mother_even_if_dead = {
+						culture = high_valyrian
+					}
+					father_even_if_dead = {
+						culture = high_valyrian
+					}
+					real_father_even_if_dead = {
+						culture = high_valyrian
+					}
+				}
+			}
+			random_list = {
+				34 = {
+					if = {
+						limit = {
+							has_character_flag = western_valyrian
+						}
+						culture = western_valyrian
+					}
+					else = {
+						culture = eastern_valyrian
+					}
+				}
+				66 = {
+					if = {
+						limit = {
+							is_lowborn = no
+							has_character_flag = can_become_high_valyrian
+						}
+						set_dynasty_flag = high_valyrian						#dynasty becomes permanently high valyrian
+						if = {
+							limit = {
+								NOT = {
+									any_owned_bloodline = {
+										has_bloodline_flag = blood_of_the_dragon
+									}
+								}
+							}
+							create_bloodline = {
+								type = blood_of_the_dragon
+							}
+						}
+					}
+					else = {
+						set_character_flag = high_valyrian
+					}
+				}
+			}
+			break = yes
+		}
+		#Ruler Designer family
+		if = {
+			limit = {
+				OR = {
+					mother = {
+						ai = no
+						culture = high_valyrian
+					}
+					father = {
+						ai = no
+						culture = high_valyrian
+					}
+					any_spouse = {
+						ai = no
+						culture = high_valyrian
+					}
+				}
+			}
+			set_character_flag = high_valyrian
+			break = yes
+		}
+		#non-high_valyrian dynasty with no high_valyrian parentage
+		if = {
+			#Change to west-east valyrian
+			limit = {
+				OR = {
+					is_patrician = yes					#Randomly generated patricians
+					AND = {
+						#Before 50AL high valyrian courtiers may be converted to east/west valyrian
+						NOT = {
+							year = 8050
+						}
+						liege = {
+							culture_group = valyrian
+						}
+					}
+					AND = {
+						#Spouses of a high valyrian characters change to west-east valyrian
+						is_married = yes
+						any_spouse = {
+							OR = {
+								has_character_flag = high_valyrian
+								has_dynasty_flag = high_valyrian
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_character_flag = western_valyrian
+				}
+				culture = western_valyrian
+				set_graphical_culture = western_valyrian
+			}
+			else = {
+				culture = eastern_valyrian
+				set_graphical_culture = eastern_valyrian
+			}
+			top_liege = {
+				random_realm_character = {
+					limit = {
+						culture = ROOT
+						same_sex = ROOT
+					}
+					ROOT = {
+						set_name = PREV
+					}
+				}
+			}
+			break = yes
+		}
+		#If still an invalid high valyrian, convert to east valyrian
+		culture = eastern_valyrian
+		#set_graphical_culture = eastern_valyrian
+	}
+	option = {
+		name = "EVTOPTB999900071"		#Human Ruler Designer High Valyrian
+		trigger = {
+			ai = no
+			NOT = {
+				high_valyrian_dynasty_trigger = yes
+			}
+		}
+		set_dynasty_flag = high_valyrian
+		clr_character_flag = ruler_designer_valyrian
+		custom_tooltip = {
+			text = TOOLTIPi_am_high_valyrian
+		}
+		set_character_flag = high_valyrian
+		create_bloodline = {
+			type = blood_of_the_dragon
+		}
+		any_child = {
+			limit = {
+				culture = high_valyrian
+			}
+			set_character_flag = high_valyrian
+		}
+		any_spouse = {
+			limit = {
+				culture = high_valyrian
+			}
+			set_character_flag = high_valyrian
+		}
+		any_dynasty_member = {
+			limit = {
+				culture = high_valyrian
+			}
+			set_character_flag = high_valyrian
+		}
+	}
+	option = {
+		name = "EVTOPTChigh_valyrian.1"		#Human Ruler Designer High Valyrian w/coin flip
+		trigger = {
+			ai = no
+			NOT = {
+				high_valyrian_dynasty_trigger = yes
+			}
+		}
+		set_divine_blood = yes
+		set_dynasty_flag = high_valyrian
+		set_dynasty_flag = coin_flip_dynasty
+		clr_character_flag = ruler_designer_valyrian
+		custom_tooltip = {
+			text = TOOLTIPi_am_high_valyrian
+		}
+		custom_tooltip = {
+			text = TOOLTIPcoin_flip_dynasty
+		}
+		set_character_flag = high_valyrian
+		create_bloodline = {
+			type = blood_of_the_dragon
+		}
+		any_child = {
+			limit = {
+				culture = high_valyrian
+			}
+			set_character_flag = high_valyrian
+			hidden_tooltip = {
+				add_character_modifier = {
+					name = "abomination_of_incest"
+					duration = -1
+				}
+			}
+		}
+		any_spouse = {
+			limit = {
+				culture = high_valyrian
+			}
+			set_character_flag = high_valyrian
+			dynasty = ROOT
+			hidden_tooltip = {
+				create_character = {
+					age = 60
+					female = yes
+					random_traits = yes
+					religion = ROOT
+					culture = ROOT
+					dynasty = ROOT
+				}
+				new_character = {
+					save_event_target_as = new_mother
+					set_character_flag = no_funeral
+					ROOT = {
+						set_mother = PREV
+					}
+					death = yes
+				}
+				set_mother = event_target:new_mother
+			}
+		}
+		any_dynasty_member = {
+			limit = {
+				culture = high_valyrian
+			}
+			set_character_flag = high_valyrian
+		}
+	}
+	after = {
+		clr_character_flag = western_valyrian
+		clr_character_flag = can_become_high_valyrian
+	}
+}

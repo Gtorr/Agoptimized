@@ -1,0 +1,992 @@
+namespace = invasions
+#TODO: Move inavsion events to an on action central script
+
+######################################
+### Summer Islanders ###
+######################################
+province_event = {
+	id = invasions.4
+	desc = "EVTDESCinvasions.4"
+	picture = "GFX_summer_islanders"
+
+	trigger = {
+		#NOT = { has_global_flag = summer_islanders_invade_1 }
+		OR = {
+			NOT = { has_global_flag = war_cooldown_period }
+			had_global_flag = { flag = war_cooldown_period	 days = 25 }
+		}
+		NOT = {
+			has_game_rule = {
+				name = non_lore_invasions
+				value = off
+			}
+		}
+		OR = {
+			# Dorne
+			province_id = 351
+			province_id = 346
+			province_id = 340
+			province_id = 338
+			province_id = 337
+			# Volantis
+			province_id = 404
+			province_id = 415
+			province_id = 416
+			province_id = 419
+			province_id = 483
+			province_id = 484
+			province_id = 485
+			#Lys
+			province_id = 398
+			province_id = 372
+			province_id = 376
+			#Tyrosh
+			province_id = 370
+			province_id = 369
+			province_id = 367
+			province_id = 366
+		}
+		k_summer_islands = {
+			holder_scope = { #Will now only happen if the King is strong
+				war = no
+				ai = yes
+				culture = summer_islander
+				is_female = no
+				age = 16
+				is_incapable = no
+				martial = 16
+				prestige = 1000
+				NOT = { has_character_flag = summer_islanders_invade_1 }
+				NOT = {
+					any_vassal = {
+						NOT = { tier = BARON }
+						NOT = { opinion = { who = PREV value = -25 } }
+					}
+				}
+			}
+		}
+	}
+
+	mean_time_to_happen = {
+		years = 3000
+
+		modifier = {
+			factor = 3
+			has_game_rule = {
+				name = non_lore_invasions
+				value = rare
+			}
+		}
+		modifier = {
+			factor = 0.5
+			owner = {
+				top_liege = {
+					primary_title = {
+						OR = {
+							title = e_dorne
+							title = k_dorne
+						}
+					}
+				}
+			}
+		}
+		modifier = {
+			factor = 0.5
+			owner = {
+				top_liege = {
+					war = yes
+				}
+			}
+		}
+		modifier = {
+			factor = 0.5
+			e_iron_throne = { holder_scope = { war = yes } }
+		}
+	}
+
+	# immediate = {
+		# set_global_flag = summer_islanders_invade_1
+	# }
+
+	option = {
+		name = "Ok"
+		# create_random_soldier = {
+			# attributes = {
+				# martial = 9
+				# diplomacy = 4
+				# learning = 2
+			# }
+			# female = no
+			# employer = e_summer_islands
+			# religion = summer_rel
+			# culture = summer_islander
+			# random_traits = yes
+			# dynasty = random
+			# trait = brave
+			# trait = ambitious
+			# trait = skilled_tactician
+		# }
+		custom_tooltip = { text = TOOLTIPinvasions.5 }
+		#new_character = {
+			# random_list = {
+				# 25 = { add_trait = trained_warrior }
+				# 75 = { add_trait = skilled_warrior }
+				# 25 = { add_trait = master_warrior }
+			# }
+			# random = {
+				# chance = 5
+				# add_trait = valyrian_steel
+			# }
+			# remove_trait = inbred
+			# remove_trait = imbecile
+			# remove_trait = infirm
+			# remove_trait = incapable
+			# remove_trait = dwarf
+			# remove_trait = hunchback
+			# remove_trait = clubfooted
+			# remove_trait = weak
+			# remove_trait = leper
+			# remove_trait = possessed
+			# remove_trait = ill
+			# remove_trait = pneumonic
+			# remove_trait = maimed
+			# set_character_flag = summer_islander_invader
+			# e_summer_islands = {
+				# gain_title = prev
+			# }
+			#character_event = { id = invasions.5 days = 2  }
+		#}
+		k_summer_islands = {
+			holder_scope = {
+				set_character_flag = summer_islander_invader
+				set_character_flag = summer_islanders_invade_1
+				character_event = { id = invasions.5 }
+			}
+		}
+		hidden_tooltip = {
+			any_playable_ruler = {
+				limit = {
+					ai = no
+					NOT = {
+						any_demesne_province = {
+							province_id = ROOT
+						}
+					}
+				}
+				narrative_event = { id = invasions.6 } #Notification to other human players. (Mountain Clans)
+			}
+		}
+	}
+}
+
+#Actually Spawm the Army... [Ai only, Summer Islands]
+character_event = {
+	id = invasions.5
+	desc = "Arrgh!"
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Ok."
+		FROM = {
+			if = {
+				limit = {
+					kingdom = { has_holder = yes }
+				}
+				kingdom = {
+					#add_claim = ROOT
+					reverse_war = {
+						target = ROOT
+						casus_belli = invasion
+					}
+				}
+			}
+			if = {
+				limit = {
+					kingdom = { has_holder = no }
+				}
+				if = {
+					limit = {
+						owner = {
+							top_liege = {
+								NOT = { has_landed_title = e_iron_throne }
+							}
+						}
+					}
+					owner = {
+						top_liege = {
+							primary_title = {
+								#add_claim = ROOT
+								reverse_war = {
+									target = ROOT
+									casus_belli = invasion
+								}
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						owner = {
+							top_liege = {
+								has_landed_title = e_iron_throne
+							}
+						}
+					}
+					owner = {
+						primary_title = {
+							#add_claim = ROOT
+							reverse_war = {
+								target = ROOT
+								casus_belli = invasion
+							}
+						}
+					}
+				}
+			}
+			ROOT = {
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					scaled_by_biggest_garrison = 4
+					troops = {
+						archers = { 19 19 }
+						light_infantry = { 12 12 }
+						heavy_infantry = { 2 2 }
+					}
+					earmark = summer_islanders
+					attrition = 1.0
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					scaled_by_biggest_garrison = 4
+					troops = {
+						archers = { 19 19 }
+						light_infantry = { 13 13 }
+						heavy_infantry = { 2 2 }
+					}
+					earmark = summer_islanders
+					attrition = 1.0
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					scaled_by_biggest_garrison = 4
+					troops = {
+						archers = { 19 19 }
+						light_infantry = { 12 12 }
+						heavy_infantry = { 2 2 }
+					}
+					earmark = summer_islanders
+					attrition = 1.0
+				}
+			}
+		}
+		#Spawn a few courtiers
+		# create_random_soldier = {
+			# female = no
+			# religion = summer_rel
+			# culture = summer_islander
+			# random_traits = yes
+			# dynasty = random
+		# }
+		# new_character = {
+			# random_list = {
+				# 70 = { add_trait = trained_warrior }
+				# 20 = { add_trait = skilled_warrior }
+				# 10 = { add_trait = master_warrior }
+			# }
+			# remove_trait = inbred
+			# remove_trait = imbecile
+			# remove_trait = infirm
+			# remove_trait = incapable
+			# remove_trait = dwarf
+			# remove_trait = hunchback
+			# remove_trait = clubfooted
+			# remove_trait = weak
+			# remove_trait = leper
+			# remove_trait = possessed
+			# remove_trait = ill
+			# remove_trait = pneumonic
+			# remove_trait = maimed
+		# }
+		# create_random_soldier = {
+			# female = no
+			# religion = summer_rel
+			# culture = summer_islander
+			# random_traits = yes
+			# dynasty = random
+		# }
+		# new_character = {
+			# random_list = {
+				# 70 = { add_trait = trained_warrior }
+				# 20 = { add_trait = skilled_warrior }
+				# 10 = { add_trait = master_warrior }
+			# }
+			# remove_trait = inbred
+			# remove_trait = imbecile
+			# remove_trait = infirm
+			# remove_trait = incapable
+			# remove_trait = dwarf
+			# remove_trait = hunchback
+			# remove_trait = clubfooted
+			# remove_trait = weak
+			# remove_trait = leper
+			# remove_trait = possessed
+			# remove_trait = ill
+			# remove_trait = pneumonic
+			# remove_trait = maimed
+		# }
+		# create_random_soldier = {
+			# female = no
+			# religion = summer_rel
+			# culture = summer_islander
+			# random_traits = yes
+			# dynasty = random
+		# }
+		# new_character = {
+			# random_list = {
+				# 70 = { add_trait = trained_warrior }
+				# 20 = { add_trait = skilled_warrior }
+				# 10 = { add_trait = master_warrior }
+			# }
+			# remove_trait = inbred
+			# remove_trait = imbecile
+			# remove_trait = infirm
+			# remove_trait = incapable
+			# remove_trait = dwarf
+			# remove_trait = hunchback
+			# remove_trait = clubfooted
+			# remove_trait = weak
+			# remove_trait = leper
+			# remove_trait = possessed
+			# remove_trait = ill
+			# remove_trait = pneumonic
+			# remove_trait = maimed
+		# }
+		# create_random_soldier = {
+			# female = no
+			# religion = summer_rel
+			# culture = summer_islander
+			# random_traits = yes
+			# dynasty = random
+		# }
+		# new_character = {
+			# random_list = {
+				# 70 = { add_trait = trained_warrior }
+				# 20 = { add_trait = skilled_warrior }
+				# 10 = { add_trait = master_warrior }
+			# }
+			# remove_trait = inbred
+			# remove_trait = imbecile
+			# remove_trait = infirm
+			# remove_trait = incapable
+			# remove_trait = dwarf
+			# remove_trait = hunchback
+			# remove_trait = clubfooted
+			# remove_trait = weak
+			# remove_trait = leper
+			# remove_trait = possessed
+			# remove_trait = ill
+			# remove_trait = pneumonic
+			# remove_trait = maimed
+		# }
+		# create_character = {
+			# female = yes
+			# religion = summer_rel
+			# culture = summer_islander
+			# random_traits = yes
+			# dynasty = random
+			# age = 18
+		# }
+		# new_character = {
+			# remove_trait = inbred
+			# remove_trait = imbecile
+			# remove_trait = infirm
+			# remove_trait = incapable
+			# remove_trait = dwarf
+			# remove_trait = hunchback
+			# remove_trait = clubfooted
+			# remove_trait = weak
+			# remove_trait = leper
+			# remove_trait = possessed
+			# remove_trait = ill
+			# remove_trait = pneumonic
+			# remove_trait = maimed
+		# }
+		# create_character = {
+			# female = yes
+			# religion = summer_rel
+			# culture = summer_islander
+			# random_traits = yes
+			# dynasty = random
+			# age = 25
+		# }
+		# new_character = {
+			# remove_trait = inbred
+			# remove_trait = imbecile
+			# remove_trait = infirm
+			# remove_trait = incapable
+			# remove_trait = dwarf
+			# remove_trait = hunchback
+			# remove_trait = clubfooted
+			# remove_trait = weak
+			# remove_trait = leper
+			# remove_trait = possessed
+			# remove_trait = ill
+			# remove_trait = pneumonic
+			# remove_trait = maimed
+		# }
+		# create_character = {
+			# female = yes
+			# religion = summer_rel
+			# culture = summer_islander
+			# random_traits = yes
+			# dynasty = random
+			# age = 24
+		# }
+		# new_character = {
+			# remove_trait = inbred
+			# remove_trait = imbecile
+			# remove_trait = infirm
+			# remove_trait = incapable
+			# remove_trait = dwarf
+			# remove_trait = hunchback
+			# remove_trait = clubfooted
+			# remove_trait = weak
+			# remove_trait = leper
+			# remove_trait = possessed
+			# remove_trait = ill
+			# remove_trait = pneumonic
+			# remove_trait = maimed
+		# }
+	}
+}
+#Inform the world
+narrative_event = {
+	id = invasions.6
+	desc = "EVTDESCinvasions.6"
+	title = "EVTNAMEinvasions.6"
+	picture = "GFX_summer_islanders"
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Ok"
+		tooltip = {
+			k_summer_islands = {
+				holder_scope = { }
+			}
+		}
+	}
+}
+###########################
+### Brindleman Invaders ###
+###########################
+### Brindleman from Sothoryos invades Slaver's Bay and Qarth
+character_event = {
+	id = invasions.1099
+
+	hide_window = yes
+	only_independent = yes
+
+	trigger = {
+		has_landed_title = e_rebels
+		NOT = { has_global_flag = brindleman_invasion }
+		total_years_played = 75
+		OR = {
+			NOT = { has_global_flag = war_cooldown_period }
+			had_global_flag = { flag = war_cooldown_period days = 25 }
+		}
+		NOT = {
+			has_game_rule = {
+				name = non_lore_invasions
+				value = off
+			}
+		}
+	}
+
+	mean_time_to_happen = {
+		years = 2000
+
+		modifier = {
+			factor = 3
+			has_game_rule = {
+				name = non_lore_invasions
+				value = rare
+			}
+		}
+		modifier = {
+			factor = 0.5
+			624 = {
+				owner = {
+					top_liege = {
+						war = yes
+					}
+				}
+			}
+		}
+		modifier = {
+			factor = 0.5
+			e_ghiscar = { holder_scope = { war = yes } }
+		}
+	}
+
+	immediate = {
+		random_list = {
+			#Ghis
+			1 = { 624 = { province_event = { id = invasions.10 } } }
+			1 = { 617 = { province_event = { id = invasions.10 } } }
+			1 = { 616 = { province_event = { id = invasions.10 } } }
+			1 = { 620 = { province_event = { id = invasions.10 } } }
+			#Qarth
+			1 = { 662 = { province_event = { id = invasions.10 } } }
+			1 = { 664 = { province_event = { id = invasions.10 } } }
+			1 = { 654 = { province_event = { id = invasions.10 } } }
+			#Moraq
+			1 = { 726 = { province_event = { id = invasions.10 } } }
+			1 = { 723 = { province_event = { id = invasions.10 } } }
+			1 = { 730 = { province_event = { id = invasions.10 } } }
+			1 = { 731 = { province_event = { id = invasions.10 } } }
+		}
+	}
+
+	option = {
+		name = OK
+	}
+}
+province_event = {
+	id = invasions.10
+	desc = "EVTDESCinvasions.10"
+	picture = "GFX_sothoryos"
+
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { owner = { culture_group = unoccupied_group } }
+	}
+
+	immediate = {
+		set_global_flag = brindleman_invasion
+	}
+
+	option = {
+		name = "Ok"
+		create_random_soldier = {
+			female = no
+			employer = d_brindleman_invaders
+			culture = brindlemen
+			dynasty = actually_culture
+			religion = sothoryos_rel
+			random_traits = yes
+			historical = yes
+		}
+		new_character = {
+			prestige = 100
+			random_list = {
+				25 = { add_trait = trained_warrior }
+				75 = { add_trait = skilled_warrior }
+				25 = { add_trait = master_warrior }
+			}
+			remove_trait = inbred
+			remove_trait = imbecile
+			remove_trait = infirm
+			remove_trait = incapable
+			remove_trait = hunchback
+			remove_trait = clubfooted
+			remove_trait = weak
+			remove_trait = leper
+			remove_trait = possessed
+			remove_trait = ill
+			remove_trait = pneumonic
+			remove_trait = maimed
+
+			add_trait = strong
+
+			d_brindleman_invaders = {
+				if = {
+					limit = { has_holder = yes }
+					holder_scope = {
+						abdicate_to = PREVPREV
+					}
+				}
+				if = {
+					limit = { has_holder = no }
+					gain_title = PREV
+				}
+			}
+			character_event = { id = invasions.11 }
+			if = {
+				limit = {
+					e_iron_throne = {
+						holder_scope = {
+							any_friend = {
+								trait = dragon
+								is_alive = yes
+							}
+						}
+					}
+					NOT = { has_game_rule = { name = dragon_hatching_taming value = off } }
+				}
+				set_character_flag = brindleman_dragon
+				add_trait = dragon_rider
+				set_dynasty_flag = dragon_riding_dynasty
+				random_list = {
+					50 = {
+						create_character = {
+							dynasty = actually_culture
+							age = 162
+							culture = dragon_culture
+							religion = dragon_rel
+							historical = yes
+						}
+					}
+					50 = {
+						create_character = {
+							female = yes
+							dynasty = actually_culture
+							age = 162
+							culture = dragon_culture
+							religion = dragon_rel
+							historical = yes
+						}
+					}
+				}
+				new_character = {
+					add_trait = dragon
+					add_trait = incapable_dragon
+					change_martial = 80
+					d_brindleman_invaders = { holder_scope = { add_friend = PREVPREV } }
+					add_trait = fair_dragon
+					character_event = { id = dragon.8 days = 2 }
+					random_list = {
+						1 = { add_trait = dragon_1 }
+						1 = { add_trait = dragon_2 }
+						1 = { add_trait = dragon_3 }
+						1 = { add_trait = dragon_4 }
+						1 = { add_trait = dragon_5 }
+						1 = { add_trait = dragon_6 }
+						1 = { add_trait = dragon_7 }
+						1 = { add_trait = dragon_8 }
+						1 = { add_trait = dragon_9 }
+						1 = { add_trait = dragon_10 }
+						1 = { add_trait = dragon_11 }
+						1 = { add_trait = dragon_12 }
+						1 = { add_trait = dragon_13 }
+						1 = { add_trait = dragon_14 }
+						1 = { add_trait = dragon_15 }
+						1 = { add_trait = dragon_16 }
+						1 = { add_trait = dragon_17 }
+						1 = { add_trait = dragon_18 }
+						1 = { add_trait = dragon_19 }
+						1 = { add_trait = dragon_20 }
+						1 = { add_trait = dragon_21 }
+						1 = { add_trait = dragon_22 }
+						1 = { add_trait = dragon_23 }
+						1 = { add_trait = dragon_24 }
+						1 = { add_trait = dragon_25 }
+						1 = { add_trait = dragon_26 }
+					}
+				}
+			}
+		}
+		hidden_tooltip = {
+			any_playable_ruler = {
+				limit = {
+					ai = no
+					NOT = {
+						any_demesne_province = {
+							province_id = ROOT
+						}
+					}
+				}
+				narrative_event = { id = invasions.12 } #Notification to other human players. (Mountain Clans)
+			}
+		}
+	}
+}
+
+#Actually Spawm the Army...
+character_event = {
+	id = invasions.11
+	desc = "Arrgh!"
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Ok."
+		FROM = {
+			owner = {
+				top_liege = {
+					primary_title = {
+						add_claim = ROOT
+						reverse_war = {
+							target = ROOT
+							casus_belli = claim
+						}
+					}
+				}
+			}
+			ROOT = {
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					scaled_by_biggest_garrison = 1.5
+					troops = {
+						archers = { 19 19 }
+						light_infantry = { 12 12 }
+						heavy_infantry = { 2 2 }
+					}
+					attrition = 1.0
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					scaled_by_biggest_garrison = 1.5
+					troops = {
+						archers = { 19 19 }
+						light_infantry = { 13 13 }
+						heavy_infantry = { 2 2 }
+					}
+					attrition = 1.0
+				}
+				spawn_unit = {
+					province = PREV
+					home = PREV
+					scaled_by_biggest_garrison = 1.5
+					troops = {
+						archers = { 19 19 }
+						light_infantry = { 12 12 }
+						heavy_infantry = { 2 2 }
+					}
+					attrition = 1.0
+				}
+				spawn_fleet = {
+					province = closest
+					owner = ROOT
+					troops = {
+						galleys = { 500 500 }
+					}
+				}
+				spawn_fleet = {
+					province = closest
+					owner = ROOT
+					troops = {
+						galleys = { 500 500 }
+					}
+				}
+				spawn_fleet = {
+					province = closest
+					owner = ROOT
+					troops = {
+						galleys = { 500 500 }
+					}
+				}
+			}
+		}
+		#Spawn a few courtiers
+		create_random_soldier = {
+			female = no
+			culture = brindlemen
+			religion = sothoryos_rel
+			random_traits = yes
+			dynasty = none
+		}
+		new_character = {
+			random_list = {
+				70 = { add_trait = trained_warrior }
+				20 = { add_trait = skilled_warrior }
+				10 = { add_trait = master_warrior }
+			}
+			character_event = { id = essos.1 }
+
+			remove_trait = inbred
+			remove_trait = imbecile
+			remove_trait = infirm
+			remove_trait = incapable
+			remove_trait = hunchback
+			remove_trait = clubfooted
+			remove_trait = weak
+			remove_trait = leper
+			remove_trait = possessed
+			remove_trait = ill
+			remove_trait = pneumonic
+			remove_trait = maimed
+		}
+		create_random_soldier = {
+			female = no
+			culture = brindlemen
+			religion = sothoryos_rel
+			random_traits = yes
+			dynasty = none
+		}
+		new_character = {
+			random_list = {
+				70 = { add_trait = trained_warrior }
+				20 = { add_trait = skilled_warrior }
+				10 = { add_trait = master_warrior }
+			}
+			character_event = { id = essos.1 days = 1 }
+
+			remove_trait = inbred
+			remove_trait = imbecile
+			remove_trait = infirm
+			remove_trait = incapable
+			remove_trait = hunchback
+			remove_trait = clubfooted
+			remove_trait = weak
+			remove_trait = leper
+			remove_trait = possessed
+			remove_trait = ill
+			remove_trait = pneumonic
+			remove_trait = maimed
+		}
+		create_random_soldier = {
+			female = no
+			culture = brindlemen
+			religion = sothoryos_rel
+			random_traits = yes
+			dynasty = none
+		}
+		new_character = {
+			random_list = {
+				70 = { add_trait = trained_warrior }
+				20 = { add_trait = skilled_warrior }
+				10 = { add_trait = master_warrior }
+			}
+			character_event = { id = essos.1 days = 2 }
+
+			remove_trait = inbred
+			remove_trait = imbecile
+			remove_trait = infirm
+			remove_trait = incapable
+			remove_trait = hunchback
+			remove_trait = clubfooted
+			remove_trait = weak
+			remove_trait = leper
+			remove_trait = possessed
+			remove_trait = ill
+			remove_trait = pneumonic
+			remove_trait = maimed
+		}
+		create_random_soldier = {
+			female = no
+			culture = brindlemen
+			religion = sothoryos_rel
+			random_traits = yes
+			dynasty = none
+		}
+		new_character = {
+			random_list = {
+				70 = { add_trait = trained_warrior }
+				20 = { add_trait = skilled_warrior }
+				10 = { add_trait = master_warrior }
+			}
+			character_event = { id = essos.1 }
+
+			remove_trait = inbred
+			remove_trait = imbecile
+			remove_trait = infirm
+			remove_trait = incapable
+			remove_trait = hunchback
+			remove_trait = clubfooted
+			remove_trait = weak
+			remove_trait = leper
+			remove_trait = possessed
+			remove_trait = ill
+			remove_trait = pneumonic
+			remove_trait = maimed
+		}
+		create_character = {
+			female = yes
+			culture = brindlemen
+			religion = sothoryos_rel
+			random_traits = yes
+			dynasty = none
+			age = 18
+		}
+		new_character = {
+			character_event = { id = essos.1 days = 1 }
+
+			remove_trait = inbred
+			remove_trait = imbecile
+			remove_trait = infirm
+			remove_trait = incapable
+			remove_trait = hunchback
+			remove_trait = clubfooted
+			remove_trait = weak
+			remove_trait = leper
+			remove_trait = possessed
+			remove_trait = ill
+			remove_trait = pneumonic
+			remove_trait = maimed
+		}
+		create_character = {
+			female = yes
+			culture = brindlemen
+			religion = sothoryos_rel
+			random_traits = yes
+			dynasty = none
+			age = 25
+		}
+		new_character = {
+			character_event = { id = essos.1 days = 2 }
+
+			remove_trait = inbred
+			remove_trait = imbecile
+			remove_trait = infirm
+			remove_trait = incapable
+			remove_trait = hunchback
+			remove_trait = clubfooted
+			remove_trait = weak
+			remove_trait = leper
+			remove_trait = possessed
+			remove_trait = ill
+			remove_trait = pneumonic
+			remove_trait = maimed
+		}
+		create_character = {
+			female = yes
+			culture = brindlemen
+			religion = sothoryos_rel
+			random_traits = yes
+			dynasty = none
+			age = 24
+		}
+		new_character = {
+			character_event = { id = essos.1 }
+
+			remove_trait = inbred
+			remove_trait = imbecile
+			remove_trait = infirm
+			remove_trait = incapable
+			remove_trait = hunchback
+			remove_trait = clubfooted
+			remove_trait = weak
+			remove_trait = leper
+			remove_trait = possessed
+			remove_trait = ill
+			remove_trait = pneumonic
+			remove_trait = maimed
+		}
+	}
+}
+#Inform the world
+narrative_event = {
+	id = invasions.12
+	desc = "EVTDESCinvasions.12"
+	title = "EVTTITLEinvasions.12"
+	picture = "GFX_sothoryos"
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Ok"
+		tooltip = {
+			d_brindleman_invaders = {
+				holder_scope = { }
+			}
+		}
+	}
+}

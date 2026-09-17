@@ -1,0 +1,161 @@
+namespace = weird_butcher_events
+
+###Try it the first time###
+
+character_event = {
+    id = weird_butcher_events.10
+    desc = EVTDESCweird_butcher_events.10
+    picture = GFX_magistrate
+    border = GFX_event_normal_frame_war
+    is_triggered_only = yes
+    ai = no
+    capable_only = yes
+    prisoner = no
+    only_playable = yes
+    min_age = 16
+
+    trigger = {
+        location = {
+            any_province_holding = {
+                OR = {
+                    has_building = ca_weird_butcher
+                    has_building = ct_weird_butcher
+                }
+            }
+        }
+        NOT = { has_character_flag = first_time_flesh }
+        NOT = { has_character_flag = refused_flesh }
+    }
+    option = {
+        name = EVTOPTAweird_butcher_events.10
+        ai_chance = {
+            factor = 0.5
+            modifier = {
+                factor = 8
+                trait = gluttonous
+            }
+        }
+        if = {
+            limit = { NOT = { trait = cannibal_trait } }
+            add_trait = cannibal_trait
+        }
+        add_character_modifier = { name = ate_weird_flesh days = 365 }
+        set_character_flag = first_time_flesh
+        character_event = {
+            id = weird_butcher_events.20 #MORE
+            days = 366
+        }
+    }
+    option = {
+        name = EVTOPTBweird_butcher_events.10
+        ai_chance = {
+            factor = 2.5
+            modifier = {
+                factor = 0.2
+                trait = lunatic
+            }
+            modifier = {
+                factor = 0
+                trait = cannibal_trait
+            }
+        }
+        set_character_flag = refused_flesh
+        piety = 20
+    }
+}
+
+###MORE!!!###
+
+character_event = {
+    id = weird_butcher_events.20
+    desc = EVTDESCweird_butcher_events.20
+    picture = GFX_magistrate
+    border = GFX_event_normal_frame_war
+    ai = no
+    is_triggered_only = yes
+    capable_only = yes
+    prisoner = no
+    only_playable = yes
+    min_age = 16
+
+    trigger = {
+        location = {
+            any_province_holding = {
+                OR = {
+                    has_building = ca_weird_butcher
+                    has_building = ct_weird_butcher
+                }
+            }
+        }
+        has_character_flag = first_time_flesh
+        NOT = { has_character_modifier = ate_weird_flesh }
+    }
+    option = {
+        name = EVTOPTAweird_butcher_events.20
+        ai_chance = {
+            factor = 1
+            modifier = {
+                factor = 3
+                trait = gluttonous
+            }
+            modifier = {
+                factor = 3
+                trait = lunatic
+            }
+        }
+        if = {
+            limit = { NOT = { trait = lunatic } }
+            random = {
+                chance = 40
+                add_trait = lunatic
+                hidden_tooltip = { character_event = { id = weird_butcher_events.21 } }
+            }
+        }
+        if = {
+            limit = { NOT = { trait = possessed } }
+            random = {
+                chance = 30
+                add_trait = possessed
+                hidden_tooltip = { character_event = { id = weird_butcher_events.22 } }
+            }
+        }
+        add_character_modifier = { name = ate_weird_flesh days = 365 }
+        character_event = {
+            id = weird_butcher_events.20 #MORE
+            days = 366
+        }
+    }
+    option = {
+        name = EVTOPTBweird_butcher_events.20
+        clr_character_flag = first_time_flesh
+        set_character_flag = refused_flesh
+        remove_trait = cannibal_trait
+        piety = 300
+        add_trait = feeble
+        add_trait = depressed
+    }
+}
+character_event = {
+    id = weird_butcher_events.21
+    desc = EVTDESCweird_butcher_events.21
+    picture = GFX_evt_dany_hotu_warlocks2
+    border = GFX_event_normal_frame_war
+
+    is_triggered_only = yes
+
+    option = {
+        name = EVTOPTAweird_butcher_events.21
+    }
+}
+character_event = {
+    id = weird_butcher_events.22
+    desc = EVTDESCweird_butcher_events.22
+    picture = GFX_evt_dany_hotu_warlocks2
+    border = GFX_event_normal_frame_war
+
+    is_triggered_only = yes
+
+    option = {
+        name = EVTOPTAweird_butcher_events.22
+    }
+}

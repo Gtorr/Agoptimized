@@ -1,0 +1,124 @@
+#English Only sorry;;;;;;;;;;
+
+#Retinues common to ALL republics;;;;;;;;;;
+uns_infantry_one_retinue;Sworn Sword;;;;;;;;;x
+uns_infantry_two_retinue;Sworn Spear;;;;;;;;;x
+uns_cavalry_one_retinue;Free Rider;;;;;;;;;x
+uns_skirmisher_one_retinue;Sworn Bow;;;;;;;;;x
+;;;;;;;;;;
+#First men - Andals - Dornish cultures - Rhoynar religion retinues;;;;;;;;;;
+uns_north_one_retinue;Winter Wolves;;;;;;;;;x
+uns_north_two_retinue;Battle Companions;;;;;;;;;x
+uns_north_three_retinue;Northern Infantry;;;;;;;;;x
+uns_north_four_retinue;Sistermen Assault Party;;;;;;;;;x
+uns_north_five_retinue;Galley defenders;;;;;;;;;x
+uns_north_six_retinue;Godswood Chargers;;;;;;;;;x
+uns_north_seven_retinue;Wolfswood Walkers;;;;;;;;;x
+uns_crannog_one_retinue;Skirmishers;;;;;;;;;x
+uns_crannog_two_retinue;Ambush Party;;;;;;;;;x
+uns_crannog_three_retinue;Crannogmen Infantry;;;;;;;;;x
+uns_crannog_four_retinue;Crannog Marshmen;;;;;;;;;x
+uns_clan_one_retinue;Raiders;;;;;;;;;x
+uns_clan_two_retinue;Rough Riders;;;;;;;;;x
+uns_clan_three_retinue;Shock Infantry;;;;;;;;;x
+uns_old_gods_retinue;Weirwood Warriors;;;;;;;;;x
+uns_iron_one_retinue;Reavers;;;;;;;;;x
+uns_iron_two_retinue;Boarders;;;;;;;;;x
+uns_iron_three_retinue;Reaver Infantry;;;;;;;;;x
+uns_iron_four_retinue;Reaversguard;;;;;;;;;x
+uns_iron_five_retinue;Pykemen;;;;;;;;;x
+uns_iron_six_retinue;Ironborn;;;;;;;;;x
+uns_drowned_retinue;Drowned Men;;;;;;;;;x
+uns_river_one_retinue;River Riders;;;;;;;;;x
+uns_river_two_retinue;Stream Soldiers;;;;;;;;;x
+uns_river_three_retinue;Riverlander Knights;;;;;;;;;x
+uns_crown_one_retinue;Crownlander Knights;;;;;;;;;x
+uns_crown_two_retinue;Assault Cavalry;;;;;;;;;x
+uns_crown_three_retinue;Republican Guards;;;;;;;;;x
+uns_west_one_retinue;Hill Defenders;;;;;;;;;x
+uns_west_two_retinue;Stampeding Cavalry;;;;;;;;;x
+uns_west_three_retinue;Westermen Knights;;;;;;;;;x
+uns_west_four_retinue;The Dog's Bollocks;;;;;;;;;x
+uns_vale_one_retinue;Pass Bulwark;;;;;;;;;x
+uns_vale_two_retinue;Honour Guard;;;;;;;;;x
+uns_vale_three_retinue;Valemen Knight;;;;;;;;;x
+uns_storm_one_retinue;Typhoon Strikers;;;;;;;;;x
+uns_storm_two_retinue;Storm Riders;;;;;;;;;x
+uns_storm_three_retinue;Stormlander Infantry;;;;;;;;;x
+uns_reach_one_retinue;Rose Thorns;;;;;;;;;x
+uns_reach_two_retinue;Flytrappers;;;;;;;;;x
+uns_reach_tree_retinue;Reachmen Knights;;;;;;;;;x
+uns_dorne_one_retinue;Scorpions;;;;;;;;;x
+uns_dorne_two_retinue;Sand Steeds;;;;;;;;;x
+uns_dorne_three_retinue;Dornish Riders;;;;;;;;;x
+uns_the_seven_retinue;Defenders of the Faith;;;;;;;;;x
+uns_mother_rhoyne_retinue;Mother Rhoyne's Sons;;;;;;;;;x
+
+#Free Cities cultural retinues; common and not;;;;;;;;;;
+uns_pentos_retinue;Pentoshi Infantry;;;;;;;;;x
+uns_braavos_retinue;Bravos;;;;;;;;;x
+uns_lysene_retinue;Lysene Infantry;;;;;;;;;x
+uns_qohor_retinue;Qohoric Riders;;;;;;;;;x
+uns_norvos_retinue;Protectors of the Bells;;;;;;;;;x
+uns_myr_retinue;Myrenese Spearmen;;;;;;;;;x
+uns_tyrosh_retinue;Tyroshi Spearmen;;;;;;;;;x
+uns_volantene_retinue;Volantene Elephants;;;;;;;;;x
+uns_lorath_retinue;Lorathi Infantry;;;;;;;;;x
+uns_free_cities_one_retinue;Free Cities Mercenaries;;;;;;;;;x
+uns_free_cities_two_retinue;Flatlands Mercenaries;;;;;;;;;x
+uns_rhllor_retinue;Temple Guards;;;;;;;;;x
+uns_black_goat_retinue;Qohoric Goaters;;;;;;;;;x
+uns_lorath_rel_retinue;Lorathi Naval Infantry;;;;;;;;;x
+uns_trio_retinue;The Holy Trio;;;;;;;;;x
+uns_moonsinger_retinue;Bravoosi Moonsingers;;;;;;;;;x
+uns_bearded_priests_retinue;Bearded Priests;;;;;;;;;x
+
+#Valyrian cultures retinues ;;;;;;;;;;
+uns_valyrian_one_retinue;Knights of the Dragon;;;;;;;;;x
+uns_valyrian_two_retinue;Guardians of Dragonstone;;;;;;;;;x
+uns_valyrian_three_retinue;Westerosi skirmishers;;;;;;;;;x
+uns_valyrian_four_retinue;Dragon Archers;;;;;;;;;x
+uns_valyrian_five_retinue;Slave Infrantry;;;;;;;;;x
+uns_valyrian_six_retinue;Sons of Volantis;;;;;;;;;x
+uns_valyrian_seven_retinue;Freehold Guard;;;;;;;;;x
+uns_valyrian_eight_retinue;Dragonlords Wrath;;;;;;;;;x
+uns_valyrian_nine_retinue;Dragonguard;;;;;;;;;x
+uns_valyrian_ten_retinue;Slave Legions of Valyria;;;;;;;;;x
+uns_valyrian_rel_retinue;Guardians of the Flame;;;;;;;;;x
+
+;;;;;;;;;;
+#Eastern cultures;;;;;;;;;;
+uns_sarnor_one_retinue;Scouts of Sarnor;;;;;;;;;x
+uns_sarnor_two_retinue;Guards of Sarnath;;;;;;;;;x
+uns_sarnor_three_retinue;Raiders of The Towers;;;;;;;;;x
+uns_sarnor_rel_retinue;Archers of the Silver Sea;;;;;;;;;x
+uns_dothraki_one_retinue;Dothraki Screamers;;;;;;;;;x
+uns_dothraki_two_retinue;The Stallion's chosen;;;;;;;;;x
+uns_dothraki_rel_retinue;Dosh Khaleen;;;;;;;;;x
+uns_lhazareen_one_retinue;Sheep Warriors;;;;;;;;;x
+uns_lhazareen_two_retinue;Lhazar Guardians;;;;;;;;;x
+uns_lhazareen_three_retinue;Lhazareen Riders;;;;;;;;;x
+uns_great_shepherd_retinue;Temple Warriors;;;;;;;;;x
+uns_ibben_one_retinue;Far Ibb Raiders;;;;;;;;;x
+uns_ibben_two_retinue;Ibben Naval Marines;;;;;;;;;x
+uns_ibben_three_retinue;Ibbenese Heavy Infantry;;;;;;;;;x
+uns_ibben_rel_retinue;Ghosts of ibbish;;;;;;;;;x
+uns_summer_one_retinue;Archers of Tall Trees Town;;;;;;;;;x
+uns_summer_two_retinue;Guardians of the Indigo Straits;;;;;;;;;x
+uns_summer_three_retinue;Summer Skirmishers;;;;;;;;;x
+uns_summer_rel_retinue;The Goddess Protectors;;;;;;;;;x
+uns_pirate_retinue;Pirates;;;;;;;;;x
+uns_pirate_two_retinue;Pillagers;;;;;;;;;x
+uns_basilisk_one_retinue;Guardians of Zamettar;;;;;;;;;x
+uns_basilisk_two_retinue;Tribesmen of Gorosh;;;;;;;;;x
+uns_basilisk_three_retinue;Basilisk Archers;;;;;;;;;x
+uns_harpy_retinue;Sons of the Harpy;;;;;;;;;x
+uns_ghiscar_one_retinue;Ghiscari Militia;;;;;;;;;x
+uns_ghiscar_two_retinue;Slave Militia;;;;;;;;;x
+uns_ghiscar_three_retinue;Legions of New Ghis;;;;;;;;;x
+uns_ghiscar_four_retinue;Mercenaries of Slaver's Bay;;;;;;;;;x
+uns_qarth_one_retinue;Guardians of the Jade Gate;;;;;;;;;x
+uns_qarth_two_retinue;Riders of Port Yhos;;;;;;;;;x
+uns_qarth_three_retinue;Qartheen Slave Militia;;;;;;;;;x
+uns_warlocks_retinue;Warlocks' Guard;;;;;;;;;x
+uns_cataphracts;Cataphracts;;;;;;;;;x

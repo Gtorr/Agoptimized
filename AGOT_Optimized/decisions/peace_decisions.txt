@@ -1,0 +1,25 @@
+decisions = {
+    going_out_decision = {
+        ai = no
+        only_playable = yes
+        is_high_prio = yes
+        potential = {
+            ai = no
+            NOT = { has_character_modifier = went_out }
+        }
+        allow = {
+            prisoner = no
+            NOT = { has_character_modifier = went_out }
+            NOT = { trait = incapable }
+            NOT = { is_inaccessible_trigger = yes }
+        }
+        effect = {
+            character_event = { id = going_out_events.10 }
+            add_character_modifier = {
+                name = went_out
+                duration = 2000
+                hidden = yes
+            }
+        }
+    }
+}

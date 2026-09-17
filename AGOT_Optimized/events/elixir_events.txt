@@ -1,0 +1,446 @@
+namespace = elixir_events
+
+
+character_event = { # love
+	id = elixir_events.10
+	desc = EVTDESCelixir_events.10
+	picture = GFX_evt_dany_pyat_pree
+	border = GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
+	
+	immediate = {
+	    random_list = {
+		    10 = { 
+				   set_character_flag = elixir_possessed
+			       modifier = { 
+				        factor = 0
+						trait = possessed
+				   }
+			}
+			10 = { 
+				   set_character_flag = elixir_cough
+			}
+			10 = { 
+				   set_character_flag = elixir_diarrhea
+			}
+			10 = { 
+				   set_character_flag = elixir_vomiting
+			}
+			10 = { 
+				   set_character_flag = elixir_headache
+			}
+			
+			10 = { 
+				   set_character_flag = elixir_feeble
+			       modifier = { 
+				        factor = 0
+						trait = feeble
+				   }
+				   modifier = { 
+				        factor = 0
+						trait = robust
+				   }
+			}
+			10 = { 
+				   set_character_flag = elixir_loose_chaste
+				   modifier = { 
+				        factor = 0
+						NOT = { trait = chaste }
+				   }
+			       modifier = { 
+				        factor = 200
+						trait = chaste
+				   }
+			}
+			10 = { 
+				   set_character_flag = elixir_loose_ruthless
+				   modifier = { 
+				        factor = 0
+						NOT = { trait = ruthless }
+				   }
+			       modifier = { 
+				        factor = 200
+						trait = ruthless
+				   }
+			}
+			10 = { 
+				   set_character_flag = elixir_loose_cruel
+				   modifier = { 
+				        factor = 0
+						NOT = { trait = cruel }
+				   }
+			       modifier = { 
+				        factor = 200
+						trait = cruel
+				   }
+			}
+			10 = { 
+				   set_character_flag = elixir_loose_wroth
+				   modifier = { 
+				        factor = 0
+						NOT = { trait = wroth }
+				   }
+			       modifier = { 
+				        factor = 200
+						trait = wroth
+				   }
+			}
+			10 = { 
+				   set_character_flag = elixir_loose_shy
+				   modifier = { 
+				        factor = 0
+						NOT = { trait = shy }
+				   }
+			       modifier = { 
+				        factor = 200
+						trait = shy
+				   }
+			}
+			
+		}
+	}
+	
+	option = {	    
+		name = EVTOPTAelixir_events.10
+		if = {
+            limit = {
+                has_character_flag = elixir_possessed
+            }
+            clr_character_flag = elixir_possessed
+			add_trait = possessed
+        }
+		else_if = {
+            limit = {
+                has_character_flag = elixir_cough
+            }
+            clr_character_flag = elixir_cough
+			character_event = { id = RIP.5000 }
+        }
+		else_if = {
+            limit = {
+                has_character_flag = elixir_diarrhea
+            }
+            clr_character_flag = elixir_diarrhea
+			character_event = { id = RIP.5002 }
+        }
+		else_if = {
+            limit = {
+                has_character_flag = elixir_vomiting
+            }
+            clr_character_flag = elixir_vomiting
+			character_event = { id = RIP.5003 }
+        }
+		else_if = {
+            limit = {
+                has_character_flag = elixir_headache
+            }
+            clr_character_flag = elixir_headache
+			character_event = { id = RIP.5004 }
+        }
+		else_if = {
+            limit = {
+                has_character_flag = elixir_feeble
+            }
+            clr_character_flag = elixir_feeble
+			add_trait = feeble
+        }
+		else_if = {
+            limit = {
+                has_character_flag = elixir_loose_chaste
+            }
+            clr_character_flag = elixir_chaste
+			remove_trait = chaste
+        }
+		else_if = {
+            limit = {
+                has_character_flag = elixir_loose_ruthless
+            }
+            clr_character_flag = elixir_ruthless
+			remove_trait = ruthless
+        }
+		else_if = {
+            limit = {
+                has_character_flag = elixir_loose_cruel
+            }
+            clr_character_flag = elixir_cruel
+			remove_trait = cruel
+        }
+		else_if = {
+            limit = {
+                has_character_flag = elixir_loose_wroth
+            }
+            clr_character_flag = elixir_wroth
+			remove_trait = wroth
+        }
+		else_if = {
+            limit = {
+                has_character_flag = elixir_loose_shy
+            }
+            clr_character_flag = elixir_shy
+			remove_trait = shy
+        }
+	}
+}
+character_event = { # battle
+	id = elixir_events.20
+	desc = EVTDESCelixir_events.20
+	picture = GFX_evt_dany_pyat_pree
+	border = GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
+	
+	immediate = {
+	    random_list = {
+		    10 = { 
+				   set_character_flag = elixir_cough
+			}
+			10 = { 
+				   set_character_flag = elixir_diarrhea
+			}
+			10 = { 
+				   set_character_flag = elixir_vomiting
+			}
+			10 = { 
+				   set_character_flag = elixir_headache
+			}
+		    10 = { 
+				   set_character_flag = elixir_possessed
+			       modifier = { 
+				        factor = 0
+						trait = possessed
+				   }
+			}
+			10 = { 
+				   set_character_flag = elixir_aggressive_leader
+			       modifier = { 
+				        factor = 0
+						trait = aggressive_leader
+				   }
+			}
+			10 = { 
+				   set_character_flag = elixir_berserker
+			       modifier = { 
+				        factor = 0
+						trait = berserker
+				   }
+			}
+			10 = { 
+				   set_character_flag = elixir_wroth
+			       modifier = { 
+				        factor = 0
+						trait = wroth
+				   }
+			}
+			10 = { 
+				   set_character_flag = elixir_loose_craven
+				   modifier = { 
+				        factor = 0
+						NOT = { trait = craven }
+				   }
+			       modifier = { 
+				        factor = 200
+						trait = craven
+				   }
+			}
+			10 = { 
+				   set_character_flag = elixir_loose_temperate
+				   modifier = { 
+				        factor = 0
+						NOT = { trait = temperate }
+				   }
+			       modifier = { 
+				        factor = 200
+						trait = temperate
+				   }
+			}
+			10 = { 
+				   set_character_flag = elixir_loose_patient
+				   modifier = { 
+				        factor = 0
+						NOT = { trait = patient }
+				   }
+			       modifier = { 
+				        factor = 200
+						trait = patient
+				   }
+			}
+			10 = { 
+				   set_character_flag = elixir_loose_shy
+				   modifier = { 
+				        factor = 0
+						NOT = { trait = shy }
+				   }
+			       modifier = { 
+				        factor = 200
+						trait = shy
+				   }
+			}
+			
+		}
+	}
+	option = {	    
+		name = EVTOPTAelixir_events.20
+		if = {
+            limit = {
+                has_character_flag = elixir_possessed
+            }
+            clr_character_flag = elixir_possessed
+			add_trait = possessed
+        }
+		else_if = {
+            limit = {
+                has_character_flag = elixir_cough
+            }
+            clr_character_flag = elixir_cough
+			character_event = { id = RIP.5000 }
+        }
+		else_if = {
+            limit = {
+                has_character_flag = elixir_diarrhea
+            }
+            clr_character_flag = elixir_diarrhea
+			character_event = { id = RIP.5002 }
+        }
+		else_if = {
+            limit = {
+                has_character_flag = elixir_vomiting
+            }
+            clr_character_flag = elixir_vomiting
+			character_event = { id = RIP.5003 }
+        }
+		else_if = {
+            limit = {
+                has_character_flag = elixir_headache
+            }
+            clr_character_flag = elixir_headache
+			character_event = { id = RIP.5004 }
+        }
+        else_if = {
+            limit = {
+                has_character_flag = elixir_aggressive_leader
+            }
+            clr_character_flag = elixir_aggressive_leader
+			add_trait = aggressive_leader
+        }
+		else_if = {
+            limit = {
+                has_character_flag = elixir_berserker
+            }
+            clr_character_flag = elixir_berserker
+			add_trait = berserker
+        }
+		else_if = {
+            limit = {
+                has_character_flag = elixir_wroth
+            }
+            clr_character_flag = elixir_wroth
+			add_trait = wroth
+        }
+		else_if = {
+            limit = {
+                has_character_flag = elixir_loose_craven
+            }
+            clr_character_flag = elixir_loose_craven
+			remove_trait = craven
+        }
+		else_if = {
+            limit = {
+                has_character_flag = elixir_loose_temperate
+            }
+            clr_character_flag = elixir_loose_temperate
+			remove_trait = temperate
+        }
+		else_if = {
+            limit = {
+                has_character_flag = elixir_loose_patient
+            }
+            clr_character_flag = elixir_loose_patient
+			remove_trait = patient
+        }
+		else_if = {
+            limit = {
+                has_character_flag = elixir_loose_shy
+            }
+            clr_character_flag = elixir_loose_shy
+			remove_trait = shy
+        }
+	}
+}
+character_event = { # health
+	id = elixir_events.30
+	desc = EVTDESCelixir_events.30
+	picture = GFX_evt_dany_pyat_pree
+	border = GFX_event_normal_frame_war
+	
+	is_triggered_only = yes
+	
+	immediate = {
+	    random_list = {
+		    10 = { 
+				   set_character_flag = elixir_possessed
+			       modifier = { 
+				        factor = 0
+						trait = possessed
+				   }
+			}
+			10 = { 
+				   set_character_flag = elixir_lunatic
+			       modifier = { 
+				        factor = 0
+						trait = lunatic
+				   }
+			}
+			10 = { 
+				   set_character_flag = elixir_paranoid
+			       modifier = { 
+				        factor = 0
+						trait = paranoid
+				   }
+			}
+			10 = { 
+				   set_character_flag = elixir_robust
+			       modifier = { 
+				        factor = 0
+						trait = feeble
+				   }
+				   modifier = { 
+				        factor = 0
+						trait = robust
+				   }
+			}
+			
+		}
+	}
+	option = {	    
+		name = EVTOPTAelixir_events.30
+		if = {
+            limit = {
+                has_character_flag = elixir_possessed
+            }
+            clr_character_flag = elixir_possessed
+			add_trait = possessed
+        }
+        else_if = {
+            limit = {
+                has_character_flag = elixir_lunatic
+            }
+            clr_character_flag = elixir_lunatic
+			add_trait = lunatic
+        }
+		else_if = {
+            limit = {
+                has_character_flag = elixir_paranoid
+            }
+            clr_character_flag = elixir_paranoid
+			add_trait = paranoid
+        }
+		else_if = {
+            limit = {
+                has_character_flag = elixir_robust
+            }
+            clr_character_flag = elixir_robust
+			add_trait = robust
+        }
+	}
+}

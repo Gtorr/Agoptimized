@@ -1,0 +1,46 @@
+###Black Goat of Qohor###
+
+# Sacrifice Child #
+targetted_decisions = {
+sacrifice_child_decision = {
+		ai = no
+        is_high_prio = yes
+		only_playable = yes	
+		filter = dynasty
+		
+		
+		from_potential = {
+			is_playable = yes
+			is_adult = yes
+			prisoner = no
+			is_incapable = no
+			religion = black_goat
+			any_war = { war_score = -30 }
+		}
+
+		potential = {
+			host = { character = FROM }
+			is_child_of = FROM
+			NOT = { has_character_flag = demon_child_non_pagan }
+		}
+		
+		allow = {
+			any_demesne_province = { has_building = tp_sacrificial_altar }
+		}
+		
+		effect = {
+			hidden_effect = { #ROOT is target, FROM is doer
+			    ROOT = {
+			        hidden_effect = { long_character_event = { id = MNM.7506 } }
+			        death = {
+				        death_reason = death_sacrificed
+			        }
+				}
+				FROM = { 
+					character_event = { id = more_rel_events.10 }
+				}
+			}			
+		}
+	}
+}
+	

@@ -1,0 +1,798 @@
+namespace = slavery_player
+#This events are for the player only
+# ***********************************
+# slavery_player.10 - Player buys slaves
+# slavery_player.20 - Player sells slaves
+# slavery_player.30 - Player buys Unsullied
+# slavery_player.40 - Player recives income from slaves
+# slavery_player.100 - Clear recent trade flag
+# slavery_player.101 - Clear recent trade flag hidden
+# slavery_player.110 - Clear recent Unsullied trade flag
+# slavery_player.111 - Clear recent Unsullied trade flag hidden
+#************************************
+character_event = {
+	#Human buy slaves
+	# Slaves are bought in batches of 1000
+	# 1000 Slaves are worth 190-300 gold
+	id = slavery_player.10
+	ai = no
+	is_triggered_only = yes
+	picture = GFX_evt_slavery
+	desc = "EVTDESCslavery_player.10"
+	immediate = {
+		export_to_variable = {
+			which = temp_slave_price
+			value = realm_stewardship
+		}
+		multiply_variable = {
+			which = temp_slave_price
+			value = 2
+		}
+		#Admin is very important
+		subtract_variable = {
+			which = temp_slave_price
+			value = 180
+		}
+		random_list = {
+			#Admin roll 20*x
+			1 = {
+				#V good
+				modifier = {
+					factor = 3
+					realm_stewardship > 35
+				}
+				subtract_variable = {
+					which = temp_slave_price
+					value = 20
+				}
+			}
+			3 = {
+				# Good
+				modifier = {
+					factor = 2
+					realm_stewardship > 25
+				}
+				subtract_variable = {
+					which = temp_slave_price
+					value = 40
+				}
+			}
+			3 = {
+				# Bad
+				modifier = {
+					factor = 2
+					realm_stewardship < 15
+				}
+				subtract_variable = {
+					which = temp_slave_price
+					value = 60
+				}
+			}
+			1 = {
+				# VBad
+				modifier = {
+					factor = 3
+					realm_stewardship < 10
+				}
+				subtract_variable = {
+					which = temp_slave_price
+					value = 80
+				}
+			}
+		}
+		random_list = {
+			#Diplo roll 10*x
+			1 = {
+				#V good
+				modifier = {
+					factor = 3
+					realm_diplomacy > 35
+				}
+				subtract_variable = {
+					which = temp_slave_price
+					value = 10
+				}
+			}
+			3 = {
+				# Good
+				modifier = {
+					factor = 2
+					realm_diplomacy > 25
+				}
+				subtract_variable = {
+					which = temp_slave_price
+					value = 20
+				}
+			}
+			3 = {
+				# Bad
+				modifier = {
+					factor = 2
+					realm_diplomacy < 15
+				}
+				subtract_variable = {
+					which = temp_slave_price
+					value = 30
+				}
+			}
+			1 = {
+				# VBad
+				modifier = {
+					factor = 3
+					realm_diplomacy < 10
+				}
+				subtract_variable = {
+					which = temp_slave_price
+					value = 40
+				}
+			}
+		}
+		random_list = {
+			#intrige roll 5*x
+			1 = {
+				#V good
+				modifier = {
+					factor = 4
+					realm_intrigue > 35
+				}
+				subtract_variable = {
+					which = temp_slave_price
+					value = 5
+				}
+			}
+			3 = {
+				# Good
+				modifier = {
+					factor = 2
+					realm_intrigue > 25
+				}
+				subtract_variable = {
+					which = temp_slave_price
+					value = 10
+				}
+			}
+			3 = {
+				# Bad
+				modifier = {
+					factor = 2
+					realm_intrigue < 15
+				}
+				subtract_variable = {
+					which = temp_slave_price
+					value = 15
+				}
+			}
+			1 = {
+				# VBad
+				modifier = {
+					factor = 4
+					realm_intrigue < 10
+				}
+				subtract_variable = {
+					which = temp_slave_price
+					value = 20
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_law = slavery_1				#Indentured servitude
+			}
+			multiply_variable = {
+				which = temp_slave_price
+				value = 2
+			}
+			#Admin is very important
+		}
+	}
+	option = {
+		name = "its a deal"
+		wealth = temp_slave_price
+		change_variable = {
+			which = num_slaves
+			value = 1000
+		}
+		hidden_tooltip = {
+			char_refresh_slave_bonus = yes
+			set_character_flag = recent_slave_trade
+			if = {
+				limit = {
+					has_character_flag = no_remind_slave_trade
+				}
+				character_event = {
+					id = slavery_player.101
+					months = 6
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_character_flag = no_remind_slave_trade
+					}
+				}
+				character_event = {
+					id = slavery_player.100
+					months = 6
+				}
+			}
+		}
+	}
+	option = {
+		name = "Wait for a better price"
+		hidden_tooltip = {
+			set_character_flag = recent_slave_trade
+			if = {
+				limit = {
+					has_character_flag = no_remind_slave_trade
+				}
+				character_event = {
+					id = slavery_player.101
+					months = 3
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_character_flag = no_remind_slave_trade
+					}
+				}
+				character_event = {
+					id = slavery_player.100
+					months = 3
+				}
+			}
+		}
+	}
+}
+
+#************************************
+character_event = {
+	#Human Sells slaves
+	# Slaves are sold in batches of 1000
+	# 1000 Slaves are sold for 165-270 gold
+	id = slavery_player.20
+	ai = no
+	is_triggered_only = yes
+	picture = GFX_evt_slavery
+	desc = "EVTDESCslavery_player.20"
+	immediate = {
+		export_to_variable = {
+			which = temp_slave_price
+			value = realm_stewardship
+		}
+		multiply_variable = {
+			which = temp_slave_price
+			value = 2
+		}
+		change_variable = {
+			which = temp_slave_price
+			value = 130
+		}
+		random_list = {
+			#Admin roll 20*x
+			1 = {
+				#V good
+				modifier = {
+					factor = 3
+					realm_stewardship > 35
+				}
+				change_variable = {
+					which = temp_slave_price
+					value = 20
+				}
+			}
+			3 = {
+				# Good
+				modifier = {
+					factor = 2
+					realm_stewardship > 25
+				}
+				change_variable = {
+					which = temp_slave_price
+					value = 40
+				}
+			}
+			3 = {
+				# Bad
+				modifier = {
+					factor = 2
+					realm_stewardship < 15
+				}
+				change_variable = {
+					which = temp_slave_price
+					value = 60
+				}
+			}
+			1 = {
+				# VBad
+				modifier = {
+					factor = 3
+					realm_stewardship < 10
+				}
+				change_variable = {
+					which = temp_slave_price
+					value = 80
+				}
+			}
+		}
+		random_list = {
+			#Diplo roll 10*x
+			1 = {
+				#V good
+				modifier = {
+					factor = 3
+					realm_diplomacy > 35
+				}
+				change_variable = {
+					which = temp_slave_price
+					value = 10
+				}
+			}
+			3 = {
+				# Good
+				modifier = {
+					factor = 2
+					realm_diplomacy > 25
+				}
+				change_variable = {
+					which = temp_slave_price
+					value = 20
+				}
+			}
+			3 = {
+				# Bad
+				modifier = {
+					factor = 2
+					realm_diplomacy < 15
+				}
+				change_variable = {
+					which = temp_slave_price
+					value = 30
+				}
+			}
+			1 = {
+				# VBad
+				modifier = {
+					factor = 3
+					realm_diplomacy < 10
+				}
+				change_variable = {
+					which = temp_slave_price
+					value = 40
+				}
+			}
+		}
+		random_list = {
+			#intrige roll 5*x
+			1 = {
+				#V good
+				modifier = {
+					factor = 4
+					realm_intrigue > 35
+				}
+				change_variable = {
+					which = temp_slave_price
+					value = 5
+				}
+			}
+			3 = {
+				# Good
+				modifier = {
+					factor = 2
+					realm_intrigue > 25
+				}
+				change_variable = {
+					which = temp_slave_price
+					value = 10
+				}
+			}
+			3 = {
+				# Bad
+				modifier = {
+					factor = 2
+					realm_intrigue < 15
+				}
+				change_variable = {
+					which = temp_slave_price
+					value = 15
+				}
+			}
+			1 = {
+				# VBad
+				modifier = {
+					factor = 4
+					realm_intrigue < 10
+				}
+				change_variable = {
+					which = temp_slave_price
+					value = 20
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_law = slavery_1				#Indentured servitude
+			}
+			divide_variable = {
+				which = temp_slave_price
+				value = 2
+			}
+		}
+	}
+	option = {
+		name = "its a deal"
+		wealth = temp_slave_price
+		subtract_variable = {
+			which = num_slaves
+			value = 1000
+		}
+		hidden_tooltip = {
+			char_refresh_slave_bonus = yes
+			set_character_flag = recent_slave_trade
+			if = {
+				limit = {
+					has_character_flag = no_remind_slave_trade
+				}
+				character_event = {
+					id = slavery_player.101
+					months = 6
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_character_flag = no_remind_slave_trade
+					}
+				}
+				character_event = {
+					id = slavery_player.100
+					months = 6
+				}
+			}
+			set_variable = {
+				#Delete
+				which = temp_slave_price
+				value = 0
+			}
+		}
+	}
+	option = {
+		name = "Wait for a better price"
+		hidden_tooltip = {
+			set_character_flag = recent_slave_trade
+			change_variable = {
+				which = temp_slave_price				# delete
+				value = 0
+			}
+			if = {
+				limit = {
+					has_character_flag = no_remind_slave_trade
+				}
+				character_event = {
+					id = slavery_player.101
+					months = 3
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_character_flag = no_remind_slave_trade
+					}
+				}
+				character_event = {
+					id = slavery_player.100
+					months = 3
+				}
+			}
+			set_variable = {
+				#Delete
+				which = temp_slave_price
+				value = 0
+			}
+		}
+	}
+}
+
+#************************************
+character_event = {
+	#Player buys unsullied
+	#1000 Unsullied cost 1400 - 2000 gold
+	id = slavery_player.30
+	is_triggered_only = yes
+	ai = no
+	picture = GFX_evt_slavery
+	desc = "EVTDESCslavery_player.30"
+	immediate = {
+		export_to_variable = {
+			which = temp_slave_price
+			value = realm_diplomacy
+		}
+		subtract_variable = {
+			which = temp_slave_price
+			value = 1400
+		}
+		random_list = {
+			#Diplo roll
+			1 = {
+				#V good
+				modifier = {
+					factor = 3
+					realm_diplomacy > 35
+				}
+				subtract_variable = {
+					which = temp_slave_price
+					value = 150
+				}
+			}
+			3 = {
+				# Good
+				modifier = {
+					factor = 2
+					realm_diplomacy > 25
+				}
+				subtract_variable = {
+					which = temp_slave_price
+					value = 300
+				}
+			}
+			3 = {
+				# Bad
+				modifier = {
+					factor = 2
+					realm_diplomacy < 15
+				}
+				subtract_variable = {
+					which = temp_slave_price
+					value = 450
+				}
+			}
+			1 = {
+				# VBad
+				modifier = {
+					factor = 3
+					realm_diplomacy < 10
+				}
+				subtract_variable = {
+					which = temp_slave_price
+					value = 600
+				}
+			}
+		}
+	}
+	option = {
+		name = "Is a deal"
+		wealth = temp_slave_price
+		hidden_tooltip = {
+			create_retinue = RETTYPE_INF_UNSULLIED
+			set_character_flag = recent_unsullied_trade
+			if = {
+				limit = {
+					has_character_flag = no_remind_unsullied_trade
+				}
+				character_event = {
+					id = slavery_player.110
+					months = 40
+				}
+				# 5 years
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_character_flag = no_remind_slave_trade
+					}
+				}
+				character_event = {
+					id = slavery_player.111
+					months = 60
+				}
+				# 5 years
+			}
+		}
+	}
+	option = {
+		name = "Wait for a better price"
+		hidden_tooltip = {
+			set_character_flag = recent_unsullied_trade
+			if = {
+				limit = {
+					has_character_flag = no_remind_unsullied_trade
+				}
+				character_event = {
+					id = slavery_player.110
+					months = 40
+				}
+				# 2.5 years
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_character_flag = no_remind_slave_trade
+					}
+				}
+				character_event = {
+					id = slavery_player.111
+					months = 40
+				}
+				# 2.5 years
+			}
+			set_variable = {
+				#Delete
+				which = temp_slave_price
+				value = 0
+			}
+		}
+	}
+}
+
+character_event = {
+	id = slavery_player.40
+	is_triggered_only = yes
+	has_character_flag = slaver
+	desc = "EVTDESCslavery_player40"
+	hide_window = yes
+	ai = no
+	immediate = {
+		char_refresh_slave_bonus = yes
+		#calculate new slave bonus
+		# first we get half demnese dh = demnese_size/2 
+		# %Income bonus: num_slaves / (1000 * dh)
+		# %Construction bonus: num_slaves / (1000 * dh)
+		# 	#Round to 5% steps
+	}
+}
+
+#************************************
+character_event = {
+	#Clear recent trade flag
+	id = slavery_player.100
+	ai = no
+	is_triggered_only = yes	#Dangling after trade
+	desc = "We can trade with slaves again"
+	hide_window = no
+	immediate = {
+		clr_character_flag = recent_slave_trade
+	}
+	option = {
+		name = "Ok"
+	}
+	option = {
+		name = "Go to slavery menu"
+		character_event = {
+			id = slavery_menu.1
+		}
+	}
+	option = {
+		name = "Do not remind me"
+		set_character_flag = no_remind_unsullied_trade
+	}
+}
+
+#clear recent trade flag hidden
+character_event = {
+	id = slavery_player.101
+	is_triggered_only = yes	#Dangling after trade
+	hide_window = yes
+	immediate = {
+		clr_character_flag = recent_slave_trade
+	}
+}
+
+#Same for unsullied
+character_event = {
+	id = slavery_player.110
+	ai = no
+	is_triggered_only = yes	#Dangling after trade
+	desc = "We can trade with unsullied again"
+	hide_window = no
+	immediate = {
+		clr_character_flag = recent_unsullied_trade
+	}
+	option = {
+		name = "Ok"
+	}
+	option = {
+		name = "Go to slavery menu"
+		character_event = {
+			id = slavery_menu.1
+		}
+	}
+	option = {
+		name = "Do not remind me"
+		set_character_flag = no_remind_unsullied_trade
+	}
+}
+
+#clear recent unsullied trade flag hidden
+character_event = {
+	id = slavery_player.111
+	is_triggered_only = yes	#Dangling after trade
+	hide_window = yes
+	immediate = {
+		clr_character_flag = recent_unsullied_trade
+	}
+}
+
+#************************************
+#DEBUG EVENTS
+character_event = {
+	id = slavery_player.1000
+	is_triggered_only = yes
+	option = {
+		name = "Slave Raid effect"
+		character_event = {
+			id = slavey.3997
+		}
+	}
+	option = {
+		name = "Slave Raid effect"
+		character_event = {
+			id = slavey.3998
+		}
+	}
+	option = {
+		name = "Slave Raid effect"
+		character_event = {
+			id = slavey.3999
+		}
+	}
+}
+
+#************************************
+#DEBUG EVENTS
+character_event = {
+	id = slavery_player.1001
+	is_triggered_only = yes
+	option = {
+		name = "1k"
+		add_trait = slave_owner
+		set_character_flag = slaver
+		change_variable = {
+			which = num_slaves
+			value = 1000
+		}
+		char_refresh_slave_bonus = yes
+	}
+	option = {
+		name = "5k"
+		change_variable = {
+			which = num_slaves
+			value = 5000
+		}
+		char_refresh_slave_bonus = yes
+	}
+	option = {
+		name = "20k"
+		change_variable = {
+			which = num_slaves
+			value = 20000
+		}
+		char_refresh_slave_bonus = yes
+	}
+}
+
+#Deprecated
+#************************************
+character_event = {
+	#Player recives income from his slaves
+	# let S = num_slaves/1000
+	# Year worth = S*(RealmStewardship+5)/2
+	#   So with 22 RS and with 2k slaves S=2
+	#   27*1 = 27
+	# Profits are collected every 5 years
+	id = slavery_player.444
+	is_triggered_only = yes
+	has_character_flag = slaver
+	ai = no
+	picture = GFX_evt_slavery
+	desc = "EVTDESCslavery_player.40"
+	option = {
+		name = "Nice"
+		wealth = slv_profit
+		hidden_tooltip = {
+			set_variable = {
+				which = slv_profit
+				value = 1
+			}
+		}
+	}
+}

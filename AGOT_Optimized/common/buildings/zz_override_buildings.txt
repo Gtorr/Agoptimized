@@ -1,0 +1,52 @@
+ca_household_guard = {
+	desc = ca_household_guard_desc
+	potential = {
+		capital_scope = {
+			province = PREVPREV
+		}
+		is_capital = yes
+		FROMFROM = {
+			is_capital = yes
+			capital_scope = {
+				province = PREVPREV
+			}
+		}
+		OR = {
+			#player builds via decision
+			FROM = {
+				ai = no
+			}
+			FROMFROM = {
+				has_building = ca_household_guard
+			}
+		}
+		FROM = {
+			higher_tier_than = count
+			NOT = {
+				government = wildling_feudal_government
+			}
+			NOT = {
+				government = magnar_feudal_government
+			}
+			NOT = {
+				trait = nightswatch
+			}
+			NOT = {
+				trait = kingsguard
+			}
+			is_patrician = no			#built in family palace
+		}
+	}
+	trigger = {
+		capital_scope = {
+			province = PREVPREV
+		}
+	}
+	knights = 100
+	heavy_infantry = 100
+	gold_cost = 100
+	tax_income = -1
+	build_time = 150
+	ai_creation_factor = 200
+	extra_tech_building_start = 10	# Never get at start of game
+}

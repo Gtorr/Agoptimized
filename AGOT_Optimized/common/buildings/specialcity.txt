@@ -1,0 +1,559 @@
+city = {
+	ct_gambling_den = {
+		desc = ca_gambling_den_desc
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+			FROM = {
+				OR = {
+					trait = deceitful
+					trait = arbitrary
+					trait = greedy
+				}
+				NOR = {
+					trait = honorable
+					trait = honest
+					trait = temperate
+				}
+			}
+		}
+		is_active_trigger = {
+			FROM = {
+				NOR = {
+					trait = honorable
+					trait = honest
+					trait = temperate
+				}
+			}
+		}
+		ai_creation_factor = 1100
+		gold_cost = 70
+		build_time = 365
+		tax_income = 2
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ct_treasure_hunter_inn = {
+		desc = ca_treasure_hunter_inn_desc
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		ai_creation_factor = 2000
+		gold_cost = 110
+		build_time = 365
+		tax_income = 1
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ct_brewery = {
+		desc = ca_brewery_desc
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		ai_creation_factor = 1000
+		gold_cost = 200
+		build_time = 365
+		tax_income = 2
+		land_morale = 0.05
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ct_famous_brewery = {
+		desc = ca_famous_brewery_desc
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+			FROM = {
+				has_character_flag = met_brewer
+			}
+			capital_holding = {
+				location = {
+					province_id = ROOT
+				}
+			}
+		}
+		prerequisites = {
+			ct_brewery
+		}
+		upgrades_from = ct_brewery
+		ai_creation_factor = 1500
+		gold_cost = 100
+		build_time = 220
+		tax_income = 3
+		land_morale = 0.1
+		liege_prestige = 1.5
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ct_hanging_gardens = {
+		desc = ca_hanging_gardens_desc
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+			FROM = {
+				OR = {
+					trait = gardener
+					trait = architect
+				}
+			}
+		}
+		ai_creation_factor = 1100
+		gold_cost = 1700
+		build_time = 560
+		tax_income = 2
+		liege_prestige = 4
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ct_apple_tree_orchard = {
+		desc = ca_apple_tree_orchard_desc
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+			FROM = {
+				has_character_flag = apple_seeds
+			}
+		}
+		ai_creation_factor = 1200
+		gold_cost = 150
+		build_time = 365
+		tax_income = 2.5
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ct_lemon_tree_orchard = {
+		desc = ca_lemon_tree_orchard_desc
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+			FROM = {
+				has_character_flag = lemon_seeds
+			}
+		}
+		ai_creation_factor = 1200
+		gold_cost = 150
+		build_time = 365
+		tax_income = 2.5
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ct_crazy_alchemist_workshop = {
+		desc = ca_crazy_alchemist_workshop_desc
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+			capital_holding = {
+				location = {
+					province_id = ROOT
+				}
+			}
+			FROM = {
+				has_character_flag = met_alchemist
+			}
+		}
+		ai_creation_factor = 110
+		gold_cost = 15
+		build_time = 30
+		tax_income = 0.1
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ct_glass_garden = {
+		desc = ca_glass_garden_desc
+		potential = {
+			region = world_north
+		}
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		ai_creation_factor = 100
+		gold_cost = 140
+		build_time = 365
+		global_winter_supply = 0.8
+		land_morale = 0.05
+		liege_prestige = 0.5
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ct_small_goldmine = {
+		desc = ca_small_goldmine_desc
+		potential = {
+			has_province_modifier = found_gold
+		}
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		ai_creation_factor = 1200
+		gold_cost = 120
+		build_time = 245
+		tax_income = 3
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ct_big_goldmine = {
+		desc = ca_big_goldmine_desc
+		prerequisites = {
+			ct_small_goldmine
+		}
+		upgrades_from = ct_small_goldmine
+		ai_creation_factor = 1200
+		gold_cost = 200
+		build_time = 420
+		tax_income = 4
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ct_small_silvermine = {
+		desc = ca_small_silvermine_desc
+		potential = {
+			has_province_modifier = found_silver
+		}
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		ai_creation_factor = 1200
+		gold_cost = 120
+		build_time = 245
+		tax_income = 2.5
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ct_big_silvermine = {
+		desc = ca_big_silvermine_desc
+		prerequisites = {
+			ct_small_silvermine
+		}
+		upgrades_from = ct_small_silvermine
+		ai_creation_factor = 1200
+		gold_cost = 200
+		build_time = 420
+		tax_income = 3.5
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ct_small_coppermine = {
+		desc = ca_small_coppermine_desc
+		potential = {
+			has_province_modifier = found_copper
+		}
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		ai_creation_factor = 120
+		gold_cost = 120
+		build_time = 245
+		tax_income = 2
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ct_big_coppermine = {
+		desc = ca_big_coppermine_desc
+		prerequisites = {
+			ct_small_coppermine
+		}
+		upgrades_from = ct_small_coppermine
+		ai_creation_factor = 120
+		gold_cost = 200
+		build_time = 420
+		tax_income = 2.5
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ct_small_ironmine = {
+		desc = ca_small_ironmine_desc
+		potential = {
+			has_province_modifier = found_iron
+		}
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		ai_creation_factor = 120
+		gold_cost = 120
+		build_time = 245
+		tax_income = -0.5
+		heavy_infantry_defensive = 0.05
+		light_infantry_defensive = 0.05
+		archers_defensive = 0.05
+		knights_defensive = 0.05
+		pikemen_defensive = 0.05
+		light_cavalry_defensive = 0.05
+		heavy_infantry_offensive = 0.05
+		light_infantry_offensive = 0.05
+		archers_offensive = 0.05
+		knights_offensive = 0.05
+		pikemen_offensive = 0.05
+		light_cavalry_offensive = 0.05
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ct_big_ironmine = {
+		desc = ca_big_ironmine_desc
+		prerequisites = {
+			ct_small_ironmine
+		}
+		upgrades_from = ct_small_ironmine
+		ai_creation_factor = 120
+		gold_cost = 200
+		build_time = 420
+		tax_income = -1
+		heavy_infantry_defensive = 0.06
+		light_infantry_defensive = 0.06
+		archers_defensive = 0.06
+		knights_defensive = 0.06
+		pikemen_defensive = 0.06
+		light_cavalry_defensive = 0.06
+		heavy_infantry_offensive = 0.06
+		light_infantry_offensive = 0.06
+		archers_offensive = 0.06
+		knights_offensive = 0.06
+		pikemen_offensive = 0.06
+		light_cavalry_offensive = 0.06
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ct_small_dragonglassmine = {
+		desc = ca_small_dragonglassmine_desc
+		potential = {
+			has_province_modifier = found_dragonglass
+		}
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		ai_creation_factor = 120
+		gold_cost = 120
+		build_time = 245
+		tax_income = -1
+		heavy_infantry_defensive = 0.1
+		light_infantry_defensive = 0.1
+		archers_defensive = 0.1
+		knights_defensive = 0.1
+		pikemen_defensive = 0.1
+		light_cavalry_defensive = 0.1
+		heavy_infantry_offensive = 0.1
+		light_infantry_offensive = 0.1
+		archers_offensive = 0.1
+		knights_offensive = 0.1
+		pikemen_offensive = 0.1
+		light_cavalry_offensive = 0.1
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ct_big_dragonglassmine = {
+		desc = ca_big_dragonglassmine_desc
+		prerequisites = {
+			ct_small_dragonglassmine
+		}
+		upgrades_from = ct_small_dragonglassmine
+		ai_creation_factor = 120
+		gold_cost = 200
+		build_time = 420
+		tax_income = -1.5
+		heavy_infantry_defensive = 0.12
+		light_infantry_defensive = 0.12
+		archers_defensive = 0.12
+		knights_defensive = 0.12
+		pikemen_defensive = 0.12
+		light_cavalry_defensive = 0.12
+		heavy_infantry_offensive = 0.12
+		light_infantry_offensive = 0.12
+		archers_offensive = 0.12
+		knights_offensive = 0.12
+		pikemen_offensive = 0.12
+		light_cavalry_offensive = 0.12
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ct_library = {
+		desc = ca_library_desc
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		ai_creation_factor = 200
+		gold_cost = 130
+		build_time = 565
+		tax_income = 1
+		liege_prestige = 0.2
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ct_dragon_tower = {
+		desc = ca_dragon_tower_desc
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+			is_capital = yes
+			FROM = {
+				OR = {
+					trait = dragon_rider
+					has_artifact = dragon_egg
+				}
+				capital_holding = {
+					location = {
+						province_id = ROOT
+					}
+				}
+			}
+		}
+		ai_creation_factor = 230
+		gold_cost = 1300
+		build_time = 1095
+		levy_reinforce_rate = 0.1
+		fort_level = 4
+		tax_income = 6
+		liege_prestige = 2
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ct_winesink = {
+		desc = ca_winesink_desc
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+			FROM = {
+				OR = {
+					trait = drunkard
+					trait = elusive_shadow
+				}
+				NOR = {
+					trait = honorable
+					trait = chaste
+					trait = temperate
+				}
+			}
+		}
+		is_active_trigger = {
+			FROM = {
+				NOR = {
+					trait = honorable
+					trait = chaste
+					trait = temperate
+				}
+			}
+		}
+		ai_creation_factor = 1100
+		gold_cost = 150
+		build_time = 365
+		tax_income = 3
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ct_secret_passage = {
+		desc = ca_secret_passage_desc
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+			capital_holding = {
+				location = {
+					province_id = ROOT
+				}
+			}
+		}
+		ai_creation_factor = 1300
+		gold_cost = 10
+		build_time = 126
+		fort_level = 1
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ct_secret_tunnels = {
+		desc = ca_secret_tunnels_desc
+		prerequisites = {
+			ct_secret_passage
+		}
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+			FROM = {
+				OR = {
+					trait = craven
+					trait = shy
+					trait = paranoid
+				}
+				capital_holding = {
+					location = {
+						province_id = ROOT
+					}
+				}
+			}
+		}
+		ai_creation_factor = 1000
+		gold_cost = 200
+		build_time = 210
+		fort_level = 5
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ct_weird_butcher = {
+		desc = ca_weird_butcher_desc
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+			FROM = {
+				OR = {
+					trait = cannibal_trait
+					trait = lunatic
+					trait = greedy
+					trait = gluttonous
+				}
+			}
+		}
+		ai_creation_factor = 110
+		gold_cost = 120
+		build_time = 210
+		tax_income = 2
+		#land_morale = -0.1
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ct_naval_shipyard = {
+		desc = ca_naval_shipyard_desc
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+			FROM = {
+				OR = {
+					trait = cruel
+					trait = wroth
+					trait = ruthless
+				}
+			}
+		}
+		port = yes
+		ai_creation_factor = 100
+		gold_cost = 300
+		build_time = 720
+		tax_income = -3
+		galleys = 80
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ct_theatre = {
+		desc = ct_theatre_desc
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+			FROM = {
+				OR = {
+					trait = socializer
+					trait = poet
+					trait = fashionable
+				}
+			}
+		}
+		ai_creation_factor = 1300
+		gold_cost = 200
+		build_time = 350
+		tax_income = 3
+		land_morale = 0.1
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ct_night_watchman = {
+		desc = ca_night_watchman_desc
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		ai_creation_factor = 200
+		gold_cost = 150
+		build_time = 80
+		fort_level = 1
+		tax_income = 0.5
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ct_barber_surgeon = {
+		desc = ca_barber_surgeon_desc
+		trigger = {
+			TECH_CASTLE_CONSTRUCTION = 0
+			FROM = {
+				OR = {
+					trait = scarred
+					trait = fashionable
+					trait = proud
+					trait = bearded_priest
+					trait = wounded
+				}
+			}
+		}
+		ai_creation_factor = 1000
+		gold_cost = 200
+		build_time = 120
+		tax_income = 2
+		land_morale = 0.05
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+}

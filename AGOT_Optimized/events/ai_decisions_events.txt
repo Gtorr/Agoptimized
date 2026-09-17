@@ -1,0 +1,118 @@
+namespace = ai_decisions_events
+#AI closes gates on disease
+province_event = {
+    id = ai_decisions_events.1
+    hide_window = yes
+    is_triggered_only = yes
+    has_dlc = "Reapers"
+    trigger  = {
+        has_disease = yes
+    }
+    immediate = {
+        holder_scope = {
+            character_event = { id = ai_decisions_events.2 }
+        }
+    }
+}
+character_event = {
+    id = ai_decisions_events.2
+    ai = yes
+    only_rulers = yes
+    hide_window = yes
+    is_triggered_only = yes
+    has_dlc = "Reapers"
+
+    trigger = {
+        capital_scope = {
+            has_disease = yes
+        }
+        OR = {
+            is_landed = yes
+            is_patrician = yes
+        }
+        NOR = {
+            is_tribal = yes
+            is_nomadic = yes
+            is_inaccessible_trigger = yes
+        }
+        NOT = { has_character_modifier = in_seclusion }
+    }
+
+    immediate = {
+        if = {
+            limit = {
+                has_minor_title = title_commander
+            }
+            remove_title = title_commander
+        }
+        set_character_flag = do_not_disturb
+        add_character_modifier = {
+            name = in_seclusion
+            duration = -1
+        }
+        if = { # If you are a councillor, stop working and return home
+            limit = {
+                host = { NOT = { character = ROOT } }
+                OR = {
+                    is_councillor = yes
+                    has_minor_title = title_councilmember_king
+                    has_minor_title = title_councilmember_emperor
+                }
+            }
+            force_host = ROOT
+        }
+        hidden_tooltip = {
+            character_event = { id = RIP.12000 }
+            any_courtier = { # Unlanded councillors stop working in order to go into seclusion with their liege
+                limit = {
+                    prisoner = no
+                    is_councillor = yes
+                    is_landed = no
+                    liege = { character = ROOT }
+                    NOT = { character = ROOT }
+                }
+                add_character_modifier = {
+                    name = in_seclusion
+                    duration = -1
+                }
+            }
+            any_courtier = { # Unlanded non-councillors join their liege in seclusion
+                limit = {
+                    prisoner = no
+                    is_councillor = no
+                    is_landed = no
+                    liege = { character = ROOT }
+                    NOT = { character = ROOT }
+                }
+                add_character_modifier = {
+                    name = in_seclusion
+                    duration = -1
+                }
+            }
+            any_courtier = { # Landed councillors return home while you, their liege, is in seclusion
+                limit = {
+                    prisoner = no
+                    OR = {
+                        is_councillor = yes
+                        has_minor_title = title_councilmember_king
+                        has_minor_title = title_councilmember_emperor
+                    }
+                    is_landed = yes
+                    liege = { character = ROOT }
+                    NOT = { character = ROOT }
+                }
+                force_host = THIS
+            }
+            any_vassal = {
+                character_event = { id = RIP.12001 days = 7 random = 7 }
+            }
+            if = { #Notify employer that councillor is going into seclusion
+                limit = {
+                    is_councillor = yes
+                    liege = { ai = no }
+                }
+                liege = { letter_event = { id = RIP.12101 days = 1 } }
+            }
+        }
+    }
+}

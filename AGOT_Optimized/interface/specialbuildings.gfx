@@ -1,0 +1,155 @@
+spriteTypes = {
+
+  spriteType = {
+    name = "GFX_look_for_minerals_decision"
+    texturefile = "gfx\\interface\\decision_icon_employtreasurer.dds"
+  }
+  spriteType = {
+    name = "GFX_buy_dragonglass_dagger_decision"
+    texturefile = "gfx\\interface\\decision_icon_nightfall.dds"
+  }
+  spriteType = {
+    name = "GFX_going_out_decision"
+    texturefile = "gfx\\interface\\decision_icon_bring_out_of_hiding.dds"
+  }
+  spriteType = {
+    name = "GFX_love_elixir_decision"
+    texturefile = "gfx\\interface\\decision_icon_debutante.dds"
+  }
+  spriteType = {
+    name = "GFX_battle_elixir_decision"
+    texturefile = "gfx\\interface\\decision_icon_employmarshal.dds"
+  }
+  spriteType = {
+    name = "GFX_health_elixir_decision"
+    texturefile = "gfx\\interface\\decision_icon_employspiritual.dds"
+  }
+  spriteType = {
+    name = "GFX_learn_lemoncake_decision"
+    texturefile = "gfx\\interface\\decision_icon_auto_assign_minor_titles.dds"
+  }
+  spriteType = {
+    name = "GFX_huge_syringe"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\huge_syringe.tga"
+  }
+  spriteType = {
+    name = "GFX_huge_syringe_small"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\huge_syringe_small.tga"
+  }
+  spriteType = {
+    name = "GFX_map_axe"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\map_axe.tga"
+  }
+  spriteType = {
+    name = "GFX_map_axe_small"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\map_axe_small.tga"
+  }
+  spriteType = {
+    name = "GFX_map_flint"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\map_flint.tga"
+  }
+  spriteType = {
+    name = "GFX_map_flint_small"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\map_flint_small.tga"
+  }
+  spriteType = {
+    name = "GFX_map_kayce"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\map_kayce.tga"
+  }
+  spriteType = {
+    name = "GFX_map_kayce_small"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\map_kayce_small.tga"
+  }
+  spriteType = {
+    name = "GFX_map_lorath"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\map_lorath.tga"
+  }
+  spriteType = {
+    name = "GFX_map_lorath_small"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\map_lorath_small.tga"
+  }
+  spriteType = {
+    name = "GFX_map_sisters"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\map_sisters.tga"
+  }
+  spriteType = {
+    name = "GFX_map_sisters_small"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\map_sisters_small.tga"
+  }
+  spriteType = {
+    name = "GFX_map_skagos"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\map_skagos.tga"
+  }
+  spriteType = {
+    name = "GFX_map_skagos_small"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\map_skagos_small.tga"
+  }
+  spriteType = {
+    name = "GFX_map_tyrosh"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\map_tyrosh.tga"
+  }
+  spriteType = {
+    name = "GFX_map_tyrosh_small"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\map_tyrosh_small.tga"
+  }
+  spriteType = {
+    name = "GFX_amber_eye_axe"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\amber_eye_axe.tga"
+  }
+  spriteType = {
+    name = "GFX_amber_eye_axe_small"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\amber_eye_axe_small.tga"
+  }
+  spriteType = {
+    name = "GFX_flint_stone_hand"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\flint_stone_hand.tga"
+  }
+  spriteType = {
+    name = "GFX_flint_stone_hand_small"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\flint_stone_hand_small.tga"
+  }
+  spriteType = {
+    name = "GFX_horn_of_herrock"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\horn_of_herrock.tga"
+  }
+  spriteType = {
+    name = "GFX_horn_of_herrock_small"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\horn_of_herrock_small.tga"
+  }
+  spriteType = {
+    name = "GFX_mazemaker_hammer"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\mazemaker_hammer.tga"
+  }
+  spriteType = {
+    name = "GFX_mazemaker_hammer_small"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\mazemaker_hammer_small.tga"
+  }
+  spriteType = {
+    name = "GFX_sea_snail_charm"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\sea_snail_charm.tga"
+  }
+  spriteType = {
+    name = "GFX_sea_snail_charm_small"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\sea_snail_charm_small.tga"
+  }
+  spriteType = {
+    name = "GFX_the_ladies_tear"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\the_ladies_tear.tga"
+  }
+  spriteType = {
+    name = "GFX_the_ladies_tear_small"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\the_ladies_tear_small.tga"
+  }
+  spriteType = {
+    name = "GFX_unicorn_lance"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\unicorn_lance.tga"
+  }
+  spriteType = {
+    name = "GFX_unicorn_lance_small"
+    texturefile = "gfx\\interface\\inventory\\artifacts\\unicorn_lance_small.tga"
+  }
+  spriteType = {
+    name = "GFX_visit_treasure_hunter_decision"
+    texturefile = "gfx\\interface\\decision_icon_employtreasurer.dds"
+  }
+}

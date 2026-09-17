@@ -1,0 +1,171 @@
+#Different events for prov status
+namespace = guilds_events
+character_event = {
+	id = guilds_events.1
+	desc = "The Guilds Celebrate elections this year"
+	is_triggered_only = yes
+	only_playable = yes
+	trigger = {
+		can_build_slavery_building = no
+	}
+	option = {
+		name = "Ok"
+		any_province = {
+			province_event = {
+				id = guilds_events.2
+			}
+		}
+	}
+}
+
+province_event = {
+	id = guilds_events.2
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		capital_holding = {
+			OR = {
+				has_building = ca_stonemason
+				has_building = ct_stonemason
+				has_building = ca_tailor_guildhall_1
+				has_building = ca_tailor_guildhall_2
+				has_building = ca_tailor_guildhall_3
+				has_building = ct_tailor_guildhall_1
+				has_building = ct_tailor_guildhall_2
+				has_building = ct_tailor_guildhall_3
+			}
+		}
+	}
+	immediate = {
+		#-----------------# Stonemason Guild #-----------------#
+		if = {
+			limit = {
+				capital_holding = {
+					OR = {
+						has_building = ca_stonemason
+						has_building = ct_stonemason
+					}
+				}
+			}
+			remove_province_modifier = sabotaging_stonemason
+			remove_province_modifier = bad_stonemason
+			remove_province_modifier = skilled_stonemason
+			remove_province_modifier = master_stonemason
+			random_list = {
+				2 = {
+					modifier = {
+						factor = 2
+						owner = {
+							trait = arbitrary
+						}
+					}
+					modifier = {
+						factor = 2
+						owner = {
+							trait = cruel
+						}
+					}
+					add_province_modifier = {
+						modifier = sabotaging_stonemason
+						duration = -1
+					}
+				}
+				16 = {
+					modifier = {
+						factor = 2
+						owner = {
+							trait = ruthless
+						}
+					}
+					add_province_modifier = {
+						modifier = bad_stonemason
+						duration = -1
+					}
+				}
+				32 = {
+					add_province_modifier = {
+						modifier = skilled_stonemason
+						duration = -1
+					}
+				}
+				18 = {
+					modifier = {
+						factor = 2
+						owner = {
+							trait = diligent
+						}
+					}
+					add_province_modifier = {
+						modifier = master_stonemason
+						duration = -1
+					}
+				}
+				4 = {
+					modifier = {
+						factor = 4
+						owner = {
+							trait = architect
+						}
+					}
+					add_province_modifier = {
+						modifier = legend_stonemason
+						duration = -1
+					}
+				}
+			}
+		}
+		#-----------------# Tailor Guild #-----------------#
+		if = {
+			limit = {
+				capital_holding = {
+					OR = {
+						has_building = ca_tailor_guildhall_1
+						has_building = ca_tailor_guildhall_2
+						has_building = ca_tailor_guildhall_3
+						has_building = ct_tailor_guildhall_1
+						has_building = ct_tailor_guildhall_2
+						has_building = ct_tailor_guildhall_3
+					}
+				}
+			}
+			remove_province_modifier = affordable_clothes
+			remove_province_modifier = luxurious_clothes
+			remove_province_modifier = profitable_clothes
+			if = {
+				limit = {
+					OR = {
+						has_province_modifier = asoiaf_mild_winter
+						has_province_modifier = asoiaf_normal_winter
+						has_province_modifier = asoiaf_harsh_winter
+					}
+				}
+				add_province_modifier = {
+					modifier = winter_tailor
+					duration = -1
+				}
+			}
+			else = {
+				random_list = {
+					1 = {
+						add_province_modifier = {
+							modifier = affordable_clothes
+							duration = -1
+						}
+					}
+					1 = {
+						add_province_modifier = {
+							modifier = luxurious_clothes
+							duration = -1
+						}
+					}
+					2 = {
+						add_province_modifier = {
+							modifier = profitable_clothes
+							duration = -1
+						}
+					}
+				}
+			}
+		}
+	}
+}

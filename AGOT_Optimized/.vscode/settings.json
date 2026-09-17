@@ -1,0 +1,15 @@
+{
+    "cwtools.errors.vanilla": true,
+    "cwtools.logging.diagnostic": true,
+    "cwtools.rules_folder": "C:\\Users\\gtorr\\Documents\\Paradox Interactive\\Crusader Kings II\\mod\\AGOT_Optimized\\.cwtools\\cwtools-ck2-config-0.0.4",
+    "cwtools.trace.server": "messages",
+    "cwtools.errors.ignorefiles": [
+        "README.txt",
+        "credits.txt",
+        "credits_l_simp_chinese.txt",
+        "reference.txt",
+        "startup_info.txt"
+    ],
+    "editor.fontFamily": "'Cascadia Code','Monaspace Neon'",
+    "editor.fontSize": 15
+}

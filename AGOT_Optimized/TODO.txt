@@ -1,0 +1,53 @@
+
+-Colonisation
+   Slavery Role.
+   New system for upgrades.
+	
+-Slavery
+  Trained slaves.
+  Slave Academy.
+  Slave Soldiers.
+  Construction Bonus.
+  Raid Mechanics.
+
+-Continue Patch
+ Removed Files list:
+ mbs_westerland_events.txt
+
+Buildings:
+  Buildings have now more levels and more restrictions.
+  Stonemason restored.
+
+-Decisions: 
+westeros_civil_war_decisions: # made player only.
+warlock_decisions: #streamline ai script.
+kingship_decisions: #move to pulse event.
+
+-Events
+mbs_valyrian_quest_events.txt: add pre-triggers.
+valyria_events.txt: 12 evennts have MTTH
+
+-Move to onActions
+[islander_thousand.1] #On_birth
+old_races_events.txt #Many unencesary MTTH
+seasons_events.txt #Climate control
+
+MTTH Events that can be used better:
+[iron_throne.2] #Road Section Complete
+[iron_throne.14] #Craftsman finds ore vein 
+[iron_throne.15] # Investment from traders
+[iron_throne.16] # A stage has been completed
+
+Events to remake:
+[maintenance.52 ] #Vassal managment
+[950] #950: Success on holding upgrade
+
+
+
+
+
+
+
+
+
+

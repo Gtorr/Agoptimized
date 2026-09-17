@@ -1,0 +1,40 @@
+decisions = {
+	#Slavery menu
+	#Open Slave Management Menu (UI, Player-Only)
+	slave_manage = {
+		ai = no
+		is_high_prio = yes
+		potential = {
+			has_character_flag = slaver			
+		}
+		allow = {
+			trait = slave_owner
+		}
+		effect = {
+			character_event = { id = slavery_menu.1 }
+		}
+	}
+	# Become a Slave Trader
+	enter_slave_trade = {
+		ai = no
+		only_playable = yes
+		potential = {
+			NOT = { trait = slave_owner } # Obviously, can't do this when already a slave trader		
+			has_full_slavery_trigger = yes # Slavery must be Legal
+			is_nomadic = no		
+			NOT = { culture_group = unoccupied_group }
+		}
+		allow = { 		
+			NOT = { trait = liberator } # Won't do this for obvious reasons
+			wealth = 200
+		} 
+		effect = {
+			add_trait = slave_owner			
+			set_character_flag = slaver #For pre-triggers
+			set_dynasty_flag = flag_slaver_tradition
+			wealth = -200
+			set_variable = { which = num_slaves value = 2 }
+			set_variable = { which = slv_profit value = 1 }
+		}
+	}
+}

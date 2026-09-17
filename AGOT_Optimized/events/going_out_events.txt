@@ -1,0 +1,1416 @@
+namespace = going_out_events
+character_event = {
+	id = going_out_events.10
+	desc = EVTDESCgoing_out_events.10
+	picture = GFX_KINGS_LANDING
+	border = GFX_event_normal_frame_economy
+	is_triggered_only = yes
+	option = {
+		name = EVTOPTAgoing_out_events.10		#weird smell
+		hidden_tooltip = {
+			if = {
+				limit = {
+					location = {
+						OR = {
+							has_building = ca_weird_butcher
+							has_building = ct_weird_butcher
+						}
+					}
+				}
+				random_list = {
+					10 = {
+						character_event = {
+							id = going_out_events.111
+						}						#weird smell butcher complain
+					}
+					3 = {
+						character_event = {
+							id = going_out_events.112
+						}						#alchemist
+					}
+				}
+			}
+			else = {
+				character_event = {
+					id = going_out_events.112
+				}				#alchemist
+			}
+		}
+	}
+	option = {
+		name = EVTOPTBgoing_out_events.10		#loud noice
+		hidden_tooltip = {
+			if = {
+				limit = {
+					location = {
+						OR = {
+							has_building = ca_library
+							has_building = ct_library
+							has_building = tp_library
+						}
+					}
+					location = {
+						OR = {
+							has_building = ca_town_1
+							has_building = ct_marketplace_1
+							has_building = tp_town_1
+						}
+					}
+				}
+				random_list = {
+					8 = {
+						character_event = {
+							id = going_out_events.121
+						}						#argument at library
+					}
+					12 = {
+						character_event = {
+							id = going_out_events.122
+						}						#market
+					}
+					3 = {
+						character_event = {
+							id = going_out_events.112
+						}						#alchemist
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					location = {
+						OR = {
+							has_building = ca_library
+							has_building = ct_library
+							has_building = tp_library
+						}
+					}
+				}
+				random_list = {
+					10 = {
+						character_event = {
+							id = going_out_events.121
+						}						#argument at library
+					}
+					3 = {
+						character_event = {
+							id = going_out_events.112
+						}						#alchemist
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					location = {
+						OR = {
+							has_building = ca_town_1
+							has_building = ct_marketplace_1
+							has_building = tp_town_1
+						}
+					}
+				}
+				random_list = {
+					20 = {
+						character_event = {
+							id = going_out_events.122
+						}						#market
+					}
+					3 = {
+						character_event = {
+							id = going_out_events.112
+						}						#alchemist
+					}
+				}
+			}
+			else = {
+				character_event = {
+					id = going_out_events.112
+				}				#alchemist
+			}
+		}
+	}
+	option = {
+		name = EVTOPTCgoing_out_events.10		#look for quiet place
+		hidden_tooltip = {
+			character_event = {
+				id = going_out_events.13
+			}
+		}
+	}
+	option = {
+		name = "Visit Barber Surgeon"
+		trigger = {
+			NOT = {
+				has_character_modifier = visited_barber_surgeon
+			}
+			location = {
+				OR = {
+					has_building = ca_barber_surgeon
+					has_building = ct_barber_surgeon
+					has_building = tp_barber_surgeon
+				}
+			}
+			OR = {
+				trait = wounded
+				trait = mangled
+				trait = severely_injured
+			}
+		}
+		if = {
+			limit = {
+				trait = wounded
+			}
+			remove_trait = wounded
+			wealth = -10
+		}
+		else = {
+			add_character_modifier = {
+				modifier = good_care
+				days = 365
+			}
+		}
+		add_character_modifier = {
+			name = visited_barber_surgeon
+			duration = 365
+			hidden = yes
+		}
+	}
+}
+
+character_event = {
+	#weird smell butcher complain
+	id = going_out_events.111
+	desc = EVTDESCgoing_out_events.111
+	picture = GFX_magistrate
+	border = GFX_event_normal_frame_economy
+	is_triggered_only = yes
+	option = {
+		#eat it
+		trigger = {
+			NOT = {
+				has_character_modifier = iron_stomach
+			}
+		}
+		name = EVTOPTAgoing_out_events.111
+		ai_chance = {
+			factor = 0.25
+			modifier = {
+				factor = 0.4
+				trait = craven
+			}
+		}
+		random_list = {
+			75 = {
+				add_character_modifier = {
+					modifier = ate_foul_meat
+					days = 365
+				}
+			}
+			25 = {
+				add_character_modifier = {
+					modifier = iron_stomach
+					duration = -1
+				}
+			}
+		}
+		random = {
+			chance = 10
+			add_trait = brave
+		}
+	}
+	option = {
+		# want money
+		name = EVTOPTBgoing_out_events.111
+		wealth = 50
+		random = {
+			chance = 30
+			add_trait = greedy
+		}
+	}
+	option = {
+		#tell to stop selling
+		name = EVTOPTCgoing_out_events.111
+		piety = 30
+		prestige = 30
+		random = {
+			chance = 10
+			add_trait = honorable
+		}
+	}
+}
+
+character_event = {
+	#alchemist
+	id = going_out_events.112
+	desc = EVTDESCgoing_out_events.112
+	picture = GFX_evt_dany_pyat_pree
+	border = GFX_event_normal_frame_economy
+	is_triggered_only = yes
+	option = {
+		#buy
+		name = EVTOPTAgoing_out_events.112
+		character_event = {
+			id = going_out_events.1121
+		}
+		ai_chance = {
+			factor = 0.5
+		}
+	}
+	option = {
+		# help
+		name = EVTOPTBgoing_out_events.112
+		trigger = {
+			NOT = {
+				has_character_flag = met_alchemist
+			}
+		}
+		wealth = -50
+		if = {
+			limit = {
+				NOT = {
+					lifestyle_traits = 1
+				}
+			}
+			random = {
+				chance = 40
+				add_trait = mystic
+			}
+		}
+		random = {
+			chance = 30
+			add_trait = fire_obsessed
+		}
+		random = {
+			chance = 30
+			add_trait = trusting
+		}
+		ai_chance = {
+			factor = 0.25
+			modifier = {
+				factor = 4
+				trait = charitable
+			}
+			modifier = {
+				factor = 4
+				trait = kind
+			}
+		}
+		set_character_flag = met_alchemist
+	}
+	option = {
+		#insult
+		name = EVTOPTCgoing_out_events.112
+		piety = 75
+		random = {
+			chance = 10
+			hidden_tooltip = {
+				character_event = {
+					id = going_out_events.1122
+					days = 30
+				}
+			}			# zombie
+			modifier = {
+				factor = 0
+				trait = undead
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					trait = rude
+				}
+				NOT = {
+					trait = kind
+				}
+			}
+			random = {
+				chance = 20
+				add_trait = rude
+			}
+		}
+		ai_chance = {
+			factor = 0.1
+			modifier = {
+				factor = 7
+				trait = rude
+			}
+			modifier = {
+				factor = 7
+				trait = ruthless
+			}
+			modifier = {
+				factor = 7
+				trait = wroth
+			}
+			modifier = {
+				factor = 0
+				trait = shy
+			}
+			modifier = {
+				factor = 0
+				trait = temperate
+			}
+			modifier = {
+				factor = 0
+				trait = humble
+			}
+		}
+	}
+}
+
+character_event = {
+	#buying
+	id = going_out_events.1121
+	desc = EVTDESCgoing_out_events.1121
+	picture = GFX_evt_dany_pyat_pree
+	border = GFX_event_normal_frame_economy
+	is_triggered_only = yes
+	option = {
+		trigger = {
+			NOT = {
+				has_artifact = shade_of_the_evening
+			}
+		}
+		name = EVTOPTAgoing_out_events.1121
+		wealth = -250
+		add_artifact = shade_of_the_evening
+		ai_chance = {
+			factor = 0.25
+		}
+	}
+	option = {
+		trigger = {
+			NOT = {
+				has_artifact = mel_ruby
+			}
+		}
+		name = EVTOPTBgoing_out_events.1121
+		wealth = -250
+		add_artifact = mel_ruby
+		ai_chance = {
+			factor = 0.1
+		}
+	}
+	option = {
+		trigger = {
+			NOT = {
+				has_artifact = glass_candle
+			}
+		}
+		name = EVTOPTCgoing_out_events.1121
+		wealth = -250
+		add_artifact = glass_candle
+		ai_chance = {
+			factor = 0.25
+		}
+	}
+	option = {
+		#nothing
+		name = EVTOPTDgoing_out_events.00
+		ai_chance = {
+			factor = 0.25
+			modifier = {
+				factor = 30
+				wealth < 250
+			}
+			modifier = {
+				factor = 10
+				trait = greedy
+			}
+		}
+	}
+}
+
+#zombie
+character_event = {
+	id = going_out_events.1122
+	desc = EVTDESCgoing_out_events.1122
+	picture = GFX_evt_dany_pyat_pree
+	border = GFX_event_normal_frame_war
+	is_triggered_only = yes
+	option = {
+		add_trait = undead
+		add_character_modifier = {
+			modifier = half_undead
+			duration = -1
+		}
+		name = EVTOPTAgoing_out_events.1122
+	}
+}
+
+character_event = {
+	#argument at library
+	id = going_out_events.121
+	desc = EVTDESCgoing_out_events.121
+	picture = GFX_crassen
+	border = GFX_event_normal_frame_economy
+	is_triggered_only = yes
+	option = {
+		trigger = {
+			NOT = {
+				has_artifact = book_signs_and_portents
+			}
+		}
+		name = EVTOPTAgoing_out_events.121
+		wealth = -100
+		add_artifact = book_signs_and_portents
+		ai_chance = {
+			factor = 0.25
+		}
+	}
+	option = {
+		trigger = {
+			NOT = {
+				has_artifact = book_the_world_of_ice_and_fire
+			}
+		}
+		name = EVTOPTAgoing_out_events.121
+		wealth = -100
+		add_artifact = book_the_world_of_ice_and_fire
+		ai_chance = {
+			factor = 0.25
+		}
+	}
+	option = {
+		trigger = {
+			NOT = {
+				has_artifact = book_fires_of_the_freehold
+			}
+		}
+		name = EVTOPTAgoing_out_events.121
+		wealth = -100
+		add_artifact = book_fires_of_the_freehold
+		ai_chance = {
+			factor = 0.25
+		}
+	}
+	option = {
+		#nothing
+		name = EVTOPTDgoing_out_events.00
+		ai_chance = {
+			factor = 0.25
+			modifier = {
+				factor = 8
+				wealth < 100
+			}
+			modifier = {
+				factor = 10
+				trait = greedy
+			}
+		}
+	}
+}
+
+character_event = {
+	#market
+	id = going_out_events.122
+	desc = EVTDESCgoing_out_events.122
+	picture = GFX_evt_slave_market
+	border = GFX_event_normal_frame_economy
+	is_triggered_only = yes
+	option = {
+		#smith
+		name = EVTOPTAgoing_out_events.122
+		character_event = {
+			id = going_out_events.1221
+		}
+		ai_chance = {
+			factor = 0.25
+		}
+	}
+	option = {
+		#food
+		name = EVTOPTBgoing_out_events.122
+		character_event = {
+			id = going_out_events.1222
+		}
+		ai_chance = {
+			factor = 0.25
+		}
+	}
+	option = {
+		#elixir
+		name = EVTOPTCgoing_out_events.122
+		character_event = {
+			id = going_out_events.1223
+		}
+		ai_chance = {
+			factor = 0.25
+		}
+	}
+	option = {
+		#invest in ressource from capital
+		name = EVTOPTDgoing_out_events.122
+		character_event = {
+			id = going_out_events.1224
+		}
+		ai_chance = {
+			factor = 0.1
+		}
+	}
+}
+
+character_event = {
+	#smith
+	id = going_out_events.1221
+	desc = EVTDESCgoing_out_events.1221
+	picture = GFX_smith
+	border = GFX_event_normal_frame_economy
+	is_triggered_only = yes
+	option = {
+		trigger = {
+			NOT = {
+				has_artifact = arakh_tier_3
+			}
+		}
+		name = EVTOPTAgoing_out_events.1221
+		wealth = -150
+		add_artifact = arakh_tier_3
+		ai_chance = {
+			factor = 0.25
+		}
+	}
+	option = {
+		trigger = {
+			NOT = {
+				has_artifact = dornish_spear
+			}
+		}
+		name = EVTOPTBgoing_out_events.1221
+		wealth = -100
+		add_artifact = dornish_spear
+		ai_chance = {
+			factor = 0.25
+		}
+	}
+	option = {
+		trigger = {
+			NOT = {
+				has_artifact = myrish_stiletto
+			}
+		}
+		name = EVTOPTCgoing_out_events.1221
+		wealth = -100
+		add_artifact = myrish_stiletto
+		ai_chance = {
+			factor = 0.25
+		}
+	}
+	option = {
+		#nothing
+		name = EVTOPTDgoing_out_events.00
+		ai_chance = {
+			factor = 0.25
+			modifier = {
+				factor = 8
+				wealth < 150
+			}
+			modifier = {
+				factor = 10
+				trait = greedy
+			}
+		}
+	}
+}
+
+character_event = {
+	#food
+	id = going_out_events.1222
+	desc = EVTDESCgoing_out_events.1222
+	picture = GFX_plumm
+	border = GFX_event_normal_frame_economy
+	is_triggered_only = yes
+	option = {
+		#weird fruit
+		trigger = {
+			NOT = {
+				has_character_modifier = iron_stomach
+			}
+		}
+		name = EVTOPTAgoing_out_events.1222
+		wealth = -5
+		random = {
+			chance = 25
+			add_character_modifier = {
+				modifier = iron_stomach
+				duration = -1
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					trait = brave
+				}
+				NOT = {
+					trait = craven
+				}
+			}
+			random = {
+				chance = 10
+				add_trait = brave
+			}
+		}
+		ai_chance = {
+			factor = 0.25
+			modifier = {
+				factor = 3
+				trait = brave
+			}
+			modifier = {
+				factor = 3
+				trait = gluttonous
+			}
+		}
+	}
+	option = {
+		#apple seeds
+		trigger = {
+			NOT = {
+				has_character_flag = apple_seeds
+			}
+		}
+		name = EVTOPTBgoing_out_events.1222
+		wealth = -10
+		set_character_flag = apple_seeds
+		ai_chance = {
+			factor = 0.25
+		}
+	}
+	option = {
+		#lemon seeds
+		trigger = {
+			NOT = {
+				has_character_flag = lemon_seeds
+			}
+		}
+		name = EVTOPTCgoing_out_events.1222
+		wealth = -10
+		set_character_flag = lemon_seeds
+		ai_chance = {
+			factor = 0.25
+		}
+	}
+	option = {
+		#nothing
+		name = EVTOPTDgoing_out_events.00
+		ai_chance = {
+			factor = 0.25
+			modifier = {
+				factor = 8
+				wealth < 10
+			}
+			modifier = {
+				factor = 10
+				trait = greedy
+			}
+		}
+	}
+}
+
+character_event = {
+	#elixir
+	id = going_out_events.1223
+	desc = EVTDESCgoing_out_events.1223
+	picture = GFX_magistrate
+	border = GFX_event_normal_frame_economy
+	is_triggered_only = yes
+	option = {
+		#love elixir
+		trigger = {
+			NOT = {
+				has_character_flag = has_love_elixir
+			}
+		}
+		name = EVTOPTAgoing_out_events.1223
+		wealth = -50
+		set_character_flag = has_love_elixir
+		ai_chance = {
+			factor = 0.25
+			modifier = {
+				factor = 8
+				trait = lustful
+			}
+			modifier = {
+				factor = 6
+				trait = deceitful
+			}
+			modifier = {
+				factor = 0.1
+				trait = honorable
+			}
+			modifier = {
+				factor = 0.1
+				trait = honest
+			}
+			modifier = {
+				factor = 0.1
+				trait = chaste
+			}
+		}
+	}
+	option = {
+		#battle elixir
+		trigger = {
+			NOT = {
+				has_character_flag = has_battle_elixir
+			}
+		}
+		name = EVTOPTBgoing_out_events.1223
+		wealth = -50
+		set_character_flag = has_battle_elixir
+		ai_chance = {
+			factor = 0.25
+			modifier = {
+				factor = 20
+				war = yes
+			}
+			modifier = {
+				factor = 6
+				trait = wroth
+			}
+			modifier = {
+				factor = 30
+				trait = craven
+			}
+			modifier = {
+				factor = 0.5
+				trait = content
+			}
+		}
+	}
+	option = {
+		#health
+		trigger = {
+			NOT = {
+				has_character_flag = has_health_elixir
+			}
+		}
+		name = EVTOPTCgoing_out_events.1223
+		wealth = -50
+		set_character_flag = has_health_elixir
+	}
+	option = {
+		#nothing
+		name = EVTOPTDgoing_out_events.00
+	}
+}
+
+character_event = {
+	#invest in ressource from capital
+	id = going_out_events.1224
+	desc = EVTDESCgoing_out_events.1224
+	picture = GFX_plumm
+	border = GFX_event_normal_frame_economy
+	is_triggered_only = yes
+	option = {
+		name = EVTOPTAgoing_out_events.1224		#cloth
+		hidden_tooltip = {
+			random_list = {
+				50 = {
+					modifier = {
+						factor = 6
+						capital_scope = {
+							region = world_jade_sea
+						}
+					}
+					modifier = {
+						factor = 4
+						capital_scope = {
+							region = world_reach
+						}
+					}
+					modifier = {
+						factor = 6
+						capital_scope = {
+							region = world_dorne
+						}
+					}
+					modifier = {
+						factor = 0.2
+						capital_scope = {
+							region = world_iron_isles
+						}
+					}
+					modifier = {
+						factor = 7
+						capital_scope = {
+							has_building = ca_tailor_guildhall
+						}
+					}
+					modifier = {
+						factor = 7
+						capital_scope = {
+							has_building = ct_tailor_guildhall
+						}
+					}
+					hidden_tooltip = {
+						character_event = {
+							id = going_out_events.12241
+							days = 365
+						}
+					}
+				}
+				50 = {
+					modifier = {
+						factor = 3
+						capital_scope = {
+							region = world_beyond_the_wall
+						}
+					}
+					modifier = {
+						factor = 0.3
+						capital_scope = {
+							region = world_crownlands
+						}
+					}
+					modifier = {
+						factor = 0.2
+						capital_scope = {
+							region = world_free_cities
+						}
+					}
+					modifier = {
+						factor = 0.25
+						capital_scope = {
+							region = world_summer_sea
+						}
+					}
+					hidden_tooltip = {
+						character_event = {
+							id = going_out_events.12242
+							days = 365
+						}
+					}
+				}
+			}
+		}
+		wealth = -150
+		ai_chance = {
+			factor = 0.25
+		}
+	}
+	option = {
+		name = EVTOPTBgoing_out_events.1224		#wood
+		hidden_tooltip = {
+			random_list = {
+				50 = {
+					modifier = {
+						factor = 2
+						capital_scope = {
+							region = world_beyond_the_wall
+						}
+					}
+					modifier = {
+						factor = 4
+						capital_scope = {
+							region = world_westeros_north
+						}
+					}
+					modifier = {
+						factor = 2
+						capital_scope = {
+							region = world_riverlands
+						}
+					}
+					modifier = {
+						factor = 0
+						capital_scope = {
+							region = world_dragonstone
+						}
+					}
+					modifier = {
+						factor = 0.5
+						capital_scope = {
+							region = world_iron_isles
+						}
+					}
+					modifier = {
+						factor = 0.5
+						capital_scope = {
+							region = world_dorne
+						}
+					}
+					hidden_tooltip = {
+						character_event = {
+							id = going_out_events.12241
+							days = 365
+						}
+					}
+				}
+				50 = {
+					modifier = {
+						factor = 0
+						capital_scope = {
+							region = world_kingswood
+						}
+					}
+					modifier = {
+						factor = 0
+						capital_scope = {
+							region = world_ifeqevron
+						}
+					}
+					modifier = {
+						factor = 0
+						capital_scope = {
+							region = world_rainwood
+						}
+					}
+					modifier = {
+						factor = 4
+						capital_scope = {
+							region = world_ghiscar
+						}
+					}
+					modifier = {
+						factor = 5
+						capital_scope = {
+							region = world_dothraki_sea
+						}
+					}
+					modifier = {
+						factor = 0
+						capital_scope = {
+							region = world_qohor
+						}
+					}
+					modifier = {
+						factor = 0.25
+						capital_scope = {
+							region = world_summer_sea
+						}
+					}
+					hidden_tooltip = {
+						character_event = {
+							id = going_out_events.12242
+							days = 365
+						}
+					}
+				}
+			}
+		}
+		wealth = -150
+		ai_chance = {
+			factor = 0.25
+		}
+	}
+	option = {
+		name = EVTOPTCgoing_out_events.1224		#stone
+		hidden_tooltip = {
+			random_list = {
+				50 = {
+					modifier = {
+						factor = 6
+						capital_scope = {
+							region = world_ghiscar
+						}
+					}
+					modifier = {
+						factor = 10
+						capital_scope = {
+							has_building = ca_stonemason
+						}
+					}
+					modifier = {
+						factor = 10
+						capital_scope = {
+							has_building = ct_stonemason
+						}
+					}
+					modifier = {
+						factor = 5
+						capital_scope = {
+							region = world_vale
+						}
+					}
+					modifier = {
+						factor = 3
+						capital_scope = {
+							region = world_dorne
+						}
+					}
+					hidden_tooltip = {
+						character_event = {
+							id = going_out_events.12241
+							days = 365
+						}
+					}					#yay
+				}
+				50 = {
+					modifier = {
+						factor = 0.5
+						capital_scope = {
+							region = world_westeros_east
+						}
+					}
+					modifier = {
+						factor = 0.5
+						capital_scope = {
+							region = world_westeros_west
+						}
+					}
+					modifier = {
+						factor = 0.1
+						capital_scope = {
+							region = world_bone_mountains
+						}
+					}
+					modifier = {
+						factor = 0.1
+						capital_scope = {
+							region = world_red_mountains
+						}
+					}
+					hidden_tooltip = {
+						character_event = {
+							id = going_out_events.12242
+							days = 365
+						}
+					}					#nay
+				}
+			}
+		}
+		wealth = -150
+		ai_chance = {
+			factor = 0.25
+		}
+	}
+	option = {
+		#nothing
+		name = EVTOPTDgoing_out_events.1224
+		ai_chance = {
+			factor = 0.7
+			modifier = {
+				factor = 8
+				wealth < 200
+			}
+			modifier = {
+				factor = 10
+				trait = greedy
+			}
+		}
+	}
+}
+
+character_event = {
+	# investment success
+	id = going_out_events.12241
+	desc = EVTDESCgoing_out_events.12241
+	picture = GFX_plumm
+	border = GFX_event_normal_frame_war
+	is_triggered_only = yes
+	option = {
+		name = EVTOPTAgoing_out_events.12241
+		wealth = 450
+		prestige = 100
+	}
+}
+
+character_event = {
+	# investment fail
+	id = going_out_events.12242
+	desc = EVTDESCgoing_out_events.12242
+	picture = GFX_plumm
+	border = GFX_event_normal_frame_war
+	is_triggered_only = yes
+	option = {
+		name = EVTOPTAgoing_out_events.12242
+		prestige = -50
+	}
+}
+
+character_event = {
+	#look for quiet place
+	id = going_out_events.13
+	desc = EVTDESCgoing_out_events.13
+	picture = GFX_KINGS_LANDING
+	border = GFX_event_normal_frame_economy
+	is_triggered_only = yes
+	option = {
+		#sleep - lose stressed - night watchmen
+		name = EVTOPTAgoing_out_events.13
+		trigger = {
+			trait = stressed
+			location = {
+				OR = {
+					has_building = ca_night_watchman
+					has_building = ct_night_watchman
+					has_building = tp_night_watchman
+				}
+			}
+		}
+		remove_trait = stressed
+		character_event = {
+			id = going_out_events.131
+		}
+		ai_chance = {
+			factor = 0.25
+		}
+	}
+	option = {
+		#find animal
+		name = EVTOPTBgoing_out_events.13
+		character_event = {
+			id = going_out_events.132
+		}
+		ai_chance = {
+			factor = 0.25
+		}
+	}
+	option = {
+		#gardener
+		name = EVTOPTCgoing_out_events.13
+		character_event = {
+			id = going_out_events.133
+		}
+		ai_chance = {
+			factor = 0.25
+		}
+	}
+	option = {
+		#get drunk, brewer
+		name = EVTOPTDgoing_out_events.13
+		character_event = {
+			id = going_out_events.134
+		}
+		ai_chance = {
+			factor = 0.25
+		}
+	}
+}
+
+character_event = {
+	# night watchmen
+	id = going_out_events.131
+	desc = EVTDESCgoing_out_events.131
+	picture = GFX_KINGS_LANDING
+	border = GFX_event_normal_frame_war
+	is_triggered_only = yes
+	option = {
+		name = EVTOPTAgoing_out_events.131
+		prestige = -50
+		if = {
+			limit = {
+				NOT = {
+					trait = shy
+				}
+				NOT = {
+					trait = gregarious
+				}
+			}
+			random = {
+				chance = 10
+				add_trait = shy
+			}
+		}
+	}
+}
+
+character_event = {
+	# find animal
+	id = going_out_events.132
+	desc = EVTDESCgoing_out_events.132
+	picture = GFX_shadowcat
+	border = GFX_event_normal_frame_war
+	is_triggered_only = yes
+	immediate = {
+		random_list = {
+			15 = {
+				add_character_modifier = {
+					modifier = pet_stray_dog
+					duration = -1
+				}
+				set_character_flag = new_pet
+				modifier = {
+					factor = 0
+					has_character_modifier = pet_stray_dog
+				}
+			}
+			3 = {
+				add_character_modifier = {
+					modifier = pet_dwarf_elephant
+					duration = -1
+				}
+				set_character_flag = new_pet
+				modifier = {
+					factor = 0
+					has_character_modifier = pet_dwarf_elephant
+				}
+				modifier = {
+					factor = 15
+					location = {
+						region = world_volantis
+					}
+				}
+				modifier = {
+					factor = 5
+					location = {
+						region = world_free_cities
+					}
+				}
+			}
+			3 = {
+				add_character_modifier = {
+					modifier = pet_manticore
+					duration = -1
+				}
+				set_character_flag = new_pet
+				modifier = {
+					factor = 0
+					has_character_modifier = pet_manticore
+				}
+				modifier = {
+					factor = 5
+					location = {
+						region = world_essos
+					}
+				}
+			}
+			15 = {
+				add_character_modifier = {
+					modifier = pet_stray_cat
+					duration = -1
+				}
+				set_character_flag = new_pet
+				modifier = {
+					factor = 0
+					has_character_modifier = pet_stray_cat
+				}
+			}
+			3 = {
+				add_character_modifier = {
+					modifier = pet_little_panda
+					duration = -1
+				}
+				set_character_flag = new_pet
+				modifier = {
+					factor = 0
+					has_character_modifier = pet_little_panda
+				}
+				modifier = {
+					factor = 30
+					location = {
+						region = world_jade_sea
+					}
+				}
+			}
+			40 = {
+				set_character_flag = missed_pet
+			}
+		}
+	}
+	option = {
+		trigger = {
+			has_character_flag = new_pet
+		}
+		name = EVTOPTAgoing_out_events.132
+		clr_character_flag = new_pet
+	}
+	option = {
+		trigger = {
+			has_character_flag = missed_pet
+		}
+		name = EVTOPTBgoing_out_events.132
+		clr_character_flag = missed_pet
+		prestige = -50
+	}
+}
+
+character_event = {
+	#gardener woman
+	id = going_out_events.133
+	desc = EVTDESCgoing_out_events.133
+	picture = GFX_sansa
+	border = GFX_event_normal_frame_war
+	is_triggered_only = yes
+	option = {
+		if = {
+			limit = {
+				NOT = {
+					lifestyle_traits = 1
+				}
+			}
+			random = {
+				chance = 30
+				add_trait = gardener
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					trait = lustful
+				}
+				NOT = {
+					trait = chaste
+				}
+			}
+			random = {
+				chance = 30
+				add_trait = lustful
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					trait = lovers_pox
+				}
+			}
+			random = {
+				chance = 25
+				add_trait = lovers_pox
+			}
+		}
+		name = EVTOPTAgoing_out_events.133
+		prestige = 50
+	}
+}
+
+character_event = {
+	#get drunk, brewer
+	id = going_out_events.134
+	desc = EVTDESCgoing_out_events.134
+	picture = GFX_oil_rik
+	border = GFX_event_normal_frame_war
+	is_triggered_only = yes
+	option = {
+		#can build brewery
+		set_character_flag = met_brewer
+		if = {
+			limit = {
+				NOT = {
+					lifestyle_traits = 1
+				}
+			}
+			random = {
+				chance = 10
+				add_trait = socializer
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					trait = shy
+				}
+				NOT = {
+					trait = gregarious
+				}
+			}
+			random = {
+				chance = 20
+				add_trait = gregarious
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					trait = drunkard
+				}
+			}
+			random = {
+				chance = 5
+				add_trait = drunkard
+			}
+		}
+		name = EVTOPTAgoing_out_events.134
+		piety = -10
+	}
+}

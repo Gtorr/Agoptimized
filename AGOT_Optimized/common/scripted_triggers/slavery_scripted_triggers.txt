@@ -1,0 +1,221 @@
+can_buy_unsullied_trigger = {
+	#ROOT is the buyer
+	has_space_for_retinue = RETTYPE_INF_UNSULLIED
+}
+
+can_ai_buy_unsullied_trigger = {
+	#ROOT is the buyer
+	independent = yes	#No Ai retinue spam #TODO: add more
+}
+
+is_slavery_legal = {
+	OR = {
+		has_law = slavery_2
+		has_law = slavery_3
+	}
+}
+
+holding_can_be_slave_looted = {
+	#Looted holding conditions
+	holder_scope = {
+		NOT = {
+			is_liege_or_above = ROOT
+		}
+		NOT = {
+			same_realm = ROOT
+		}
+	}
+	OR = {
+		holding_type = castle
+		holding_type = city
+	}
+	base_value_3_trigger = yes	#Must be at least level 3
+	OR = {
+		#If a sub holding, must be at least level 5
+		is_capital = yes
+		base_value_5_trigger = yes
+	}
+}
+
+holding_can_be_slave_raided = {
+	#Looted holding conditions
+	holder_scope = {
+		NOT = {
+			is_liege_or_above = ROOT
+		}
+		OR = {
+			NOT = {
+				same_realm = ROOT
+			}
+			war_with = ROOT
+			any_liege = {
+				war_with = ROOT
+			}
+		}
+	}
+	OR = {
+		holding_type = castle
+		holding_type = city
+	}
+	base_value_3_trigger = yes	#Must be at least level 3
+	OR = {
+		#If a sub holding, must be at least level 5
+		is_capital = yes
+		base_value_5_trigger = yes
+	}
+}
+
+is_using_slavery_cb = {
+	any_war = {
+		OR = {
+			using_cb = claim
+			using_cb = claim_all
+			using_cb = invasion
+			using_cb = tribal_invasion
+			using_cb = embargo_cb
+			using_cb = pagan_holy_war
+			using_cb = unjust_conquest
+			using_cb = bloody_vengeance
+			using_cb = AGOT_invasion
+			using_cb = invasion_ironborn
+			using_cb = dragon_conquest
+			using_cb = pirate_invasion
+			using_cb = invasion_ambition
+			using_cb = old_ones_scourge_cb
+			using_cb = valyrian_conquest
+			using_cb = dothraki_invasion
+			using_cb = war_of_enslavement
+			using_cb = dote_valyrian_invasion
+			using_cb = dote_valyrian_subjugation
+		}
+	}
+}
+
+is_full_independent_trigger = {
+	independent = yes
+	OR = {
+		tier = EMPEROR
+		primary_title = {
+			NOT = {
+				check_variable = {
+					which = "de_facto_empire"
+					value = 1
+				}
+			}
+		}
+	}
+}
+
+is_pro_ironborn = {
+	OR = {
+		culture_group = iron_isles_culture
+		religion_group = drowned_god_group
+	}
+}
+
+is_pro_slavery_trigger = {
+	NOT = {
+		trait = nightswatch
+		trait = liberator
+		has_religion_feature = religion_feature_anti_slavery
+		has_dynasty_flag = liberator_dynasty
+	}
+	OR = {
+		religion = pirate
+		religion = corsair
+		religion = lady_of_the_waves
+		AND = {
+			religion = lady_of_the_waves_reformed
+			OR = {
+				NOT = {
+					has_dlc = "Holy Fury"
+				}
+				NOT = {
+					has_religion_feature = religion_peaceful
+				}
+			}
+		}
+		OR = {
+			NOT = {
+				has_dlc = "Holy Fury"
+			}
+			NOT = {
+				has_religion_feature = religion_feature_pro_slavery
+			}
+		}
+		culture_group = ghiscari_group
+		culture_group = valyrian
+		AND = {
+			culture_group = free_cities
+			NOT = {
+				culture = braavosi
+			}
+			NOT = {
+				culture = lorathi
+			}
+		}
+		culture = dothraki
+		culture_group = yi_ti_group
+		culture = lengi
+		culture = qartheen
+		culture = qartheen_lowborn
+		culture_group = moraqi_group
+		culture_group = asshai_group
+		culture_group = nghai_group
+	}
+}
+
+is_anti_slavery_trigger = {
+	NOT = {
+		has_religion_feature = religion_feature_pro_slavery
+		trait = slave_owner
+	}
+	OR = {
+		#Religion
+		religion_group = westerosi_religion
+		religion_group = summer_rel_group
+		religion = moonsingers
+		religion = moonsingers_reformed
+		religion = father_of_waters
+		religion = father_of_waters_reformed
+		religion = rhoynar_pagan
+		religion = rhoynar_pagan_reformed
+		religion = great_shepherd
+		religion = great_shepherd_reformed
+		has_religion_feature = religion_feature_anti_slavery
+		has_religion_feature = religion_feature_moonsingers
+		has_religion_feature = religion_feature_rhoynar_pagan
+		#Culture
+		trait = liberator
+		culture_group = andal
+		culture_group = first_men
+		culture_group = dornish
+		culture_group = free_folk
+		culture = braavosi
+		has_dynasty_flag = liberator_dynasty
+	}
+}
+
+can_build_slavery_building = {
+	#Used for buildings
+	#ROOT is province, FROM is owner
+	FROM = {
+		NOT = {
+			has_law = slavery_0
+			top_liege = {
+				has_law = slavery_0
+			}
+		}
+	}
+}
+
+is_active_slavery_building = {
+	FROM = {
+		NOT = {
+			has_law = slavery_0
+			top_liege = {
+				has_law = slavery_0
+			}
+		}
+	}
+}

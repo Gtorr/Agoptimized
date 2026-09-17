@@ -1,0 +1,1210 @@
+namespace = slavery
+#Redefine 4000 just in case
+character_event = {
+	id = slavery.4000
+	is_triggered_only = yes
+	has_character_flag = slaver
+	hide_window = yes
+	trigger = {
+		is_slavery_legal = yes
+		trait = slave_owner
+	}
+	immediate = {
+		character_event = {
+			id = slavery.1000
+		}
+	}
+}
+
+character_event = {
+	#on_siege_won_leader <59% chance>
+	#ROOT is siege leader
+	#The taken Holding title is in FROM. 
+	id = slavery.3997
+	is_triggered_only = yes
+	has_character_flag = slaver
+	only_playable = yes
+	trigger = {
+		trait = slave_owner
+		is_slavery_legal = yes
+		is_using_slavery_cb = yes
+		NOT = {
+			has_character_modifier = recent_slave_capture
+		}
+		FROM = {
+			holding_can_be_slave_raided = yes
+			holder_scope = {
+				NOT = {
+					same_realm = ROOT
+				}
+			}
+		}
+		liege = {
+			NOT = {
+				character = ROOT
+			}
+		}
+	}
+	weight_multiplier = {
+		days = 1
+		modifier = {
+			factor = 2
+			has_religion_feature = religion_feature_pro_slavery
+		}
+		modifier = {
+			factor = 2
+			culture = high_valyrian
+		}
+	}
+	option = {
+		name = "OPTAslavery.4000"
+		character_event = {
+			id = slavery.1000
+		}
+	}
+}
+
+character_event = {
+	# Fires for the owner of the winning unit (ROOT).
+	# The taken Holding title is in FROM.
+	# on_siege_over_winner <70% chance?>
+	#only valid for certain slave raid casus belli
+	id = slavery.3998
+	is_triggered_only = yes
+	has_character_flag = slaver
+	only_playable = yes
+	hide_window = yes
+	weight_multiplier = {
+		days = 1
+		modifier = {
+			factor = 2
+			has_religion_feature = religion_feature_pro_slavery
+		}
+		modifier = {
+			factor = 2
+			culture = high_valyrian
+		}
+	}
+	trigger = {
+		NOT = {
+			has_character_modifier = recent_slave_capture
+		}
+		is_slavery_legal = yes
+		trait = slave_owner
+		FROM = {
+			location = {
+				NOT = {
+					has_province_modifier = slaves_raided
+				}
+			}
+			holding_can_be_slave_raided = yes
+		}
+		is_using_slavery_cb = yes
+	}
+	immediate = {
+		character_event = {
+			id = slavery.1000
+		}
+	}
+}
+
+character_event = {
+	#on_loot_settlement <16% chance>
+	id = slavery.3999
+	is_triggered_only = yes
+	has_character_flag = slaver
+	only_playable = yes
+	hide_window = yes
+	weight_multiplier = {
+		days = 1
+		modifier = {
+			factor = 1.5
+			has_religion_feature = religion_feature_pro_slavery
+		}
+		modifier = {
+			factor = 1.25
+			culture = high_valyrian
+		}
+	}
+	trigger = {
+		is_slavery_legal = yes
+		trait = slave_owner
+		FROM = {
+			holding_can_be_slave_raided = yes
+		}
+		liege = {
+			NOT = {
+				character = ROOT
+			}
+		}
+		NOT = {
+			is_liege_or_above = ROOT
+		}
+	}
+	immediate = {
+		character_event = {
+			id = slavery.1000
+		}
+	}
+}
+
+# Add one slave camp level - do not add slave camp levels in any other way!
+#Now this event adds random num slaves Gt 17/8/26
+character_event = {
+	id = slavery.1000
+	is_triggered_only = yes
+	has_character_flag = slaver
+	picture = GFX_evt_slavery
+	desc = "EVTTOOLTIPSLAVERYRAID"
+	trigger = {
+		trait = slave_owner
+	}
+	immediate = {
+		export_to_variable = {
+			which = num_captured_slaves
+			value = martial
+		}
+		random_list = {
+			# Roll a dice
+			1 = {
+				multiply_variable = {
+					which = num_captured_slaves
+					value = 40
+				}
+			}
+			2 = {
+				multiply_variable = {
+					which = num_captured_slaves
+					value = 35
+				}
+			}
+			3 = {
+				multiply_variable = {
+					which = num_captured_slaves
+					value = 30
+				}
+			}
+			3 = {
+				multiply_variable = {
+					which = num_captured_slaves
+					value = 25
+				}
+			}
+			2 = {
+				multiply_variable = {
+					which = num_captured_slaves
+					value = 20
+				}
+			}
+			1 = {
+				multiply_variable = {
+					which = num_captured_slaves
+					value = 15
+				}
+			}
+		}
+		if = {
+			limit = { 
+				has_law = slavery_3 #Ironborn Bonus
+			}
+			multiply_variable = {
+				which = num_captured_slaves
+				value = 1.25
+			}
+		}
+	}
+	option = {
+		name = "OPTAslavery.4000"
+		change_variable = {
+			which = num_slaves
+			which = num_captured_slaves
+		}
+	}
+}
+
+#Slaves from raid gained (blanked just in case -GT)
+character_event = {
+	id = slavery.780
+	desc = "EVTDESCSLAVERY780"
+	is_triggered_only = yes
+	option = {
+		name = "OK"
+		clear_persistent_event_target = slave_camp_culture_province
+	}
+}
+
+#slavery.3000 -- random # A character becomes a liberator
+# Handling the liberator trait
+# A character becomes a liberator
+character_event = {
+	id = slavery.3000
+	picture = GFX_evt_peasants
+	min_age = 10
+	capable_only = yes
+	is_triggered_only = yes
+	desc = {
+		text = EVTDESCSLAVERY3000
+		trigger = {
+			educator = {
+				always = yes
+			}
+		}
+	}
+	desc = {
+		text = EVTDESCSLAVERY3000B
+		trigger = {
+			educator = {
+				always = no
+			}
+		}
+	}
+	trigger = {
+		OR = {
+			AND = {
+				#Characters educated by a liberator may always get this
+				NOT = {
+					age = 16
+				}
+				educator = {
+					trait = liberator
+				}
+			}
+			AND = {
+				OR = {
+					# Must have some level of political power
+					is_patrician = yes
+					higher_tier_than = COUNT
+					any_heir_title = {
+						higher_tier_than = COUNT
+					}
+					any_pretender_title = {
+						higher_tier_than = COUNT
+					}
+					AND = {
+						trait = ambitious
+						trait = brave
+					}
+					trait = dragon_rider
+				}
+				OR = {
+					# Liberators are radicals, who probably won't emerge without firsthand experience
+					AND = {
+						is_ruler = yes
+						crownlaw_title = {
+							OR = {
+								has_law = slavery_1
+								has_law = slavery_2
+								has_law = slavery_3
+							}
+						}
+					}
+					AND = {
+						is_ruler = no
+						liege = {
+							crownlaw_title = {
+								OR = {
+									has_law = slavery_1
+									has_law = slavery_2
+									has_law = slavery_3
+								}
+							}
+						}
+					}
+					location = {
+						owner = {
+							crownlaw_title = {
+								OR = {
+									has_law = slavery_1
+									has_law = slavery_2
+									has_law = slavery_3
+								}
+							}
+						}
+					}
+				}
+				OR = {
+					# Reasons to become a liberator
+					# Religious Conviction
+					AND = {
+						trait = zealous
+						has_antislavery_religion_trigger = yes
+					}
+					# Nationalist Conviction
+					AND = {
+						has_antislavery_culture_trigger = yes
+						trait = just
+						trait = proud
+					}
+					# Sympathy
+					AND = {
+						is_female = yes
+						trait = ambitious
+					}
+					AND = {
+						trait = former_slave
+						NOT = {
+							trait = arbitrary
+						}
+						NOT = {
+							trait = selfish
+						}
+						NOT = {
+							trait = content
+						}
+						NOT = {
+							trait = humble
+						}
+					}
+				}
+			}
+		}
+		NOT = {
+			trait = liberator
+		}
+		NOT = {
+			trait = slave
+		}
+		# Won't emerge in slaves in captivity
+		NOT = {
+			has_character_flag = refused_liberator
+		}
+	}
+	# Become a Liberator
+	option = {
+		name = "EVTOPTASLAVERY3000"
+		if = {
+			limit = {
+				is_ruler = yes
+				trait = slave_owner
+			}
+			character_event = {
+				id = slavery.3003
+				days = 2
+				tooltip = TOOLTIPslavery.3003
+			}
+		}
+		add_trait = liberator
+		if = {
+			limit = {
+				NOT = {
+					age = 16
+				}
+			}
+			educator = {
+				character_event = {
+					id = slavery.3001
+				}
+			}
+		}
+	}
+	option = {
+		name = "EVTOPTBSLAVERY3000"
+		trigger = {
+			ai = no
+		}
+		if = {
+			limit = {
+				trait = stressed
+				NOT = {
+					trait = depressed
+				}
+			}
+			random = {
+				chance = 15
+				add_trait = depressed
+				hidden_tooltip = {
+					character_event = {
+						id = 38288
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					trait = stressed
+				}
+				NOT = {
+					trait = depressed
+				}
+			}
+			random = {
+				chance = 25
+				add_trait = stressed
+				hidden_tooltip = {
+					character_event = {
+						id = 38282
+					}
+				}
+			}
+		}
+		set_character_flag = refused_liberator
+	}
+}
+
+# Guardian reacts to liberator ward
+character_event = {
+	id = slavery.3001
+	desc = "EVTDESCSLAVERY3001"
+	picture = GFX_evt_peasants
+	is_triggered_only = yes
+	option = {
+		name = "EVTOPTASLAVERY3001"
+		FROM = {
+			tooltip = {
+				add_trait = liberator
+			}
+		}
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 4
+				crownlaw_title = {
+					has_law = slavery_0
+				}
+			}
+			modifier = {
+				factor = 2
+				crownlaw_title = {
+					has_law = slavery_0
+				}
+				trait = just
+			}
+			modifier = {
+				factor = 2
+				trait = slave
+			}
+			modifier = {
+				factor = 2
+				trait = former_slave
+			}
+			# Religious Effects
+			modifier = {
+				factor = 2
+				has_antislavery_religion_trigger = yes
+				NOT = {
+					trait = cynical
+				}
+			}
+			modifier = {
+				factor = 2
+				has_antislavery_religion_trigger = yes
+				trait = zealous
+			}
+			modifier = {
+				factor = 2
+				NOT = {
+					trait = arbitrary
+				}
+				has_antislavery_culture_trigger = yes
+			}
+			modifier = {
+				factor = 2
+				trait = just
+				has_antislavery_culture_trigger = yes
+			}
+			modifier = {
+				factor = 2
+				trait = kind
+			}
+		}
+	}
+	option = {
+		name = "EVTOPTBSLAVERY3001"
+		FROM = {
+			remove_trait = liberator
+			hidden_tooltip = {
+				character_event = {
+					id = slavery.3002
+				}
+			}
+		}
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 4
+				crownlaw_title = {
+					OR = {
+						has_law = slavery_2
+						has_law = slavery_3
+					}
+				}
+			}
+			modifier = {
+				factor = 2
+				crownlaw_title = {
+					OR = {
+						has_law = slavery_2
+						has_law = slavery_3
+					}
+				}
+				trait = just
+			}
+			modifier = {
+				factor = 0
+				trait = liberator
+			}
+			modifier = {
+				factor = 10
+				trait = slave_owner
+			}
+			modifier = {
+				factor = 2
+				trait = slave_owner
+			}
+			modifier = {
+				factor = 2
+				trait = slave_owner
+				trait = greedy
+			}
+			modifier = {
+				factor = 2
+				trait = slave_owner
+				trait = proud
+			}
+			modifier = {
+				factor = 2
+				trait = slave_owner
+				trait = ambitious
+			}
+			modifier = {
+				factor = 2
+				NOT = {
+					trait = arbitrary
+				}
+				OR = {
+					has_slavery_culture_trigger = yes
+					has_slavery_religion_trigger = yes
+				}
+			}
+			modifier = {
+				factor = 2
+				trait = just
+				OR = {
+					has_slavery_culture_trigger = yes
+					has_slavery_religion_trigger = yes
+				}
+			}
+			modifier = {
+				factor = 2
+				trait = cruel
+			}
+		}
+	}
+}
+
+character_event = {
+	id = slavery.3002
+	desc = "EVTDESCSLAVERY3002"
+	picture = GFX_evt_slavery
+	is_triggered_only = yes
+	option = {
+		name = OK
+		set_character_flag = refused_liberator
+	}
+}
+
+#Inform vassal slavery has been outlawed throughout the Empire
+character_event = {
+	id = slavery.750
+	desc = "EVTDESCSLAVERY750"
+	picture = GFX_evt_slavery
+	is_triggered_only = yes
+	trigger = {
+		tier = KING
+		liege = {
+			tier = EMPEROR
+		}
+	}
+	option = {
+		name = "EVTOPTASLAVERY750"		#OK
+		ai_chance = {
+			factor = 50
+			# Motivations
+			modifier = {
+				factor = 0
+				NOT = {
+					trait = liberator
+				}
+				NOT = {
+					has_antislavery_culture_trigger = yes
+				}
+				NOT = {
+					has_antislavery_religion_trigger = yes
+				}
+				NOT = {
+					trait = lunatic
+				}
+				relative_power_to_liege = 0.1
+				NOT = {
+					liege = {
+						reverse_opinion = {
+							who = ROOT
+							value = 50
+						}
+					}
+				}
+			}
+			# Personality Effects
+			modifier = {
+				factor = 2
+				trait = humble
+			}
+			modifier = {
+				factor = 2
+				trait = craven
+			}
+			modifier = {
+				factor = 2
+				trait = content
+			}
+			modifier = {
+				factor = 2
+				trait = kind
+			}
+			modifier = {
+				factor = 2
+				trait = patient
+			}
+			modifier = {
+				factor = 2
+				trait = honorable
+			}
+			# Slave Owner or Trader
+			modifier = {
+				factor = 0.1
+				trait = slave_owner
+			}
+			modifier = {
+				factor = 0.1
+				trait = slave_owner
+			}
+			# Culture Effects
+			modifier = {
+				factor = 0.05
+				OR = {
+					has_slavery_culture_trigger = yes
+					has_slavery_religion_trigger = yes
+				}
+				NOT = {
+					has_antislavery_religion_trigger = yes
+				}
+				NOT = {
+					trait = arbitrary
+				}
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					has_slavery_culture_trigger = yes
+					has_slavery_religion_trigger = yes
+				}
+				NOT = {
+					has_antislavery_religion_trigger = yes
+				}
+				trait = just
+			}
+			modifier = {
+				factor = 5
+				OR = {
+					has_antislavery_culture_trigger = yes
+					has_antislavery_religion_trigger = yes
+				}
+				NOT = {
+					trait = arbitrary
+				}
+			}
+			modifier = {
+				factor = 2
+				OR = {
+					has_antislavery_culture_trigger = yes
+					has_antislavery_religion_trigger = yes
+				}
+				trait = just
+			}
+			modifier = {
+				factor = 2
+				has_antislavery_religion_trigger = yes
+			}
+			modifier = {
+				factor = 5
+				has_antislavery_religion_trigger = yes
+				NOT = {
+					trait = cynical
+				}
+			}
+			modifier = {
+				factor = 2
+				has_antislavery_religion_trigger = yes
+				trait = zealous
+			}
+		}
+		#make sure any sub kingdoms change to same law
+		any_demesne_title = {
+			limit = {
+				tier = KING
+				NOT = {
+					has_law = slavery_0
+				}
+				OR = {
+					dejure_liege_title = {
+						has_law = slavery_0
+					}
+					AND = {
+						NOT = {
+							dejure_liege_title = {
+								always = yes
+							}
+						}
+						ROOT = {
+							liege = {
+								primary_title = {
+									has_law = slavery_0
+								}
+							}
+						}
+					}
+				}
+			}
+			hidden_tooltip = {
+				revoke_law = slavery_1
+			}
+			hidden_tooltip = {
+				revoke_law = slavery_2
+			}
+			hidden_tooltip = {
+				revoke_law = slavery_3
+			}
+			holder_scope = {
+				set_character_flag = passive_slave_law_change
+			}
+			add_law = slavery_0
+		}
+		hidden_tooltip = {
+			any_courtier = {
+				limit = {
+					trait = slave
+					liege = {
+						character = PREVPREV
+					}
+				}
+				ROOT = {
+					liege = {
+						reverse_opinion = {
+							who = PREVPREV
+							modifier = opinion_abolished_slavery_former_slave
+							months = 2400
+						}
+					}
+				}
+			}
+			any_realm_lord = {
+				any_courtier = {
+					limit = {
+						trait = slave
+						liege = {
+							character = PREVPREV
+						}
+					}
+					ROOT = {
+						liege = {
+							reverse_opinion = {
+								who = PREVPREV
+								modifier = opinion_abolished_slavery_former_slave
+								months = 2400
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = "EVTOPTBSLAVERY750"		#REVOLT!
+		trigger = {
+			any_demesne_title = {
+				tier = KING
+				NOT = {
+					has_law = slavery_0
+				}
+				OR = {
+					dejure_liege_title = {
+						has_law = slavery_0
+					}
+					AND = {
+						NOT = {
+							dejure_liege_title = {
+								always = yes
+							}
+						}
+						ROOT = {
+							liege = {
+								primary_title = {
+									has_law = slavery_0
+								}
+							}
+						}
+					}
+				}
+			}
+			OR = {
+				prisoner = no
+				NOT = {
+					host = {
+						is_liege_of = ROOT
+					}
+				}
+			}
+		}
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 0
+				NOT = {
+					has_slavery_culture_trigger = yes
+				}
+				NOT = {
+					has_slavery_religion_trigger = yes
+				}
+				NOT = {
+					trait = lunatic
+				}
+				NOT = {
+					trait = arbitrary
+				}
+				NOT = {
+					culture_group = iron_isles_culture
+				}
+			}
+			modifier = {
+				factor = 0
+				has_dynasty_flag = liberator_dynasty
+			}
+			modifier = {
+				factor = 2
+				trait = proud
+			}
+			modifier = {
+				factor = 2
+				trait = brave
+			}
+			modifier = {
+				factor = 2
+				trait = ambitious
+			}
+			modifier = {
+				factor = 2
+				trait = cruel
+			}
+			modifier = {
+				factor = 2
+				trait = wroth
+			}
+			modifier = {
+				factor = 2
+				trait = ruthless
+			}
+			modifier = {
+				factor = 5
+				OR = {
+					has_slavery_culture_trigger = yes
+					has_slavery_religion_trigger = yes
+				}
+				NOT = {
+					has_antislavery_religion_trigger = yes
+				}
+				NOT = {
+					trait = arbitrary
+				}
+			}
+			modifier = {
+				factor = 2
+				OR = {
+					has_slavery_culture_trigger = yes
+					has_slavery_religion_trigger = yes
+				}
+				NOT = {
+					has_antislavery_religion_trigger = yes
+				}
+				trait = just
+			}
+			modifier = {
+				factor = 0.05
+				OR = {
+					has_antislavery_culture_trigger = yes
+					has_antislavery_religion_trigger = yes
+				}
+				NOT = {
+					trait = arbitrary
+				}
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					has_antislavery_culture_trigger = yes
+					has_antislavery_religion_trigger = yes
+				}
+				trait = just
+			}
+			modifier = {
+				factor = 0.5
+				has_antislavery_religion_trigger = yes
+			}
+			modifier = {
+				factor = 0.2
+				has_antislavery_religion_trigger = yes
+				NOT = {
+					trait = cynical
+				}
+			}
+			modifier = {
+				factor = 0.5
+				has_antislavery_religion_trigger = yes
+				trait = zealous
+			}
+			modifier = {
+				factor = 5
+				culture_group = iron_isles_culture
+				NOT = {
+					trait = arbitrary
+				}
+			}
+			modifier = {
+				factor = 2
+				culture_group = iron_isles_culture
+				trait = just
+			}
+			modifier = {
+				factor = 2
+				culture_group = iron_isles_culture
+				trait = proud
+			}
+		}
+		set_character_flag = pro_slavery_rebel
+		tooltip = {
+			liege = {
+				reverse_war = {
+					target = ROOT
+					casus_belli = overthrow_ruler
+				}
+			}
+		}
+		custom_tooltip = {
+			text = TOOLTIPSLAVERY750
+		}
+	}
+}
+
+#Pro-Slavery Rebellion!
+character_event = {
+	id = slavery.751
+	desc = "EVTDESCSLAVERY751"
+	picture = GFX_evt_slavery
+	is_triggered_only = yes
+	trigger = {
+		tier = EMPEROR
+		any_vassal = {
+			tier = KING
+			has_character_flag = pro_slavery_rebel
+		}
+	}
+	immediate = {
+		random_vassal = {
+			limit = {
+				tier = KING
+				has_character_flag = pro_slavery_rebel
+			}
+			save_event_target_as = pro_slavery_rebel
+			clr_character_flag = pro_slavery_rebel
+		}
+	}
+	option = {
+		name = "EVTOPTASLAVERY751"		#OK
+		hidden_tooltip = {
+			any_vassal = {
+				limit = {
+					tier = KING
+					has_character_flag = pro_slavery_rebel
+				}
+				set_character_flag = issue_punishments				#this stops them being split prematurely by mega war event
+			}
+		}
+		event_target:pro_slavery_rebel = {
+			war = {
+				target = ROOT
+				casus_belli = overthrow_ruler
+			}
+			ROOT = {
+				any_vassal = {
+					limit = {
+						tier = KING
+						has_character_flag = pro_slavery_rebel
+					}
+					hidden_tooltip = {
+						#mega wars
+						character_event = {
+							id = mega_wars.4
+						}
+						#set empire title flag
+						set_defacto_liege = THIS
+						clr_character_flag = independant
+						set_character_flag = mega_war_remove_leader
+						clr_character_flag = must_decide
+						clr_character_flag = joined_independance_war
+						set_character_flag = mega_war_decision_cooldown
+						set_character_flag = against_king
+						clr_character_flag = neutral
+						clr_character_flag = supporting_king
+						clr_character_flag = inherit_war
+						clr_character_flag = mega_war_remove_leader
+						any_vassal = {
+							limit = {
+								NOT = {
+									war_with = PREV
+								}
+								war = no
+								primary_title = {
+									mercenary = no
+									holy_order = no
+								}
+							}
+							clr_character_flag = supporting_king
+							clr_character_flag = neutral
+							clr_character_flag = against_king
+							# clr_character_flag = rebel_leader
+							# clr_character_flag = post_civil_war_wars
+							# clr_character_flag = independant
+							# clr_character_flag = join_independance_asked
+							# clr_character_flag = inherit_war
+							#opinion = { who = FROM modifier = opinion_deciding_king days = 10 }
+							if = {
+								limit = {
+									NOT = {
+										has_character_flag = flag_crown_loyalist
+									}
+									NOT = {
+										in_faction = faction_liege_loyalist
+									}
+								}
+								letter_event = {
+									id = mega_wars.25
+									days = 3
+								}
+							}
+							if = {
+								#Crown Loyalists
+								limit = {
+									has_character_flag = flag_crown_loyalist
+								}
+								character_event = {
+									id = mega_wars.19
+									days = 3
+								}
+							}
+							if = {
+								#Liege Loyalists
+								limit = {
+									in_faction = faction_liege_loyalist
+								}
+								character_event = {
+									id = mega_wars.20
+									days = 3
+								}
+							}
+						}
+						any_realm_character = {
+							#Dragon Rider's can choose sides
+							limit = {
+								trait = dragon_rider
+								OR = {
+									liege = {
+										character = PREVPREV
+									}
+									liege = {
+										liege = {
+											character = PREVPREVPREV
+										}
+									}
+								}
+								is_ruler = no
+								prisoner = no
+								is_incapable = no
+								can_press_claims_trigger = yes
+							}
+							clr_character_flag = supporting_king
+							clr_character_flag = neutral
+							clr_character_flag = against_king
+							letter_event = {
+								id = mega_wars.25
+								days = 4
+							}
+						}
+					}
+					join_attacker_wars = PREVPREV
+					clr_character_flag = pro_slavery_rebel
+					clr_character_flag = issue_punishments
+				}
+			}
+		}
+		hidden_tooltip = {
+			any_vassal = {
+				limit = {
+					tier = KING
+				}
+				clr_character_flag = issue_punishments
+			}
+		}
+	}
+}
+
+#Inform slavery has been abolished (from decision)
+letter_event = {
+	id = slavery.752
+	desc = "EVTDESCSLAVERY752"
+	is_triggered_only = yes
+	option = {
+		name = OK
+		clr_character_flag = slavery_law_letter
+	}
+}
+
+#Inform slavery has been legalised (from decision)
+letter_event = {
+	id = slavery.753
+	is_triggered_only = yes
+	desc = {
+		text = "EVTDESCSLAVERY753"
+		trigger = {
+			event_target:slavery_title = {
+				has_law = slavery_2
+			}
+		}
+	}
+	desc = {
+		text = "EVTDESCSLAVERY753B"
+		trigger = {
+			event_target:slavery_title = {
+				has_law = slavery_3
+			}
+		}
+	}
+	option = {
+		name = OK
+		clr_character_flag = slavery_law_letter
+	}
+}
+
+#Natives Enslaved
+character_event = {
+	id = slavery.770
+	desc = "EVTDESCSLAVERY770"
+	picture = GFX_evt_slavery
+	is_triggered_only = yes
+	option = {
+		name = "EVTOPTASLAVERY770"
+		change_variable = {
+			which = num_slaves
+			value = 10
+		}
+	}
+}

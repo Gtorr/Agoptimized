@@ -1,0 +1,79 @@
+namespace = crazy_workshop_events
+
+character_event = { #zombie
+	id = crazy_workshop_events.10
+	picture = GFX_evt_sacrifice
+	desc = EVTDESCcrazy_workshop_events.10
+	border = GFX_event_normal_frame_religion
+
+	is_triggered_only = yes
+
+	option = {
+		name = EVTOPTAcrazy_workshop_events.10
+		piety = -100
+		
+	}
+	
+}
+long_character_event = { #zombie
+	id = crazy_workshop_events.11
+	picture = GFX_evt_sacrifice
+	desc = EVTDESCcrazy_workshop_events.11
+	border = GFX_event_long_frame_intrigue
+
+	is_triggered_only = yes
+
+	option = {
+		name = EVTOPTAcrazy_workshop_events.11
+		add_trait = undead		
+	}
+	
+}
+character_event = { #death
+	id = crazy_workshop_events.20
+	picture = GFX_evt_sacrifice
+	desc = EVTDESCcrazy_workshop_events.20
+	border = GFX_event_normal_frame_religion
+
+	is_triggered_only = yes
+
+	option = {
+		name = EVTOPTAcrazy_workshop_events.20
+	    hidden_effect = {
+		    random = {
+		        chance = 20
+			    character_event = { id = crazy_workshop_events.30 days = 60 }
+		    }
+		}
+	}	
+}
+long_character_event = { #death
+	id = crazy_workshop_events.21
+	picture = GFX_evt_sacrifice
+	desc = EVTDESCcrazy_workshop_events.21
+	border = GFX_event_long_frame_intrigue
+
+	is_triggered_only = yes
+
+	option = {
+		name = EVTOPTAcrazy_workshop_events.21
+	}
+	
+}
+character_event = { #huge syringe
+	id = crazy_workshop_events.30
+	picture = GFX_evt_sacrifice
+	desc = EVTDESCcrazy_workshop_events.30
+	border = GFX_event_normal_frame_religion
+
+	is_triggered_only = yes
+
+	option = {
+	    name = EVTOPTAcrazy_workshop_events.30
+		wealth = -150
+		add_artifact = huge_syringe
+	}
+    option = {
+		name = EVTOPTBcrazy_workshop_events.30
+	}	
+}

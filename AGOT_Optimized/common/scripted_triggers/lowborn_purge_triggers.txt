@@ -1,0 +1,91 @@
+is_purgeable_trigger_2 = {
+	trigger_if = {
+		limit = {
+			is_married = yes
+		}
+		is_purgeable_trigger = yes
+		any_spouse = {
+			is_purgeable_trigger = yes
+		}
+	}
+	trigger_else = {
+		limit = {
+			ai = yes
+		}
+		is_purgeable_trigger = yes
+	}
+}
+
+is_purgeable_trigger = {
+	OR = {
+		has_character_flag = purge
+		AND = {
+			ROOT = { 
+				capital_scope = { 
+					NOT = {
+						region = world_jogo_nhai_plains
+					}
+				} 
+			}
+			OR = {
+				culture = jogos_nhai
+				culture = nghai
+			}
+		}
+		AND = {
+			ROOT = {
+				NOT = {
+					culture = white_walker
+				}
+			}
+			culture = white_walker
+		}
+		NOR = {
+			has_character_flag = no_purge
+			is_landed = yes
+			historical = yes
+			has_job_title = yes
+			has_minor_title = yes
+			is_close_relative = ROOT
+			is_lover = ROOT
+			prisoner = yes
+			NOT = {
+				dynasty = none
+			}
+			is_of_bloodline = yes
+			trait = maester
+			trait = archmaester
+			trait = kingsguard
+			NOT_mythical_creature_trigger = no
+			trait = favored_by_rhllor
+			trait = chosen_by_rhllor
+			trait = resurrected_by_rhllor
+			trait = dragon_rider
+			trait = immortal
+			has_character_flag = special_marshal
+			has_character_flag = eternal_life_mystic
+			has_character_flag = flag_hired_skinchanger
+			has_character_modifier = elder_long_life_modifier
+		}
+	}
+}
+
+is_of_bloodline = {
+	any_owned_bloodline = {
+		OR = {
+			has_bloodline_flag = bloodline_heroes
+			has_bloodline_flag = bloodline_sky_burial
+			has_bloodline_flag = bloodline_legitimize
+			has_bloodline_flag = khal_of_khals
+			has_bloodline_flag = jhattar_of_jogos_nhai
+			has_bloodline_flag = blood_of_the_dragon
+			has_bloodline_flag = blood_of_azor_ahai
+			has_bloodline_flag = blood_of_chaos
+			has_bloodline_flag = dynastic_bloodline
+			has_bloodline_flag = historical_bloodline
+			has_bloodline_flag = has_strong_seed
+			has_bloodline_flag = created_bloodline
+			has_bloodline_flag = blood_of_the_dragon
+		}
+	}
+}

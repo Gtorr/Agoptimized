@@ -1,0 +1,40 @@
+namespace = lowborn_purge_events
+
+character_event = {
+	id = lowborn_purge_events.0
+	is_triggered_only = yes
+	hide_window = yes
+	only_playable = yes
+	
+	trigger = {
+		any_courtier = {
+			is_purgeable_trigger_2 = yes
+		}
+	}
+
+	immediate = {
+		character_event = { id = lowborn_purge_events.1 days = 1 }
+	}
+}
+
+character_event = {
+	id = lowborn_purge_events.1
+	is_triggered_only = yes
+	hide_window = yes
+	only_playable = yes
+	
+	immediate = {
+		any_courtier = {
+			limit = {
+				is_purgeable_trigger_2 = yes
+			}
+			any_child = {
+				death = { death_reason = death_murder_unknown }
+			}
+			any_spouse = {
+				death = {death_reason = death_murder_unknown }
+			}
+			death = { death_reason = death_murder_unknown }
+		}
+	}
+}

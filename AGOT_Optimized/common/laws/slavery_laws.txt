@@ -1,0 +1,396 @@
+# Laws ending with 0 will be default laws at game start
+# The Four Slavery Laws
+# Illegal
+#	Slavery is illegal, and this law is strictly enforced. No slavery mechanics,
+#   can gain War of Liberation and Treaty Violation CBs.
+#	Favored by Westerosi, Braavosi, Rhoynar, and liberators.
+# Indentured Servitude
+#	Slavery is technically illegal, but practiced in other ways.
+#  	Slaves are more expensive to buy and less profitable,
+#	buildings limited to basic
+#	Not favored by anyone. Transitional state between legal and ilegal,
+#   Result of law change or wars against a realm practicing Slavery.
+# Chattel Slavery
+#	Slavery is fully legal.
+#   Slaves are treated as property and may be bought and sold.
+# 	Full access to slavery buildings, may be target of War of Liberation CB.
+#	Favored by Ghiscari, Dothraki, Valyrian, Pirates, Dothraki and non-Braavosi Free Cities cultures.
+# Thralldom
+#	Ironborn variant
+#	Prisoners of war may be taken as slaves.
+# 	can only sell or profit, but not buy.
+#	Special buildings
+#**...are those buildings with us in the room...? Gtorr 26/7/26
+#Changed to demnese laws to regulate independent dukes and counts
+#Law syncs like it was a crown law on pass effect.
+laws = {
+	#**************************************************************
+	slavery_0 = {
+		# Illegal
+		#	Slavery is illegal, and this law is strictly enforced. No slavery mechanics,
+		#   can gain War of Liberation and Treaty Violation CBs.
+		#	Favored by Westerosi, Braavosi, Rhoynar, and liberators.
+		group = slavery
+		default = yes
+		potential = {
+			always = yes
+		}
+		allow = {
+			has_law = slavery_1			# Must come from semi-slavery
+			holder_scope = {
+				custom_tooltip = {
+					text = TOOLTIPINDEPENDENTCONDITION
+					hidden_tooltip = {
+						is_full_independent_trigger = yes
+					}
+				}
+				custom_tooltip = {
+					text = TOOLTIPANTISLAVERY
+					hidden_tooltip = {
+						is_anti_slavery_trigger = yes
+					}
+				}
+				NOT = {
+					has_character_modifier = changed_slavery_laws
+				}
+			}
+		}
+		pass_effect = {
+			revoke_law = slavery_1
+			revoke_law = slavery_2
+			revoke_law = slavery_3
+			if = {
+				limit = {
+					holder_scope = {
+						NOT = {
+							has_character_flag = passive_slave_law_change
+						}
+					}
+				}
+				holder_scope = {
+					add_character_modifier = {
+						name = changed_slavery_law
+						duration = 6000						#15 years+
+						hidden = yes
+					}
+				}
+				#Todo: Opinions
+			}
+			holder_scope = {
+				clr_character_flag = passive_slave_law_change
+				character_event = {
+					id = slavery_setup.10					#sync laws with vassals
+					days = 7
+				}
+			}
+			#Todo: force slave owners to sell
+			# Set opinions ect
+		}
+		effect = {
+			hidden_tooltip = {
+				revoke_law = slavery_1
+				revoke_law = slavery_2
+				revoke_law = slavery_3
+			}
+		}
+		revoke_allowed = {
+			always = no
+		}
+		default_selection = {
+			factor = 0
+			additive_modifier = {
+				value = 10
+				holder_scope = {
+					is_anti_slavery_trigger = yes
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		ai_will_revoke = {
+			factor = 0
+		}
+	}
+	slavery_1 = {
+		# Indentured Servitude
+		#	Slavery is technically illegal, but practiced in other ways.
+		#  	Slaves are more expensive to buy and less profitable,
+		#	buildings limited to basic
+		#	Not favored by anyone. Transitional state between legal and ilegal,
+		#   Result of law change or wars against a realm practicing Slavery.
+		group = slavery
+		potential = {
+			always = yes
+		}
+		allow = {
+			holder_scope = {
+				custom_tooltip = {
+					text = TOOLTIPINDEPENDENTCONDITION
+					hidden_tooltip = {
+						is_full_independent_trigger = yes
+					}
+				}
+				# Steppin Stone
+				OR = {
+					AND = {
+						custom_tooltip = {
+							text = TOOLTIPANTISLAVERY
+							hidden_tooltip = {
+								is_anti_slavery_trigger = yes
+								ROOT = {
+									OR = {
+										has_law = slavery_3
+										has_law = slavery_2
+									}
+								}
+							}
+						}
+					}
+					AND = {
+						custom_tooltip = {
+							text = "TOOLTIPPROSLAVERY"
+							hidden_tooltip = {
+								is_pro_slavery_trigger = yes
+								ROOT = {
+									has_law = slavery_0
+								}
+							}
+						}
+					}
+				}
+				NOT = {
+					has_character_modifier = changed_slavery_laws
+				}
+			}
+		}
+		pass_effect = {
+			revoke_law = slavery_0
+			revoke_law = slavery_2
+			revoke_law = slavery_3
+			if = {
+				limit = {
+					holder_scope = {
+						NOT = {
+							has_character_flag = passive_slave_law_change
+						}
+					}
+				}
+				holder_scope = {
+					add_character_modifier = {
+						name = changed_slavery_law
+						duration = 6000						#15 years+
+						hidden = yes
+					}
+				}
+				#Todo: Opinions, revolts, ect...
+			}
+			holder_scope = {
+				character_event = {
+					id = slavery_setup.10					#sync laws with vassals
+					days = 10
+				}
+			}
+			# Set opinions ect
+		}
+		effect = {
+			hidden_tooltip = {
+				revoke_law = slavery_0
+				revoke_law = slavery_2
+				revoke_law = slavery_3
+			}
+		}
+		revoke_allowed = {
+			always = no
+		}
+		default_selection = {
+			factor = 0
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		ai_will_revoke = {
+			factor = 0
+		}
+	}
+	#**************************************************************
+	slavery_2 = {
+		# Chattel Slavery
+		#	Slavery is fully legal.
+		#   Slaves are treated as property and may be bought and sold.
+		# 	Full access to slavery buildings, may be target of War of Liberation CB.
+		#	Favored by Ghiscari, Dothraki, Valyrian, Pirates, Dothraki and non-Braavosi Free Cities cultures.
+		group = slavery
+		potential = {
+			always = yes
+		}
+		allow = {
+			OR = {
+				has_law = slavery_1
+				AND = {
+					has_law = slavery_3
+					holder_scope = {
+						NOT = {
+							culture_group = iron_isles_culture
+							religion_group = drowned_god_group
+						}
+					}
+				}
+			}
+			holder_scope = {
+				custom_tooltip = {
+					text = TOOLTIPINDEPENDENTCONDITION
+					hidden_tooltip = {
+						is_full_independent_trigger = yes
+					}
+				}
+				custom_tooltip = {
+					text = "TOOLTIPPROSLAVERY"
+					hidden_tooltip = {
+						is_pro_slavery_trigger = yes
+					}
+				}
+				NOT = {
+					has_character_modifier = changed_slavery_laws
+					trait = libreator
+				}
+			}
+		}
+		pass_effect = {
+			revoke_law = slavery_0
+			revoke_law = slavery_1
+			revoke_law = slavery_3
+			if = {
+				limit = {
+					holder_scope = {
+						NOT = {
+							has_character_flag = passive_slave_law_change
+						}
+					}
+				}
+				holder_scope = {
+					add_character_modifier = {
+						name = changed_slavery_law
+						duration = 6000						#15 years+
+						hidden = yes
+					}
+				}
+				#Todo: Opinions
+			}
+			holder_scope = {
+				character_event = {
+					id = slavery_setup.10					#sync laws with vassals
+					days = 10
+				}
+			}
+			# Set opinions ect
+		}
+		effect = {
+			hidden_tooltip = {
+				revoke_law = slavery_0
+				revoke_law = slavery_1
+				revoke_law = slavery_3
+			}
+		}
+		revoke_allowed = {
+			always = no
+		}
+		default_selection = {
+			factor = 0
+			additive_modifier = {
+				value = 10
+				holder_scope = {
+					is_pro_slavery_trigger = yes
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		ai_will_revoke = {
+			factor = 0
+		}
+	}
+	#**************************************************************
+	slavery_3 = {
+		# Thralldom
+		#	Ironborn variant
+		#	Prisoners of war may be taken as slaves. 
+		# 	can only sell or profit, but not buy for cash.
+		group = slavery
+		potential = {
+			always = yes
+		}
+		allow = {
+			OR = {
+				has_law = slavery_1
+				has_law = slavery_2
+			}
+			holder_scope = {
+				custom_tooltip = {
+					text = TOOLTIPINDEPENDENTCONDITION
+					hidden_tooltip = {
+						is_full_independent_trigger = yes
+					}
+				}
+				is_pro_ironborn = yes
+				NOT = {
+					has_character_modifier = changed_slavery_laws
+					trait = liberator
+				}
+			}
+		}
+		effect = {
+			hidden_tooltip = {
+				revoke_law = slavery_0
+				revoke_law = slavery_1
+				revoke_law = slavery_2
+			}
+			if = {
+				limit = {
+					holder_scope = {
+						NOT = {
+							has_character_flag = passive_slave_law_change
+						}
+					}
+				}
+				holder_scope = {
+					add_character_modifier = {
+						name = changed_slavery_law
+						duration = 6000						#15 years+
+						hidden = yes
+					}
+				}
+				#Todo: Opinions
+			}
+			holder_scope = {
+				character_event = {
+					id = slavery_setup.10					#sync laws with vassals
+					days = 10
+				}
+			}
+			# Set opinions ect
+		}
+		revoke_allowed = {
+			always = no
+		}
+		default_selection = {
+			factor = 0
+			additive_modifier = {
+				value = 10
+				holder_scope = {
+					OR = {
+						culture_group = iron_isles_culture
+						religion_group = drowned_god_group
+					}
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		ai_will_revoke = {
+			factor = 0
+		}
+	}
+}

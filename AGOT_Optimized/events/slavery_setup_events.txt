@@ -1,0 +1,243 @@
+namespace = slavery_setup
+# [slavery_setup.1] Give slaves to player
+# [slavery_setup.2] Give slaves to ai characters under slavery laws / Remove old slave buildings
+# [slavery_setup.10] Slavery laws sync on top liege change
+# [slavery_setup.20] On_death trasnfer slaves to heir event
+character_event = {
+	id = slavery_setup.1
+	is_triggered_only = yes	#On_Action game start
+	desc = "Are you a slave trader ?"
+	ai = no
+	trigger = {
+		is_save_game = no
+		#Condition for slaver chars
+		has_full_slavery_trigger = yes		# Slavery must be Legal
+		is_nomadic = no
+		NOT = {
+			trait = liberator
+		}
+	}
+	option = {
+		name = "Yes"
+		set_variable = {
+			which = num_slaves
+			value = 2000
+		}
+		# 2000 slaves
+		add_trait = slave_owner
+		remove_trait = slave_trader
+		set_character_flag = slaver		#Flag is for pre-triggers
+		
+	}
+	option = {
+		name = "No"
+	}
+}
+
+#Give slaves to ai characters under slavery laws
+character_event = {
+	id = slavery_setup.2
+	ai = yes
+	is_triggered_only = yes	#On_Action game start
+	hide_window = yes
+	trigger = {
+		is_save_game = no
+		#Condition for slaver chars
+		has_full_slavery_trigger = yes		# Slavery must be Legal
+		is_nomadic = no
+		NOT = {
+			culture_group = unoccupied_group
+		}
+		NOT = {
+			trait = liberator
+		}
+		# Won't do this for obvious reasons
+		OR = {
+			is_patrician = yes
+			higher_tier_than = COUNT
+		}
+	}
+	immediate = {
+		set_variable = {
+			which = num_slaves
+			value = 5000
+		}
+		random_list = {
+			25 = {
+				change_variable = {
+					which = num_slaves
+					value = 5000
+				}
+			}
+			25 = {
+				change_variable = {
+					which = num_slaves
+					value = 8000
+				}
+			}
+			25 = {
+				change_variable = {
+					which = num_slaves
+					value = 10000
+				}
+			}
+			25 = {
+				change_variable = {
+					which = num_slaves
+					value = 15000
+				}
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					#is_patrician = yes
+					higher_tier_than = DUKE
+				}
+			}
+			change_variable = {
+				which = num_slaves
+				value = 10000
+			}
+		}
+		
+		add_trait = slave_owner
+		set_character_flag = slaver		#Flag is for pre-triggers
+		remove_trait = slave_trader
+		capital_holding = {
+			if = {
+				limit = {
+					holding_type = city
+				}
+				add_building = ct_slv_market
+			}
+			if = {
+				limit = {
+					holding_type = castle
+				}
+				add_building = ca_slv_market
+			}
+			refresh_slave_bonus_ai = yes
+		}
+		capital_scope = {
+			any_province_holding = {
+				limit = {
+					holding_type = city
+				}
+				remove_building = ct_asoiaf_slavepit_0
+				remove_building = ct_asoiaf_slavepit_1
+				remove_building = ct_asoiaf_slavepit_2
+				remove_building = ct_asoiaf_slavepit_3
+				remove_building = ct_asoiaf_slavepit_4
+				remove_building = ct_asoiaf_slavepit_5
+			}
+			any_province_holding = {
+				limit = {
+					holding_type = castle
+				}
+				remove_building = ct_asoiaf_slavepit_0
+				remove_building = ca_asoiaf_slavepit_1
+				remove_building = ca_asoiaf_slavepit_2
+				remove_building = ca_asoiaf_slavepit_3
+				remove_building = ca_asoiaf_slavepit_4
+				remove_building = ca_asoiaf_slavepit_5
+			}
+		}
+	}
+}
+
+
+character_event = {
+	id = slavery_setup.10
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		clr_character_flag = passive_slave_law_change
+	}
+	option = {
+		name = "The new law applies"
+		any_vassal = {
+			limit = {
+				tier = COUNT
+			}
+			any_demesne_title = {
+				if = {
+					limit = {
+						dejure_liege_title = {
+							has_law = slavery_0
+						}
+						NOT = {
+							has_law = slavery_0
+						}
+					}
+					holder_scope = {
+						set_character_flag = passive_slave_law_change
+					}
+					add_law = slavery_0
+				}
+				if = {
+					limit = {
+						dejure_liege_title = {
+							has_law = slavery_1
+						}
+						NOT = {
+							has_law = slavery_1
+						}
+					}
+					holder_scope = {
+						set_character_flag = passive_slave_law_change
+					}
+					add_law = slavery_1
+				}
+				if = {
+					limit = {
+						dejure_liege_title = {
+							has_law = slavery_2
+						}
+						NOT = {
+							has_law = slavery_2
+						}
+					}
+					holder_scope = {
+						set_character_flag = passive_slave_law_change
+					}
+					add_law = slavery_2
+				}
+				if = {
+					limit = {
+						dejure_liege_title = {
+							has_law = slavery_3
+						}
+						NOT = {
+							has_law = slavery_3
+						}
+					}
+					holder_scope = {
+						set_character_flag = passive_slave_law_change
+					}
+					add_law = slavery_3
+				}
+			}
+		}
+	}
+}
+
+#On_death event
+character_event = {
+	id = slavery_setup.20
+	is_triggered_only = yes
+	only_rulers = yes
+	hide_window = yes
+	has_character_flag = slaver
+	immediate = {
+		current_heir = {
+			change_variable = {
+				which = "num_slaves"
+				which = ROOT
+			}
+			add_trait = slave_owner
+			set_character_flag = slaver			#Flag is for pre-triggers
+			char_refresh_slave_bonus = yes
+		}
+	}
+}

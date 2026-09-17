@@ -1,0 +1,333 @@
+city = {
+    ct_olive_orchard = {
+        desc = ct_olive_orchard_desc
+        potential = {
+            region = world_meereen
+        }
+        trigger = {
+            TECH_CASTLE_CONSTRUCTION = 0
+        }
+        ai_creation_factor = 1000
+        gold_cost = 100
+        build_time = 365
+        tax_income = 3
+        extra_tech_building_start = 10.0 # Never get at start of game
+
+    }
+    ct_qarth_market = {
+        desc = ct_qarth_market_desc
+        potential = {
+            province_id = 663 # Qarth
+        }
+        trigger = {
+            TECH_CASTLE_CONSTRUCTION = 0
+        }
+        ai_creation_factor = 1000
+        gold_cost = 250
+        build_time = 365
+        tax_income = 3
+       # extra_tech_building_start = 10.0 # Never get at start of game
+
+    }
+    ct_ibben_whaler = {
+        desc = ct_ibben_whaler_desc
+        potential = {
+            region = world_ibben
+        }
+        trigger = {
+            TECH_CASTLE_CONSTRUCTION = 0
+        }
+        port = yes
+        ai_creation_factor = 1000
+        gold_cost = 150
+        build_time = 365
+        tax_income = 2.05
+      #  extra_tech_building_start = 10.0 # Never get at start of game
+
+    }
+    ct_myr_artisan = {
+        desc = ct_myr_artisan_desc
+        potential = {
+            FROMFROM = {
+                title = b_myr # Myr
+            }
+        }
+        trigger = {
+            TECH_CASTLE_CONSTRUCTION = 0
+        }
+        ai_creation_factor = 1000
+        gold_cost = 200
+        build_time = 365
+        tax_income = 3
+        #extra_tech_building_start = 10.0 # Never get at start of game
+
+    }
+    ct_tyrosh_artisan = {
+        desc = ct_tyrosh_artisan_desc
+        potential = {
+            FROMFROM = {
+                title = b_tyrosh # Tyrosh
+            }
+        }
+        trigger = {
+            TECH_CASTLE_CONSTRUCTION = 0
+        }
+        ai_creation_factor = 1000
+        gold_cost = 200
+        build_time = 365
+        tax_income = 3
+       # extra_tech_building_start = 10.0 # Never get at start of game
+
+    }
+    ct_braavos_port = {
+        desc = ct_braavos_port_desc
+        potential = {
+            FROMFROM = {
+                title = b_braavos # Braavos
+            }
+        }
+        trigger = {
+            TECH_CASTLE_CONSTRUCTION = 0
+        }
+        ai_creation_factor = 1000
+        gold_cost = 200
+        build_time = 365
+        tax_income = 4
+       # extra_tech_building_start = 10.0 # Never get at start of game
+
+    }
+    ct_yiti_market = {
+        desc = ct_yiti_market_desc
+        potential = {
+            FROMFROM = {
+                OR = {
+                    title = b_yin_city # Yin
+                    title = b_piqui_city # Piqui
+                    title = b_trader_town_city # Trader Town
+                    title = b_xin_city # Xin
+                    title = b_tiqui_city # Tiqui
+                    title = b_jinqi_city # Jinqi
+                    title = b_linqi_city # Linqi
+                    title = b_hidden_city_city # Si Qo
+                }
+            }
+        }
+        trigger = {
+            TECH_CASTLE_CONSTRUCTION = 0
+        }
+        ai_creation_factor = 1000
+        gold_cost = 250
+        build_time = 365
+        tax_income = 4
+       # extra_tech_building_start = 10.0 # Never get at start of game
+
+    }
+    ct_oldtown_port = {
+        desc = ct_oldtown_port_desc
+        potential = {
+            FROMFROM = {
+                title = b_oldtown # Oldtown
+            }
+        }
+        trigger = {
+            TECH_CASTLE_CONSTRUCTION = 0
+        }
+        ai_creation_factor = 1000
+        gold_cost = 200
+        build_time = 365
+        tax_income = 3
+        #extra_tech_building_start = 10.0 # Never get at start of game
+
+    }
+    ct_white_harbor = {
+        desc = ct_white_harbor_desc
+        potential = {
+            FROMFROM = {
+                title = b_whiteharbor # White Harbor
+            }
+        }
+        trigger = {
+            TECH_CASTLE_CONSTRUCTION = 0
+        }
+        ai_creation_factor = 1000
+        gold_cost = 200
+        build_time = 365
+        tax_income = 3
+       # extra_tech_building_start = 10.0 # Never get at start of game
+
+    }
+    ct_lannisport_artisan = {
+        desc = ct_lannisport_artisan_desc
+        potential = {
+            FROMFROM = {
+                title = b_lannisportone # Lannisport
+            }
+        }
+        trigger = {
+            TECH_CASTLE_CONSTRUCTION = 0
+        }
+        ai_creation_factor = 1000
+        gold_cost = 100
+        build_time = 365
+        tax_income = 3
+      #  extra_tech_building_start = 10.0 # Never get at start of game
+    }
+    ct_pentos_spicers = {
+        desc = ct_pentos_spicers_desc
+        potential = {
+            FROMFROM = {
+                title = b_pentos # Pentos
+            }
+        }
+        trigger = {
+            TECH_CASTLE_CONSTRUCTION = 0
+        }
+        ai_creation_factor = 1000
+        gold_cost = 200
+        build_time = 365
+        tax_income = 3
+       # extra_tech_building_start = 10.0 # Never get at start of game
+
+    }
+    ct_beesbury_apiary = {
+        desc = ct_beesbury_apiary_desc
+        potential = {
+            province_id = 283 # Honeyholt
+        }
+        trigger = {
+            TECH_CASTLE_CONSTRUCTION = 0
+        }
+        ai_creation_factor = 1000
+        gold_cost = 100
+        build_time = 365
+        tax_income = 2
+        #extra_tech_building_start = 10.0 # Never get at start of game
+    }
+    ct_chandlery = {
+        desc = ct_chandlery_desc
+        potential = {
+            province_id = 147 # Wickenden
+        }
+        trigger = {
+            TECH_CASTLE_CONSTRUCTION = 0
+        }
+        ai_creation_factor = 1000
+        gold_cost = 100
+        build_time = 365
+        tax_income = 2
+      #  extra_tech_building_start = 10.0 # Never get at start of game
+    }
+    ct_gulltown_port = {
+        desc = ct_gulltown_port_desc
+        potential = {
+            FROMFROM = {
+                title = b_gulltown # Gulltown
+            }
+        }
+        trigger = {
+            TECH_CASTLE_CONSTRUCTION = 0
+        }
+        ai_creation_factor = 1000
+        gold_cost = 100
+        build_time = 365
+        tax_income = 3
+      #  extra_tech_building_start = 10.0 # Never get at start of game
+
+    }
+    ct_fishing_port = {
+        desc = ct_fishing_port_desc
+        potential = {
+            region = world_iron_isles # Iron Islands
+        }
+        trigger = {
+            TECH_CASTLE_CONSTRUCTION = 0
+        }
+        ai_creation_factor = 100
+        gold_cost = 100
+        build_time = 365
+        tax_income = 2
+      #  extra_tech_building_start = 10.0 # Never get at start of game
+
+    }
+    ct_meereen_market = {
+        desc = ct_meereen_market_desc
+        potential = {
+            FROMFROM = {
+                title = b_meereen # Meereen
+            }
+        }
+        trigger = {
+            TECH_CASTLE_CONSTRUCTION = 0
+        }
+        ai_creation_factor = 1000
+        gold_cost = 200
+        build_time = 365
+        tax_income = 3
+       # extra_tech_building_start = 10.0 # Never get at start of game
+
+    }
+    ct_port_asshai = {
+        desc = ct_port_asshai_desc
+        potential = {
+            FROMFROM = {
+                title = b_asshai_city # Asshai
+            }
+        }
+        trigger = {
+            TECH_CASTLE_CONSTRUCTION = 0
+        }
+        ai_creation_factor = 1000
+        gold_cost = 200
+        build_time = 365
+        tax_income = 4
+      #  extra_tech_building_start = 10.0 # Never get at start of game
+
+    }
+    ct_tyrosh_snailery = {
+        desc = ct_tyrosh_snailery_desc
+        potential = {
+            FROMFROM = {
+                OR = {
+                    title = b_tyrosh # Tyrosh
+                    title = b_littletyrosh # Little Tyrosh
+                    title = b_kylos # Kylos
+                    title = b_disputedpeninsula # Vilibosh
+                    title = b_vysosplains # Vysos Plains
+                    title = b_tyroshilanding # Tyroshi Landing
+                }
+            }
+        }
+        trigger = {
+            TECH_CASTLE_CONSTRUCTION = 0
+        }
+        ai_creation_factor = 1000
+        gold_cost = 100
+        build_time = 365
+        tax_income = 3
+        #extra_tech_building_start = 10.0 # Never get at start of game
+
+    }
+    ct_volantis_markets = {
+        desc = ct_volantis_markets_desc
+        potential = {
+            FROMFROM = {
+                OR = {
+                    title = b_oldvolantis # Old Volantis
+                    title = b_volantis # Volantis
+                    title = b_volontherys # Volon Therys
+                    title = b_selhorys # Selhorys
+                    title = b_valysar # Valysar
+                }
+            }
+        }
+        trigger = {
+            TECH_CASTLE_CONSTRUCTION = 0
+        }
+        ai_creation_factor = 1000
+        gold_cost = 100
+        build_time = 365
+        tax_income = 4
+       # extra_tech_building_start = 10.0 # Never get at start of game
+
+    }
+}

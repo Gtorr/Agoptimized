@@ -1,0 +1,113 @@
+###Make zombie
+
+targetted_decisions = {
+    create_monster_decision = {
+		ai = no
+	    filter = court
+		ai_target_filter = court
+        is_high_prio = yes
+		only_playable = yes
+		
+		
+		#ai_check_interval = 2
+		
+		from_potential = {
+			is_playable = yes
+			is_adult = yes
+			prisoner = no
+			is_incapable = no
+			
+		}
+
+		potential = {	
+            NOT = { trait = undead }	 
+			
+		}
+		
+		allow = {
+			FROM = { any_demesne_province = { OR = { has_building = ca_crazy_alchemist_workshop
+                                                     has_building = ct_crazy_alchemist_workshop
+                                                     has_building = tp_crazy_alchemist_workshop
+			                         }
+			        }
+			}
+			FROM = { OR = { trait = lunatic
+			                trait = possessed
+				            trait = impaler
+				            trait = cruel
+				            trait = ruthless
+			       }
+			}
+			ROOT = { OR = { prisoner = yes
+				            trait = maimed
+				            trait = mangled
+				            trait = severely_injured
+			         }
+			}
+		    
+		}
+		
+		effect = {
+		 FROM = { piety = -50 }
+		 FROM = { wealth = -25 }
+		 random = {
+		     chance = 10
+			 FROM = { add_trait = lunatic }
+		 }
+		 random = {
+		     chance = 5
+			 FROM = { add_trait = mystic }
+		 }
+		 hidden_effect = {
+		  random_list = {
+		   50 = {
+			    ROOT = {
+			        long_character_event = { id = crazy_workshop_events.11 days = 7 } 		
+                    opinion = {
+                       modifier = opinion_loyal_servant
+                       who = FROM
+                       years = 250
+                    }	 					
+				}
+				FROM = { 
+					character_event = { id = crazy_workshop_events.10 days = 7 }
+				}
+				modifier = {
+				    factor = 2
+					FROM = { trait = mystic }
+				}
+				modifier = {
+				    factor = 2
+					FROM = { trait = scholar }
+				}
+				modifier = {
+				    factor = 1.5
+					FROM = { learning = 12 }
+				}
+				modifier = {
+				    factor = 2
+					FROM = { learning = 16 }
+				}
+				modifier = {
+				    factor = 10
+					FROM = { has_artifact = huge_syringe }
+				}
+				
+           }
+          100 = {	
+               ROOT = {
+			        long_character_event = { id = crazy_workshop_events.21 } 
+			        death = {
+				        death_reason = death_vanished
+			        }
+				}
+				FROM = { 
+					character_event = { id = crazy_workshop_events.20 }
+				}
+           }				
+		  }
+		 } 
+		}
+    }
+}
+	

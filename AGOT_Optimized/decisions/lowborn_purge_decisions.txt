@@ -1,0 +1,43 @@
+targetted_decisions = {
+	mark_no_purge = {
+		filter = court
+		ai_target_filter = none
+		ai = no
+		
+		potential = {
+			is_purgeable_trigger_2 = yes
+		}
+		
+		allow = {
+			always = yes
+		}
+		
+		effect = {
+			hidden_effect = {
+				clr_character_flag = purge
+				set_character_flag = no_purge
+			}
+		}
+	}
+	
+	mark_purge = {
+		filter = court
+		ai_target_filter = none
+		ai = no
+		
+		potential = {
+			is_purgeable_trigger_2 = no
+		}
+		
+		allow = {
+			always = yes
+		}
+		
+		effect = {
+			hidden_effect = {
+				clr_character_flag = no_purge
+				set_character_flag = purge
+			}
+		}
+	}
+}

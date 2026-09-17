@@ -1,0 +1,58 @@
+city = {
+	ct_slv_market = {
+		desc = bg_slv_market
+		trigger = {
+			can_build_slavery_building = yes
+		}
+		ai_creation_factor = 999
+		gold_cost = 150
+		build_time = 365
+		tax_income = 5
+		knights = 100
+		heavy_infantry = 500
+		ligh_infantry = -500
+		light_infantry_morale = -0.25		#Slave Soldiers
+		heavy_infantry_morale = 0.25		#Mercs
+	}
+	ct_house_of_pleasure = {
+		desc = bg_house_of_pleasure
+		trigger = {
+			can_build_slavery_building = yes
+			FROM = {
+				OR = {
+					trait = lustful
+					trait = arbitrary
+					trait = greedy
+					trait = hedonist
+				}
+				NOR = {
+					trait = chaste
+				}
+			}
+		}
+		prerequisites = {
+			ct_marketplace_1
+		}
+		ai_creation_factor = 900
+		gold_cost = 200
+		build_time = 365
+		tax_income = 3
+		extra_tech_building_start = 99999
+	}
+	ct_fight_pit = {
+		desc = bg_fight_pit
+		trigger = {
+			can_build_slavery_building = yes
+		}
+		prerequisites = {
+			ct_marketplace_1
+		}
+		ai_creation_factor = 500
+		gold_cost = 250
+		build_time = 365
+		heavy_infantry = 150
+		tax_income = 1
+		levy_reinforce_rate = 0.1
+		extra_tech_building_start = 99999
+	}
+}

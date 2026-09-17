@@ -1,0 +1,131 @@
+namespace = duel_academy_events
+###Better Warrior### --Moved to on_actions -GT
+character_event = {
+	id = duel_academy_events.10
+	is_triggered_only = yes
+	desc = EVTDESCduel_academy_events.10
+	picture = GFX_evt_melee
+	border = GFX_event_normal_frame_war
+	capable_only = yes
+	prisoner = no
+	only_playable = yes
+	min_age = 16
+	ai = no
+	trigger = {
+        has_focus = focus_war
+		location = {
+			any_province_holding = {
+				has_building = ca_duel_academy
+			}
+		}
+		NOT = {
+			OR = {
+				trait = wounded
+				is_maimed_trigger = yes
+			}
+		}
+		OR = {
+			trait = trained_warrior
+			trait = skilled_warrior
+		}
+	}
+	option = {
+		name = EVTOPTAduel_academy_events.10
+		if = {
+			limit = {
+				trait = trained_warrior
+			}
+			hidden_tooltip = {
+				remove_trait = trained_warrior
+			}
+			add_trait = skilled_warrior
+		}
+		if = {
+			limit = {
+				trait = skilled_warrior
+			}
+			hidden_tooltip = {
+				remove_trait = skilled_warrior
+			}
+			add_trait = master_warrior
+		}
+		if = {
+			limit = {
+				NOT = {
+					trait = stressed
+				}
+			}
+			add_trait = stressed
+		}
+		add_trait = wounded
+		if = {
+			limit = {
+				NOT = {
+					lifestyle_traits = 1
+				}
+			}
+			random = {
+				chance = 20
+				add_trait = duelist
+				hidden_tooltip = {
+					character_event = {
+						id = duel_academy_events.11
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					trait = rude
+				}
+			}
+			random = {
+				chance = 20
+				add_trait = rude
+				hidden_tooltip = {
+					character_event = {
+						id = duel_academy_events.12
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = EVTOPTBduel_academy_events.10
+		prestige = -50
+		if = {
+			limit = {
+				NOR = {
+					trait = content
+					trait = ambitious
+				}
+			}
+			add_trait = content
+		}
+	}
+}
+
+#rude
+character_event = {
+	id = duel_academy_events.12
+	desc = EVTDESCduel_academy_events.12
+	picture = GFX_evt_melee
+	border = GFX_event_normal_frame_war
+	is_triggered_only = yes
+	option = {
+		name = EVTOPTAduel_academy_events.12
+	}
+}
+
+#duelist
+character_event = {
+	id = duel_academy_events.11
+	desc = EVTDESCduel_academy_events.11
+	picture = GFX_evt_melee
+	border = GFX_event_normal_frame_war
+	is_triggered_only = yes
+	option = {
+		name = EVTOPTAduel_academy_events.11
+	}
+}

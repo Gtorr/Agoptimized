@@ -1,0 +1,160 @@
+namespace = slavery_menu
+#Slavery Managment Menu 1
+character_event = {
+	id = slavery_menu.1
+	desc = "EVTDESCslv.10"
+	picture = GFX_evt_slavery
+	is_triggered_only = yes	#Human Selects Decision
+	ai = no
+	option = {
+		#** BUY **
+		name = "Buy slaves"
+		if = {
+			limit = {
+				NOT = {
+					has_character_flag = recent_slave_trade
+					primary_title = {
+						has_law = slavery_3
+					}
+				}
+			}
+			custom_tooltip = {
+				text = TOOLTIPslv.11B
+			}
+			hidden_tooltip = {
+				character_event = {
+					id = slavery_player.10
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = recent_slave_trade
+			}
+			custom_tooltip = {
+				text = TOOLTIPslv.11W
+			}
+		}
+	}
+	option = {
+		#** SELL **
+		name = "Sell slaves"
+		if = {
+			limit = {
+				NOT = {
+					has_character_flag = recent_slave_trade
+				}
+				check_variable = {
+					which = num_slaves
+					value = 1000
+				}
+			}
+			custom_tooltip = {
+				text = TOOLTIPslv.11S
+			}
+			hidden_tooltip = {
+				#do_slave_trade = yes
+				#update_global_slave_price_sell = yes
+				character_event = {
+					id = slavery_player.20
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = recent_slave_trade
+			}
+			custom_tooltip = {
+				text = TOOLTIPslv.11W
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					check_variable = {
+						which = num_slaves
+						value = 1
+					}
+				}
+			}
+			custom_tooltip = {
+				text = TOOLTIPslv.11D
+			}
+		}
+	}
+	#Buy unsullied
+	option = {
+		name = "Buy unsullied"
+		trigger = {
+			always = yes
+			#is_unsullied_trader_trigger = no
+		}
+		if = {
+			limit = {
+				can_buy_unsullied_trigger = yes
+			}
+			custom_tooltip = {
+				text = TOOLTIPslv.12N
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_character_flag = recent_unsullied_trade
+				}
+				can_buy_unsullied_trigger = yes
+			}
+			custom_tooltip = {
+				text = TOOLTIPslv.12U
+			}
+			character_event = {
+				id = slavery_player.30
+			}
+		}
+		if = {
+			limit = {
+				has_character_flag = recent_unsullied_trade
+			}
+			custom_tooltip = {
+				text = TOOLTIPslv.12W
+			}
+		}
+	}
+	#More Options
+	option = {
+		name = "More Options"
+		character_event = {
+			id = slavery_menu.2
+		}
+	}
+}
+
+#**Slavery Managment Menu 2
+character_event = {
+	id = slavery_menu.2
+	desc = "EVTDESCslv.10"
+	is_triggered_only = yes
+	ai = no
+	#Recruit a talented slave
+	option = {
+		name = "Recruit a talented slave..in the next version.. Gt."
+	}
+	option = {
+		name = "Notification Settings"
+	}
+	option = {
+		#TODO: Ask for confirmation
+		name = "Abandon slave trade, your slaves will be liberated"
+		remove_trait = slave_owner
+		set_variable = {
+			which = num_slaves
+			value = 0
+		}
+		clr_character_flag = slave_owner
+		clr_character_flag = recent_slave_trade
+	}
+	#Close
+	option = {
+		name = "Nevermind"
+	}
+}

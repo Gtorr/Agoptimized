@@ -1,0 +1,203 @@
+divination_glass_candle_effect = {
+    random_list = {
+        50 = {
+            character_event = { id = high_valyrian.51 }
+            modifier = {
+                factor = 2
+                trait = mystic
+            }
+            modifier = {
+                factor = 1.5
+                religion_group = valyrian_rel_group
+            }
+
+            modifier = {
+                factor = 0.44
+                NOT = { learning = 4 }
+            }
+            modifier = {
+                factor = 0.44
+                NOT = { learning = 8 }
+            }
+            modifier = {
+                factor = 1.6
+                learning = 12
+            }
+            modifier = {
+                factor = 1.6
+                learning = 16
+            }
+            modifier = {
+                factor = 1.6
+                learning = 20
+            }
+
+            modifier = {
+                factor = 0.66
+                NOT = { intrigue = 4 }
+            }
+            modifier = {
+                factor = 0.66
+                NOT = { intrigue = 8 }
+            }
+            modifier = {
+                factor = 1.2
+                intrigue = 12
+            }
+            modifier = {
+                factor = 1.2
+                intrigue = 16
+            }
+            modifier = {
+                factor = 1.2
+                intrigue = 20
+            }
+        }
+        50 = {
+            character_event = { id = high_valyrian.52 }
+        }
+    }
+}
+divination_dragon_dream_effect = {
+    if = {
+        limit = { trait = dragon_dreams }
+        save_event_target_as = dragon_dreamer
+        random_list = {
+            50 = {
+                ROOT = { character_event = { id = high_valyrian.30 } }
+                modifier = {
+                    factor = 3
+                    culture = high_valyrian
+                }
+                modifier = {
+                    factor = 1.5
+                    culture_group = valyrian
+                }
+                modifier = {
+                    factor = 1.5
+                    is_coin_flip_dynasty_trigger = yes
+                }
+
+                modifier = {
+                    factor = 0.66
+                    NOT = { learning = 4 }
+                }
+                modifier = {
+                    factor = 0.66
+                    NOT = { learning = 8 }
+                }
+                modifier = {
+                    factor = 1.5
+                    learning = 12
+                }
+                modifier = {
+                    factor = 1.5
+                    learning = 16
+                }
+                modifier = {
+                    factor = 1.5
+                    learning = 20
+                }
+
+                modifier = {
+                    factor = 0.66
+                    NOT = { intrigue = 4 }
+                }
+                modifier = {
+                    factor = 0.66
+                    NOT = { intrigue = 8 }
+                }
+                modifier = {
+                    factor = 1.5
+                    intrigue = 12
+                }
+                modifier = {
+                    factor = 1.5
+                    intrigue = 16
+                }
+                modifier = {
+                    factor = 1.5
+                    intrigue = 20
+                }
+            }
+            50 = {
+                ROOT = { character_event = { id = high_valyrian.31 } }
+            }
+        }
+    }
+    else = {
+        random_courtier = {
+            limit = {
+                trait = dragon_dreams
+                opinion = { who = ROOT value = 0 }
+                is_incapable = no
+                prisoner = no
+                NOT = { is_inaccessible_trigger = yes }
+                NOT = { character = ROOT }
+            }
+            save_event_target_as = dragon_dreamer
+            random_list = {
+                50 = {
+                    ROOT = { character_event = { id = high_valyrian.30 } }
+                    modifier = {
+                        factor = 3
+                        culture = high_valyrian
+                    }
+                    modifier = {
+                        factor = 1.5
+                        culture_group = valyrian
+                    }
+                    modifier = {
+                        factor = 1.5
+                        is_coin_flip_dynasty_trigger = yes
+                    }
+
+                    modifier = {
+                        factor = 0.66
+                        NOT = { learning = 4 }
+                    }
+                    modifier = {
+                        factor = 0.66
+                        NOT = { learning = 8 }
+                    }
+                    modifier = {
+                        factor = 1.5
+                        learning = 12
+                    }
+                    modifier = {
+                        factor = 1.5
+                        learning = 16
+                    }
+                    modifier = {
+                        factor = 1.5
+                        learning = 20
+                    }
+
+                    modifier = {
+                        factor = 0.66
+                        NOT = { intrigue = 4 }
+                    }
+                    modifier = {
+                        factor = 0.66
+                        NOT = { intrigue = 8 }
+                    }
+                    modifier = {
+                        factor = 1.5
+                        intrigue = 12
+                    }
+                    modifier = {
+                        factor = 1.5
+                        intrigue = 16
+                    }
+                    modifier = {
+                        factor = 1.5
+                        intrigue = 20
+                    }
+                }
+                50 = {
+                    ROOT = { character_event = { id = high_valyrian.31 } }
+                }
+            }
+        }
+    }
+}

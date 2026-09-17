@@ -1,0 +1,491 @@
+#CODE;ENGLISH;FRENCH;GERMAN;;SPANISH;;;;;;;;;x
+ca_candle_maker;Candle Maker;Candle Maker;;;Candle Maker;;;;;;;;;x
+ct_candle_maker;Candle Maker;Candle Maker;;;Candle Maker;;;;;;;;;x
+tp_candle_maker;Candle Maker;Candle Maker;;;Candle Maker;;;;;;;;;x
+ca_candle_maker_desc;The candle maker;;;;;;;;;x
+ca_dragon_tower;Dragon Tower;Dragon Tower;;;Dragon Tower;;;;;;;;;x
+ct_dragon_tower;Dragon Tower;Dragon Tower;;;Dragon Tower;;;;;;;;;x
+tp_dragon_tower;Dragon Tower;Dragon Tower;;;Dragon Tower;;;;;;;;;x
+ca_dragon_tower_desc;A huge tower, demonstrating power and wealth.;;;;;;;;;x
+ca_duel_academy;Duel Academy;Duel Academy;;;Duel Academy;;;;;;;;;x
+ca_duel_academy_desc;This academy is built to form formidable fighters. A lot of veterans want to share their wisdom.;;;;;;;;;x
+ct_theatre;Theatre;Theatre;;;Theatre;;;;;;;;;x
+ct_theatre_desc;A theatre with plays usually mocking the high lords and ladies enjoys great popularity among the common folk;;;;;;;;;x
+ca_winesink;Winesink;Winesink;;;Winesink;;;;;;;;;x
+ct_winesink;Winesink;Winesink;;;Winesink;;;;;;;;;x
+ca_winesink_desc;A winesink is a disreputable pub often frequented by the rougher sort of patron;;;;;;;;;x
+ca_secret_tunnels;Secret Tunnels;Secret Tunnels;;;Secret Tunnels;;;;;;;;;x
+ct_secret_tunnels;Secret Tunnels;Secret Tunnels;;;Secret Tunnels;;;;;;;;;x
+tp_secret_tunnels;Secret Tunnels;Secret Tunnels;;;Secret Tunnels;;;;;;;;;x
+ca_secret_tunnels_desc;Used to escape or ambush in sieges.;;;;;;;;;x
+ca_night_watchman;Night Watchman;Night Watchman;;;Night Watchman;;;;;;;;;x
+ct_night_watchman;Night Watchman;Night Watchman;;;Night Watchman;;;;;;;;;x
+tp_night_watchman;Night Watchman;Night Watchman;;;Night Watchman;;;;;;;;;x
+ca_night_watchman_desc;Night Watchmen keep a look out for any suspicious activities at night.;;;;;;;;;x
+ca_barber_surgeon;Barber Surgeon;Barber Surgeon;;;Barber Surgeon;;;;;;;;;x
+ct_barber_surgeon;Barber Surgeon;Barber Surgeon;;;Barber Surgeon;;;;;;;;;x
+tp_barber_surgeon;Barber Surgeon;Barber Surgeon;;;Barber Surgeon;;;;;;;;;x
+ca_barber_surgeon_desc;A barber surgeon has various tasks ranging from cutting hair to amputating limbs.;;;;;;;;;x
+ca_naval_shipyard;Naval Shipyard;Naval Shipyard;;;Naval Shipyard;;;;;;;;;x
+ct_naval_shipyard;Naval Shipyard;Naval Shipyard;;;Naval Shipyard;;;;;;;;;x
+tp_naval_shipyard;Naval Shipyard;Naval Shipyard;;;Naval Shipyard;;;;;;;;;x
+ca_naval_shipyard_desc;Countless trees are chopped down and a lot of people had to leave their home to make place for this huge shipyard;;;;;;;;;x
+ca_weird_butcher;Weird Butcher;Weird Butcher;;;Weird Butcher;;;;;;;;;x
+ct_weird_butcher;Weird Butcher;Weird Butcher;;;Weird Butcher;;;;;;;;;x
+ca_weird_butcher_desc;A very profitable butcher, but somehow his meat tastes off...;;;;;;;;;x
+ca_library;Library;Library;;;Library;;;;;;;;;x
+ct_library;Library;Library;;;Library;;;;;;;;;x
+tp_library;Library;Library;;;Library;;;;;;;;;x
+ca_library_desc;A public library, most people are illiterate, but maybe you can find a nice book for yourself;;;;;;;;;x
+EVTDESCdragon_tower_events.10;For the last few days there was a strange preacher in front of the dragon tower, you are curios and listening for a while.;;;;;;;;;;;;;x
+EVTOPTAdragon_tower_events.10;This preacher is a genius. How was I so blind until now?;;;;;;;;;;;;;x
+EVTOPTBdragon_tower_events.10;This is boring. I am wasting my time here.;;;;;;;;;;;;;x
+EVTDESCdragon_tower_events.20;You spend a lot of time in the dragon tower, because you can feel its power. One night fall asleep in it. When you wake up you are heaviliy sweating and you can remember your last dream as if it was real. Maybe it will be real?;;;;;;;;;;;;;x
+EVTOPTAdragon_tower_events.20;Can I look into the future?;;;;;;;;;;;;;x
+EVTDESCvisit_library.10;You found a rare looking book at the public library. At home you realized it would be fine an addition to your own library.;;;;;;;;;;;;;x
+EVTOPTAlibray_event.10;I keep it! Those commoners can't read anyways.;;;;;;;;;;;;;x
+EVTOPTBlibray_event.10;No I will return it. I am not a thief.;;;;;;;;;;;;;x
+stole_book;Stole a book;;;;;;;;;;;;;x
+stole_book_desc;This person stole a book and is banned from the library.;;;;;;;;;;;;;x
+EVTDESCduel_academy_events.10;You find some time to go to the famous duel academy of this castle. There are supposed to be famous warriors, who are willing to train promising fighters. But when you arrive you see that their methods are cruel and brutal. They will not treat you like a lord. Do you really want these men to help you?;;;;;;;;;;;;;x
+EVTOPTAduel_academy_events.10;I will endure their training to become a better fighter.;;;;;;;;;;;;;x
+EVTOPTBduel_academy_events.10;I am quite content with my fighting skills.;;;;;;;;;;;;;x
+EVTDESCduel_academy_events.11;You realize that you love fighting. You will spend more time at the academy.;;;;;;;;;;;;;x
+EVTOPTAduel_academy_events.11;Fighting is my life.;;;;;;;;;;;;;x
+EVTDESCduel_academy_events.12;The old duelists didn't only taught you how to fight, you also start to use some of their words. How will the other rulers react to your foul mouth?.;;;;;;;;;;;;;x
+EVTOPTAduel_academy_events.12;The fuck do I care how the others think of me!;;;;;;;;;;;;;x
+EVTDESCweird_butcher_events.10;You heard about a strange butcher in town, the meat is supposed to be very cheap, but very tasty. You inspect the meat, but you can't tell which animal it is from. When you ask the butcher he just laughs and says it's chicken.;;;;;;;;;;;;;x
+EVTOPTAweird_butcher_events.10;What is the worst that could happen? I will take a bite!;;;;;;;;;;;;;x
+EVTOPTBweird_butcher_events.10;I don't think that's chicken, but I can't do anything without proof.;;;;;;;;;;;;;x
+EVTDESCweird_butcher_events.20;You have a strong craving for some of that strange meat, it made you quite potent, so you visit the butcher. But some nasty rumors spread around him in the last months.;;;;;;;;;;;;;x
+EVTOPTAweird_butcher_events.20;I don't care about these rumors. GIVE ME MORE!!!;;;;;;;;;;;;;x
+EVTOPTBweird_butcher_events.20;I can't eat more of this, it's unnatural. What have I done...;;;;;;;;;;;;;x
+EVTDESCweird_butcher_events.21;This meat does something strange to your mind.;;;;;;;;;;;;;x
+EVTOPTAweird_butcher_events.21;HAHAHAHAHA;;;;;;;;;;;;;x
+EVTDESCweird_butcher_events.22;You begin to hear strange voices, but nobody is even close to you.;;;;;;;;;;;;;x
+EVTOPTAweird_butcher_events.22;What do you mean, you want your leg back?;;;;;;;;;;;;;x
+ate_weird_flesh;Ate weird flesh;;;;;;;;;;;;;x
+ate_weird_flesh_desc;This character is customer of a dubious butcher;;;;;;;;;;;;;x
+look_for_minerals_decision;Look for Minerals;Look for Minerals;;;Look for Minerals;;;;;;;;;x
+look_for_minerals_decision_desc; You want to know if there are valuable resources around your capital;;;;;;;;;;;;;x
+EVTDESCmining_events.10;You could ask the citadel for a Maester who is known for his geology knowledge to look for valuable minerals around your capital.;;;;;;;;;x
+EVTOPTAmining_events.10;Yes, im sure he will find something;;;;;;;;;x
+EVTOPTBmining_events.10;No, I don't think there is much potential for mines;;;;;;;;;x
+EVTDESCmining_events.11;The Maester you sent to look for minerals found something. He knows the perfect location for a new mine close to your capital!;;;;;;;;;x
+EVTOPTAmining_events.11;Yes! I knew my lands were rich;;;;;;;;;x
+ca_small_goldmine;Small Goldmine;Small Goldmine;Small Goldmine;;Small Goldmine;;;;;;;;;x
+ct_small_goldmine;Small Goldmine;Small Goldmine;Small Goldmine;;Small Goldmine;;;;;;;;;x
+tp_small_goldmine;Small Goldmine;Small Goldmine;Small Goldmine;;Small Goldmine;;;;;;;;;x
+ca_small_goldmine_desc;A small goldmine;;;;;;;;;x
+ca_big_goldmine;Big Goldmine;Big Goldmine;Big Goldmine;;Big Goldmine;;;;;;;;;x
+ct_big_goldmine;Big Goldmine;Big Goldmine;Big Goldmine;;Big Goldmine;;;;;;;;;x
+tp_big_goldmine;Big Goldmine;Big Goldmine;Big Goldmine;;Big Goldmine;;;;;;;;;x
+ca_big_goldmine_desc;A big goldmine;;;;;;;;;x
+ca_small_silvermine;Small Silvermine;Small Silvermine;Small Silvermine;;Small Silvermine;;;;;;;;;x
+ct_small_silvermine;Small Silvermine;Small Silvermine;Small Silvermine;;Small Silvermine;;;;;;;;;x
+tp_small_silvermine;Small Silvermine;Small Silvermine;Small Silvermine;;Small Silvermine;;;;;;;;;x
+ca_small_silvermine_desc;A small silvermine;;;;;;;;;x
+ca_big_silvermine;Big Silvermine;Big Silvermine;Big Silvermine;;Big Silvermine;;;;;;;;;x
+ct_big_silvermine;Big Silvermine;Big Silvermine;Big Silvermine;;Big Silvermine;;;;;;;;;x
+tp_big_silvermine;Big Silvermine;Big Silvermine;Big Silvermine;;Big Silvermine;;;;;;;;;x
+ca_big_silvermine_desc;A big silvermine;;;;;;;;;x
+ca_small_coppermine;Small Coppermine;Small Coppermine;Small Coppermine;;Small Coppermine;;;;;;;;;x
+ct_small_coppermine;Small Coppermine;Small Coppermine;Small Coppermine;;Small Coppermine;;;;;;;;;x
+tp_small_coppermine;Small Coppermine;Small Coppermine;Small Coppermine;;Small Coppermine;;;;;;;;;x
+ca_small_coppermine_desc;A small coppermine;;;;;;;;;x
+ca_big_coppermine;Big Coppermine;Big Coppermine;Big Coppermine;;Big Coppermine;;;;;;;;;x
+ct_big_coppermine;Big Coppermine;Big Coppermine;Big Coppermine;;Big Coppermine;;;;;;;;;x
+tp_big_coppermine;Big Coppermine;Big Coppermine;Big Coppermine;;Big Coppermine;;;;;;;;;x
+ca_big_coppermine_desc;A big coppermine;;;;;;;;;x
+ca_small_ironmine;Small Ironmine;Small Ironmine;Small Ironmine;;Small Ironmine;;;;;;;;;x
+ct_small_ironmine;Small Ironmine;Small Ironmine;Small Ironmine;;Small Ironmine;;;;;;;;;x
+tp_small_ironmine;Small Ironmine;Small Ironmine;Small Ironmine;;Small Ironmine;;;;;;;;;x
+ca_small_ironmine_desc;A small ironmine, your troops will be upgraded;;;;;;;;;x
+ca_big_ironmine;Big Ironmine;Big Ironmine;Big Ironmine;;Big Ironmine;;;;;;;;;x
+ct_big_ironmine;Big Ironmine;Big Ironmine;Big Ironmine;;Big Ironmine;;;;;;;;;x
+tp_big_ironmine;Big Ironmine;Big Ironmine;Big Ironmine;;Big Ironmine;;;;;;;;;x
+ca_big_ironmine_desc;A big ironmine, your troops will be upgraded;;;;;;;;;x
+ca_small_dragonglassmine;Small Dragonglassmine;Small Dragonglassmine;Small Dragonglassmine;;Small Dragonglassmine;;;;;;;;;x
+ct_small_dragonglassmine;Small Dragonglassmine;Small Dragonglassmine;Small Dragonglassmine;;Small Dragonglassmine;;;;;;;;;x
+tp_small_dragonglassmine;Small Dragonglassmine;Small Dragonglassmine;Small Dragonglassmine;;Small Dragonglassmine;;;;;;;;;x
+ca_small_dragonglassmine_desc;A small dragonglassmine, your troops will be upgraded;;;;;;;;;x
+ca_big_dragonglassmine;Big Dragonglassmine;Big Dragonglassmine;Big Dragonglassmine;;Big Dragonglassmine;;;;;;;;;x
+ct_big_dragonglassmine;Big Dragonglassmine;Big Dragonglassmine;Big Dragonglassmine;;Big Dragonglassmine;;;;;;;;;x
+tp_big_dragonglassmine;Big Dragonglassmine;Big Dragonglassmine;Big Dragonglassmine;;Big Dragonglassmine;;;;;;;;;x
+ca_big_dragonglassmine_desc;A small dragonglassmine, your troops will be upgraded;;;;;;;;;x
+found_gold;Found Gold;;;;;;;;;;;;;x
+found_gold_desc;It is possible to build a goldmine in this province;;;;;;;;;;;;;x
+found_silver;Found Silver;;;;;;;;;;;;;x
+found_silver_desc;It is possible to build a silvermine in this province;;;;;;;;;;;;;x
+found_iron;Found Iron;;;;;;;;;;;;;x
+found_iron_desc;It is possible to build a ironmine in this province;;;;;;;;;;;;;x
+found_dragonglass;Found Dragonglass;;;;;;;;;;;;;x
+found_dragonglass_desc;It is possible to build a dragonglassmine in this province;;;;;;;;;;;;;x
+found_copper;Found Copper;;;;;;;;;;;;;x
+found_copper_desc;It is possible to build a coppermine in this province;;;;;;;;;;;;;x
+tp_reliquary_shrine;Reliquary Shrine;Reliquary Shrine;Reliquary Shrine;;Reliquary Shrine;;;;;;;;;x
+tp_reliquary_shrine_desc;This shrine contains holy reliquaries. What do you mean the shrine in the next temple has the same?;;;;;;;;;;;;;x
+buy_dragonglass_dagger_decision;Buy Dragonglass Dagger;Buy Dragonglass Dagger;;;Buy Dragonglass Dagger;;;;;;;;;x
+buy_dragonglass_dagger_decision_desc; You want to buy one of these dragonglass daggers.;;;;;;;;;;;;;x
+EVTDESCmining_events.20;The local smith got famous for his ability to use the dragonglass from a local mine. While you visit him he offers you a dragonglass dagger.;;;;;;;;;x
+EVTOPTAmining_events.20;Yes, I will buy it;;;;;;;;;x
+EVTOPTBmining_events.20;No, it is too expensive;;;;;;;;;x
+ca_stonemason;Stonemason;Stonemason;;;Stonemason;;;;;;;;;x
+ct_stonemason;Stonemason;Stonemason;;;Stonemason;;;;;;;;;x
+ca_stonemason_desc;The skills of a stonemason decides how fast the provinces grows;;;;;;;;;;;;;x
+sabotaging_stonemason;Sabotaging Stonemason;;;;;;;;;;;;;x
+sabotaging_stonemason_desc;The stonemason guild master hates his liege;;;;;;;;;;;;;x
+bad_stonemason;Lazy Stonemason;;;;;;;;;;;;;x
+bad_stonemason_desc;The stonemason guild master is very lazy;;;;;;;;;;;;;x
+skilled_stonemason;Skilled Stonemason;;;;;;;;;;;;;x
+skilled_stonemason_desc;The stonemason guild master is very proficient;;;;;;;;;;;;;x
+master_stonemason;Master Stonemason;;;;;;;;;;;;;x
+master_stonemason_desc;The stonemason guild master is a master of his craft;;;;;;;;;;;;;x
+legend_stonemason;Legendary Stonemason;;;;;;;;;;;;;x
+legend_stonemason_desc;The stonemason guild master is one of the best ever;;;;;;;;;;;;;x
+EVTDESCstonemason_events.10;The stonemason guild has a new master!;;;;;;;;;;;;;x
+EVTOPTAstonemason_events.10;I hope he is competent;;;;;;;;;;;;;x
+ca_fighting_arena;Fighting Arena;Fighting Arena;;;Fighting Arena;;;;;;;;;x
+ct_fighting_arena;Fighting Arena;Fighting Arena;;;Fighting Arena;;;;;;;;;x
+ca_fighting_arena_desc;The fighting arena is a good way to train your troops;;;;;;;;;;;;;x
+tp_sacrificial_altar;Sacrificial Altar;Sacrificial Altar;;;Sacrificial Altar;;;;;;;;;x
+tp_sacrificial_altar_desc;A place to sacrifice to the Black Goat. You could even sacrifice your child to win a almost lost war...;;;;;;;;;;;;;x
+sacrifced_child;Sacrificed Child;;;;;;;;;;;;;x
+sacrifced_child_desc;Sacrificed his child to the Black Goat in a time of danger;;;;;;;;;;;;;x
+sacrifice_child_decision;Sacrifice your child.;;;;;;;;;;;;;x
+sacrifice_child_decision_named;Sacrifice your child.;;;;;;;;;;;;;x
+sacrifice_child_decision_desc;Sacrifice your child to win the war.;;;;;;;;;;;;;x
+EVTDESCmore_rel_events.10;You are losing the war and you are willing to make the greatest sacrifice. Your own child. There is no other option than to pray to the Black Goat and ask him for help;;;;;;;;;;;;;x
+EVTOPTAmore_rel_events.10;I have to do this, there is no other way.;;;;;;;;;;;;;x
+visit_barber_surgeon_decision;Visit Barber Surgeon;Visit Barber Surgeon;Visit Barber Surgeon;;;Visit Barber Surgeon;;;;;;;;;x
+visit_barber_surgeon_decision_desc;Visit the Barber Surgeon to treat your wounds.;;;;;;;;;;;;;x
+ca_glass_garden;Glass Garden;Glass Garden;;;Glass Garden;;;;;;;;;x
+ct_glass_garden;Glass Garden;Glass Garden;;;Glass Garden;;;;;;;;;x
+tp_glass_garden;Glass Garden;Glass Garden;;;Glass Garden;;;;;;;;;x
+ca_glass_garden_desc;The glass garden is a greenhouse heated by the hot springs, which turn it into a place of moist warmth. It is used to grow fruits, vegetables and flowers.;;;;;;;;;;;;;x
+going_out_decision;Go Out;Go Out;Go Out;;;Go Out;;;;;;;;;x
+going_out_decision_desc;Sneak out to have some fun;;;;;;;;;;;;;x
+ate_foul_meat;Ate Foul Meat;;;;;;;;;;;;;x
+ate_foul_meat_desc;This idiot ate rotten meat although he knew about;;;;;;;;;;;;;x
+iron_stomach;Iron Stomach;;;;;;;;;;;;;x
+iron_stomach_desc; This person is known to be able to eat almost everything;;;;;;;;;;;;;x
+half_undead;Half Undead;;;;;;;;;;;;;x
+half_undead_desc;A horrible experiment on this person was interrupted;;;;;;;;;;;;;x
+ca_crazy_alchemist_workshop;Crazy Alchemist Workshop;Crazy Alchemist Workshop;;;Crazy Alchemist Workshop;;;;;;;;;x
+ct_crazy_alchemist_workshop;Crazy Alchemist Workshop;Crazy Alchemist Workshop;;;Crazy Alchemist Workshop;;;;;;;;;x
+tp_crazy_alchemist_workshop;Crazy Alchemist Workshop;Crazy Alchemist Workshop;;;Crazy Alchemist Workshop;;;;;;;;;x
+ca_crazy_alchemist_workshop_desc;Have you already met this weird alchemist?;;;;;;;;;;;;;x
+ca_apple_tree_orchard;Apple Tree Orchard;Apple Tree Orchard;;;Apple Tree Orchard;;;;;;;;;x
+ct_apple_tree_orchard;Apple Tree Orchard;Apple Tree Orchard;;;Apple Tree Orchard;;;;;;;;;x
+tp_apple_tree_orchard;Apple Tree Orchard;Apple Tree Orchard;;;Apple Tree Orchard;;;;;;;;;x
+ca_apple_tree_orchard_desc;You need seeds to build an orchard;;;;;;;;;;;;;x
+ca_lemon_tree_orchard;Lemon Tree Orchard;Lemon Tree Orchard;;;Lemon Tree Orchard;;;;;;;;;x
+ct_lemon_tree_orchard;Lemon Tree Orchard;Lemon Tree Orchard;;;Lemon Tree Orchard;;;;;;;;;x
+tp_lemon_tree_orchard;Lemon Tree Orchard;Lemon Tree Orchard;;;Lemon Tree Orchard;;;;;;;;;x
+ca_lemon_tree_orchard_desc;You need seeds to build an orchard;;;;;;;;;;;;;x
+ca_hanging_gardens;Hanging Gardens;Hanging Gardens;;;Hanging Gardens;;;;;;;;;x
+ct_hanging_gardens;Hanging Gardens;Hanging Gardens;;;Hanging Gardens;;;;;;;;;x
+tp_hanging_gardens;Hanging Gardens;Hanging Gardens;;;Hanging Gardens;;;;;;;;;x
+ca_hanging_gardens_desc;These gardens are well-known not just for their beauty, but also for the marvelous feats of water engineering that maintained the gardens;;;;;;;;;;;;;x
+ca_brewery;Brewery;Brewery;;;Brewery;;;;;;;;;x
+ct_brewery;Brewery;Brewery;;;Brewery;;;;;;;;;x
+tp_brewery;Brewery;Brewery;;;Brewery;;;;;;;;;x
+ca_brewery_desc;A normal Brewery, maybe you can expand it if you know about a master brewer?;;;;;;;;;x
+ca_famous_brewery;Famous Brewery;Famous Brewery;;;Famous Brewery;;;;;;;;;x
+ct_famous_brewery;Famous Brewery;Famous Brewery;;;Famous Brewery;;;;;;;;;x
+tp_famous_brewery;Famous Brewery;Famous Brewery;;;Famous Brewery;;;;;;;;;x
+ca_famous_brewery_desc;The Owner of this lands befriended a master brewer, who opened this brewery known for its ale in westeros and essos;;;;;;;;;x
+EVTDESCgoing_out_events.10;It is peace and you decide to disguise yourself to go out. When you stroll through the streets you can smell something weird from a small alley, but also hear loud voices ahead. Where do you go?;;;;;;;;;;;;;x
+EVTOPTAgoing_out_events.10;What is this smell? I have to find out.;;;;;;;;;;;;;x
+EVTOPTBgoing_out_events.10;I will go ahead, these voices sound foreign.;;;;;;;;;;;;;x
+EVTOPTCgoing_out_events.10;I rather look for a quiet place to find some rest.;;;;;;;;;;;;;x
+EVTOPTDgoing_out_events.10;On second thought I think it is not safe enough outside without my guards.;;;;;;;;;;;;;x
+EVTDESCgoing_out_events.111;You see a small butcher in front of you, several people are complaining about his foul meat. When you come closer you can smell something is off...;;;;;;;;;;;;;x
+EVTOPTAgoing_out_events.111;The meat looks good to me, give me something of it!;;;;;;;;;;;;;x
+EVTOPTBgoing_out_events.111;I want some of his profits, I will tell him I could close his shop...;;;;;;;;;;;;;x
+EVTOPTCgoing_out_events.111;He sells foul meat! I have to order him to stop!;;;;;;;;;;;;;x
+EVTDESCgoing_out_events.112;In front of you is a very small shop, a customer is loudly complaining about the high prices and you can smell chemical substances a pyromancer would use. You enter the shop and a pale old man with glassy eyes greets you.;;;;;;;;;;;;;x
+EVTOPTAgoing_out_events.112;I want to look at your wares;;;;;;;;;;;;;x
+EVTOPTBgoing_out_events.112;I like the alchemie, I offer you patronage and your own workshop.;;;;;;;;;;;;;x
+EVTOPTCgoing_out_events.112;What is this? Don't sell your foul magic here, leave!;;;;;;;;;;;;;x
+EVTDESCgoing_out_events.1121;"I have some very special items, a man like you will surely be interested in them" He showes you his wares.;;;;;;;;;;;;;x
+EVTOPTAgoing_out_events.1121;I will buy this blue wine.;;;;;;;;;;;;;x
+EVTOPTBgoing_out_events.1121;This ruby looks interesting.;;;;;;;;;;;;;x
+EVTOPTCgoing_out_events.1121;I have heard about glass candles. I need one.;;;;;;;;;;;;;x
+EVTOPTDgoing_out_events.00;There is nothing interesting to buy for me.;;;;;;;;;;;;;x
+EVTDESCgoing_out_events.1122;What is happening? You went to bed, but now you are in a dark cellar. Tubes come out of your arm and something about your body feels off, but you can break your shackles easily! You stand up off a table and look to escape.;;;;;;;;;;;;;x
+EVTOPTAgoing_out_events.1122;Uhm the door is open? I should hurry home and keep quiet about this...;;;;;;;;;;;;;x
+EVTDESCgoing_out_events.121;You follow the loud voices and reach the library. In front of it a foreign looking man tries to sell his books to the library, but the librarian is telling him he can't spend the whole budget on one or two books.;;;;;;;;;;;;;x
+EVTOPTAgoing_out_events.121;I will buy one of your books.;;;;;;;;;;;;;x
+EVTDESCgoing_out_events.122;You go ahead the main road and reach a market. A lot of different stalls sell their goods and you already wonder if you brought enough money with you.;;;;;;;;;;;;;x
+EVTOPTAgoing_out_events.122;The smith should have what I need.;;;;;;;;;;;;;x
+EVTOPTBgoing_out_events.122;I am hungry, what kind of food can I buy?;;;;;;;;;;;;;x
+EVTOPTCgoing_out_events.122;These elixirs are very colourful...;;;;;;;;;;;;;x
+EVTOPTDgoing_out_events.122;This merchant looks lost, maybe I can help him?;;;;;;;;;;;;;x
+EVTDESCgoing_out_events.1221;It looks like this smith is also a trader, he has some exotic weapons.;;;;;;;;;;;;;x
+EVTOPTAgoing_out_events.1221;This curved blade looks impressive.;;;;;;;;;;;;;x
+EVTOPTBgoing_out_events.1221;The Dornish are known for their spears.;;;;;;;;;;;;;x
+EVTOPTCgoing_out_events.1221;I want a small, fast weapon.;;;;;;;;;;;;;x
+EVTDESCgoing_out_events.1222;You look around the found stands and a fire red fruit catches your attention, when you ask about it the merchant at the booth says it is delicious, but very hot, he also offers you some tree seeds.;;;;;;;;;;;;;x
+EVTOPTAgoing_out_events.1222;I'm hungry, I will taste the fruit - What is this? - it BURNS;;;;;;;;;;;;;x
+EVTOPTBgoing_out_events.1222;I will buy some apple seeds for an orchard.;;;;;;;;;;;;;x
+EVTOPTCgoing_out_events.1222;I will buy some lemon seeds for an orchard.;;;;;;;;;;;;;x
+EVTDESCgoing_out_events.1223;The merchant has a lazy eye and foreign colourful clothes. He smiles at you and assures that his elixirs are 100 percent working and with no side effects...;;;;;;;;;;;;;x
+EVTOPTAgoing_out_events.1223;I will buy the "love" elixir.;;;;;;;;;;;;;x
+EVTOPTBgoing_out_events.1223;I will buy the "battle" elixir.;;;;;;;;;;;;;x
+EVTOPTCgoing_out_events.1223;I will buy the "health" elixir.;;;;;;;;;;;;;x
+EVTDESCgoing_out_events.1224;The merchant tells you he is looking to import resources to his home country. You could say that you want to invest in his business and give him a tip about cheap, but quality goods from your capital.;;;;;;;;;;;;;x
+EVTOPTAgoing_out_events.1224;Your capital is known for fine wool and clothes.;;;;;;;;;;;;;x
+EVTOPTBgoing_out_events.1224;The forests around your capital produce quality wood.;;;;;;;;;;;;;x
+EVTOPTCgoing_out_events.1224;Your capital has productive quarries.;;;;;;;;;;;;;x
+EVTOPTDgoing_out_events.1224;I have no idea about economics.;;;;;;;;;;;;;x
+EVTDESCgoing_out_events.12241;Your investment was a success!;;;;;;;;;;;;;x
+EVTOPTAgoing_out_events.12241;Good.;;;;;;;;;;;;;x
+EVTDESCgoing_out_events.12242;Your investment was a failure!;;;;;;;;;;;;;x
+EVTOPTAgoing_out_events.12242;Oh no.;;;;;;;;;;;;;x
+EVTDESCgoing_out_events.13;You look for a place to rest. There is a wonderful garden ahead, but you could also sit on the bench right next to you and enjoy the silence.;;;;;;;;;;;;;x
+EVTOPTAgoing_out_events.13;I'm very tired, maybe I should try to sleep.;;;;;;;;;;;;;x
+EVTOPTBgoing_out_events.13;Huh? Did I see something rushing around the corner?;;;;;;;;;;;;;x
+EVTOPTCgoing_out_events.13;I will go to the garden.;;;;;;;;;;;;;x
+EVTOPTDgoing_out_events.13;My feet are hurting, I should sit on the bench for a while.;;;;;;;;;;;;;x
+EVTDESCgoing_out_events.131;You wake up in the middle of the night and a man with lantern is next to you. He is a night watchman and of course he recogniced you, after some staring you quickly leave.;;;;;;;;;;;;;x
+EVTOPTAgoing_out_events.131;That was embarrassing, but at least I got the rest I needed.;;;;;;;;;;;;;x
+EVTDESCgoing_out_events.132;You rush after a small animal and try to catch it.;;;;;;;;;;;;;x
+EVTOPTAgoing_out_events.132;I got it! I will keep it as a pet.;;;;;;;;;;;;;x
+EVTOPTBgoing_out_events.132;It was so fast that I don't even saw what it was.;;;;;;;;;;;;;x
+EVTDESCgoing_out_events.133;You go to the garden and after a while a beautiful lady appears. She tells you that she cares for the garden and after a long conversation she also cares for you...;;;;;;;;;;;;;x
+EVTOPTAgoing_out_events.133;I certainly learned a few new things about... gardening.;;;;;;;;;;;;;x
+EVTDESCgoing_out_events.134;After a while a tottering guy stumbles over your shoes. You help him up and he offers you to drink some of his self brewed ale. Then he drags you to the next tavern and you two have a few more drinks to compare them.;;;;;;;;;;;;;x
+EVTOPTAgoing_out_events.134;This guy is a master brewer. I should build him a brewery.;;;;;;;;;;;;;x
+EVTDESCgoing_out_events.14;Horror stories about abductions you heard among the nobles come to your mind. You head back.;;;;;;;;;;;;;x
+EVTOPTCgoing_out_events.14;Maybe i should read a book instead of looking for my own adventure.;;;;;;;;;;;;;x
+went_out;Went Out;Went Out;Went Out;;;Went Out;;;;;;;;;x
+visited_barber_surgeon;Visited Barber Surgeon;Visited Barber Surgeon;;;Visited Barber Surgeon;;;;;;;;;x
+love_elixir_decision;Drink Love Elixir;Drink Love Elixir;;;Drink Love Elixir;;;;;;;;;x
+love_elixir_decision_desc;You want to be more popular?;;;;;;;;;x
+battle_elixir_decision;Drink Battle Elixir;Drink Battle Elixir;;;Drink Battle Elixir;;;;;;;;;x
+battle_elixir_decision_desc;Do you need strength for fights?;;;;;;;;;x
+health_elixir_decision;Drink Health Elixir;Drink Health Elixir;;;Drink Health Elixir;;;;;;;;;x
+health_elixir_decision_desc;Are you wounded or sick?;;;;;;;;;x
+EVTDESCelixir_events.10;The love elixir had side effects...;;;;;;;;;;;;;x
+EVTOPTAelixir_events.10;Who could have predicted this?;;;;;;;;;;;;;x
+EVTDESCelixir_events.20;The battle elixir had side effects...;;;;;;;;;;;;;x
+EVTOPTAelixir_events.20;Who could have predicted this?;;;;;;;;;;;;;x
+EVTDESCelixir_events.30;The health elixir had side effects...;;;;;;;;;;;;;x
+EVTOPTAelixir_events.30;Who could have predicted this?;;;;;;;;;;;;;x
+ca_secret_passage;Secret Passage;Secret Passage;;;Secret Passage;;;;;;;;;x
+ct_secret_passage;Secret Passage;Secret Passage;;;Secret Passage;;;;;;;;;x
+tp_secret_passage;Secret Passage;Secret Passage;;;Secret Passage;;;;;;;;;x
+ca_secret_passage_desc;With this passage you can go in and out unnoticed;;;;;;;;;x
+love_elixir;Love Elixir Effect;Love Elixir Effect;;;Love Elixir Effect;;;;;;;;;x
+love_elixir_desc;The love elixir was very potent;;;;;;;;;x
+battle_elixir;Battle Elixir Effect;Battle Elixir Effect;;;Battle Elixir Effect;;;;;;;;;x
+battle_elixir_desc;The battle elixir was very potent;;;;;;;;;x
+health_elixir;Health Elixir Effect;Health Elixir Effect;;;Health Elixir Effect;;;;;;;;;x
+health_elixir_desc;The health elixir was very potent;;;;;;;;;x
+create_monster_decision;Create Loyal Servant;Create Loyal Servant;;;Create Loyal Servant;;;;;;;;;x
+create_monster_decision_named;Create Loyal Servant;Create Loyal Servant;;;Create Loyal Servant;;;;;;;;;x
+create_monster_decision_desc;Order you alchemist to make this character a loyal Servant.;;;;;;;;;x
+EVTDESCcrazy_workshop_events.10;Your experiment worked! But it looks like the mind of the proband was damaged...;;;;;;;;;x
+EVTOPTAcrazy_workshop_events.10;Doesn't matter, I need muscle over brain;;;;;;;;;x
+EVTDESCcrazy_workshop_events.11;You are dragged on a table in a small cell. When you wake up you don't remember anything. You are attached to tubes...;;;;;;;;;x
+EVTOPTAcrazy_workshop_events.11;Where is my master? I must serve him.;;;;;;;;;x
+EVTDESCcrazy_workshop_events.20;Your alchemist informs you that the experimentee died immediately. His body was too weak. Maybe you need better equipment?;;;;;;;;;x
+EVTOPTAcrazy_workshop_events.20;Bury the corpse where nobody can find it.;;;;;;;;;x
+EVTDESCcrazy_workshop_events.21;You are dragged on a table in a small cell. You lose your consciousness.;;;;;;;;;x
+EVTOPTAcrazy_workshop_events.21;That's it, I won't wake up again...;;;;;;;;;x
+learn_lemoncake_decision;Learn Lemoncake;Learn Lemoncake;;;Learn Lemoncake;;;;;;;;;x
+learn_lemoncake_decision_desc;Learn how to make lemoncake;;;;;;;;;x
+lemoncake;Lemoncake;Lemoncake;;;Lemoncake;;;;;;;;;x
+lemoncake_desc;This person knows how to make a delicious lemoncake;;;;;;;;;x
+ca_bakery;Bakery;Bakery;;;Bakery;;;;;;;;;x
+ct_bakery;Bakery;Bakery;;;Bakery;;;;;;;;;x
+ca_bakery_desc;Maybe you can learn some recipes?;;;;;;;;;x
+pet_stray_dog;Stray Dog;;;;;;;;;;;x
+pet_stray_dog_desc;A former stray dog accompanies this character;;;;;;;;;x
+pet_stray_cat;Stray Cat;;;;;;;;;;;x
+pet_stray_cat_desc;A former stray cat accompanies this character;;;;;;;;;x
+pet_little_panda;Little Panda;;;;;;;;;;;x
+pet_little_panda_desc;A little panda accompanies this character;;;;;;;;;x
+pet_dwarf_elephant;Dwarf Elephant;;;;;;;;;;;x
+pet_dwarf_elephant_desc;A dwarf elephant accompanies this character;;;;;;;;;x
+pet_manticore;Pet Manticore;;;;;;;;;;;x
+pet_manticore_desc;This character has a pet manticore...;;;;;;;;;x
+ca_tailor_guildhall;Tailor's Guild Hall;Tailor's Guild Hall;;;Tailor's Guild Hall;;;;;;;;;x
+ct_tailor_guildhall;Tailor's Guild Hall;Tailor's Guild Hall;;;Tailor's Guild Hall;;;;;;;;;x
+ca_tailor_guildhall_desc;The main building of the Tailor's Guild;;;;;;;;;x
+EVTDESCtailor_events.10;The Tailor Guild needs a new guild master. You can decide who it will be.;;;;;;;;;x
+EVTOPTAtailor_events.10;I choose the tailor who wants to prepare more winter clothes.;;;;;;;;;x
+EVTOPTBtailor_events.10;The one who wants to make more afforadable clothes for the common people.;;;;;;;;;x
+EVTOPTCtailor_events.10;The tailor known for his luxurious taste should get the job.;;;;;;;;;x
+EVTOPTDtailor_events.10;The man with the best economic sense will be the new guild master.;;;;;;;;;x
+EVTDESCtailor_events.11;The tailor guild made sure that everyone has warm clothes this winter.;;;;;;;;;x
+EVTOPTAtailor_events.11;I still hope the winter ends soon.;;;;;;;;;x
+EVTDESCtailor_events.12;The tailor guild lowered its prices. The people are happy.;;;;;;;;;x
+EVTOPTAtailor_events.12;OK.;;;;;;;;;x
+EVTDESCtailor_events.13;The tailors of this province only make artistic and luxurious clothes. The nobles are buying new clothes every month, but the common people are not pleased.;;;;;;;;;x
+EVTOPTAtailor_events.13;Oh...;;;;;;;;;x
+EVTDESCtailor_events.14;The Tailor Guild reports that they are increasing their profits.;;;;;;;;;x
+EVTOPTAtailor_events.14;Good.;;;;;;;;;x
+winter_tailor;Winter Tailor;;;;;;;;;;;x
+winter_tailor_desc;The Tailor Guild prepares for the winter;;;;;;;;;;;x
+kind_tailor;Kind Tailor;;;;;;;;;;;x
+kind_tailor_desc;This guild master is very kind;;;;;;;;;;;x
+luxuriant_tailor;Luxuriant Tailor;;;;;;;;;;;x
+luxuriant_tailor_desc;This guild master is known for his expensive taste;;;;;;;;;;;x
+economic_tailor;Economic Tailor;;;;;;;;;;;x
+economic_tailor_desc;The guild master is knowledgeable in economics;;;;;;;;;;;x
+winter_clothes;Winter Clothes;;;;;;;;;;;x
+winter_clothes_desc;Warm clothes for everyone!!!;;;;;;;;;;;x
+affordable_clothes;Affordable Clothes;;;;;;;;;;;x
+affordable_clothes_desc;Even the poorest can afford good clothes here;;;;;;;;;;;x
+luxurious_clothes;Luxurious Clothes;;;;;;;;;;;x
+luxurious_clothes_desc;The local tailors only sell very expensive clothes;;;;;;;;;;;x
+profitable_clothes;Profitable Clothes;;;;;;;;;;;x
+profitable_clothes_desc;The Tailor Guild is very profitable;;;;;;;;;;;x
+ca_treasure_hunter_inn;Treasure Hunter Inn;Treasure Hunter Inn;;Treasure Hunter Inn;;;;;;;;;;;x
+ct_treasure_hunter_inn;Treasure Hunter Inn;Treasure Hunter Inn;;Treasure Hunter Inn;;;;;;;;;;;x
+ca_treasure_hunter_inn_desc;This Inn is owned by an old treasure hunter, maybe he has other stuff to sell than food and drinks?;;;;;;;;;;;x
+huge_syringe;Huge Syringe;;;;;;;;;;;x
+huge_syringe_desc;This Syringe could be used in horrible experiments...;;;;;;;;;;;x
+EVTDESCcrazy_workshop_events.30;Your attempt to create a loyal, obedient servent failed and you ask your alchemist what to do. He suggests buying better equipment;;;;;;;;;;;x
+EVTOPTAcrazy_workshop_events.30;Yes, i need to make sure that nobody, who can still be useful for me, dies;;;;;;;;;;;x
+EVTOPTBcrazy_workshop_events.30;No, it is too expensive;;;;;;;;;;;x
+ca_gambling_den;Gambling Den;;;;;;;;;;;x
+ct_gambling_den;Gambling Den;;;;;;;;;;;x
+ca_gambling_den_desc;No honorable person would visit such a place, a lot of rulers make them illegal;;;;;;;;;;;x
+map_axe;Treasure Map;;;;;;;;;;;x
+map_axe_desc;There is something written on the back:original home of the Andals?;;;;;;;;;;;x
+map_flint;Treasure Map;;;;;;;;;;;x
+map_flint_desc;There is something written on the back:the whole hand;;;;;;;;;;;x
+map_kayce;Treasure Map;;;;;;;;;;;x
+map_kayce_desc;There is something written on the back:four suns;;;;;;;;;;;x
+map_lorath;Treasure Map;;;;;;;;;;;x
+map_lorath_desc;There is something written on the back: left, right, left, left, left, I am the last one, wish me luck;;;;;;;;;;;x
+map_sisters;Treasure Map;;;;;;;;;;;x
+map_sisters_desc;There is something written on the back: Night Lamp;;;;;;;;;;;x
+map_skagos;Treasure Map;;;;;;;;;;;x
+map_skagos_desc;There is something written on the back: black and yellow = fake;;;;;;;;;;;x
+map_tyrosh;Treasure Map;;;;;;;;;;;x
+map_tyrosh_desc;There is something written on the back: Where does the dye come from?;;;;;;;;;;;x
+amber_eye_axe;Amber Eye Axe;;;;;;;;;;;x
+amber_eye_axe_desc;A ceremonial axe from the peninsula "The Axe", which is famous for its amber.;;;;;;;;;;;x
+flint_stone_hand;Stone Hand of Flint;;;;;;;;;;;x
+flint_stone_hand_desc;A hand made of stone, some rumors connect it to the Night's King...;;;;;;;;;;;x
+horn_of_herrock;Horn of Herrock;;;;;;;;;;;x
+horn_of_herrock_desc;The Horn of Herrock is a black, twisted horn that is banded with gold.;;;;;;;;;;;x
+mazemaker_hammer;Hammer of the Mazemakers;;;;;;;;;;;x
+mazemaker_hammer_desc;The mazemakers were a race of people who constructed vast mazes which have been found around Lorath and south of it.;;;;;;;;;;;x
+the_ladies_tear;Tear of the Lady;;;;;;;;;;;x
+the_ladies_tear_desc;People say that this amulet has a deep connection to the Lady of the Waves.;;;;;;;;;;;x
+unicorn_lance;Unicorn Lance;;;;;;;;;;;x
+unicorn_lance_desc;A Lance mad of the horn of an unicorn of skagos.;;;;;;;;;;;x
+sea_snail_charm;Sea Snail Charm;;;;;;;;;;;x
+sea_snail_charm_desc;This luck charm symbolises the economic rise of Tyrosh.;;;;;;;;;;;x
+visit_treasure_hunter_decision;Visit Treasure Hunter;;;;;;;;;x
+visit_treasure_hunter_decision_desc;Visit the Treasure Hunter Inn to buy some artifacts or treasure maps;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.10;You arrive at the inn. You have heard that the innkeeper was famous treasure hunter once. It is also famous for its chicken. When you sit down, he asks for your order.;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.10;I have heard about your treasure maps, can you sell me one?;;;;;;;;;;;;;x
+EVTOPTBtreasure_hunter_events.10;This is an inn, I buy a round for everyone!;;;;;;;;;;;;;x
+EVTOPTCtreasure_hunter_events.10;I will eat chicken, sit back and pick up some rumors;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.11;The Innkeeper is very sorry and informs you that he doesn't have any more maps;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.11;Well, that was a waste of time...;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.20;You arrive at the Axe, which said to have been the original home of the Andals. The power of Lorath once extended as far as the Axe and now Great Norvos and Ibben both claim the peninsula.;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.20;I should ask in the city for some old andal ruins or settlements.;;;;;;;;;;;;;x
+EVTOPTBtreasure_hunter_events.20;There is an Ibbenese merchant, maybe he can help me;;;;;;;;;;;;;x
+EVTOPTCtreasure_hunter_events.20;There is a small temple of the Blind God Boash. Interesting...;;;;;;;;;;;;;x
+EVTOPTDtreasure_hunter_events.20;Now that I am close to the treasure, I fear that it might be too dangerous.;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.21;You follow the lead of an old man, who remembered playing in some old ruins as a young boy near his old village.;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.21;I should go there at night and alone, so nobody can find it before me.;;;;;;;;;;;;;x
+EVTOPTBtreasure_hunter_events.21;I ask the old man to show me and help me for some coin.;;;;;;;;;;;;;x
+EVTOPTCtreasure_hunter_events.21;Some of my soldiers will explore these ruins with me.;;;;;;;;;;;;;x
+EVTOPTDtreasure_hunter_events.21;I will hire more people to search the ruins for treasure.;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.211;After some time you find a hidden cave with a heavy chest in it. You open it and there it is: a wonderful axe, with a mysterious gemstone.;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.211;That must be the legendary artifact the innkeeper told me about!;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.212;You couldn't find anything really valuable, just some old coins which you can sell for a small profit.;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.212;Ah well, better luck next time.;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.213;On the way to the ruins you wake up early, but the old man is missing. It also looks like your purse is gone...;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.213;What have I done to him to deserve this?;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.214;While searching the ruins you find a valuable looking chalice, you inspect it in your tent and realize it is not worth much. Then the world goes black. You wake up and the chalice is missing, just like one of your soldiers...;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.214;At least nothing important was stolen, but why are my soldiers not respecting me?;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.22;The merchant looked at my map and after a few coins changed the owner he gave me the location of sunken ship in the nearby river, but wen you found the river it was just a small creek, not big enough for any ships.;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.22;Guess I was tricked...;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.23;There is only one person in the room, a small, old woman with unusual big eyes. You tell her about the treasure hunt and she offers you to drink a potion of good luck for your adventure, of course you accept it! You don't remember how it tasted...;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.23;What am I doing in this city again? And where is my money?;;;;;;;;;;;;;x
+visited_treasure_hunter;Visited treasure hunter;;;;;;;;;;;;;x
+visited_treasure_hunter_desc;Visited treasure hunter;;;;;;;;;;;;;x
+failed_treasure_quest;Failed Treasure Hunt;;;;;;;;;;;;;x
+failed_treasure_quest_desc;recently failed a treasure hunter quest;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.30;You are at Flint's Finger and looking for clues when a mercenary approaches you. He asks you to "take care" of a preacher, then he can help you with the map. The man preaches at the market about the dark past of the house Flint.;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.30;This preacher will never speak bad about a noble house again!;;;;;;;;;;;;;x
+EVTOPTBtreasure_hunter_events.30;I rather have a few drinks at the inn, than doing this dirty work;;;;;;;;;;;;;x
+EVTOPTCtreasure_hunter_events.30;It looks like the preacher knows one or two stories, I should talk to him.;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.31;You decide to lure the preacher to a dark alley to make short work of him with a knife.;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.31;This will be easy!;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.311;You tell the preacher that you have an old document from the nightwatch about the crimes of house Flint. He follows you light-heartedly and when you use your knife to slit his throat he still has a happy face. You meet the mercenary and he tells you about a secret entrance to an old wine cellar.;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.311;Let me have a look at this.;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.312;When you try to take him by surprise on his way home, he disappears behind a corner. Out of frustration you kick against a metal bucket and leave for now.;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.312;This bucket was way harder than expected.;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.32;You arrive at the inn, ask some people for clues about your treasure map, but nobody can help you.;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.32;Guess I look for the artifact another time.;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.33;After his speech you approach the preacher and ask him more about the Flints past, especially about the dark magic he mentioned. When he realizes that you are actually listening to him, he talks so much that you can't make out the important bits.;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.33;I will be nice and patient and try to lead him towards the important part.;;;;;;;;;;;;;x
+EVTOPTBtreasure_hunter_events.33;I have enough of this, I will force the information out of him...;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.331;Success! He tells you about a secret entrance to an old wine cellar.;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.331;What awaits me there?;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.332;You failed! He sees right through your intentions and flees, but not after he hurt your eyes!;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.332;Oh no, I hope my eyes will heal;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.34;You arrive at the location of the secret cellar, but you can't find the entrance. After some searching you find a small hand shaped sculpture on a stoneplate, two fingers are broken off. It looks like you can rotate the remaining ones.;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.34;I will rotate the thumb.;;;;;;;;;;;;;x
+EVTOPTBtreasure_hunter_events.34;I will rotate the index finger.;;;;;;;;;;;;;x
+EVTOPTCtreasure_hunter_events.34;I will rotate the middle finger.;;;;;;;;;;;;;x
+EVTOPTDtreasure_hunter_events.34;Isn't there a way to rotate the whole hand?;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.341;You rotate the finger and you can hear a loud "click"! Followed by an explosion right next to you...;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.341;I hope i am not too badly injured...;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.342;You grab the hand and rotate it. The stone plate moves and you go into the cellar. You inspect the wine casks and in one of them you find a strange cold stone hand sculpture;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.342;Yabba Dabba Doo!;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.40;You arrive at Kayce, a modestly large harbour town, where could you find the artifact?;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.40;I will ask the whores, they should know something.;;;;;;;;;;;;;x
+EVTOPTBtreasure_hunter_events.40;I will look around the market.;;;;;;;;;;;;;x
+EVTOPTCtreasure_hunter_events.40;Maybe the workers at the harbour can help me;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.41;You choose the biggest brothel to find some clues, but when you want to approach one of he girls, the owner asks yo to only touch and talk to the girls after you paid. Which one do you choose?;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.41;This beautiful girl from Naath piques my interest. She has a butterfly tattoo.;;;;;;;;;;;;;x
+EVTOPTBtreasure_hunter_events.41;The westerosi girl with a small 4 suns tattoo at her wrist looks interesting.;;;;;;;;;;;;;x
+EVTOPTCtreasure_hunter_events.41;The wildling girl surely knows what I want. She has a weird foreign ring.;;;;;;;;;;;;;x
+EVTOPTDtreasure_hunter_events.41;I don't have any money for this.;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.411;When you arrive at the private room with the Naathi lady, you ask her about Kayce and if she knows anything about its history or old artifacts. But she tells you that she only arrived last week here.;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.411;Why don't you tell me something about your homeland instead?;;;;;;;;;;;;;x
+EVTOPTBtreasure_hunter_events.411;Well, I am already here with you, so we might as well have some fun...;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.412;When you arrive at the private room, you ask her about Kayce and if she knows anything about its history or old artifacts. She says she doesn't know much about this stuff.;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.412;Tell me about this tattoo, what does it mean.;;;;;;;;;;;;;x
+EVTOPTBtreasure_hunter_events.412;Well, I am already here with you, so we might as well have some fun...;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.413;When you arrive at the private room, you ask her about Kayce and if she knows anything about its history or old artifacts, but she just makes confused face and begins to unclothe.;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.413;Does this girl even speak the Common Tongue? Maybe we can communicate with gestures?;;;;;;;;;;;;;x
+EVTOPTBtreasure_hunter_events.413;Well, I am already here with you, so we might as well have some fun...;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.414;This quest is more expensive than you thought.;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.414;Guess I have to go home.;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.4111;The woman tells you a lot about Naath, they believe in extreme pacifism. They make music rather than war and kill nothing, not even animals, eating only fruit and never flesh.;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.4111;I didn't find out about any treasures, but I learned something.;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.4112;You wake up the next morning, you had a great night, but you didn't get closer to the treasure.;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.4112;Well, at least I had some fun.;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.4131;You try everything to communicate with her, but she doesn't get what you want. You leave very frustrated.;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.4131;I'm going home!;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.42;You are at the market, asking around for old or rare artifacts didn't bear much fruit, so you decide to buy something useful.;;;;;;;;;;;;;x
+EVTOPTDtreasure_hunter_events.42;But I don't have enough money...;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.43;You are at the market, asking around for old or rare artifacts didn't bear much fruit, so you decide to buy something useful.;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.4121;"This is nothing important" she says as she tries to hide it. Asking about the four suns tattoo was the right decision, it looks like she is hiding something, you have to know about it.;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.4121;I am good with words I will try to talk her into telling me everything.;;;;;;;;;;;;;x
+EVTOPTBtreasure_hunter_events.4122;I will try to follow her after she leaves.;;;;;;;;;;;;;x
+EVTOPTCtreasure_hunter_events.4123;I just use force to get my answers.;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.41211;Success! You "convinced" her to tell you everything about a secret brothel cellar she and her sisters are hiding. You two take the artifact while she would have to guard it.;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.41211;The Horn of Herrock! Let's leave before someone notices.;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.41221;You follow her to secret cellar, it looks like she is guarding it with other whores. You manage to find a way inside and out again without anybody noticing that you took a small box with you. You open it outside...;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.41221;I can't believe it, I found the Horn of Herrock!;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.41212;You failed to get any clues about the treasure and the girl called for help. You got kicked out of the brothel, but not without getting some kicks in your private parts.;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.41212;Ouch;;;;;;;;;;;;;x
+EVTDESCtreasure_hunter_events.50;A man approaches you claiming that he is a treasure hunter and that he wants to sell one of his findings. He also says that the inn where you purchased a map is known for forging treasure maps and selling the same one to multiple persons...;;;;;;;;;;;;;x
+EVTOPTAtreasure_hunter_events.50;I will buy the artifact and I should destroy the map;;;;;;;;;;;;;x
+EVTOPTBtreasure_hunter_events.50;This is too expensive and I should destroy the map;;;;;;;;;;;;;x
+EVTDESCminor_building_events.10;Chris the local candle maker is visiting you to give you a sample of his best candles.;;;;;;;;;;;;;x
+EVTOPTAminor_building_events.10;They will help me with my studies!;;;;;;;;;;;;;x
+EVTOPTBminor_building_events.10;What am I supposed to do with that? Sell them!;;;;;;;;;;;;;x

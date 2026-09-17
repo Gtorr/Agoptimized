@@ -1,0 +1,4 @@
+mark_no_purge;Don't Purge;;;;;;;;;;;;;x
+mark_no_purge_desc;Prevents this individual (who satisfies the purge conditions) from being purged;;;;;;;;;;;;;x
+mark_purge;Mark for Purge;;;;;;;;;;;;;x
+mark_purge_desc;Marks this individual (who doesn't satisfy the purge conditions) for the purge;;;;;;;;;;;;;x

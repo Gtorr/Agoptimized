@@ -1,0 +1,11 @@
+{
+  "rules": ".cwtools/cwtools-ck2-config-0.0.4",
+  "game": "ck2",
+  "cwtools.errors.ignore": [
+    "CW40",
+    "CW240",
+    "CW100",
+    "CW244",
+    "CW263"
+  ]
+}  

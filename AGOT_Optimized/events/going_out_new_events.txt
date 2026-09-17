@@ -1,0 +1,159 @@
+namespace = going_out_new_events
+# going_out_new_events.1 - New Options
+#
+#   *-after inn-*
+# going_out_new_events.40 - Visit Barber Surgeon
+character_event = {
+	id = going_out_new_events.1
+	is_triggered_only = yes
+	ai = no
+	picture = GFX_KINGS_LANDING
+	border = GFX_event_normal_frame_economy
+	desc = "Going out"
+	option = { # Every fun story begins with
+		name = "Go to the tavern"
+		trigger = {
+			NOT = {
+				has_character_modifier = visited_tavern
+			}
+		}
+		hidden_tooltip = {
+			character_event = {
+				id = going_out_new_events.10
+			}
+		}
+	}
+	option = {
+		# Old Path
+		name = "Go to the market"
+		hidden_tooltip = {
+			character_event = {
+				id = going_out_events.10
+			}
+		}
+	}
+	option = {
+		#Only with duel academy
+		name = "I need to improve my combat skill"
+		trigger = {
+			NOT = {
+				has_character_modifier = visited_duel_academy
+			}
+			location = {
+				has_building = ca_duel_academy
+			}
+		}
+	}
+	# TODO > Go to town hall
+	option = {
+		name = EVTOPTDgoing_out_events.10
+		hidden_tooltip = {
+			character_event = {
+				id = going_out_new_events.20
+			}
+		}
+	}
+}
+
+character_event = {
+	#visit Tavern
+	#    going_out_new_events.20 - Meet Prospector/Find minerals
+	#    going_out_new_events.30 - Get drunk and steal a book
+	id = going_out_new_events.10
+	desc = EVTDESCtreasure_hunter_events.10
+	picture = GFX_smith
+	border = GFX_event_normal_frame_economy
+	is_triggered_only = yes
+	immediate = {
+		add_character_modifier = {
+			name = visited_tavern
+			duration = 60
+			hidden = yes
+		}
+	}
+	option = {
+		#Drink
+		name = EVTOPTBtreasure_hunter_events.10
+		wealth = -1
+		random_list = {
+			25 = {
+				#Nothing
+			}
+			2 = {
+				add_trait = socializer
+			}
+			2 = {
+				add_trait = gregarious
+			}
+			2 = {
+				remove_trait = depressed
+			}
+			6 = {
+				add_trait = drunkard
+			}
+			3 = {
+				add_trait = gluttonous
+			}
+			2 = {
+				#Get Drunk and steal a book
+				modifier = {
+					factor = 0
+					has_character_modifier = stole_book
+				}
+				character_event = {
+					id = visit_library.10
+				}
+			}
+		}
+	}
+	option = {
+		#listen to rumors
+		name = EVTOPTCtreasure_hunter_events.10
+		wealth = -1
+		random_list = {
+			25 = {
+				#Nothing
+			}
+			3 = {
+				add_trait = deceitful
+			}
+			4 = {
+				add_trait = paranoid
+			}
+			2 = {
+				add_trait = patient
+			}
+			3 = {
+				add_trait = drunkard
+			}
+			3 = {
+				add_trait = gluttonous
+			}
+			2 = {
+				add_trait = schemer
+			}
+			2 = {
+				remove_trait = depressed
+			}
+			5 = {
+				#Meet prospector
+				modifier = {
+					factor = 0
+					OR = {
+						has_character_flag = looking_for_minerals
+						capital_scope = {
+							has_flag = found_mineral
+						}
+					}
+				}
+				character_event = {
+					id = mining_events.10
+				}
+			}
+		}
+	}
+	option = {
+		#nothing
+		name = EVTOPTDgoing_out_events.00
+	}
+}

@@ -1,0 +1,121 @@
+#Buildings for non-slave economies
+castle = {
+	#*******************
+	#Bakers Guild
+	#*******************
+	ca_bakery = {
+		desc = ca_bakery_desc
+		prerequisites = {
+			ca_town_1
+		}
+		trigger = {
+			terrain = farmlands
+			can_build_slavery_building = no
+		}
+		ai_creation_factor = 5000
+		gold_cost = 250
+		build_time = 250
+		tax_income = 1
+		extra_tech_building_start = 10
+	}
+	#*******************
+	#Stonemason Guild
+	#*******************
+	ca_stonemason = {
+		desc = ca_stonemason_desc
+		prerequisites = {
+			ca_town_1
+		}
+		trigger = {
+			can_build_slavery_building = no
+		}
+		ai_creation_factor = 1500
+		gold_cost = 300
+		build_time = 365
+		tax_income = 0.5
+		extra_tech_building_start = 10
+	}
+	#*******************
+	# *Tailor Guild
+	#*******************
+	ca_tailor_guildhall = {
+		desc = ca_tailor_guildhall_desc
+		prerequisites = {
+			ca_town_1
+		}
+		trigger = {
+			can_build_slavery_building = no
+		}
+		ai_creation_factor = 300
+		gold_cost = 300
+		build_time = 365
+		tax_income = 1
+		add_number_to_name = yes
+		extra_tech_building_start = 10
+	}
+	ca_tailor_guildhall_2 = {
+		desc = ca_tailor_guildhall_desc
+		prerequisites = {
+			ca_town_3
+		}
+		upgrades_from = ca_tailor_guildhall
+		trigger = {
+			can_build_slavery_building = no
+		}
+		ai_creation_factor = 150
+		gold_cost = 400
+		build_time = 365
+		tax_income = 1
+		add_number_to_name = yes
+		extra_tech_building_start = 100
+	}
+	ca_tailor_guildhall_3 = {
+		desc = ca_tailor_guildhall_desc
+		prerequisites = {
+			ca_town_4
+		}
+		upgrades_from = ca_tailor_guildhall_2
+		trigger = {
+			can_build_slavery_building = no
+		}
+		ai_creation_factor = 50
+		gold_cost = 450
+		build_time = 365
+		tax_income = 1
+		add_number_to_name = yes
+		extra_tech_building_start = 100
+	}
+	ca_tailor_guildhall_4 = {
+		desc = ca_tailor_guildhall_desc
+		prerequisites = {
+			ca_town_5
+		}
+		upgrades_from = ca_tailor_guildhall_3
+		trigger = {
+			can_build_slavery_building = no
+		}
+		ai_creation_factor = 1
+		gold_cost = 500
+		build_time = 365
+		tax_income = 1
+		add_number_to_name = yes
+		extra_tech_building_start = 100
+	}
+	#*******************
+	# *Candle maker
+	#*******************
+	ca_candle_maker = {
+		desc = ca_candle_maker_desc
+		trigger = {
+			can_build_slavery_building = no
+		}
+		prerequisites = {
+			ca_town_1
+		}
+		ai_creation_factor = 100
+		gold_cost = 150
+		build_time = 80
+		tax_income = 0.5
+		extra_tech_building_start = 99999
+	}
+}

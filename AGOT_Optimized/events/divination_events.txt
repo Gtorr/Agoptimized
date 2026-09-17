@@ -1,0 +1,46 @@
+namespace = divination
+#***
+# _____GLASS CANDLE____
+character_event = {
+	id = divination.1
+	is_triggered_only = yes	#optimized_on_actions 1Y pulse
+	desc = EVTDESChigh_valyrian.50
+	picture = GFX_evt_comet
+	border = GFX_event_normal_frame_intrigue
+	ai = no	# TODO: Add a flag for this
+	only_capable = yes
+	#only_playable = yes
+	min_age = 16
+	trigger = {
+		any_artifact = {
+			artifact_type = glass_candle
+			is_artifact_active = yes
+		}
+		has_plot_to_divine = yes
+	}
+	option = {
+		name = EVTOPTAhigh_valyrian.50
+		divination_glass_candle_effect = yes
+	}
+}
+
+#**
+# ___DRAGON DREAMS___
+character_event = {
+	id = divination.10
+	desc = EVTDESChigh_valyrian.25
+	picture = GFX_valyria_dragon
+	is_triggered_only = yes	#optimized_on_actions 2Y pulse
+	ai = no	#TODO flag
+	#only_playable = yes
+	only_capable = yes
+	min_age = 16
+	trigger = {
+		has_plot_to_divine = yes
+		can_recive_dragon_dreams = yes
+	}
+	option = {
+		name = "What dreams reveal ?"
+		divination_dragon_dream_effect = yes
+	}
+}

@@ -1,0 +1,158 @@
+# Castle
+castle = {
+	#Unsullied camps/ Each level Gives +1k
+	ca_unsullied_1 = {
+		trigger = {
+			FROM = {
+				ai = no
+			}
+			can_build_slavery_building = yes
+			TECH_CASTLE_CONSTRUCTION = 0
+		}
+		desc = ct_unsul
+		extra_tech_building_start = 999		# Never get at start of game
+		ai_creation_factor = 0
+		gold_cost = 500
+		build_time = 500
+		tax_income = -0.25
+		retinuesize = 2000
+		add_number_to_name = yes
+	}
+	ca_unsullied_2 = {
+		upgrades_from = ca_unsullied_1
+		trigger = {
+			FROM = {
+				ai = no
+			}
+			can_build_slavery_building = yes
+		}
+		desc = ct_unsul
+		extra_tech_building_start = 10		# Never get at start of game
+		ai_creation_factor = 0
+		gold_cost = 1000
+		build_time = 500
+		tax_income = -0.25
+		retinuesize = 2000
+		add_number_to_name = yes
+	}
+	ca_unsullied_3 = {
+		upgrades_from = ca_unsullied_2
+		trigger = {
+			ai = no
+			can_build_slavery_building = yes
+		}
+		desc = ct_unsul
+		ai_creation_factor = 0
+		gold_cost = 1000
+		build_time = 500
+		tax_income = -0.25
+		retinuesize = 2000
+		add_number_to_name = yes
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ca_unsullied_4 = {
+		upgrades_from = ca_unsullied_3
+		trigger = {
+			ai = no
+			can_build_slavery_building = yes
+		}
+		desc = ct_unsul
+		ai_creation_factor = 0
+		gold_cost = 1000
+		build_time = 500
+		tax_income = -0.25
+		retinuesize = 2000
+		add_number_to_name = yes
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ca_unsullied_5 = {
+		upgrades_from = ca_unsullied_4
+		trigger = {
+			ai = no
+			can_build_slavery_building = yes
+		}
+		desc = ct_unsul
+		ai_creation_factor = 0
+		gold_cost = 1000
+		build_time = 500
+		tax_income = -0.25
+		retinuesize = 2000
+		add_number_to_name = yes
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ca_unsullied_6 = {
+		upgrades_from = ca_unsullied_5
+		trigger = {
+			ai = no
+			can_build_slavery_building = yes
+		}
+		desc = ct_unsul
+		ai_creation_factor = 0
+		gold_cost = 1000
+		build_time = 500
+		tax_income = -0.25
+		retinuesize = 2000
+		add_number_to_name = yes
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ca_unsullied_7 = {
+		upgrades_from = ca_unsullied_6
+		trigger = {
+			ai = no
+			can_build_slavery_building = yes
+		}
+		desc = ct_unsul
+		ai_creation_factor = 0
+		gold_cost = 1000
+		build_time = 500
+		tax_income = -0.25
+		retinuesize = 2000
+		add_number_to_name = yes
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ca_unsullied_8 = {
+		upgrades_from = ca_unsullied_7
+		trigger = {
+			ai = no
+			can_build_slavery_building = yes
+		}
+		desc = ct_unsul
+		ai_creation_factor = 0
+		gold_cost = 1000
+		build_time = 500
+		tax_income = -0.25
+		retinuesize = 2000
+		add_number_to_name = yes
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ca_unsullied_9 = {
+		upgrades_from = ca_unsullied_8
+		trigger = {
+			ai = no
+			can_build_slavery_building = yes
+		}
+		desc = ct_unsul
+		ai_creation_factor = 0
+		gold_cost = 1000
+		build_time = 500
+		tax_income = -0.25
+		retinuesize = 2000
+		add_number_to_name = yes
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+	ca_unsullied_10 = {
+		upgrades_from = ca_unsullied_9
+		trigger = {
+			ai = no
+			can_build_slavery_building = yes
+		}
+		desc = ct_unsul
+		ai_creation_factor = 0
+		gold_cost = 1000
+		build_time = 500
+		tax_income = -0.25
+		retinuesize = 2000
+		add_number_to_name = yes
+		extra_tech_building_start = 10		# Never get at start of game
+	}
+}

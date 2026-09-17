@@ -1,0 +1,29 @@
+namespace = minor_building_events
+###Chris candle maker### --Disabled for now
+character_event = {
+	id = minor_building_events.10
+	desc = EVTDESCminor_building_events.10
+	picture = GFX_magistrate
+	border = GFX_event_normal_frame_war
+	is_triggered_only = yes
+	min_age = 16
+	trigger = {
+		location = {
+			any_province_holding = {
+				OR = {
+					has_building = ca_candle_maker
+					has_building = ct_candle_maker
+					has_building = tp_candle_maker
+				}
+			}
+		}
+	}
+	option = {
+		name = EVTOPTAminor_building_events.10
+		change_learning = 2
+	}
+	option = {
+		name = EVTOPTBminor_building_events.10
+		wealth = 20
+	}
+}

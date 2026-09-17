@@ -1,0 +1,1383 @@
+namespace = colony
+# [colony.100]	#On start cull any non top holding / Kill every courtier
+# [colony.1] Target colony is selected
+# [colony.2] # [ Roll next timer ]
+# [colony.3] # [ Progress is made ]
+#**********************************************************************
+province_event = {
+	id = colony.1
+	desc = "Hidden"
+	is_triggered_only = yes	# From title_decisions.txt
+	hide_window = yes
+	immediate = {
+		add_province_modifier = {
+			name = colony_work
+			stacking = yes
+			duration = -1
+		}
+		add_province_modifier = {
+			name = colony_work
+			stacking = yes
+			duration = -1
+		}
+		add_province_modifier = {
+			name = colony_work
+			stacking = yes
+			duration = -1
+		}
+		#Get Admin score 
+		event_target:colonise_liege = {
+			export_to_variable = {
+				which = colony_skill
+				value = realm_stewardship
+			}
+			if = {
+				limit = {
+					has_character_modifier = slv_mod_1
+				}
+				multiply_variable = {
+					which = colony_skill
+					value = 1.05
+				}
+			}
+			else_if = {
+				limit = {
+					has_character_modifier = slv_mod_2
+				}
+				multiply_variable = {
+					which = colony_skill
+					value = 1.1
+				}
+			}
+			else_if = {
+				limit = {
+					has_character_modifier = slv_mod_3
+				}
+				multiply_variable = {
+					which = colony_skill
+					value = 1.15
+				}
+			}
+			else_if = {
+				limit = {
+					has_character_modifier = slv_mod_4
+				}
+				multiply_variable = {
+					which = colony_skill
+					value = 1.2
+				}
+			}
+			else_if = {
+				limit = {
+					has_character_modifier = slv_mod_5
+				}
+				multiply_variable = {
+					which = colony_skill
+					value = 1.25
+				}
+			}
+			else_if = {
+				limit = {
+					has_character_modifier = slv_mod_6
+				}
+				multiply_variable = {
+					which = colony_skill
+					value = 1.3
+				}
+			}
+			else_if = {
+				limit = {
+					has_character_modifier = slv_mod_7
+				}
+				multiply_variable = {
+					which = colony_skill
+					value = 1.35
+				}
+			}
+			else_if = {
+				limit = {
+					has_character_modifier = slv_mod_8
+				}
+				multiply_variable = {
+					which = colony_skill
+					value = 1.4
+				}
+			}
+			else_if = {
+				limit = {
+					has_character_modifier = slv_mod_9
+				}
+				multiply_variable = {
+					which = colony_skill
+					value = 1.45
+				}
+			}
+			else_if = {
+				limit = {
+					has_character_modifier = slv_mod_10
+				}
+				multiply_variable = {
+					which = colony_skill
+					value = 1.5
+				}
+			}
+		}
+		#Roll First Timer
+		if = {
+			limit = {
+				event_target:colonise_liege = {
+					check_variable = {
+						which = colony_skill
+						value = 40
+					}
+				}
+			}
+			province_event = {
+				id = colony.3
+				days = 420				# 1Y
+				random = 128
+			}
+			event_target:colonise_liege = {
+				set_variable = {
+					which = colony_years
+					value = 1
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				event_target:colonise_liege = {
+					check_variable = {
+						which = colony_skill
+						value = 30
+					}
+				}
+			}
+			province_event = {
+				id = colony.3
+				days = 555				# 1.5Y
+				random = 128				# 180
+			}
+			event_target:colonise_liege = {
+				set_variable = {
+					which = colony_years
+					value = 1.5
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				event_target:colonise_liege = {
+					check_variable = {
+						which = colony_skill
+						value = 20
+					}
+				}
+			}
+			province_event = {
+				id = colony.3
+				days = 730				# 1095				# 2y
+				random = 180				# 180
+			}
+			event_target:colonise_liege = {
+				set_variable = {
+					which = colony_years
+					value = 2
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				event_target:colonise_liege = {
+					check_variable = {
+						which = colony_skill
+						value = 15
+					}
+				}
+			}
+			province_event = {
+				id = colony.3
+				days = 910				#	2.5Y			
+				random = 180				# 180
+			}
+			event_target:colonise_liege = {
+				set_variable = {
+					which = colony_years
+					value = 2.5
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				event_target:colonise_liege = {
+					check_variable = {
+						which = colony_skill
+						value = 10
+					}
+				}
+			}
+			province_event = {
+				id = colony.3
+				days = 1095
+				random = 250
+			}
+			event_target:colonise_liege = {
+				set_variable = {
+					which = colony_years
+					value = 3
+				}
+			}
+		}
+		else = {
+			province_event = {
+				id = colony.3
+				days = 1460
+				random = 250
+			}
+			event_target:colonise_liege = {
+				set_variable = {
+					which = colony_years
+					value = 4
+				}
+			}
+		}
+		event_target:colonise_liege = {
+			character_event = {
+				id = colony.50
+			}
+		}
+	}
+}
+
+# [ Roll next timer ]
+province_event = {
+	id = colony.2
+	desc = "EVDESCcolony2"
+	is_triggered_only = yes	# colony.1 and 3 [loop event}
+	hide_window = yes
+	immediate = {
+		#Get Admin score 
+		event_target:colonise_liege = {
+			export_to_variable = {
+				which = colony_skill
+				value = stewardship
+			}
+			if = {
+				limit = {
+					job_treasurer = {
+						OR = {
+							liege = {
+								ai = yes
+							}
+							AND = {
+								has_job_action = action_oversee_construction
+								location = {
+									province_id = from
+								}
+							}
+						}
+					}
+				}
+				export_to_variable = {
+					which = colony_skill
+					value = realm_stewardship
+				}
+			}
+
+			if = {
+				limit = {
+					has_character_modifier = slv_mod_1
+				}
+				multiply_variable = {
+					which = colony_skill
+					value = 1.05
+				}
+			}
+			else_if = {
+				limit = {
+					has_character_modifier = slv_mod_2
+				}
+				multiply_variable = {
+					which = colony_skill
+					value = 1.1
+				}
+			}
+			else_if = {
+				limit = {
+					has_character_modifier = slv_mod_3
+				}
+				multiply_variable = {
+					which = colony_skill
+					value = 1.15
+				}
+			}
+			else_if = {
+				limit = {
+					has_character_modifier = slv_mod_4
+				}
+				multiply_variable = {
+					which = colony_skill
+					value = 1.2
+				}
+			}
+			else_if = {
+				limit = {
+					has_character_modifier = slv_mod_5
+				}
+				multiply_variable = {
+					which = colony_skill
+					value = 1.25
+				}
+			}
+			else_if = {
+				limit = {
+					has_character_modifier = slv_mod_6
+				}
+				multiply_variable = {
+					which = colony_skill
+					value = 1.3
+				}
+			}
+			else_if = {
+				limit = {
+					has_character_modifier = slv_mod_7
+				}
+				multiply_variable = {
+					which = colony_skill
+					value = 1.35
+				}
+			}
+			else_if = {
+				limit = {
+					has_character_modifier = slv_mod_8
+				}
+				multiply_variable = {
+					which = colony_skill
+					value = 1.4
+				}
+			}
+			else_if = {
+				limit = {
+					has_character_modifier = slv_mod_9
+				}
+				multiply_variable = {
+					which = colony_skill
+					value = 1.45
+				}
+			}
+			else_if = {
+				limit = {
+					has_character_modifier = slv_mod_10
+				}
+				multiply_variable = {
+					which = colony_skill
+					value = 1.5
+				}
+			}
+		}
+		if = {
+			limit = {
+				event_target:colonise_liege = {
+					check_variable = {
+						which = colony_skill
+						value = 40
+					}
+				}
+			}
+			province_event = {
+				id = colony.3
+				days = 420				# 1Y
+				random = 128
+			}
+			event_target:colonise_liege = {
+				set_variable = {
+					which = colony_years
+					value = 1
+				}
+			}
+		}
+		if = {
+			limit = {
+				event_target:colonise_liege = {
+					check_variable = {
+						which = colony_skill
+						value = 30
+					}
+				}
+			}
+			province_event = {
+				id = colony.3
+				days = 555				# 1.5Y
+				random = 128				# 180
+			}
+			event_target:colonise_liege = {
+				set_variable = {
+					which = colony_years
+					value = 1.5
+				}
+			}
+		}
+		if = {
+			limit = {
+				event_target:colonise_liege = {
+					check_variable = {
+						which = colony_skill
+						value = 20
+					}
+				}
+			}
+			province_event = {
+				id = colony.3
+				days = 730				# 1095				# 2y
+				random = 180				# 180
+			}
+			event_target:colonise_liege = {
+				set_variable = {
+					which = colony_years
+					value = 2
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				event_target:colonise_liege = {
+					check_variable = {
+						which = colony_skill
+						value = 15
+					}
+				}
+			}
+			province_event = {
+				id = colony.3
+				days = 910				#	2.5Y			
+				random = 180				# 180
+			}
+			event_target:colonise_liege = {
+				set_variable = {
+					which = colony_years
+					value = 2.5
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				event_target:colonise_liege = {
+					check_variable = {
+						which = colony_skill
+						value = 10
+					}
+				}
+			}
+			province_event = {
+				id = colony.3
+				days = 1095
+				random = 250
+			}
+			event_target:colonise_liege = {
+				set_variable = {
+					which = colony_years
+					value = 3
+				}
+			}
+		}
+		else = {
+			province_event = {
+				id = colony.3
+				days = 1460
+				random = 250
+			}
+			event_target:colonise_liege = {
+				set_variable = {
+					which = colony_years
+					value = 4
+				}
+			}
+		}
+		event_target:colonise_liege = {
+			character_event = {
+				id = colony.50
+			}
+		}
+	}
+}
+
+# [ Progress event ]
+province_event = {
+	id = colony.3
+	desc = "ProgressIsMade"
+	is_triggered_only = yes	# colony.2 [loop event}
+	hide_window = yes
+	immediate = {
+		#name = "Ok"
+		#Colony work
+		if = {
+			limit = {
+				has_instances_of_province_modifier = {
+					modifier = colony_work
+					amount = 1
+				}
+			}
+			remove_province_modifiers = {
+				modifier = colony_work
+				amount = 1
+			}
+			if = {
+				limit = {
+					traditional_nomad_territory_trigger = yes
+					has_instances_of_province_modifier = {
+						modifier = colony_work
+						amount = 1
+					}
+				}
+				remove_holding_modifiers = {
+					modifier = colony_work
+					amount = 1
+				}
+			}
+			province_event = {
+				id = colony.2				# Next timer
+			}
+		}
+		else_if = {
+			# Halfway
+			limit = {
+				has_province_modifier = colony
+				#NOT = {
+				#	has_province_modifier = partial_colony
+				#}
+			}
+			add_province_modifier = {
+				name = colony_work
+				stacking = yes
+				duration = -1
+			}
+			add_province_modifier = {
+				name = colony_work
+				stacking = yes
+				duration = -1
+			}
+			add_province_modifier = {
+				name = colony_work
+				stacking = yes
+				duration = -1
+			}
+			province_event = {
+				id = colony.4				#Partial Colony				
+			}
+			province_event = {
+				id = colony.2				# Next timer
+			}
+		}
+		else_if = {
+			# End
+			limit = {
+				has_province_modifier = partial_colony
+				NOT = {
+					has_instances_of_province_modifier = {
+						modifier = colony_work
+						amount = 1
+					}
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						any_province_holding = {
+							holding_type = temple
+						}
+					}
+				}
+				build_holding = {
+					type = temple
+				}
+			}
+			any_province_holding = {
+				limit = {
+					holding_type = temple
+				}
+				add_building = tp_town_1
+			}
+			province_event = {
+				id = colony.4				#Finish colony			
+			}
+		}
+	}
+}
+
+province_event = {
+	id = colony.4
+	picture = "GFX_evt_castle_construction"
+	is_triggered_only = yes
+	desc = {
+		text = EVTDESCunoccupied.4
+		trigger = {
+			NOT = {
+				has_province_modifier = partial_colony
+			}
+		}
+	}
+	desc = {
+		text = EVTDESCunoccupied.5
+		trigger = {
+			has_province_modifier = partial_colony
+		}
+	}
+	has_flag = colony_province
+	trigger = {
+		OR = {
+			has_province_flag = ruined_province
+			traditional_nomad_territory_trigger = yes
+		}
+		owner = {
+			NOT = {
+				culture_group = unoccupied_group
+			}
+		}
+	}
+	# This part executes at the end for the culture
+	immediate = {
+		if = {
+			limit = {
+				has_province_modifier = partial_colony
+			}
+			#Find province culture
+			owner = {
+				if = {
+					#Capital
+					limit = {
+						capital_scope = {
+							NOT = {
+								province_id = 419
+							}
+							#If capital is in Old Volantis use Volantis' culture/religion
+							NOT = {
+								province_id = ROOT
+							}
+						}
+					}
+					capital_scope = {
+						save_event_target_as = colony_province_culture
+						break = yes
+					}
+				}
+				if = {
+					limit = {
+						capital_scope = {
+							province_id = 419
+						}
+					}
+					#If capital is in Old Volantis use Volantis' culture/religion
+					417 = {
+						save_event_target_as = colony_province_culture
+						break = yes
+					}
+				}
+				#Other random province
+				random_demesne_province = {
+					limit = {
+						NOT = {
+							province_id = ROOT
+						}
+						NOT = {
+							has_province_flag = colony_province
+						}
+						OR = {
+							religion = PREV
+							culture_group = PREV
+						}
+					}
+					save_event_target_as = colony_province_culture
+					break = yes
+				}
+				#Liege's capital
+				if = {
+					limit = {
+						capital_scope = {
+							province_id = ROOT
+						}
+						independent = no
+					}
+					liege = {
+						capital_scope = {
+							save_event_target_as = colony_province_culture
+							break = yes
+						}
+					}
+				}
+			}
+		}
+	}
+	option = {
+		# And this is the option for colony complete
+		name = {
+			text = "EVTOPTAunoccupied.4"			#Yes
+			trigger = {
+				NOT = {
+					has_province_modifier = partial_colony
+				}
+			}
+		}
+		name = {
+			text = "EVTOPTAunoccupied.5"			#Yes
+			trigger = {
+				has_province_modifier = partial_colony
+			}
+		}
+		if = {
+			limit = {
+				has_province_modifier = partial_colony
+			}
+			owner = {
+				job_treasurer = {
+					if = {
+						limit = {
+							OR = {
+								liege = {
+									ai = yes
+								}
+								AND = {
+									has_job_action = action_oversee_construction
+									location = {
+										province_id = ROOT
+									}
+								}
+							}
+						}
+						prestige = 100						# Tresurer gets rewarded
+						hidden_tooltip = {
+							change_variable = {
+								which = "services_rendered"
+								value = 2
+							}
+							#reverse_opinion = {
+							#	modifier = opinion_service_rendered
+							#	who = ROOT
+							#	years = 3
+							#}
+						}
+					}
+				}
+				prestige = 250				# More culture at the end stuff
+				event_target:colony_province_culture = {
+					if = {
+						limit = {
+							#High Valyrian special case
+							culture = high_valyrian
+							has_game_rule = {
+								name = high_valyrian_cull
+								value = on
+							}
+						}
+						ROOT = {
+							if = {
+								limit = {
+									region = world_valyria
+								}
+								culture = high_valyrian
+							}
+							else_if = {
+								limit = {
+									region = world_braavos
+								}
+								culture = braavosi
+							}
+							else_if = {
+								limit = {
+									region = world_lys
+								}
+								culture = lysene
+							}
+							else_if = {
+								limit = {
+									region = world_qohor
+								}
+								culture = qohorik
+							}
+							else_if = {
+								limit = {
+									region = world_norvos
+								}
+								culture = norvosi
+							}
+							else_if = {
+								limit = {
+									region = world_myr
+								}
+								culture = myrman
+							}
+							else_if = {
+								limit = {
+									region = world_tyrosh
+								}
+								culture = tyroshi
+							}
+							else_if = {
+								limit = {
+									province_id = 419									#old volantis
+								}
+								culture = eastern_valyrian
+							}
+							else_if = {
+								limit = {
+									region = world_volantis
+								}
+								culture = volantene
+							}
+							else_if = {
+								limit = {
+									region = world_lorath
+								}
+								culture = lorathi
+							}
+							else_if = {
+								limit = {
+									OR = {
+										province_id = 747
+										region = world_sothoryos
+									}
+								}
+								culture = gogossosi
+							}
+							else_if = {
+								limit = {
+									region = world_essaria
+								}
+								culture = essarian
+							}
+							else_if = {
+								limit = {
+									region = world_westeros
+								}
+								culture = western_valyrian
+							}
+							else = {
+								culture = eastern_valyrian
+							}
+						}
+					}
+					else_if = {
+						limit = {
+							#Valyrian changes to appropriate culture for continent
+							OR = {
+								culture = western_valyrian
+								culture = eastern_valyrian
+							}
+						}
+						ROOT = {
+							if = {
+								limit = {
+									region = world_westeros
+								}
+								culture = western_valyrian
+							}
+							if = {
+								limit = {
+									NOT = {
+										region = world_westeros
+									}
+								}
+								culture = eastern_valyrian
+							}
+						}
+					}
+					#Dothraki mess
+					else_if = {
+						limit = {
+							culture = dothraki
+							ROOT = {
+								NOT = {
+									region = world_dothraki
+								}
+							}
+						}
+						ROOT = {
+							if = {
+								limit = {
+									region = world_volantis
+								}
+								culture = eastern_valyrian
+							}
+							else_if = {
+								limit = {
+									region = world_essaria
+								}
+								culture = essarian
+							}
+							else_if = {
+								limit = {
+									region = world_sarnor
+									OR = {
+										#d_omber
+										province_id = 559
+										province_id = 558
+										province_id = 557
+										province_id = 560
+									}
+								}
+								culture = omberi
+							}
+							else_if = {
+								limit = {
+									region = world_sarnor
+								}
+								culture = sarnorian
+							}
+							else_if = {
+								limit = {
+									OR = {
+										region = world_skahazadhan
+										region = world_hazdahn
+									}
+								}
+								culture = ghiscari
+							}
+							else_if = {
+								limit = {
+									OR = {
+										region = world_ibben
+										region = world_ifeqevron
+									}
+								}
+								culture = ibbenese
+							}
+							else_if = {
+								limit = {
+									region = world_bone_mountains
+									OR = {
+										#d_kayakayanaya
+										province_id = 680
+										province_id = 682
+										province_id = 683
+									}
+								}
+								culture = kayakayanayan
+							}
+							else_if = {
+								limit = {
+									region = world_bone_mountains
+									OR = {
+										#d_samyriana / d_adakhakileki
+										province_id = 659
+										province_id = 660
+										province_id = 661
+										province_id = 677
+										province_id = 678
+										province_id = 679
+									}
+								}
+								culture = samyrianan
+							}
+							else_if = {
+								limit = {
+									region = world_bone_mountains
+									OR = {
+										#d_bayasabhad
+										province_id = 671
+										province_id = 674
+										province_id = 676
+									}
+								}
+								culture = bayasabhadi
+							}
+							else_if = {
+								limit = {
+									region = world_bone_mountains
+								}
+								culture = hyrkooni
+							}
+							else = {
+								culture = PREV
+							}
+						}
+					}
+					else = {
+						ROOT = {
+							culture = PREV
+						}
+					}
+					ROOT = {
+						religion = PREV
+					}
+				}
+			}
+			#build city holding if one is not present
+			# TODO: Move that to a diferent event
+			owner = {
+				ROOT = {
+					if = {
+						limit = {
+							NOT = {
+								region = world_westeros
+							}
+							#has_empty_holding = yes
+							NOT = {
+								any_province_holding = {
+									holding_type = city
+								}
+							}
+						}
+						build_holding = {
+							type = city
+							holder = PREV
+						}
+						random_province_holding = {
+							limit = {
+								holding_type = city
+								holder_scope = {
+									character = PREVPREVPREV
+								}
+							}
+							save_event_target_as = new_city_holding
+							location = {
+								province_event = {
+									id = unoccupied.399
+								}
+							}
+							#increase base value, seperate event to avoid 'break'
+						}
+					}
+				}
+			}
+			remove_province_modifier = partial_colony
+			clr_province_flag = ruined_province
+			clr_province_flag = colony_province
+			clr_province_flag = dredged
+			clr_province_flag = roads
+			clr_province_flag = scrolls_found
+			clr_province_flag = vault_found
+			clr_province_flag = ca_colony_1
+			clr_province_flag = ca_colony_2
+			clr_province_flag = ca_colony_3
+			clr_province_flag = ca_colony_4
+			clr_province_flag = ca_colony_5
+			clr_province_flag = ca_colony_6
+			if = {
+				#If Dothraki sea territory mark as colonised
+				limit = {
+					traditional_nomad_territory_trigger = yes
+				}
+				set_province_flag = dothraki_colony_province
+			}
+			#Change Isle of Cedars to New Valyria/Ghiscar
+			if = {
+				limit = {
+					duchy = {
+						title = d_isle_of_cedars
+					}
+				}
+				if = {
+					limit = {
+						duchy = {
+							dejure_liege_title = {
+								NOT = {
+									title = k_north_valyria
+								}
+								NOT = {
+									dejure_liege_title = {
+										title = e_new_valyria
+									}
+								}
+							}
+							NOT = {
+								any_direct_de_jure_vassal_title = {
+									holder_scope = {
+										NOT = {
+											culture_group = unoccupied_group
+										}
+										capital_scope = {
+											empire = {
+												title = e_ghiscar
+											}
+										}
+									}
+								}
+							}
+						}
+						owner = {
+							capital_scope = {
+								empire = {
+									title = e_new_valyria
+								}
+							}
+						}
+					}
+					k_north_valyria = {
+						d_isle_of_cedars = {
+							de_jure_liege = PREV
+						}
+					}
+				}
+				if = {
+					limit = {
+						duchy = {
+							dejure_liege_title = {
+								NOT = {
+									dejure_liege_title = {
+										title = e_ghiscar
+									}
+								}
+							}
+							NOT = {
+								any_direct_de_jure_vassal_title = {
+									holder_scope = {
+										NOT = {
+											culture_group = unoccupied_group
+										}
+										capital_scope = {
+											empire = {
+												title = e_new_valyria
+											}
+										}
+									}
+								}
+							}
+						}
+						owner = {
+							capital_scope = {
+								empire = {
+									title = e_ghiscar
+								}
+							}
+						}
+					}
+					owner = {
+						capital_scope = {
+							kingdom = {
+								d_isle_of_cedars = {
+									de_jure_liege = PREV
+								}
+							}
+						}
+					}
+				}
+			}
+			hidden_tooltip = {
+				remove_province_modifier = natives_enslaved
+				county = {
+					any_direct_de_jure_vassal_title = {
+						limit = {
+							has_holder = yes
+						}
+						clr_title_flag = sub_barony_ruin
+						remove_building = ca_colony_1
+						remove_building = ct_colony_1
+						remove_building = ca_colony_2
+						remove_building = ct_colony_2
+						remove_building = ca_colony_3
+						remove_building = ct_colony_3
+						remove_building = ca_colony_4
+						remove_building = ct_colony_4
+						remove_building = ca_colony_5
+						remove_building = ct_colony_5
+						remove_building = ca_colony_6
+						remove_building = ct_colony_6
+					}
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						has_province_modifier = depopulated_1
+						has_province_modifier = depopulated_2
+						has_province_modifier = depopulated_3
+					}
+				}
+				decrease_depopulation_effect = yes
+			}
+			break = yes			# End of colony complete
+		}
+		if = {
+			# This is for the incomplete one
+			limit = {
+				NOT = {
+					has_province_modifier = partial_colony
+				}
+			}
+			remove_province_modifier = colony
+			add_province_modifier = {
+				name = partial_colony
+				duration = -1
+			}
+			if = {
+				limit = {
+					OR = {
+						has_province_modifier = depopulated_1
+						has_province_modifier = depopulated_2
+						has_province_modifier = depopulated_3
+					}
+				}
+				decrease_depopulation_effect = yes
+			}
+		}
+	}
+}
+
+character_event = {
+	id = colony.50
+	is_triggered_only = yes
+	picture = GFX_evt_castle_construction
+	desc = EVDESCcolony50
+	option = {
+		name = "Ok"
+	}
+}
+
+province_event = {
+	id = colony.99
+	is_triggered_only = yes
+	desc = "Ok"
+	option = {
+		name = "Ok"
+		if = {
+			limit = {
+				has_instances_of_province_modifier = {
+					modifier = colony_work
+					amount = 1
+				}
+			}
+			remove_province_modifiers = {
+				modifier = colony_work
+				amount = 1
+			}
+			if = {
+				limit = {
+					traditional_nomad_territory_trigger = yes
+					has_instances_of_province_modifier = {
+						modifier = colony_work
+						amount = 1
+					}
+				}
+				remove_holding_modifiers = {
+					modifier = colony_work
+					amount = 1
+				}
+			}
+		}
+		else_if = {
+			# Halfway
+			limit = {
+				NOT = {
+					has_province_modifier = partial_colony
+				}
+			}
+			add_province_modifier = {
+				name = colony_work
+				stacking = yes
+				duration = -1
+			}
+			add_province_modifier = {
+				name = colony_work
+				stacking = yes
+				duration = -1
+			}
+			add_province_modifier = {
+				name = colony_work
+				stacking = yes
+				duration = -1
+			}
+			province_event = {
+				id = colony.4				#Partial Colony
+			}
+		}
+		else_if = {
+			# End
+			limit = {
+				has_province_modifier = partial_colony
+				NOT = {
+					has_instances_of_province_modifier = {
+						modifier = colony_work
+						amount = 1
+					}
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						any_province_holding = {
+							holding_type = temple
+						}
+					}
+				}
+				build_holding = {
+					type = temple
+				}
+			}
+			any_province_holding = {
+				limit = {
+					holding_type = temple
+				}
+				add_building = tp_town_1
+			}
+			province_event = {
+				id = colony.4				#Finish colony			
+			}
+		}
+	}
+}
+
+character_event = {
+	# OFF
+	#Rcull og, deleted
+	id = colony.1000	#On start cull any non top holding
+	desc = "Rcull"
+	is_triggered_only = yes	# At start
+	hide_window = yes
+	immediate = {
+		any_province = {
+			limit = {
+				has_province_flag = ruined_province
+			}
+			any_province_holding = {
+				limit = {
+					holding_type = castle
+				}
+				make_capital_holding = yes
+			}
+			holder_scope = {
+				any_vassal = {
+					any_courtier = {
+						death = {
+							death_reason = death_accident_wonder_traps
+						}
+					}
+					capital_holding = {
+						destroy_settlement = yes
+					}
+					abdicate_to = PREV
+					death = {
+						death_reason = death_accident_wonder_traps
+					}
+				}
+				any_courtier = {
+					death = {
+						death_reason = death_accident_wonder_traps
+					}
+				}
+			}
+		}
+	}
+}
+
+#Vanilla colony growth has an Mtth of 15+15 
+# let Base score = 5 {Bsc} 1-9
+# Good funding +1	
+# Settlers called +1
+# Good Admin +1
+# Tresurer work +1
+# Bad admin -1
+# No funds -2
+# Famine -1
+# Then select between 9 timers
+#***********************************************************************
+#**Idea
+# Base score = 1 {Bsc}
+#Generous funding +2
+#Adequate funding +1
+#Settlers called +1
+# Amind score [Asc] = (Admin-10) / 10 where admin is capped at 8 - 26
+#Then progress is P = Bsc*Asc 
+#Repeat for tresurer if it is in the province but only good outcomes
+#Best case:[10.24]  Bsc = 4 Asc = 1.6 { P = 4*1.6 = 6.4*1.6 = 10.24 }  
+#Worst case [0.8] Bsc = 1 Asc = 0.8*1  P = 0.8
+#Then P decides wich timer you get for this round
+#*************************************************************************

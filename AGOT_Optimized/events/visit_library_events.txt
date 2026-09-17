@@ -1,0 +1,144 @@
+namespace = visit_library
+character_event = {
+	id = visit_library.10
+	is_triggered_only = yes
+
+	desc = EVTDESCvisit_library.10
+	picture = GFX_evt_ritual_scroll
+	border = GFX_event_normal_frame_religion
+	only_playable = yes
+	min_age = 16
+	prisoner = no
+	capable_only = yes
+
+	
+	immediate = {
+		random_list = {
+			10 = {
+				trigger = {
+					NOT = { any_artifact = { artifact_type = book_conquest_of_dorne } }
+				}
+				set_character_flag = book_conquest_of_dorne
+			}
+			10 = {
+				trigger = {
+					NOT = { any_artifact = { artifact_type = book_dragonkin } }
+				}
+				set_character_flag = book_dragonkin
+			}
+			10 = {
+				trigger = {
+					NOT = { any_artifact = { artifact_type = book_dragons_wyrms_and_wyverns } }
+				}
+				set_character_flag = book_dragons_wyrms_and_wyverns
+			}
+			10 = {
+				trigger = {
+					NOT = { any_artifact = { artifact_type = book_engines_of_war } }
+				}
+				set_character_flag = book_engines_of_war
+			}
+			10 = {
+				trigger = {
+					NOT = { any_artifact = { artifact_type = book_jade_compendium } }
+				}
+				set_character_flag = book_jade_compendium
+			}
+			10 = {
+				trigger = {
+					NOT = { any_artifact = { artifact_type = book_lineages_of_westeros } }
+				}
+				set_character_flag = book_lineages_of_westeros
+			}
+			10 = {
+				trigger = {
+					NOT = { any_artifact = { artifact_type = book_lives_of_four_kings } }
+				}
+				set_character_flag = book_lives_of_four_kings
+			}
+			10 = {
+				trigger = {
+					NOT = { any_artifact = { artifact_type = book_summer_and_winter_annals } }
+				}
+				set_character_flag = book_summer_and_winter_annals
+			}
+			10 = {
+				trigger = {
+					NOT = { any_artifact = { artifact_type = book_wonders_made_by_man } }
+				}
+				set_character_flag = book_wonders_made_by_man
+			}
+			10 = {
+				trigger = {
+					NOT = { any_artifact = { artifact_type = book_the_testimony_of_mushroom } }
+				}
+				set_character_flag = book_the_testimony_of_mushroom
+			}
+
+		}
+	}
+	option = {
+		name = EVTOPTAlibray_event.10
+
+
+		if = {
+			limit = { has_character_flag = book_conquest_of_dorne }
+			clr_character_flag = book_conquest_of_dorne
+			add_artifact = book_conquest_of_dorne
+		}
+		else_if = {
+			limit = { has_character_flag = book_dragonkin }
+			clr_character_flag = book_dragonkin
+			add_artifact = book_dragonkin
+		}
+		else_if = {
+			limit = { has_character_flag = book_dragons_wyrms_and_wyverns }
+			clr_character_flag = book_dragons_wyrms_and_wyverns
+			add_artifact = book_dragons_wyrms_and_wyverns
+		}
+		else_if = {
+			limit = { has_character_flag = book_engines_of_war }
+			clr_character_flag = book_engines_of_war
+			add_artifact = book_engines_of_war
+		}
+		else_if = {
+			limit = { has_character_flag = book_jade_compendium }
+			clr_character_flag = book_jade_compendium
+			add_artifact = book_jade_compendium
+		}
+		else_if = {
+			limit = { has_character_flag = book_lineages_of_westeros }
+			clr_character_flag = book_lineages_of_westeros
+			add_artifact = book_lineages_of_westeros
+		}
+		else_if = {
+			limit = { has_character_flag = book_lives_of_four_kings }
+			clr_character_flag = book_lives_of_four_kings
+			add_artifact = book_lives_of_four_kings
+		}
+		else_if = {
+			limit = { has_character_flag = book_summer_and_winter_annals }
+			clr_character_flag = book_summer_and_winter_annals
+			add_artifact = book_summer_and_winter_annals
+		}
+		else_if = {
+			limit = { has_character_flag = book_wonders_made_by_man }
+			clr_character_flag = book_wonders_made_by_man
+			add_artifact = book_wonders_made_by_man
+		}
+
+		else_if = {
+			limit = { has_character_flag = book_the_testimony_of_mushroom }
+			clr_character_flag = book_the_testimony_of_mushroom
+			add_artifact = book_the_testimony_of_mushroom
+		}
+		prestige = -100
+		piety = -50
+		add_character_modifier = { name = stole_book duration = -1 }
+	}
+	option = {
+		name = EVTOPTBlibray_event.10
+		piety = 10
+
+	}
+}

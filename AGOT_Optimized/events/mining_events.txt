@@ -1,0 +1,147 @@
+namespace = mining_events
+
+###Send masters of geologie###
+
+character_event = {
+    id = mining_events.10
+    desc = EVTDESCmining_events.10
+    picture = GFX_crassen
+    border = GFX_event_normal_frame_economy
+    is_triggered_only = yes
+
+    option = {
+        name = EVTOPTAmining_events.10 	#yes
+		set_character_flag = looking_for_minerals
+		hidden_tooltip = {  
+			character_event = { id = mining_events.11 days = 180 } 			 
+		}
+		ai_chance = {
+         factor = 1
+        } 
+		wealth = -500
+    }
+	option = {
+        name = EVTOPTBmining_events.10  #no
+		ai_chance = {
+         factor = 0
+        } 
+    } 
+}
+
+
+###minerals found###
+character_event = {
+    id = mining_events.11
+    desc = EVTDESCmining_events.11
+    picture = GFX_evt_highgarden
+    border = GFX_event_normal_frame_economy
+	
+    is_triggered_only = yes
+	
+	immediate = { 
+	    random_list = {
+           10 = {
+				  modifier = { 
+				        factor = 5
+						capital_scope = { region = world_westerlands }
+				  }
+				  modifier = { 
+				        factor = 8
+						capital_scope = { region = world_sarnor }
+				  }
+				  modifier = { 
+				        factor = 5
+						capital_scope = { region = world_sothoryos }
+				  }
+				  capital_scope = { add_province_modifier = { modifier = found_gold
+                                                              duration = -1		} }
+				  
+            }
+			15 = {
+				  modifier = { 
+				        factor = 5
+						capital_scope = { region = world_westerlands }
+				  }
+				  modifier = { 
+				        factor = 5
+						capital_scope = { region = world_east_coast_of_north }
+				  }
+				  capital_scope = { add_province_modifier = { modifier = found_silver
+                                                              duration = -1		} }
+            }
+			35 = {
+				  modifier = { 
+				        factor = 10
+						capital_scope = { region = world_iron_isles }
+				  }
+				  capital_scope = { add_province_modifier = { modifier = found_iron
+                                                              duration = -1		} }
+            }
+			5 = {
+				  modifier = { 
+				        factor = 50
+						capital_scope = { region = world_dragonstone }
+				  }
+				  modifier = { 
+				        factor = 15
+						capital_scope = { region = world_north_valyria }
+				  }
+				  modifier = { 
+				        factor = 40
+						capital_scope = { has_building = ca_volcanoes }
+ 				  }
+				  capital_scope = { add_province_modifier = { modifier = found_dragonglass
+                                                              duration = -1		} }
+            }
+			35 = {
+				  modifier = { 
+				        factor = 3
+						capital_scope = { region = world_slavers_bay }
+				  }
+				  modifier = { 
+				        factor = 4
+						capital_scope = { region = world_dorne }
+				  }
+				  modifier = { 
+				        factor = 2
+						capital_scope = { region = world_dothraki_sea }
+				  }
+				  capital_scope = { add_province_modifier = { modifier = found_copper
+                                                              duration = -1		} }
+            }			
+        }
+    }
+    option = {
+        name = EVTOPTAmining_events.11 
+        capital_scope = { set_province_flag = found_mineral }
+        clr_character_flag = looking_for_minerals		
+    }
+} 
+
+
+###Dragonglass Dagger###
+
+character_event = {
+    id = mining_events.20
+    desc = EVTDESCmining_events.20
+    picture = GFX_magistrate
+    border = GFX_event_normal_frame_economy
+    is_triggered_only = yes
+
+    option = {
+        name = EVTOPTAmining_events.20 	#yes
+		
+		add_artifact = dragonglass_dagger
+		
+		ai_chance = {
+         factor = 1
+        } 
+		wealth = -200
+    }
+	option = {
+        name = EVTOPTBmining_events.20  #no
+		ai_chance = {
+         factor = 0
+        } 
+    } 
+}

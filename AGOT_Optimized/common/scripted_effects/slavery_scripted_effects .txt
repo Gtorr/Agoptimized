@@ -1,0 +1,362 @@
+#scope_verb_noun
+char_liberate_slaves = {
+	remove_trait = slave_owner
+	set_variable = {
+		which = num_slaves
+		value = 0
+	}
+	clr_character_flag = slaver
+}
+
+char_loot_slaves = {
+	#on_loot 
+}
+
+char_refresh_slave_bonus = {
+	set_variable = {
+		which = slave_bonus
+		which = num_slaves
+	}
+	if = {
+		limit = {
+			primary_title = {
+				has_law = slavery_1				# Indentured
+			}
+		}
+		multiply_variable = {
+			which = slave_bonus
+			value = 0.5
+		}
+	}
+	#Demnese factor
+	if = {
+		limit = {
+			demesne_size = 1
+		}
+		multiply_variable = {
+			which = slave_bonus
+			value = 1.1
+		}
+	}
+	else_if = {
+		limit = {
+			demesne_size = 2
+		}
+		multiply_variable = {
+			which = slave_bonus
+			value = 0.95
+		}
+	}
+	else_if = {
+		limit = {
+			demesne_size = 3
+		}
+		multiply_variable = {
+			which = slave_bonus
+			value = 0.85
+		}
+	}
+	else_if = {
+		limit = {
+			demesne_size = 4
+		}
+		multiply_variable = {
+			which = slave_bonus
+			value = 0.75
+		}
+	}
+	else_if = {
+		limit = {
+			demesne_size = 5
+		}
+		multiply_variable = {
+			which = slave_bonus
+			value = 0.65
+		}
+	}
+	else_if = {
+		limit = {
+			demesne_size = 6
+		}
+		multiply_variable = {
+			which = slave_bonus
+			value = 0.55
+		}
+	}
+	else = {
+		# 7 or more or 0
+		multiply_variable = {
+			which = slave_bonus
+			value = 0.45
+		}
+	}
+	#Clear previous modifiers
+	hidden_tooltip = {
+		remove_character_modifier = slavery_modifier_base
+		remove_character_modifier = slavery_modifier_1
+		remove_character_modifier = slavery_modifier_2
+		remove_character_modifier = slavery_modifier_3
+		remove_character_modifier = slavery_modifier_4
+		remove_character_modifier = slavery_modifier_5
+		remove_character_modifier = slavery_modifier_6
+		remove_character_modifier = slavery_modifier_7
+		remove_character_modifier = slavery_modifier_8
+		remove_character_modifier = slavery_modifier_9
+		remove_character_modifier = slavery_modifier_10
+	}
+	#And now the train
+	if = {
+		limit = {
+			check_variable = {
+				which = slave_bonus
+				value = 20000
+			}
+		}
+		add_character_modifier = {
+			modifier = slavery_modifier_10
+			duration = -1
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = {
+				which = slave_bonus
+				value = 18000
+			}
+		}
+		add_character_modifier = {
+			modifier = slavery_modifier_9
+			duration = -1
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = {
+				which = slave_bonus
+				value = 16000
+			}
+		}
+		add_character_modifier = {
+			modifier = slavery_modifier_8
+			duration = -1
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = {
+				which = slave_bonus
+				value = 14000
+			}
+		}
+		add_character_modifier = {
+			modifier = slavery_modifier_7
+			duration = -1
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = {
+				which = slave_bonus
+				value = 12000
+			}
+		}
+		add_character_modifier = {
+			modifier = slavery_modifier_6
+			duration = -1
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = {
+				which = slave_bonus
+				value = 10000
+			}
+		}
+		add_character_modifier = {
+			modifier = slavery_modifier_5
+			duration = -1
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = {
+				which = slave_bonus
+				value = 8000
+			}
+		}
+		add_character_modifier = {
+			modifier = slavery_modifier_4
+			duration = -1
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = {
+				which = slave_bonus
+				value = 6000
+			}
+		}
+		add_character_modifier = {
+			modifier = slavery_modifier_3
+			duration = -1
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = {
+				which = slave_bonus
+				value = 4000
+			}
+		}
+		add_character_modifier = {
+			modifier = slavery_modifier_2
+			duration = -1
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = {
+				which = slave_bonus
+				value = 2000
+			}
+		}
+		add_character_modifier = {
+			modifier = slavery_modifier_1
+			duration = -1
+		}
+	}
+	else = {
+		add_character_modifier = {
+			modifier = slavery_modifier_base
+			duration = -1
+		}
+	}
+}
+
+refresh_slave_bonus_ai = {
+	remove_character_modifier = slavery_modifier_3
+	remove_character_modifier = slavery_modifier_4
+	remove_character_modifier = slavery_modifier_5
+	remove_character_modifier = slavery_modifier_8
+	if = {
+		limit = {
+			higher_tier_than = duke
+		}
+		add_character_modifier = {
+			modifier = slavery_modifier_8
+			duration = -1
+		}
+	}
+	else_if = {
+		limit = {
+			higher_tier_than = count
+		}
+		add_character_modifier = {
+			modifier = slavery_modifier_5
+			duration = -1
+		}
+	}
+	else_if = {
+		limit = {
+			is_patrician = yes
+		}
+		add_character_modifier = {
+			modifier = slavery_modifier_4
+			duration = -1
+		}
+	}
+	else = {
+		add_character_modifier = {
+			modifier = slavery_modifier_2
+			duration = -1
+		}
+	}
+}
+
+sync_slavery_vassal_laws = {
+	#ROOT: Title
+	#THIS: Title
+	#holder_scope: char that changed the law
+	any_direct_de_jure_vassal_title = {
+		dejure_liege_title = {
+			holder_scope = {
+				character = ROOT
+			}
+		}
+	}
+	any_vassal = {
+		#limit = {
+		#tier = KING
+		#}
+		any_demesne_title = {
+			limit = {
+				#tier = KING
+				dejure_liege_title = {
+					holder_scope = {
+						character = ROOT
+					}
+				}
+			}
+			#Slavery
+			if = {
+				limit = {
+					dejure_liege_title = {
+						has_law = slavery_0
+					}
+					NOT = {
+						has_law = slavery_0
+					}
+				}
+				holder_scope = {
+					set_character_flag = passive_slave_law_change
+				}
+				revoke_law = slavery_1
+				revoke_law = slavery_2
+				revoke_law = slavery_3
+				add_law = slavery_0
+			}
+			if = {
+				limit = {
+					dejure_liege_title = {
+						has_law = slavery_1
+					}
+					NOT = {
+						has_law = slavery_1
+					}
+				}
+				holder_scope = {
+					set_character_flag = passive_slave_law_change
+				}
+				add_law = slavery_1
+			}
+			if = {
+				limit = {
+					dejure_liege_title = {
+						has_law = slavery_2
+					}
+					NOT = {
+						has_law = slavery_2
+					}
+				}
+				holder_scope = {
+					set_character_flag = passive_slave_law_change
+				}
+				add_law = slavery_2
+			}
+			if = {
+				limit = {
+					dejure_liege_title = {
+						has_law = slavery_3
+					}
+					NOT = {
+						has_law = slavery_3
+					}
+				}
+				holder_scope = {
+					set_character_flag = passive_slave_law_change
+				}
+				add_law = slavery_3
+			}
+		}
+	}
+}

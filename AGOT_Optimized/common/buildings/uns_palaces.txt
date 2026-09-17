@@ -1,0 +1,135 @@
+
+family_palace = {
+
+    # Mansion
+    fp_pmc_1 = {
+        desc = fp_pmc_1_desc
+        gold_cost = 200
+        build_time = 1095
+        ai_creation_factor = 0
+
+        levy_size = 0.1
+        retinuesize = 200
+
+        trigger = {
+            ai = no
+            TECH_CASTLE_CONSTRUCTION = 0
+        }
+        extra_tech_building_start = 99.0 # Never get at start of game
+    }
+
+    # Great Mansion
+    fp_pmc_2 = {
+        desc = fp_pmc_2_desc
+        upgrades_from = fp_pmc_1
+        gold_cost = 300
+        build_time = 1460
+        ai_creation_factor = 0
+
+        levy_size = 0.2
+        retinuesize = 400
+
+        trigger = {
+            ai = no
+            TECH_CASTLE_CONSTRUCTION = 0
+        }
+        extra_tech_building_start = 99.0 # Never get at start of game
+
+    }
+
+    # Palace
+    fp_pmc_3 = {
+        desc = fp_pmcn_3_desc
+        upgrades_from = fp_pmc_2
+        gold_cost = 400
+        build_time = 2190
+        ai_creation_factor = 103
+
+        levy_size = 0.3
+        retinuesize = 800
+
+        trigger = {
+            ai = no
+            TECH_CASTLE_CONSTRUCTION = 0
+        }
+        extra_tech_building_start = 99.0 # Never get at start of game
+    }
+
+    # Grand Palace
+    fp_pmc_4 = {
+        desc = fp_pmc_4_desc
+        upgrades_from = fp_pmc_3
+        gold_cost = 500
+        build_time = 2190
+        ai_creation_factor = 102
+
+        levy_size = 0.4
+        retinuesize = 1600
+
+        trigger = {
+            ai = no
+            TECH_CASTLE_CONSTRUCTION = 0
+        }
+        extra_tech_building_start = 99.0 # Never get at start of game
+    }
+
+
+    # Military Warehouse
+    fp_officer_lounge_1 = {
+        desc = fp_officer_lounge_1_desc
+        gold_cost = 100
+        build_time = 730
+        ai_creation_factor = 100
+
+        land_morale = 0.2
+        levy_reinforce_rate = 0.1
+        retinuesize = 200
+
+        trigger = {
+            ai = no
+            TECH_CASTLE_CONSTRUCTION = 0
+        }
+        extra_tech_building_start = 99.0 # Never get at start of game
+    }
+
+    # Palace Archive
+    fp_officer_lounge_2 = {
+        desc = fp_officer_lounge_2_desc
+        gold_cost = 200
+        build_time = 1095
+        upgrades_from = fp_officer_lounge_1
+        prerequisites = { fp_mansion_2 }
+        ai_creation_factor = 0
+
+        land_morale = 0.3
+        levy_reinforce_rate = 0.2
+        retinuesize = 400
+
+        trigger = {
+            ai = no
+            TECH_CASTLE_CONSTRUCTION = 0
+        }
+        extra_tech_building_start = 99.0 # Never get at start of game
+    }
+
+    # Administrative Office
+    fp_officer_lounge_3 = {
+        desc = fp_officer_lounge_3_desc
+        gold_cost = 300
+        build_time = 1460
+        upgrades_from = fp_officer_lounge_2
+        prerequisites = { fp_mansion_3 }
+        ai_creation_factor = 0
+
+        land_morale = 0.4
+        levy_reinforce_rate = 0.3
+        retinuesize = 600
+
+        trigger = {
+            ai = no
+            TECH_CASTLE_CONSTRUCTION = 0
+        }
+        extra_tech_building_start = 99.0 # Never get at start of game
+    }
+
+}

@@ -1,0 +1,23 @@
+namespace = more_rel_events
+
+###Black Goat###
+
+#Sacrifizing Child#
+
+
+character_event = { 
+	id = more_rel_events.10
+	picture = GFX_evt_sacrifice
+	desc = EVTDESCmore_rel_events.10
+	border = GFX_event_normal_frame_religion
+
+	is_triggered_only = yes
+
+	option = {
+		name = EVTOPTAmore_rel_events.10
+		piety = 300
+		add_character_modifier = { modifier = sacrifced_child years = 3 }
+	}
+	
+}
+

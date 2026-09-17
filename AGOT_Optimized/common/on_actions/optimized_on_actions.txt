@@ -1,0 +1,50 @@
+on_startup = {
+	events = {
+		slavery_setup.1		#Init slave for player
+		slavery_setup.2		#Populate Ai slaver chars
+		lowborn_purge_events.0
+	}
+}
+
+on_yearly_pulse = {
+	events = {
+		slavery_player.40		#player gets slavery bonus
+		divination.1		#Glass Candle
+		unoccupied.2		#Ruin Cull
+		lowborn_purge_events.0
+	}
+}
+
+on_bi_yearly_pulse = {
+	events = {
+		divination.10		#Dragon Dreams
+		unoccupied.14		#Province broken by dragon converted to a ruin
+		unoccupied.202		#Make sure ruin_rel never becomes human
+	}
+}
+
+on_five_year_pulse = {
+	events = {
+		high_valyrian.1		#high valyrian cull - very long event, migh have to do smthg with it
+		slavery_ai.2		#AI Slavery Script
+	}
+}
+
+on_decade_pulse = {
+	events = {
+		guilds_events.1		#Province Buildings effects Stonemason,Tailor
+		slavery_ai.4		#Ai enters slave trade
+	}
+}
+
+on_outbreak = {
+	events = {
+		ai_decisions_events.1		# AI closes gates on disease
+	}
+}
+
+on_death = {
+	events = {
+		slavery_setup.20		#Inheritance of slaves event
+	}
+}

@@ -1,0 +1,2233 @@
+# Types:
+# 0 - Light Infantry
+# 1 - Heavy Infantry
+# 2 - Pikemen
+# 3 - Light Cavalry
+# 4 - Heavy Cavalry
+# 5 - Archers
+# 6 - Special troops
+
+
+uns_infantry_one_retinue =
+{
+	first_type = 1
+	first_amount = 400
+	
+	second_type = 5
+	second_amount = 100
+	
+	potential = {
+		is_nomadic = no
+		or = {
+			is_republic = yes
+			is_merchant_republic = yes
+		}
+	}
+	
+	modifier = {
+		archers_offensive = 0.4
+		heavy_infantry_defensive = 0.2
+	}
+}
+
+uns_infantry_two_retinue =
+{
+	first_type = 2
+	first_amount = 300
+
+	second_type = 5
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+		or = {
+			is_republic = yes
+			is_merchant_republic = yes
+		}
+	}
+	
+	modifier = {
+		archers_offensive = 0.4
+		pikemen_defensive = 0.2
+	}
+}
+
+uns_cavalry_one_retinue =
+{
+	first_type = 4
+	first_amount = 100
+
+	second_type = 3
+	second_amount = 400
+	
+	potential = {
+		is_nomadic = no
+		or = {
+			is_republic = yes
+			is_merchant_republic = yes
+		}
+	}
+	
+	modifier = {
+		pikemen_defensive = 0.25
+		pikemen_offensive = 0.25
+		pikemen_morale = 0.10
+	}
+}
+
+uns_skirmisher_one_retinue =
+{
+	first_type = 5
+	first_amount = 400
+
+	second_type = 1
+	second_amount = 100
+	
+	potential = {
+		is_nomadic = no
+		or = {
+			is_republic = yes
+			is_merchant_republic = yes
+		}
+	}
+	
+	modifier = {
+		archers_offensive = 0.6
+	}
+}
+
+uns_north_one_retinue =
+{
+	first_type = 0
+	first_amount = 300
+	
+	second_type = 3
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+		or = {
+			culture = northman
+			culture = half_southron
+		}
+
+	}
+	
+	modifier = {
+		light_infantry_offensive = 0.3
+		light_cavalry_offensive = 0.3
+	}
+}
+
+uns_north_two_retinue =
+{
+	first_type = 1
+	first_amount = 500
+	
+	potential = {
+		is_nomadic = no
+
+		or = {
+			culture = northman
+			culture = half_southron
+		}
+
+	}
+	
+	modifier = {
+		heavy_infantry_defensive = 0.4
+		heavy_infantry_morale = 0.2
+	}
+}
+
+uns_north_three_retinue = 
+{
+	first_type = 0
+	first_amount = 300
+	
+	second_type = 1
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        or = {
+			is_republic = yes
+			is_merchant_republic = yes
+		}
+		or = {
+			culture = northman
+			culture = half_southron
+			culture = sisterman
+		}		
+	}
+	
+	modifier = {
+			light_infantry_offensive = 0.3
+			heavy_infantry_offensive = 0.3
+	}
+}
+
+uns_north_four_retinue = 
+{
+	first_type = 0
+	first_amount = 300
+
+	second_type = 5
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        culture = sisterman	
+	}
+	
+	modifier = {
+			archers_offensive = 0.2
+	}
+}
+
+uns_north_five_retinue = 
+{
+	first_type = 2
+	first_amount = 200
+
+	second_type = 5
+	second_amount = 300
+	
+	potential = {
+		is_nomadic = no
+        culture = sisterman	
+	}
+	
+	modifier = {
+			archers_offensive = 0.1
+	}
+}
+
+uns_north_six_retinue =
+{
+	first_type = 3
+	first_amount = 300
+	
+	second_type = 4
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+
+		or = {
+			culture = northman
+			culture = half_southron
+		}
+
+	}
+	
+	modifier = {
+		light_cavalry_offensive = 0.3
+		knights_offensive = 0.3
+	}
+}
+
+
+uns_north_seven_retinue =
+{
+	first_type = 1
+	first_amount = 300
+	
+	second_type = 5
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+
+		or = {
+			culture = northman
+			culture = half_southron
+			culture = sisterman
+		}
+
+	}
+	
+	modifier = {
+		archers_offensive = 0.2
+		heavy_infantry_defensive = 0.4
+	}
+}
+
+uns_crannog_one_retinue = 
+{
+	first_type = 0
+	first_amount = 300
+
+	second_type = 5
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        culture = crannogman	
+	}
+	
+	modifier = {
+			light_infantry_offensive = 0.3
+			archers_offensive = 0.3
+	}
+}
+
+uns_crannog_two_retinue = 
+{
+	first_type = 5
+	first_amount = 300
+
+	second_type = 2
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        culture = crannogman	
+	}
+	
+	modifier = {
+			archers_offensive = 0.4
+			pikemen_offensive = 0.2
+	}
+}
+
+uns_crannog_three_retinue = 
+{
+	first_type = 0
+	first_amount = 300
+
+	second_type = 5
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+		is_republic = yes
+        culture = crannogman	
+	}
+	
+	modifier = {
+			light_infantry_offensive = 0.3
+			archers_offensive = 0.3
+	}
+}
+
+uns_crannog_four_retinue = 
+{
+	first_type = 1
+	first_amount = 100
+
+	second_type = 5
+	second_amount = 400
+	
+	potential = {
+		is_nomadic = no
+		is_republic = yes
+        culture = crannogman	
+	}
+	
+	modifier = {
+			heavy_infantry_offensive = 0.2
+			archers_defensive = 0.4
+	}
+}
+
+uns_clan_one_retinue = 
+{
+	first_type = 0
+	first_amount = 500
+
+	potential = {
+		is_nomadic = no
+		or = {
+			culture = moon_clansman
+			culture = hill_clansman
+			culture_group = free_folk
+		}	
+	}
+	
+	modifier = {
+			light_infantry_offensive = 0.6
+	}
+}
+
+uns_clan_two_retinue = 
+{
+	first_type = 0
+	first_amount = 300
+
+	second_type = 3
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        or = {
+			culture = moon_clansman
+			culture = hill_clansman
+			culture_group = free_folk
+		}
+	}
+	
+	modifier = {
+			light_infantry_offensive = 0.2
+			light_cavalry_offensive = 0.4
+	}
+}
+
+uns_clan_three_retinue = 
+{
+	first_type = 0
+	first_amount = 250
+
+	second_type = 5
+	second_amount = 250
+	
+	potential = {
+		is_nomadic = no
+		is_republic = yes
+        or = {
+			culture = moon_clansman
+			culture = hill_clansman
+			culture_group = free_folk
+		}
+	}
+	
+	modifier = {
+		archers_offensive = 0.3
+	}
+}
+
+uns_old_gods_retinue = 
+{
+	first_type = 2
+	first_amount = 250
+
+	second_type = 5
+	second_amount = 250
+	
+	potential = {
+		is_nomadic = no
+        or = {
+			religion = old_gods
+			religion = old_gods_reformed
+			religion_group = wildling_religion
+			religion_group = old_gods_religion 
+		}
+	}
+	
+	modifier = {
+		pikemen_defensive = 0.2
+		archers_offensive = 0.4
+	}
+}
+
+uns_iron_one_retinue = 
+{
+	first_type = 0
+	first_amount = 500
+	
+	potential = {
+		is_nomadic = no
+        culture = ironborn
+	}
+	
+	modifier = {
+		light_infantry_offensive = 0.6
+	}
+}
+
+uns_iron_two_retinue = 
+{
+	first_type = 1
+	first_amount = 500
+	
+	potential = {
+		is_nomadic = no
+        culture = ironborn
+	}
+	
+	modifier = {
+		heavy_infantry_offensive = 0.4
+		heavy_infantry_morale = 0.2
+	}
+}
+
+uns_iron_three_retinue = 
+{
+	first_type = 0
+	first_amount = 350
+
+	second_type = 1
+	second_amount = 150
+	
+	potential = {
+		is_nomadic = no
+		is_republic = yes
+        culture = ironborn
+	}
+	
+	modifier = {
+		light_infantry_offensive = 0.4
+		heavy_infantry_offensive = 0.1
+		heavy_infantry_morale = 0.1
+	}
+}
+
+uns_iron_four_retinue = 
+{
+	first_type = 0
+	first_amount = 300
+
+	second_type = 5
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        culture = ironborn
+	}
+	
+	modifier = {
+		light_infantry_defensive = 0.3
+		archers_offensive = 0.1
+		archers_morale = 0.1
+	}
+}
+
+uns_iron_five_retinue = 
+{
+	first_type = 1
+	first_amount = 350
+
+	second_type = 5
+	second_amount = 150
+	
+	potential = {
+		is_nomadic = no
+        culture = ironborn
+	}
+	
+	modifier = {
+		archers_defensive = 0.2
+		heavy_infantry_offensive = 0.3
+	}
+}
+
+uns_iron_six_retinue = 
+{
+	first_type = 2
+	first_amount = 300
+
+	second_type = 5
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        culture = ironborn
+	}
+	
+	modifier = {
+		archers_offensive = 0.3
+		pikemen_defensive = 0.3
+	}
+}
+
+uns_drowned_retinue = 
+{
+	first_type = 0
+	first_amount = 300
+
+	second_type = 2
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+		religion_group = drowned_god_group
+	}
+	
+	modifier = {
+		light_infantry_offensive = 0.4
+		pikemen_offensive = 0.2
+	}
+}
+
+uns_river_one_retinue = 
+{
+	first_type = 3
+	first_amount = 300
+
+	second_type = 6
+	second_amount = 200
+	
+	special_troops = horse_archers
+	
+	potential = {
+		is_nomadic = no
+        culture = riverlander
+	}
+	
+	modifier = {
+		light_cavalry_offensive = 0.3
+		horse_archers_offensive = 0.3
+	}
+}
+
+uns_river_two_retinue = 
+{
+	first_type = 1
+	first_amount = 300
+
+	second_type = 0
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        culture = riverlander
+	}
+	
+	modifier = {
+		light_infantry_offensive = 0.2
+		heavy_infantry_defensive = 0.4
+	}
+}
+
+uns_river_three_retinue = 
+{
+	first_type = 1
+	first_amount = 300
+
+	second_type = 4
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        is_republic = yes
+		culture = riverlander
+	}
+	
+	modifier = {
+		heavy_infantry_defensive = 0.4
+		knights_offensive = 0.2
+	}
+}
+
+uns_crown_one_retinue = 
+{
+	first_type = 1
+	first_amount = 300
+
+	second_type = 4
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        or = {
+			culture = crownlander
+			culture = crackclawmen
+		}
+	}
+	
+	modifier = {
+		heavy_infantry_defensive = 0.4
+		knights_defensive = 0.2
+	}
+}
+
+uns_crown_two_retinue = 
+{
+	first_type = 0
+	first_amount = 300
+
+	second_type = 3
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        or = {
+			culture = crownlander
+			culture = crackclawmen
+		}
+	}
+	
+	modifier = {
+		light_infantry_defensive = 0.4
+		light_cavalry_defensive = 0.4
+	}
+}
+
+uns_crown_three_retinue = 
+{
+	first_type = 2
+	first_amount = 300
+
+	second_type = 5
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        is_republic = yes
+		or = {
+			culture = crownlander
+			culture = crackclawmen
+		}
+	}
+	
+	modifier = {
+		pikemen_defensive = 0.2
+		archers_offensive = 0.3
+	}
+}
+
+uns_west_one_retinue = 
+{
+	first_type = 1
+	first_amount = 300
+
+	second_type = 2
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        culture = westerman
+	}
+	
+	modifier = {
+		pikemen_defensive = 0.2
+		heavy_infantry_defensive = 0.4
+	}
+}
+
+uns_west_two_retinue = 
+{
+	first_type = 3
+	first_amount = 250
+
+	second_type = 4
+	second_amount = 250
+	
+	potential = {
+		is_nomadic = no
+        culture = westerman
+	}
+	
+	modifier = {
+		light_cavalry_offensive = 0.2
+		knights_offensive = 0.4
+	}
+}
+
+uns_west_three_retinue = 
+{
+	first_type = 3
+	first_amount = 300
+
+	second_type = 4
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        is_republic = yes
+		culture = westerman
+	}
+	
+	modifier = {
+		light_cavalry_offensive = 0.2
+		knights_offensive = 0.4
+	}
+}
+
+uns_west_four_retinue = 
+{
+	first_type = 1
+	first_amount = 300
+
+	second_type = 4
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        is_republic = yes
+		culture = westerman
+	}
+	
+	modifier = {
+		heavy_infantry_offensive = 0.2
+		knights_offensive = 0.4
+	}
+}
+
+uns_vale_one_retinue = 
+{
+	first_type = 2
+	first_amount = 200
+
+	second_type = 5
+	second_amount = 300
+	
+	potential = {
+		is_nomadic = no
+        culture = valeman
+	}
+	
+	modifier = {
+		pikemen_defensive = 0.4
+		archers_defensive = 0.2
+	}
+}
+
+uns_vale_two_retinue = 
+{
+	first_type = 1
+	first_amount = 300
+
+	second_type = 4
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        culture = valeman
+	}
+	
+	modifier = {
+		heavy_infantry_defensive = 0.3
+		knights_offensive = 0.3
+	}
+}
+
+uns_vale_three_retinue = 
+{
+	first_type = 5
+	first_amount = 300
+
+	second_type = 4
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        is_republic = yes
+		culture = valeman
+	}
+	
+	modifier = {
+		archers_defensive = 0.4
+		knights_defensive = 0.2
+	}
+}
+
+uns_storm_one_retinue = 
+{
+	first_type = 0
+	first_amount = 250
+
+	second_type = 3
+	second_amount = 250
+	
+	potential = {
+		is_nomadic = no
+        culture = stormlander
+	}
+	
+	modifier = {
+		light_infantry_offensive = 0.3
+		light_cavalry_offensive = 0.3
+	}
+}
+
+uns_storm_two_retinue = 
+{
+	first_type = 4
+	first_amount = 500
+
+	potential = {
+		is_nomadic = no
+        culture = stormlander
+	}
+	
+	modifier = {
+		knights_offensive = 0.4
+		knights_morale = 0.2
+	}
+}
+
+uns_storm_three_retinue = 
+{
+	first_type = 2
+	first_amount = 250
+
+	second_type = 1
+	second_amount = 250
+	
+	potential = {
+		is_nomadic = no
+        is_republic = yes
+		culture = stormlander
+	}
+	
+	modifier = {
+		heavy_infantry_offensive = 0.3
+		pikemen_offensive = 0.3
+	}
+}
+
+uns_reach_one_retinue = 
+{
+	first_type = 0
+	first_amount = 300
+
+	second_type = 4
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+		culture = reachman
+	}
+	
+	modifier = {
+		light_infantry_offensive = 0.4
+		knights_defensive = 0.2
+	}
+}
+
+uns_reach_two_retinue = 
+{
+	first_type = 1
+	first_amount = 300
+
+	second_type = 2
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        culture = reachman
+	}
+	
+	modifier = {
+		heavy_infantry_defensive = 0.4
+		pikemen_offensive = 0.2
+	}
+}
+
+uns_reach_tree_retinue = 
+{
+	first_type = 3
+	first_amount = 300
+
+	second_type = 4
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        is_republic = yes
+		culture = reachman
+	}
+	
+	modifier = {
+		light_cavalry_offensive = 0.2
+		heavy_cvalary_defensive = 0.4
+	}
+}
+
+uns_dorne_one_retinue = 
+{
+	first_type = 2
+	first_amount = 500
+	
+	potential = {
+		is_nomadic = no
+        culture_group = dornish
+	}
+	
+	modifier = {
+		pikemen_offensive = 0.3
+		pikemen_defensive = 0.3
+	}
+}
+
+uns_dorne_two_retinue = 
+{
+	first_type = 3
+	first_amount = 500
+	
+	potential = {
+		is_nomadic = no
+        culture_group = dornish
+	}
+	
+	modifier = {
+		light_cavalry_offensive = 0.3
+		light_cavalry_defensive = 0.3
+	}
+}
+
+uns_dorne_three_retinue = 
+{
+	first_type = 4
+	first_amount = 500
+	
+	potential = {
+		is_nomadic = no
+		is_republic = yes
+        culture_group = dornish
+	}
+	
+	modifier = {
+		knights_offensive = 0.3
+		knights_defensive = 0.3
+	}
+}
+
+uns_the_seven_retinue = 
+{
+	first_type = 1
+	first_amount = 250
+
+	second_type = 4
+	second_amount = 250
+	
+	potential = {
+		is_nomadic = no
+        religion = the_seven
+	}
+	
+	modifier = {
+		heavy_infantry_defensive = 0.3
+		knights_defensive = 0.3
+	}
+}
+
+
+uns_mother_rhoyne_retinue = 
+{
+	first_type = 0
+	first_amount = 250
+
+	second_type = 5
+	second_amount = 250
+	
+	potential = {
+		is_nomadic = no
+		or = {
+			religion = rhoynar_pagan
+			religion = rhoynar_pagan_reformed
+		}
+	}
+	
+	modifier = {
+		light_infantry_defensive = 0.2
+		archers_offensive = 0.3
+	}
+}
+
+uns_pentos_retinue = 
+{
+	first_type = 1
+	first_amount = 300
+
+	second_type = 5
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+		is_republic = yes
+		culture = pentosi
+	}
+	
+	modifier = {
+		heavy_infantry_offensive = 0.3
+		archers_offensive = 0.3
+	}
+}
+
+uns_braavos_retinue = 
+{
+	first_type = 0
+	first_amount = 500
+
+	potential = {
+		is_nomadic = no
+        is_republic = yes
+		culture = braavosi
+	}
+	
+	modifier = {
+		light_infantry_offensive = 0.6
+	}
+}
+
+uns_lysene_retinue = 
+{
+	first_type = 0
+	first_amount = 250
+
+	second_type = 1
+	second_amount = 250
+	
+	potential = {
+		is_nomadic = no
+        is_republic = yes
+		culture = lysene
+	}
+	
+	modifier = {
+		light_infantry_defensive = 0.3
+		heavy_infantry_defensive = 0.3
+	}
+}
+
+uns_qohor_retinue = 
+{
+	first_type = 1
+	first_amount = 300
+
+	second_type = 3
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        is_republic = yes
+		culture = qohorik
+	}
+	
+	modifier = {
+		light_cavalry_offensive = 0.3
+		light_cavalry_defensive = 0.3
+	}
+}
+
+uns_norvos_retinue = 
+{
+	first_type = 2
+	first_amount = 400
+
+	second_type = 1
+	second_amount = 100
+	
+	potential = {
+		is_nomadic = no
+		is_republic = yes
+		culture = norvosi
+	}
+	
+	modifier = {
+		pikemen_offensive = 0.4
+		pikemen_defensive = 0.2
+	}
+}
+
+uns_myr_retinue = 
+{
+	first_type = 2
+	first_amount = 250
+
+	second_type = 0
+	second_amount = 250
+	
+	potential = {
+		is_nomadic = no
+        is_republic = yes
+		culture = myrman
+	}
+	
+	modifier = {
+		pikemen_defensive = 0.4
+		light_infantry_defensive = 0.2
+	}
+}
+
+uns_tyrosh_retinue = 
+{
+	first_type = 2
+	first_amount = 300
+
+	second_type = 1
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        is_republic = yes
+		culture = tyroshi
+	}
+	
+	modifier = {
+		pikemen_offensive = 0.4
+		heavy_infantry_offensive = 0.2
+	}
+}
+
+uns_volantene_retinue = 
+{
+	first_type = 5
+	first_amount = 450
+
+	second_type = 6
+	second_amount = 50
+	
+	special_troops = war_elephants
+	
+	potential = {
+		is_nomadic = no
+        is_republic = yes
+		culture = volantene
+	}
+	
+	modifier = {
+		archers_offensive = 0.6
+	}
+}
+
+uns_lorath_retinue = 
+{
+	first_type = 1
+	first_amount = 500
+	
+	potential = {
+		is_nomadic = no
+        is_republic = yes
+		culture = lorathi
+	}
+	
+	modifier = {
+		heavy_infantry_offensive = 0.6
+	}
+}
+
+uns_free_cities_one_retinue = 
+{
+	first_type = 3
+	first_amount = 500
+	
+	potential = {
+		is_nomadic = no
+        culture_group = free_cities
+	}
+	
+	modifier = {
+		light_cavalry_offensive = 0.2
+	}
+}
+
+uns_free_cities_two_retinue = 
+{
+	first_type = 1
+	first_amount = 300
+
+	second_type = 4
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        culture_group = free_cities
+	}
+	
+	modifier = {
+		heavy_infantry_offensive = 0.2
+		knights_offensive = 0.2
+	}
+}
+
+uns_rhllor_retinue = 
+{
+	first_type = 1
+	first_amount = 250
+
+	second_type = 2
+	second_amount = 250
+	
+	potential = {
+		is_nomadic = no
+		religion = rhllor
+	}
+	
+	modifier = {
+		heavy_infantry_defensive = 0.2
+	}
+}
+
+uns_black_goat_retinue = 
+{
+	first_type = 3
+	first_amount = 350
+
+	second_type = 5
+	second_amount = 150
+	
+	potential = {
+		is_nomadic = no
+		or = {
+			religion = black_goat_reformed
+			religion = black_goat
+		}
+	}
+	
+	modifier = {
+		light_cavalry_offensive = 0.1
+	}
+}
+
+uns_lorath_rel_retinue = 
+{
+	first_type = 0
+	first_amount = 200
+
+	second_type = 5
+	second_amount = 300
+	
+	potential = {
+		is_nomadic = no
+		or = {
+			religion = gods_lorath_reformed 
+			religion = gods_lorath
+		}
+	}
+	
+	modifier = {
+		archers_offensive = 0.3
+	}
+}
+
+uns_trio_retinue = 
+{
+	first_type = 5
+	first_amount = 350
+
+	second_type = 6
+	second_amount = 150
+	
+	special_troops = horse_archers
+	
+	potential = {
+		is_nomadic = no
+		or = {
+			religion = trios_reformed  
+			religion = trios
+		}
+	}
+	
+	modifier = {
+		archers_offensive = 0.3
+	}
+}
+
+uns_moonsinger_retinue = 
+{
+	first_type = 0
+	first_amount = 300
+
+	second_type = 2
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+		or = {
+			religion = moonsingers_reformed  
+			religion = moonsingers
+		}
+	}
+	
+	modifier = {
+		pikemen_defensive = 0.3
+	}
+}
+
+uns_bearded_priests_retinue = 
+{
+	first_type = 2
+	first_amount = 250
+
+	second_type = 5
+	second_amount = 250
+	
+	potential = {
+		is_nomadic = no
+        religion = bearded_priests
+	}
+	
+	modifier = {
+		pikemen_offensive = 0.3
+		archers_offensive = 0.3
+	}
+}
+
+uns_valyrian_one_retinue = 
+{
+	first_type = 4
+	first_amount = 200
+
+	second_type = 1
+	second_amount = 300
+	
+	potential = {
+		is_nomadic = no
+        or = {
+			culture = high_valyrian
+			culture = western_valyrian
+		}
+	}
+	
+	modifier = {
+		heavy_infantry_defensive = 0.3
+		knights_offensive = 0.2
+	}
+}
+
+uns_valyrian_two_retinue = 
+{
+	first_type = 1
+	first_amount = 350
+
+	second_type = 5
+	second_amount = 150
+	
+	potential = {
+		is_nomadic = no
+		or = {
+			culture = high_valyrian
+			culture = western_valyrian
+		}
+	}
+	
+	modifier = {
+		heavy_infantry_defensive = 0.1
+		archers_offensive = 0.4
+	}
+}
+
+uns_valyrian_three_retinue = 
+{
+	first_type = 0
+	first_amount = 400
+
+	second_type = 5
+	second_amount = 100
+	
+	potential = {
+		is_nomadic = no
+        is_republic = yes
+		or = {
+			culture = high_valyrian
+			culture = western_valyrian
+		}
+	}
+	
+	modifier = {
+		light_infantry_offensive = 0.3
+		archers_defensive = 0.3
+	}
+}
+
+uns_valyrian_four_retinue = 
+{
+	first_type = 5
+	first_amount = 450
+
+	second_type = 6
+	second_amount = 50
+	
+	special_troops = war_elephants
+	
+	potential = {
+		is_nomadic = no
+        or = {
+			culture = eastern_valyrian
+			culture = mantaryan
+			culture = tolosi
+			culture = elyrian
+		}
+	}
+	
+	modifier = {
+		archers_offensive = 0.4
+	}
+}
+
+uns_valyrian_five_retinue = 
+{
+	first_type = 0
+	first_amount = 300
+
+	second_type = 5
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        or = {
+			culture = eastern_valyrian
+			culture = mantaryan
+			culture = tolosi
+			culture = elyrian
+		}
+	}
+	
+	modifier = {
+		archers_offensive = 0.4
+	}
+}
+
+uns_valyrian_six_retinue = 
+{
+	first_type = 1
+	first_amount = 200
+
+	second_type = 4
+	second_amount = 150
+	
+	potential = {
+		is_nomadic = no
+        is_republic = yes
+		culture = eastern_valyrian
+	}
+	
+	modifier = {
+		heavy_infantry_offensive = 0.2
+		knights_offensive = 0.2
+	}
+}
+
+uns_valyrian_seven_retinue = 
+{
+	first_type = 1
+	first_amount = 200
+
+	second_type = 5
+	second_amount = 300
+	
+	potential = {
+		is_nomadic = no
+        is_republic = yes
+		or = {
+			culture = mantaryan
+			culture = tolosi
+			culture = elyrian
+		}
+	}
+	
+	modifier = {
+		heavy_infantry_defensive = 0.3
+		archers_offensive = 0.2
+	}
+}
+
+uns_valyrian_eight_retinue = 
+{
+	first_type = 4
+	first_amount = 500
+
+	
+	potential = {
+		is_nomadic = no
+		or = {
+			culture = high_valyrian
+			culture = western_valyrian
+		}
+	}
+	
+	modifier = {
+		knights_morale = 0.3
+		knights_offensive = 0.3
+	}
+}
+
+uns_valyrian_nine_retinue = 
+{
+	first_type = 3
+	first_amount = 300
+
+	second_type = 6
+	second_amount = 200
+	
+	special_troops = horse_archers
+	
+	potential = {
+		is_nomadic = no
+        or = {
+			culture = high_valyrian
+			culture = western_valyrian
+		}
+	}
+	
+	modifier = {
+		light_cavalry_morale = 0.4
+		horse_archers_offensive = 0.2
+	}
+}
+
+uns_valyrian_ten_retinue = 
+{
+	first_type = 0
+	first_amount = 300
+
+	second_type = 5
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        or = {
+			culture = eastern_valyrian
+			culture = mantaryan
+			culture = tolosi
+			culture = elyrian
+		}
+	}
+	
+	modifier = {
+		light_infantry_defensive = 0.4
+		archers_offensive = 0.2
+	}
+}
+
+uns_valyrian_rel_retinue = 
+{
+	first_type = 1
+	first_amount = 300
+	
+	potential = {
+		is_nomadic = no
+        religion_group = valyrian_rel_group
+	}
+	
+	modifier = {
+		heavy_infantry_defensive = 0.2
+	}
+}
+
+uns_sarnor_one_retinue = 
+{
+	first_type = 1
+	first_amount = 200
+
+	second_type = 3
+	second_amount = 300
+	
+	potential = {
+		is_nomadic = no
+        culture = sarnorian
+	}
+	
+	modifier = {
+		heavy_infantry_offensive = 0.3
+		light_cavalry_offensive = 0.2
+	}
+}
+
+uns_sarnor_two_retinue = 
+{
+	first_type = 2
+	first_amount = 300
+
+	second_type = 4
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        culture_group = sarnor_group
+	}
+	
+	modifier = {
+		pikemen_defensive = 0.1
+		knights_offensive = 0.1
+	}
+}
+
+uns_sarnor_three_retinue = 
+{
+	first_type = 3
+	first_amount = 250
+
+	second_type = 4
+	second_amount = 250
+	
+	potential = {
+		is_nomadic = no
+        is_republic = yes
+		culture = sarnorian
+	}
+	
+	modifier = {
+		light_cavalry_defensive = 0.1
+		knights_defensive = 0.1
+	}
+}
+
+uns_sarnor_rel_retinue = 
+{
+	first_type = 5
+	first_amount = 500
+	
+	potential = {
+		is_nomadic = no
+        religion_group = sarnor_rel
+	}
+	
+	modifier = {
+		archers_offensive = 0.5
+	}
+}
+
+uns_dothraki_one_retinue = 
+{
+	first_type = 3
+	first_amount = 500
+	
+	potential = {
+		is_nomadic = no
+        culture = dothraki
+	}
+	
+	modifier = {
+		light_cavalry_offensive = 0.6
+	}
+}
+
+uns_dothraki_two_retinue = 
+{
+	first_type = 3
+	first_amount = 250
+
+	second_type = 6
+	second_amount = 250
+	
+	special_troops = horse_archers
+	
+	potential = {
+		is_nomadic = no
+        culture = dothraki
+	}
+	
+	modifier = {
+		light_infantry_defensive = 0.4
+	}
+}
+
+uns_dothraki_rel_retinue = 
+{
+	first_type = 0
+	first_amount = 100
+	
+	potential = {
+		is_nomadic = no
+        religion = dothraki_pagan
+	}
+	
+	modifier = {
+		light_infantry_offensive = 0.9
+		light_infantry_defensive = -0.9
+	}
+}
+
+uns_lhazareen_one_retinue = 
+{
+	first_type = 0
+	first_amount = 500
+	
+	potential = {
+		is_nomadic = no
+        culture = lhazareen
+	}
+	
+	modifier = {
+		light_infantry_defensive = 0.4
+	}
+}
+
+uns_lhazareen_two_retinue = 
+{
+	first_type = 2
+	first_amount = 200
+
+	second_type = 5
+	second_amount = 300
+	
+	potential = {
+		is_nomadic = no
+       culture = lhazareen
+	}
+	
+	modifier = {
+		archers_offensive = 0.3
+	}
+}
+
+uns_lhazareen_three_retinue = 
+{
+	first_type = 3
+	first_amount = 300
+
+	second_type = 4
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        is_republic = yes
+		culture = lhazareen 
+	}
+	
+	modifier = {
+		light_cavalry_defensive = 0.3
+		knights_defensive = 0.3
+	}
+}
+
+uns_great_shepherd_retinue = 
+{
+	first_type = 0
+	first_amount = 300
+
+	second_type = 1
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        religion_group = lhazar_rel_group
+	}
+	
+	modifier = {
+		light_infantry_defensive = 0.2
+	}
+}
+
+uns_ibben_one_retinue = 
+{
+	first_type = 2
+	first_amount = 300
+
+	second_type = 3
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        culture = ibbenese 
+	}
+	
+	modifier = {
+		pikemen_defensive = 0.2
+	}
+}
+
+uns_ibben_two_retinue = 
+{
+	first_type = 1
+	first_amount = 250
+
+	second_type = 5
+	second_amount = 250
+	
+	potential = {
+		is_nomadic = no
+        culture = ibbenese 
+	}
+	
+	modifier = {
+		heavy_infantry_defensive = 0.1
+		archers_offensive = 0.1
+	}
+}
+
+uns_ibben_three_retinue = 
+{
+	first_type = 1
+	first_amount = 250
+
+	second_type = 2
+	second_amount = 250
+	
+	potential = {
+		is_nomadic = no
+		is_republic = yes
+        culture = ibbenese 
+	}
+	
+	modifier = {
+		heavy_infantry_defensive = 0.2
+		pikemen_defensive = 0.2
+	}
+}
+
+uns_ibben_rel_retinue = 
+{
+	first_type = 2
+	first_amount = 300
+
+	second_type = 4
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        religion = gods_ibben
+	}
+	
+	modifier = {
+		knights_defensive = 0.1
+	}
+}
+
+uns_summer_one_retinue = 
+{
+	first_type = 0
+	first_amount = 200
+
+	second_type = 5
+	second_amount = 300
+	
+	potential = {
+		is_nomadic = no
+        culture = summer_islander
+	}
+	
+	modifier = {
+		archers_offensive = 0.4
+	}
+}
+
+uns_summer_two_retinue = 
+{
+	first_type = 1
+	first_amount = 350
+
+	second_type = 4
+	second_amount = 150
+	
+	potential = {
+		is_nomadic = no
+        culture = summer_islander
+	}
+	
+	modifier = {
+		heavy_infantry_defensive = 0.1
+	}
+}
+
+uns_summer_three_retinue = 
+{
+	first_type = 2
+	first_amount = 250
+
+	second_type = 5
+	second_amount = 250
+	
+	potential = {
+		is_nomadic = no
+        is_republic = yes
+		culture = summer_islander
+	}
+	
+	modifier = {
+		archers_offensive = 0.5
+	}
+}
+
+uns_summer_rel_retinue = 
+{
+	first_type = 0
+	first_amount = 300
+
+	second_type = 1
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+		or = {
+			religion = summer_rel_reformed 
+			religion = summer_rel
+		}
+	}
+	
+	modifier = {
+		light_infantry_defensive = 0.1
+		heavy_infantry_defensive = 0.3
+	}
+}
+
+uns_pirate_retinue = 
+{
+	first_type = 0
+	first_amount = 200
+
+	second_type = 5
+	second_amount = 300
+	
+	potential = {
+		is_nomadic = no
+        or = {
+			religion_group = pirate_group
+			religion_group = corsair_group 
+		}
+	}
+	
+	modifier = {
+		archers_offensive = 0.3
+	}
+}
+
+uns_pirate_two_retinue = 
+{
+	first_type = 1
+	first_amount = 350
+
+	second_type = 5
+	second_amount = 150
+	
+	potential = {
+		is_nomadic = no
+        or = {
+			religion_group = pirate_group
+			religion_group = corsair_group 
+		}
+	}
+	
+	modifier = {
+		heavy_infantry_offensive = 0.3
+		archers_defensive = 0.3
+	}
+}
+
+uns_basilisk_one_retinue = 
+{
+	first_type = 1
+	first_amount = 300
+
+	second_type = 2
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        culture_group = sothoryos_islands
+	}
+	
+	modifier = {
+		pikemen_offensive = 0.1
+	}
+}
+
+uns_basilisk_two_retinue = 
+{
+	first_type = 0
+	first_amount = 200
+
+	second_type = 3
+	second_amount = 300
+	
+	potential = {
+		is_nomadic = no
+        culture_group = sothoryos_islands
+	}
+	
+	modifier = {
+		light_cavalry_defensive = 0.2
+	}
+}
+
+uns_basilisk_three_retinue = 
+{
+	first_type = 2
+	first_amount = 250
+
+	second_type = 5
+	second_amount = 250
+	
+	potential = {
+		is_nomadic = no
+        is_republic = yes
+		culture_group = sothoryos_islands
+	}
+	
+	modifier = {
+		pikemen_defensive = 0.2
+		archers_offensive = 0.3
+	}
+}
+
+uns_harpy_retinue = 
+{
+	first_type = 1
+	first_amount = 200
+
+	second_type = 5
+	second_amount = 300
+	
+	potential = {
+		is_nomadic = no
+		or = {
+			religion = harpy
+			religion = harpy_reformed  
+		}
+        
+	}
+	
+	modifier = {
+		heavy_infantry_offensive = 0.1
+	}
+}
+
+uns_ghiscar_one_retinue = 
+{
+	first_type = 2
+	first_amount = 300
+
+	second_type = 5
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        culture_group = ghiscari_group
+	}
+	
+	modifier = {
+		pikemen_defensive  = 0.2
+		archers_offensive = 0.2
+	}
+}
+
+uns_ghiscar_two_retinue = 
+{
+	first_type = 0
+	first_amount = 300
+
+	second_type = 5
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+		is_republic = yes
+		culture_group = ghiscari_group
+	}
+	
+	modifier = {
+		light_infantry_defensive = -0.1
+		archers_defensive = -0.1
+	}
+}
+
+uns_ghiscar_three_retinue = 
+{
+	first_type = 1
+	first_amount = 500
+	
+	potential = {
+		is_nomadic = no
+        culture = ghiscari
+	}
+	
+	modifier = {
+		heavy_infantry_offensive = 0.2
+	}
+}
+
+uns_ghiscar_four_retinue = 
+{
+	first_type = 3
+	first_amount = 300
+
+	second_type = 4
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        is_republic = yes
+		or = {
+			culture	= meereenese
+			culture = yunkaii
+			culture = astapori
+		}
+	}
+	
+	modifier = {
+		light_cavalry_offensive = 0.1
+		knights_offensive = 0.1
+	}
+}
+
+uns_qarth_one_retinue = 
+{
+	first_type = 1
+	first_amount = 300
+
+	second_type = 5
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        culture = qartheen
+	}
+	
+	modifier = {
+		heavy_infantry_offensive = 0.1
+		archers_offensive = 0.1
+	}
+}
+
+uns_qarth_two_retinue = 
+{
+	first_type = 3
+	first_amount = 300
+
+	second_type = 4
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        culture = qartheen
+	}
+	
+	modifier = {
+		light_cavalry_defensive = 0.2
+		knights_defensive = 0.2
+	}
+}
+
+uns_qarth_three_retinue = 
+{
+	first_type = 0
+	first_amount = 300
+
+	second_type = 5
+	second_amount = 200
+	
+	potential = {
+		is_nomadic = no
+        is_republic = yes
+		culture = qartheen
+	}
+	
+	modifier = {
+		light_infantry_offensive = 0.1
+		archers_offensive = 0.1
+	}
+}
+
+uns_warlocks_retinue = 
+{
+	first_type = 2
+	first_amount = 500
+	
+	potential = {
+		is_nomadic = no
+        religion = qarth_warlocks
+	}
+	
+	modifier = {
+		pikemen_defensive = 0.3
+		pikemen_morale = 0.3
+	}
+}
+
+uns_cataphracts =
+{
+	first_type = 3
+	first_amount = 300
+
+	second_type = 6
+	second_amount = 200
+
+	special_troops = horse_archers
+
+	potential = {
+		is_nomadic = no
+		or = {
+			culture = yi_ti
+			culture = lengi
+		}
+	}
+
+	modifier = {
+		light_cavalry_morale = 0.4
+		horse_archers_offensive = 0.2
+	}
+}
