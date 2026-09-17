@@ -1,10 +1,4 @@
 
-Jul 30, 2026 at 10:48pm balthier likes this
-Quote
-Edit
-like
-Post Options
-Post by Gtorr on Jul 30, 2026 at 10:48pm
 ####  AGOT Optimized ####
 
 Current Version: 1.1 - released: 01/09/26  DROPBOX  MEDIAFIRE
