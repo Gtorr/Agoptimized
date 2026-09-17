@@ -1,8 +1,6 @@
 
 ####  AGOT Optimized ####
 
-Current Version: 1.1 - released: 01/09/26  DROPBOX  MEDIAFIRE
-
 # Setup and Compat #
 This mod can be combined with any other submod combo.
 
