@@ -1,0 +1,99 @@
+#returns variable colony_timer
+get_colony_timer = {
+    export_to_variable = {
+        which = colony_timer
+        value = realm_stewardship
+    }
+    if = {
+        limit = {
+            has_character_modifier = slv_mod_1
+        }
+        multiply_variable = {
+            which = colony_skill
+            value = 1.05
+        }
+    }
+    else_if = {
+        limit = {
+            has_character_modifier = slv_mod_2
+        }
+        multiply_variable = {
+            which = colony_skill
+            value = 1.1
+        }
+    }
+    else_if = {
+        limit = {
+            has_character_modifier = slv_mod_3
+        }
+        multiply_variable = {
+            which = colony_skill
+            value = 1.15
+        }
+    }
+    else_if = {
+        limit = {
+            has_character_modifier = slv_mod_4
+        }
+        multiply_variable = {
+            which = colony_skill
+            value = 1.2
+        }
+    }
+    else_if = {
+        limit = {
+            has_character_modifier = slv_mod_5
+        }
+        multiply_variable = {
+            which = colony_skill
+            value = 1.25
+        }
+    }
+    else_if = {
+        limit = {
+            has_character_modifier = slv_mod_6
+        }
+        multiply_variable = {
+            which = colony_skill
+            value = 1.3
+        }
+    }
+    else_if = {
+        limit = {
+            has_character_modifier = slv_mod_7
+        }
+        multiply_variable = {
+            which = colony_skill
+            value = 1.35
+        }
+    }
+    else_if = {
+        limit = {
+            has_character_modifier = slv_mod_8
+        }
+        multiply_variable = {
+            which = colony_skill
+            value = 1.4
+        }
+    }
+    else_if = {
+        limit = {
+            has_character_modifier = slv_mod_9
+        }
+        multiply_variable = {
+            which = colony_skill
+            value = 1.45
+        }
+    }
+    else_if = {
+        limit = {
+            has_character_modifier = slv_mod_10
+        }
+        multiply_variable = {
+            which = colony_skill
+            value = 1.5
+        }
+    }
+
+}
+

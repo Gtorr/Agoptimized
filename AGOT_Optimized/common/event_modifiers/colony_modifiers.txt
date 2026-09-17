@@ -1,7 +1,7 @@
 
-
 colony_work = {
 	icon = 29
+	local_revolt_risk = -0.05
 }
 slave_raided = {
 	icon = 1

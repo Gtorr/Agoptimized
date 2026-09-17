@@ -1,14 +1,11 @@
 
 -Colonisation
-   Slavery Role.
-   New system for upgrades.
+Revisions
 	
 -Slavery
   Trained slaves.
   Slave Academy.
   Slave Soldiers.
-  Construction Bonus.
-  Raid Mechanics.
 
 -Continue Patch
  Removed Files list:
@@ -40,7 +37,7 @@ MTTH Events that can be used better:
 
 Events to remake:
 [maintenance.52 ] #Vassal managment
-[950] #950: Success on holding upgrade
+[950]  # 950: Success on holding upgrade
 
 
 
