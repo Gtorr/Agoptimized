@@ -1,5 +1,5 @@
 
-colony_work = {
+colony_status = {
 	icon = 29
 	local_revolt_risk = -0.05
 }

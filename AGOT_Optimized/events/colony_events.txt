@@ -1209,11 +1209,11 @@ province_event = {
     picture = GFX_evt_castle_construction
     desc = EVDESCcolony50
     immediate = {
-        
+        province_set_colony_difficulty = yes
     }
     option = {
         name="Ok"
-        province_set_colony_difficulty = yes
+        
     }
 
 }
