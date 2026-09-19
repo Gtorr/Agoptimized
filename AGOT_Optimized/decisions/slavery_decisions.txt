@@ -34,7 +34,7 @@ decisions = {
 			set_dynasty_flag = flag_slaver_tradition
 			wealth = -200
 			set_variable = { which = num_slaves value = 2 }
-			set_variable = { which = slv_profit value = 1 }
+			#set_variable = { which = slv_profit value = 1 }
 		}
 	}
 }

@@ -18,7 +18,7 @@ it should be disabled at game start and activated only after 50-100 years, this 
 
 Also, you can use the continue mod without the optimized mod if you wanted to, it should work on any arbitrary save.
 
-Dropbox: https://www.dropbox.com/scl/fi/tejssyjlc4dwzxlloswfs/Agot-Optimized.zip?rlkey=pt2pmz87q92n6cfrao0tw1rm1&st=3zp97oot&dl=0
+# Dropbox : https://www.dropbox.com/scl/fi/tejssyjlc4dwzxlloswfs/Agot-Optimized.zip?rlkey=pt2pmz87q92n6cfrao0tw1rm1&st=3zp97oot&dl=0 
 Mediafire: https://www.mediafire.com/file/nen3a0iel6q6tzd/Agot+Optimized.zip/file
 
 # Slavery system #
@@ -102,6 +102,9 @@ or events that should be reinstated is very valuable for performance.
 Also, one sub goal of the mod is to fix the save corruption bug, since
 removing the event is a valid solution, the question is witch ones are crashing the game.
 
+12>0.9
+14>0.8
+26>0.3
 
 
 

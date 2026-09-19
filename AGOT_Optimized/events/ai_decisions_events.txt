@@ -2,8 +2,10 @@ namespace = ai_decisions_events
 #AI closes gates on disease
 province_event = {
     id = ai_decisions_events.1
-    hide_window = yes
     is_triggered_only = yes
+    ai = yes
+    only_rulers = yes
+    hide_window = yes
     has_dlc = "Reapers"
     trigger  = {
         has_disease = yes
@@ -16,10 +18,10 @@ province_event = {
 }
 character_event = {
     id = ai_decisions_events.2
+    is_triggered_only = yes
     ai = yes
     only_rulers = yes
     hide_window = yes
-    is_triggered_only = yes
     has_dlc = "Reapers"
 
     trigger = {

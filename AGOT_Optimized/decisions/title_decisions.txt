@@ -10,7 +10,6 @@
 #	all: all titles (Avoid if possible. VERY CPU-HEAVY!)
 #
 # *********Colonise Override 19/8/26 Gt.
-# they get a temple during colonization
 # colony_events.txt has the new script
 # ***Ai interval check extension***
 # Give Heir title  moved to 10 years - was 1y
@@ -18,6 +17,515 @@
 # move_crown_focus moved to 5 years -  was 1y
 # build_valyrian_road moved to 10 years - was 3y
 title_decisions = {
+		colonise_province = {
+		is_high_prio = yes
+		filter = all
+		ai_target_filter = primary_title
+		ai = no
+		from_potential = {
+			ai = no			#AI uses pulse event for optimisation
+		}
+		potential = {
+			tier = COUNT
+			holder_scope = {
+				culture_group = unoccupied_group
+			}
+			location = {
+				OR = {
+					has_province_flag = ruined_province
+					traditional_nomad_territory_trigger = yes
+				}
+				NOT = {
+					has_province_flag = colony_province
+				}
+			}
+		}
+		allow = {
+			custom_tooltip = {
+				#Must neighbour ruin, or be within two sea zones
+				text = TOOLTIPcolonisationB
+				hidden_tooltip = {
+					location = {
+						any_neighbor_province = {
+							#Must neighbour ruin, or be within two sea zones
+							OR = {
+								AND = {
+									has_owner = yes
+									OR = {
+										owner = {
+											OR = {
+												character = FROM
+												is_liege_or_above = FROM
+											}
+										}
+										any_province_lord = {
+											character = FROM
+										}
+									}
+								}
+								AND = {
+									is_land = no
+									any_neighbor_province = {
+										OR = {
+											AND = {
+												has_owner = yes
+												OR = {
+													owner = {
+														OR = {
+															character = FROM
+															is_liege_or_above = FROM
+														}
+													}
+													any_province_lord = {
+														character = FROM
+													}
+												}
+											}
+											AND = {
+												is_land = no
+												any_neighbor_province = {
+													OR = {
+														owner = {
+															OR = {
+																character = FROM
+																is_liege_or_above = FROM
+															}
+														}
+														any_province_lord = {
+															character = FROM
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			FROM = {
+				conditional_tooltip = {
+					trigger = {
+						has_game_rule = {
+							name = colinisation_cost
+							value = expensive
+						}
+					}
+					wealth = 1600
+				}
+				conditional_tooltip = {
+					trigger = {
+						has_game_rule = {
+							name = colinisation_cost
+							value = normal
+						}
+					}
+					wealth = 1000
+				}
+				conditional_tooltip = {
+					trigger = {
+						has_game_rule = {
+							name = colinisation_cost
+							value = cheap
+						}
+					}
+					wealth = 400
+				}
+				is_nomadic = no
+				NOT = {
+					trait = nightswatch
+				}
+				NOT = {
+					trait = kingsguard
+				}
+			}
+			location = {
+				show_scope_change = no
+				NOT = {
+					has_province_modifier = braavos_home
+				}
+			}
+		}
+		effect = {
+			hidden_tooltip = {
+				FROM = {
+					liege = {
+						save_event_target_as = colonise_liege
+					}
+					#record liege just in case
+					if = {
+						#record patrician status
+						limit = {
+							is_patrician = yes
+							is_merchant_republic = no
+						}
+						set_character_flag = is_patrician
+					}
+				}
+				holder_scope = {
+					if = {
+						limit = {
+							culture_group = unoccupied_group
+						}
+						set_defacto_liege = event_target:colonise_liege
+					}
+				}
+			}
+			location = {
+				#build castle if needed
+				if = {
+					limit = {
+						NOT = {
+							any_province_holding = {
+								NOT = {
+									holding_type = nomad
+								}
+								NOT = {
+									holding_type = temple
+								}
+								NOT = {
+									holding_type = tribal
+								}
+							}
+						}
+					}
+					build_holding = {
+						type = castle
+						holder = FROM
+					}
+					random_province_holding = {
+						limit = {
+							holding_type = castle
+							holder_scope = {
+								character = FROM
+							}
+						}
+						#save_event_target_as = new_city_holding
+						#location = {
+						#	province_event = {
+						#		id = unoccupied.399
+						#	}
+						#}
+						#increase base value, seperate event to avoid 'break'
+						if = {
+							limit = {
+								FROM = {
+									is_feudal = yes
+								}
+							}
+							make_capital_holding = yes
+						}
+					}
+				}
+				county = {
+					gain_title = FROM
+					hidden_tooltip = {
+						any_de_jure_vassal_title = {
+							limit = {
+								has_holder = yes
+							}
+							remove_building = ca_sub_barony_ruin
+							remove_building = ct_sub_barony_ruin
+							clr_title_flag = sub_barony_ruin
+						}
+					}
+				}
+				hidden_tooltip = {
+					#just in case coloniser erroneously becomes independent
+					FROM = {
+						if = {
+							limit = {
+								NOT = {
+									vassal_of = event_target:colonise_liege
+								}
+								NOT = {
+									character = event_target:colonise_liege
+								}
+							}
+							set_defacto_liege = event_target:colonise_liege
+						}
+					}
+				}
+				if = {
+					limit = {
+						OR = {
+							has_province_flag = ca_colony_1
+							NOR = {
+								has_province_flag = ca_colony_1
+								has_province_flag = ca_colony_2
+								has_province_flag = ca_colony_3
+								has_province_flag = ca_colony_4
+								has_province_flag = ca_colony_5
+								has_province_flag = ca_colony_6
+							}
+						}
+					}
+					set_province_flag = ca_colony_1
+					capital_holding = {
+						if = {
+							limit = {
+								holding_type = castle
+							}
+							add_building = ca_colony_1
+						}
+						if = {
+							limit = {
+								holding_type = city
+							}
+							add_building = ct_colony_1
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_province_flag = ca_colony_2
+					}
+					capital_holding = {
+						if = {
+							limit = {
+								holding_type = castle
+							}
+							add_building = ca_colony_2
+						}
+						if = {
+							limit = {
+								holding_type = city
+							}
+							add_building = ct_colony_2
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_province_flag = ca_colony_3
+					}
+					capital_holding = {
+						if = {
+							limit = {
+								holding_type = castle
+							}
+							add_building = ca_colony_3
+						}
+						if = {
+							limit = {
+								holding_type = city
+							}
+							add_building = ct_colony_3
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_province_flag = ca_colony_4
+					}
+					capital_holding = {
+						if = {
+							limit = {
+								holding_type = castle
+							}
+							add_building = ca_colony_4
+						}
+						if = {
+							limit = {
+								holding_type = city
+							}
+							add_building = ct_colony_4
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_province_flag = ca_colony_5
+					}
+					capital_holding = {
+						if = {
+							limit = {
+								holding_type = castle
+							}
+							add_building = ca_colony_5
+						}
+						if = {
+							limit = {
+								holding_type = city
+							}
+							add_building = ct_colony_5
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_province_flag = ca_colony_6
+					}
+					capital_holding = {
+						if = {
+							limit = {
+								holding_type = castle
+							}
+							add_building = ca_colony_6
+						}
+						if = {
+							limit = {
+								holding_type = city
+							}
+							add_building = ct_colony_6
+						}
+					}
+				}
+				set_province_flag = colony_province
+				if = {
+					limit = {
+						has_province_flag = ruined_province
+					}
+					ROOT_FROM = {
+						if = {
+							limit = {
+								has_game_rule = {
+									name = colinisation_cost
+									value = expensive
+								}
+							}
+							wealth = -1600							
+						}
+						else_if = {
+							limit = {
+								has_game_rule = {
+									name = colinisation_cost
+									value = normal
+								}
+							}
+							wealth = -1000						
+						}
+						else_if = {
+							limit = {
+								has_game_rule = {
+									name = colinisation_cost
+									value = cheap
+								}
+							}
+							wealth = -400						
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						traditional_nomad_territory_trigger = yes
+					}
+					ROOT_FROM = {
+						if = {
+							limit = {
+								has_game_rule = {
+									name = colinisation_cost
+									value = expensive
+								}
+							}
+							wealth = -800							
+						}
+						else_if = {
+							limit = {
+								has_game_rule = {
+									name = colinisation_cost
+									value = normal
+								}
+							}
+							wealth = -500						
+						}
+						else_if = {
+							limit = {
+								has_game_rule = {
+									name = colinisation_cost
+									value = cheap
+								}
+							}
+							wealth = -200					
+						}
+					}
+				}
+				hidden_tooltip = {
+					if = {
+						limit = {
+							has_province_modifier = ruined_province
+						}
+						remove_province_modifier = ruined_province
+					}
+					if = {
+						limit = {
+							has_province_modifier = dothraki_domain
+						}
+						remove_province_modifier = dothraki_domain
+					}
+					if = {
+						limit = {
+							has_province_modifier = jogos_nhai_domain
+						}
+						remove_province_modifier = jogos_nhai_domain
+					}
+					add_province_modifier = {
+						name = colony
+						duration = -1
+					}
+					province_event = {
+						id = colony.1						#Start a colony without Mtth
+					}
+				}
+			}
+			custom_tooltip = {
+				text = TOOLTIPunoccupied.3
+			}
+			hidden_tooltip = {
+				any_de_jure_vassal_title = {
+					limit = {
+						holder_scope = {
+							culture_group = unoccupied_group
+						}
+					}
+					set_defacto_liege = ROOT_FROM
+				}
+				FROM = {
+					any_realm_lord = {
+						limit = {
+							culture_group = unoccupied_group
+						}
+						clear_wealth = THIS
+						any_demesne_title = {
+							gain_title = ROOT_FROM
+						}
+						death = yes
+					}
+					any_realm_character = {
+						limit = {
+							culture_group = unoccupied_group
+						}
+						clear_wealth = THIS
+						death = yes
+					}
+					if = {
+						#maintain patrician status
+						limit = {
+							has_character_flag = is_patrician
+							is_patrician = no
+						}
+						set_government_type = merchant_republic_government
+					}
+					clr_character_flag = is_patrician
+					if = {
+						limit = {
+							ai = no
+						}
+						chronicle = {
+							entry = CHRONICLE_STARTED_COLONY
+							picture = "GFX_evt_castle_construction"
+						}
+					}
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
 	advance_colony_cheat = {
 		ai = no
 		filter = all
@@ -377,514 +885,8 @@ title_decisions = {
 			factor = 1
 		}
 	}
-	colonise_province = {
-		is_high_prio = yes
-		filter = all
-		ai_target_filter = primary_title
-		ai = no
-		from_potential = {
-			ai = no			#AI uses pulse event for optimisation
-		}
-		potential = {
-			tier = COUNT
-			holder_scope = {
-				culture_group = unoccupied_group
-			}
-			location = {
-				OR = {
-					has_province_flag = ruined_province
-					traditional_nomad_territory_trigger = yes
-				}
-				NOT = {
-					has_province_flag = colony_province
-				}
-			}
-		}
-		allow = {
-			custom_tooltip = {
-				#Must neighbour ruin, or be within two sea zones
-				text = TOOLTIPcolonisationB
-				hidden_tooltip = {
-					location = {
-						any_neighbor_province = {
-							#Must neighbour ruin, or be within two sea zones
-							OR = {
-								AND = {
-									has_owner = yes
-									OR = {
-										owner = {
-											OR = {
-												character = FROM
-												is_liege_or_above = FROM
-											}
-										}
-										any_province_lord = {
-											character = FROM
-										}
-									}
-								}
-								AND = {
-									is_land = no
-									any_neighbor_province = {
-										OR = {
-											AND = {
-												has_owner = yes
-												OR = {
-													owner = {
-														OR = {
-															character = FROM
-															is_liege_or_above = FROM
-														}
-													}
-													any_province_lord = {
-														character = FROM
-													}
-												}
-											}
-											AND = {
-												is_land = no
-												any_neighbor_province = {
-													OR = {
-														owner = {
-															OR = {
-																character = FROM
-																is_liege_or_above = FROM
-															}
-														}
-														any_province_lord = {
-															character = FROM
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-			FROM = {
-				conditional_tooltip = {
-					trigger = {
-						has_game_rule = {
-							name = colinisation_cost
-							value = expensive
-						}
-					}
-					wealth = 1600
-				}
-				conditional_tooltip = {
-					trigger = {
-						has_game_rule = {
-							name = colinisation_cost
-							value = normal
-						}
-					}
-					wealth = 1000
-				}
-				conditional_tooltip = {
-					trigger = {
-						has_game_rule = {
-							name = colinisation_cost
-							value = cheap
-						}
-					}
-					wealth = 400
-				}
-				is_nomadic = no
-				NOT = {
-					trait = nightswatch
-				}
-				NOT = {
-					trait = kingsguard
-				}
-			}
-			location = {
-				show_scope_change = no
-				NOT = {
-					has_province_modifier = braavos_home
-				}
-			}
-		}
-		effect = {
-			hidden_tooltip = {
-				FROM = {
-					liege = {
-						save_event_target_as = colonise_liege
-					}
-					#record liege just in case
-					if = {
-						#record patrician status
-						limit = {
-							is_patrician = yes
-							is_merchant_republic = no
-						}
-						set_character_flag = is_patrician
-					}
-				}
-				holder_scope = {
-					if = {
-						limit = {
-							culture_group = unoccupied_group
-						}
-						set_defacto_liege = event_target:colonise_liege
-					}
-				}
-			}
-			location = {
-				#build castle if needed
-				if = {
-					limit = {
-						NOT = {
-							any_province_holding = {
-								NOT = {
-									holding_type = nomad
-								}
-								NOT = {
-									holding_type = temple
-								}
-								NOT = {
-									holding_type = tribal
-								}
-							}
-						}
-					}
-					build_holding = {
-						type = castle
-						holder = FROM
-					}
-					random_province_holding = {
-						limit = {
-							holding_type = castle
-							holder_scope = {
-								character = FROM
-							}
-						}
-						save_event_target_as = new_city_holding
-						location = {
-							province_event = {
-								id = unoccupied.399
-							}
-						}
-						#increase base value, seperate event to avoid 'break'
-						if = {
-							limit = {
-								FROM = {
-									is_feudal = yes
-								}
-							}
-							make_capital_holding = yes
-						}
-					}
-				}
-				county = {
-					gain_title = FROM
-					hidden_tooltip = {
-						any_de_jure_vassal_title = {
-							limit = {
-								has_holder = yes
-							}
-							remove_building = ca_sub_barony_ruin
-							remove_building = ct_sub_barony_ruin
-							clr_title_flag = sub_barony_ruin
-						}
-					}
-				}
-				hidden_tooltip = {
-					#just in case coloniser erroneously becomes independent
-					FROM = {
-						if = {
-							limit = {
-								NOT = {
-									vassal_of = event_target:colonise_liege
-								}
-								NOT = {
-									character = event_target:colonise_liege
-								}
-							}
-							set_defacto_liege = event_target:colonise_liege
-						}
-					}
-				}
-				if = {
-					limit = {
-						OR = {
-							has_province_flag = ca_colony_1
-							NOR = {
-								has_province_flag = ca_colony_1
-								has_province_flag = ca_colony_2
-								has_province_flag = ca_colony_3
-								has_province_flag = ca_colony_4
-								has_province_flag = ca_colony_5
-								has_province_flag = ca_colony_6
-							}
-						}
-					}
-					set_province_flag = ca_colony_1
-					capital_holding = {
-						if = {
-							limit = {
-								holding_type = castle
-							}
-							add_building = ca_colony_1
-						}
-						if = {
-							limit = {
-								holding_type = city
-							}
-							add_building = ct_colony_1
-						}
-					}
-				}
-				if = {
-					limit = {
-						has_province_flag = ca_colony_2
-					}
-					capital_holding = {
-						if = {
-							limit = {
-								holding_type = castle
-							}
-							add_building = ca_colony_2
-						}
-						if = {
-							limit = {
-								holding_type = city
-							}
-							add_building = ct_colony_2
-						}
-					}
-				}
-				if = {
-					limit = {
-						has_province_flag = ca_colony_3
-					}
-					capital_holding = {
-						if = {
-							limit = {
-								holding_type = castle
-							}
-							add_building = ca_colony_3
-						}
-						if = {
-							limit = {
-								holding_type = city
-							}
-							add_building = ct_colony_3
-						}
-					}
-				}
-				if = {
-					limit = {
-						has_province_flag = ca_colony_4
-					}
-					capital_holding = {
-						if = {
-							limit = {
-								holding_type = castle
-							}
-							add_building = ca_colony_4
-						}
-						if = {
-							limit = {
-								holding_type = city
-							}
-							add_building = ct_colony_4
-						}
-					}
-				}
-				if = {
-					limit = {
-						has_province_flag = ca_colony_5
-					}
-					capital_holding = {
-						if = {
-							limit = {
-								holding_type = castle
-							}
-							add_building = ca_colony_5
-						}
-						if = {
-							limit = {
-								holding_type = city
-							}
-							add_building = ct_colony_5
-						}
-					}
-				}
-				if = {
-					limit = {
-						has_province_flag = ca_colony_6
-					}
-					capital_holding = {
-						if = {
-							limit = {
-								holding_type = castle
-							}
-							add_building = ca_colony_6
-						}
-						if = {
-							limit = {
-								holding_type = city
-							}
-							add_building = ct_colony_6
-						}
-					}
-				}
-				set_province_flag = colony_province
-				if = {
-					limit = {
-						has_province_flag = ruined_province
-					}
-					ROOT_FROM = {
-						if = {
-							limit = {
-								has_game_rule = {
-									name = colinisation_cost
-									value = expensive
-								}
-							}
-							wealth = -300							# -1600
-						}
-						else_if = {
-							limit = {
-								has_game_rule = {
-									name = colinisation_cost
-									value = normal
-								}
-							}
-							wealth = -200							# -1000
-						}
-						else_if = {
-							limit = {
-								has_game_rule = {
-									name = colinisation_cost
-									value = cheap
-								}
-							}
-							wealth = -100							# -400
-						}
-					}
-				}
-				else_if = {
-					limit = {
-						traditional_nomad_territory_trigger = yes
-					}
-					ROOT_FROM = {
-						if = {
-							limit = {
-								has_game_rule = {
-									name = colinisation_cost
-									value = expensive
-								}
-							}
-							wealth = -5							# -800
-						}
-						else_if = {
-							limit = {
-								has_game_rule = {
-									name = colinisation_cost
-									value = normal
-								}
-							}
-							wealth = -100							#-500
-						}
-						else_if = {
-							limit = {
-								has_game_rule = {
-									name = colinisation_cost
-									value = cheap
-								}
-							}
-							wealth = -50							#-200
-						}
-					}
-				}
-				hidden_tooltip = {
-					if = {
-						limit = {
-							has_province_modifier = ruined_province
-						}
-						remove_province_modifier = ruined_province
-					}
-					if = {
-						limit = {
-							has_province_modifier = dothraki_domain
-						}
-						remove_province_modifier = dothraki_domain
-					}
-					if = {
-						limit = {
-							has_province_modifier = jogos_nhai_domain
-						}
-						remove_province_modifier = jogos_nhai_domain
-					}
-					add_province_modifier = {
-						name = colony
-						duration = -1
-					}
-					province_event = {
-						id = colony.1						#Start a colony without Mtth
-					}
-				}
-			}
-			custom_tooltip = {
-				text = TOOLTIPunoccupied.3
-			}
-			hidden_tooltip = {
-				any_de_jure_vassal_title = {
-					limit = {
-						holder_scope = {
-							culture_group = unoccupied_group
-						}
-					}
-					set_defacto_liege = ROOT_FROM
-				}
-				FROM = {
-					any_realm_lord = {
-						limit = {
-							culture_group = unoccupied_group
-						}
-						clear_wealth = THIS
-						any_demesne_title = {
-							gain_title = ROOT_FROM
-						}
-						death = yes
-					}
-					any_realm_character = {
-						limit = {
-							culture_group = unoccupied_group
-						}
-						clear_wealth = THIS
-						death = yes
-					}
-					if = {
-						#maintain patrician status
-						limit = {
-							has_character_flag = is_patrician
-							is_patrician = no
-						}
-						set_government_type = merchant_republic_government
-					}
-					clr_character_flag = is_patrician
-					if = {
-						limit = {
-							ai = no
-						}
-						chronicle = {
-							entry = CHRONICLE_STARTED_COLONY
-							picture = "GFX_evt_castle_construction"
-						}
-					}
-				}
-			}
-		}
-		ai_will_do = {
-			factor = 0
-		}
-	}
+	
+
 	convert_kingdom_tier = {
 		#converts westerosi kingdoms from king to emperor tier
 		filter = owned

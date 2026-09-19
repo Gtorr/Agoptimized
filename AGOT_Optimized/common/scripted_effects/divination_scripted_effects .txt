@@ -75,7 +75,7 @@ divination_dragon_dream_effect = {
                 }
                 modifier = {
                     factor = 1.5
-                    is_coin_flip_dynasty_trigger = yes
+                    is_coin_flip_dynasty_trigger = true
                 }
 
                 modifier = {

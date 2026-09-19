@@ -15,16 +15,6 @@ province_event = {
             stacking = yes
             duration = -1
         }
-        add_province_modifier = {
-            name = colony_work
-            stacking = yes
-            duration = -1
-        }
-        add_province_modifier = {
-            name = colony_work
-            stacking = yes
-            duration = -1
-        }
         #Get Admin score
         event_target:colonise_liege = {
             export_to_variable = {
@@ -506,6 +496,9 @@ province_event = {
     id = colony.3
     desc = "ProgressIsMade"
     is_triggered_only = yes	# colony.2 [loop event}
+    trigger = {
+        has_province_flag = colony_province
+    }
     hide_window = yes
     immediate = {
         #name = "Ok"
@@ -608,6 +601,9 @@ province_event = {
     id = colony.4
     picture = "GFX_evt_castle_construction"
     is_triggered_only = yes
+    trigger = {
+        has_province_flag = colony_province
+    }
     desc = {
         text = EVTDESCunoccupied.4
         trigger = {
@@ -622,18 +618,7 @@ province_event = {
             has_province_modifier = partial_colony
         }
     }
-    has_flag = colony_province
-    trigger = {
-        OR = {
-            has_province_flag = ruined_province
-            traditional_nomad_territory_trigger = yes
-        }
-        owner = {
-            NOT = {
-                culture_group = unoccupied_group
-            }
-        }
-    }
+
     # This part executes at the end for the culture
     immediate = {
         if = {
@@ -1184,6 +1169,12 @@ province_event = {
     }
 }
 
+#Timer Region .2x years
+province_event = {
+    id = colony.20
+    is_triggered_only = yes
+}
+
 character_event = {
     id = colony.50
     is_triggered_only = yes
@@ -1196,124 +1187,19 @@ character_event = {
 
 province_event = {
     id = colony.99
+    picture = GFX_evt_castle_construction
     is_triggered_only = yes
-    desc = "Ok"
+    desc = "The colony had a sudden growth and is now complete!"
     option = {
         name = "Ok"
-        if = {
-            limit = {
-                has_instances_of_province_modifier = {
-                    modifier = colony_work
-                    amount = 1
-                }
-            }
-            remove_province_modifiers = {
-                modifier = colony_work
-                amount = 3
-            }
+        remove_province_modifier = colony
+        remove_province_modifier =  partial_colony
+        remove_province_modifiers = {
+            modifier = colony_work
+            amount = 99
         }
-        else_if = {
-            # Halfway
-            limit = {
-                NOT = {
-                    has_province_modifier = partial_colony
-                }
-            }
-            add_province_modifier = {
-                name = colony_work
-                stacking = yes
-                duration = -1
-            }
-            add_province_modifier = {
-                name = colony_work
-                stacking = yes
-                duration = -1
-            }
-            add_province_modifier = {
-                name = colony_work
-                stacking = yes
-                duration = -1
-            }
-            province_event = {
-                id = colony.4				#Partial Colony
-            }
-        }
-        else_if = {
-            # End
-            limit = {
-                has_province_modifier = partial_colony
-                NOT = {
-                    has_instances_of_province_modifier = {
-                        modifier = colony_work
-                        amount = 1
-                    }
-                }
-            }
-            if = {
-                limit = {
-                    NOT = {
-                        any_province_holding = {
-                            holding_type = temple
-                        }
-                    }
-                }
-                build_holding = {
-                    type = temple
-                }
-            }
-            any_province_holding = {
-                limit = {
-                    holding_type = temple
-                }
-                add_building = tp_town_1
-            }
-            province_event = {
-                id = colony.4				#Finish colony
-            }
-        }
-    }
-}
-
-character_event = {
-    # OFF
-    #Rcull og, deleted
-    id = colony.1000	#On start cull any non top holding
-    desc = "Rcull"
-    is_triggered_only = yes	# At start
-    hide_window = yes
-    immediate = {
-        any_province = {
-            limit = {
-                has_province_flag = ruined_province
-            }
-            any_province_holding = {
-                limit = {
-                    holding_type = castle
-                }
-                make_capital_holding = yes
-            }
-            holder_scope = {
-                any_vassal = {
-                    any_courtier = {
-                        death = {
-                            death_reason = death_accident_wonder_traps
-                        }
-                    }
-                    capital_holding = {
-                        destroy_settlement = yes
-                    }
-                    abdicate_to = PREV
-                    death = {
-                        death_reason = death_accident_wonder_traps
-                    }
-                }
-                any_courtier = {
-                    death = {
-                        death_reason = death_accident_wonder_traps
-                    }
-                }
-            }
-        }
+        province_set_colony_culture = yes 
+        province_finish_colony = yes
     }
 }
 

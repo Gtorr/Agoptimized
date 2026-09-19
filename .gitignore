@@ -1,0 +1,30 @@
+AGOT_Optimized/.cwtools/
+
+
+# CWtools
+*.cwt
+*.nfo
+*.editorconfig
+*.ini
+
+# luarocks build files
+*.src.rock
+*.zip
+*.tar.gz
+
+# Object files
+*.o
+*.os
+*.ko
+*.obj
+*.elf
+
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+

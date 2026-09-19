@@ -75,7 +75,7 @@ can_recive_dragon_dreams = {
 				is_incapable = no
 				prisoner = no
 				NOT = {
-					is_inaccessible_trigger = yes
+					is_inaccessible_trigger = true
 				}
 				NOT = {
 					character = ROOT

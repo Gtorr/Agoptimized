@@ -1,6 +1,6 @@
 can_buy_unsullied_trigger = {
 	#ROOT is the buyer
-	has_space_for_retinue = RETTYPE_INF_UNSULLIED
+	has_space_for_retinue = RETTYPE_INF_UNSULLIED 
 }
 
 can_ai_buy_unsullied_trigger = {
