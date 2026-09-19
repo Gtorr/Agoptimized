@@ -1201,40 +1201,42 @@ province_finish_colony = {
                             character = PREVPREVPREV
                         }
                     }
-                    increase_holding_base_value_effect = yes
-                    #increase base value, seperate event to avoid 'break'
+                    save_event_target_as = new_city_holding
+                    location = { province_event = { id = unoccupied.399 } } #increase base value, seperate event to avoid 'break'
                 }
             }
-            if = {
-                limit = {
-                    NOT = {
-                        region = world_westeros
-                    }
-                    has_empty_holding = yes
-                    NOT = {
-                        any_province_holding = {
-                            holding_type = temple
-                        }
-                    }
-                }
-                build_holding = {
-                    type = temple
-                    holder = PREV
-                }
-                random_province_holding = {
-                    limit = {
-                        holding_type = temple
-                        holder_scope = {
-                            character = PREVPREVPREV
-                        }
-                    }
-                    add_building = tp_town
-                }
-            }
+            # Add a temple, or not
+            # if = {
+            #     limit = {
+            #         NOT = {
+            #             region = world_westeros
+            #         }
+            #         has_empty_holding = yes
+            #         NOT = {
+            #             any_province_holding = {
+            #                 holding_type = temple
+            #             }
+            #         }
+            #     }
+            #     build_holding = {
+            #         type = temple
+            #         holder = PREV
+            #     }
+            #     random_province_holding = {
+            #         limit = {
+            #             holding_type = temple
+            #             holder_scope = {
+            #                 character = PREVPREVPREV
+            #             }
+            #         }
+            #         add_building = tp_town
+            #     }
+            # }
         }
     }
     remove_province_modifier = colony
     remove_province_modifier = partial_colony
+    remove_province_modifier = colony_status
     clr_province_flag = ruined_province
     clr_province_flag = colony_province
     clr_province_flag = dredged

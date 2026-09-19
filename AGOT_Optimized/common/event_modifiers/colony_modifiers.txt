@@ -1,6 +1,6 @@
 
 colony_status = {
-	icon = 29
+	icon = 3
 	local_revolt_risk = -0.05
 }
 slave_raided = {

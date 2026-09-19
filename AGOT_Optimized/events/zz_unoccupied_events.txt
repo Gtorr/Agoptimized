@@ -223,7 +223,6 @@ character_event = {
 								id = unoccupied.399
 							}
 						}
-						#increase base value, seperate event to avoid 'break'
 						if = {
 							limit = {
 								ROOT = {
@@ -564,6 +563,9 @@ character_event = {
 					name = colony
 					duration = -1
 				}
+				province_event = {
+					id = colony.1
+				}
 			}
 			custom_tooltip = {
 				text = TOOLTIPunoccupied.3
@@ -809,7 +811,6 @@ province_event = {
 #************************************************
 #Spawn some courtiers, or not maybe
 #************************************************
-
 character_event = {
 	id = unoccupied.101
 	desc = "EVTDESCunoccupied.101"

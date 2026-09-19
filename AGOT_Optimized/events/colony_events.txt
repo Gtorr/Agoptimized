@@ -2,16 +2,6 @@ namespace = colony
 # [colony.1] Target colony is selected
 # [colony.2] # [ Roll next timer ]
 # [colony.3] # [ Progress is made ]
-# [colony.20] # [ Timer 0 ] (years)
-# [colony.21] # [ Timer 1 ] (years)
-# [colony.22] # [ Timer 2 ] (years)
-# [colony.23] # [ Timer 3 ] (years)
-# [colony.24] # [ Timer 4 ] (years)
-# [colony.25] # [ Timer 5 ] (years)
-# [colony.26] # [ Timer 6 ] (years)
-# [colony.27] # [ Timer 7 ] (years)
-# [colony.28] # [ Timer 8 ] (years)
-# [colony.29] # [ Timer 9 ] (years)
 #**********************************************************************
 province_event = {
     id = colony.1
@@ -19,486 +9,1104 @@ province_event = {
     is_triggered_only = yes	# From title_decisions.txt
     hide_window = yes
     immediate = {
-        add_province_modifier = {
-            name = colony_work
-            stacking = yes
-            duration = -1
+        set_variable = {
+            which = colony_stage
+            value = 1
         }
-        #Get Admin score
-        event_target:colonise_liege = {
-            export_to_variable = {
-                which = colony_skill
-                value = realm_stewardship
-            }
-            if = {
-                limit = {
-                    has_character_modifier = slv_mod_1
-                }
-                multiply_variable = {
-                    which = colony_skill
-                    value = 1.05
-                }
-            }
-            else_if = {
-                limit = {
-                    has_character_modifier = slv_mod_2
-                }
-                multiply_variable = {
-                    which = colony_skill
-                    value = 1.1
-                }
-            }
-            else_if = {
-                limit = {
-                    has_character_modifier = slv_mod_3
-                }
-                multiply_variable = {
-                    which = colony_skill
-                    value = 1.15
-                }
-            }
-            else_if = {
-                limit = {
-                    has_character_modifier = slv_mod_4
-                }
-                multiply_variable = {
-                    which = colony_skill
-                    value = 1.2
-                }
-            }
-            else_if = {
-                limit = {
-                    has_character_modifier = slv_mod_5
-                }
-                multiply_variable = {
-                    which = colony_skill
-                    value = 1.25
-                }
-            }
-            else_if = {
-                limit = {
-                    has_character_modifier = slv_mod_6
-                }
-                multiply_variable = {
-                    which = colony_skill
-                    value = 1.3
-                }
-            }
-            else_if = {
-                limit = {
-                    has_character_modifier = slv_mod_7
-                }
-                multiply_variable = {
-                    which = colony_skill
-                    value = 1.35
-                }
-            }
-            else_if = {
-                limit = {
-                    has_character_modifier = slv_mod_8
-                }
-                multiply_variable = {
-                    which = colony_skill
-                    value = 1.4
-                }
-            }
-            else_if = {
-                limit = {
-                    has_character_modifier = slv_mod_9
-                }
-                multiply_variable = {
-                    which = colony_skill
-                    value = 1.45
-                }
-            }
-            else_if = {
-                limit = {
-                    has_character_modifier = slv_mod_10
-                }
-                multiply_variable = {
-                    which = colony_skill
-                    value = 1.5
-                }
-            }
-        }
-        #Roll First Timer
-        if = {
-            limit = {
-                event_target:colonise_liege = {
-                    check_variable = {
-                        which = colony_skill
-                        value = 40
-                    }
-                }
-            }
-            province_event = {
-                id = colony.3
-                days = 420				# 1Y
-                random = 128
-            }
-            event_target:colonise_liege = {
-                set_variable = {
-                    which = colony_years
-                    value = 1
-                }
-            }
-        }
-        else_if = {
-            limit = {
-                event_target:colonise_liege = {
-                    check_variable = {
-                        which = colony_skill
-                        value = 30
-                    }
-                }
-            }
-            province_event = {
-                id = colony.3
-                days = 555				# 1.5Y
-                random = 128				# 180
-            }
-            event_target:colonise_liege = {
-                set_variable = {
-                    which = colony_years
-                    value = 1.5
-                }
-            }
-        }
-        else_if = {
-            limit = {
-                event_target:colonise_liege = {
-                    check_variable = {
-                        which = colony_skill
-                        value = 20
-                    }
-                }
-            }
-            province_event = {
-                id = colony.3
-                days = 730				# 1095				# 2y
-                random = 180				# 180
-            }
-            event_target:colonise_liege = {
-                set_variable = {
-                    which = colony_years
-                    value = 2
-                }
-            }
-        }
-        else_if = {
-            limit = {
-                event_target:colonise_liege = {
-                    check_variable = {
-                        which = colony_skill
-                        value = 15
-                    }
-                }
-            }
-            province_event = {
-                id = colony.3
-                days = 910				#	2.5Y
-                random = 180				# 180
-            }
-            event_target:colonise_liege = {
-                set_variable = {
-                    which = colony_years
-                    value = 2.5
-                }
-            }
-        }
-        else_if = {
-            limit = {
-                event_target:colonise_liege = {
-                    check_variable = {
-                        which = colony_skill
-                        value = 10
-                    }
-                }
-            }
-            province_event = {
-                id = colony.3
-                days = 1095
-                random = 250
-            }
-            event_target:colonise_liege = {
-                set_variable = {
-                    which = colony_years
-                    value = 3
-                }
-            }
-        }
-        else = {
-            province_event = {
-                id = colony.3
-                days = 1460
-                random = 250
-            }
-            event_target:colonise_liege = {
-                set_variable = {
-                    which = colony_years
-                    value = 4
-                }
-            }
-        }
-        event_target:colonise_liege = {
-            character_event = {
-                id = colony.50
-            }
+        province_event = {
+            id = colony.2
         }
     }
 }
 
 # [ Roll next timer ]
+#This event has 1000+ lines
 province_event = {
     id = colony.2
     desc = "EVDESCcolony2"
     is_triggered_only = yes	# colony.1 and 3 [loop event}
     hide_window = yes
     immediate = {
-        #Get Admin score
-        event_target:colonise_liege = {
-            export_to_variable = {
-                which = colony_skill
-                value = stewardship
+        #Calculate old average time
+        if = { # *** Is nomad colony ***
+            limit = {
+                NOT  = { has_province_flag = ruined_province }
             }
-            if = {
-                limit = {
+            set_variable = {
+                which = colony_difficulty
+                value = 10		#Nomad Timer
+            }
+        }
+        else = {
+            # Full ruin colony
+            set_variable = {
+                which = colony_difficulty
+                value = 15		#Nomad Timer
+            }
+        }
+        #***Rules and mods***
+        if = {
+            limit = {
+                has_global_flag = freehold_submod_initialised
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.5
+            }
+        }
+        if = {
+            limit = {
+                has_game_rule = {
+                    name = colinisation_time
+                    value = short
+                }
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.5
+            }
+        }
+        else_if = {
+            limit = {
+                has_game_rule = {
+                    name = colinisation_time
+                    value = long
+                }
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 2
+            }
+        }
+        #***Colony Dev level***
+        if = {
+            limit = {
+                has_province_flag = ca_colony_2
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 1.33
+            }
+        }
+        else_if = {
+            limit = {
+                has_province_flag = ca_colony_3
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 1.66
+            }
+        }
+        else_if = {
+            limit = {
+                has_province_flag = ca_colony_4
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 2
+            }
+        }
+        else_if = {
+            limit = {
+                has_province_flag = ca_colony_5
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 2.33
+            }
+        }
+        else_if = {
+            limit = {
+                has_province_flag = ca_colony_6
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 2.66
+            }
+        }
+        #***Winter***
+        if = {
+            limit = {
+                has_province_modifier = asoiaf_mild_winter
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 1.5
+            }
+        }
+        else_if = {
+            limit = {
+                has_province_modifier = asoiaf_normal_winter
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 2
+            }
+        }
+        else_if = {
+            limit = {
+                has_province_modifier = asoiaf_harsh_winter
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 3
+            }
+        }
+        #***Other Maluses***
+        if = {
+            limit = {
+                has_province_modifier = sabotaged_building
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 1.3
+            }
+        }
+        if = {
+            limit = {
+                has_province_modifier = colony_famine
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 2
+            }
+        }
+        if = {
+            limit = {
+                has_province_modifier = natives_enslaved
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 1.5
+            }
+        }
+        if = {
+            limit = {
+                has_province_modifier = colony_slow_economy
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 2
+            }
+        }
+        if = {
+            limit = {
+                has_province_modifier = smugglers_ring
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 1.5
+            }
+        }
+        if = {
+            limit = {
+                has_province_modifier = outlawed_guild
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 1.3
+            }
+        }
+        #***Slavery bonus***
+        if = {
+            limit = {
+                owner = {
+                    has_character_modifier = slv_mod_1
+                }
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.95
+            }
+        }
+        else_if = {
+            limit = {
+                owner = {
+                    has_character_modifier = slv_mod_2
+                }
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.9
+            }
+        }
+        else_if = {
+            limit = {
+                owner = {
+                    has_character_modifier = slv_mod_3
+                }
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.85
+            }
+        }
+        else_if = {
+            limit = {
+                owner = {
+                    has_character_modifier = slv_mod_4
+                }
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.8
+            }
+        }
+        else_if = {
+            limit = {
+                owner = {
+                    has_character_modifier = slv_mod_5
+                }
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.75
+            }
+        }
+        else_if = {
+            limit = {
+                owner = {
+                    has_character_modifier = slv_mod_6
+                }
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.7
+            }
+        }
+        else_if = {
+            limit = {
+                owner = {
+                    has_character_modifier = slv_mod_7
+                }
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.65
+            }
+        }
+        else_if = {
+            limit = {
+                owner = {
+                    has_character_modifier = slv_mod_8
+                }
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.6
+            }
+        }
+        else_if = {
+            limit = {
+                owner = {
+                    has_character_modifier = slv_mod_9
+                }
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.55
+            }
+        }
+        else_if = {
+            limit = {
+                owner = {
+                    has_character_modifier = slv_mod_10
+                }
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.45
+            }
+        }
+        #***misc bonus from other sources***
+        if = {
+            limit = {
+
+                has_province_modifier = master_builder
+
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.95
+            }
+        }
+        if = {
+            limit = {
+                has_province_modifier = stone_quarry
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.8
+            }
+        }
+        if = {
+            limit = {
+                has_province_modifier = friendly_innovations
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.8
+            }
+        }
+        if = {
+            limit = {
+                has_province_modifier = prosperity_modifier_2
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.8
+            }
+        }
+        else_if = {
+            limit = {
+                has_province_modifier = prosperity_modifier_3
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.7
+            }
+        }
+        if = {
+            limit = {
+                has_province_modifier = logging_company_province
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.85
+            }
+        }
+        if = {
+            limit = {
+
+                has_province_modifier = carpenters_guild
+
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.8
+            }
+        }
+        if = {
+            limit = {
+
+                has_province_modifier = blast_furnace
+
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.8
+            }
+        }
+        if = {
+            limit = {
+
+                has_province_modifier = inspired_peasantry
+
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.85
+            }
+        }
+        if = {
+            limit = {
+                has_province_modifier = new_roads
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.85
+            }
+        }
+        if = {
+            limit = {
+                has_province_modifier = partial_colony
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.66
+            }
+        }
+        #***Owner Admin*** NOT the coloniser liege per se
+        if = {
+            limit = {
+                owner = { NOT = { stewardship = 2 } }
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 1.44
+            }
+        }
+        else_if = {
+            limit = {
+                owner = { NOT = { stewardship = 4 } }
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 1.33
+            }
+        }
+        else_if = {
+            limit = {
+                owner = { NOT = { stewardship = 6 } }
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 1.22
+            }
+        }
+        else_if = {
+            limit = {
+                owner = { NOT = { stewardship = 8 } }
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 1.11
+            }
+        }
+        else_if = {
+            limit = {
+                owner = { stewardship = 26 }
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.2
+            }
+        }
+        else_if = {
+            limit = {
+                owner = { stewardship = 24 }
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.3
+            }
+        }
+        else_if = {
+            limit = {
+                owner = { stewardship = 22 }
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.4
+            }
+        }
+        else_if = {
+            limit = {
+                owner = { stewardship = 20 }
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.5
+            }
+        }
+        else_if = {
+            limit = {
+                owner = { stewardship = 18 }
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.6
+            }
+        }
+        else_if = {
+            limit = {
+                owner = { stewardship = 16 }
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.7
+            }
+        }
+        else_if = {
+            limit = {
+                owner = { stewardship = 14 }
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.8
+            }
+        }
+        else_if = {
+            limit = {
+                owner = { stewardship = 12 }
+            }
+            multiply_variable = {
+                which = colony_difficulty
+                value = 0.9
+            }
+        }
+        #***Tresurer job Bonus***
+        if = {
+            limit = {
+                owner = {
                     job_treasurer = {
                         OR = {
-                            liege = {
-                                ai = yes
-                            }
+                            liege = { ai = yes }
                             AND = {
                                 has_job_action = action_oversee_construction
-                                location = {
-                                    province_id = from
-                                }
+                                location = { province_id = ROOT }
                             }
                         }
                     }
                 }
-                export_to_variable = {
-                    which = colony_skill
-                    value = realm_stewardship
-                }
             }
-
             if = {
                 limit = {
-                    has_character_modifier = slv_mod_1
+                    owner = { job_treasurer = { stewardship = 26 } }
                 }
                 multiply_variable = {
-                    which = colony_skill
-                    value = 1.05
+                    which = colony_difficulty
+                    value = 0.2
                 }
             }
             else_if = {
                 limit = {
-                    has_character_modifier = slv_mod_2
+                    owner = { job_treasurer = { stewardship = 24 } }
                 }
                 multiply_variable = {
-                    which = colony_skill
-                    value = 1.1
+                    which = colony_difficulty
+                    value = 0.3
                 }
             }
             else_if = {
                 limit = {
-                    has_character_modifier = slv_mod_3
+                    owner = { job_treasurer = { stewardship = 22 } }
                 }
                 multiply_variable = {
-                    which = colony_skill
-                    value = 1.15
+                    which = colony_difficulty
+                    value = 0.4
                 }
             }
             else_if = {
                 limit = {
-                    has_character_modifier = slv_mod_4
+                    owner = { job_treasurer = { stewardship = 20 } }
                 }
                 multiply_variable = {
-                    which = colony_skill
-                    value = 1.2
+                    which = colony_difficulty
+                    value = 0.5
                 }
             }
             else_if = {
                 limit = {
-                    has_character_modifier = slv_mod_5
+                    owner = { job_treasurer = { stewardship = 18 } }
                 }
                 multiply_variable = {
-                    which = colony_skill
-                    value = 1.25
+                    which = colony_difficulty
+                    value = 0.6
                 }
             }
             else_if = {
                 limit = {
-                    has_character_modifier = slv_mod_6
+                    owner = { job_treasurer = { stewardship = 16 } }
                 }
                 multiply_variable = {
-                    which = colony_skill
-                    value = 1.3
+                    which = colony_difficulty
+                    value = 0.7
                 }
             }
             else_if = {
                 limit = {
-                    has_character_modifier = slv_mod_7
+                    owner = { job_treasurer = { stewardship = 14 } }
                 }
                 multiply_variable = {
-                    which = colony_skill
-                    value = 1.35
+                    which = colony_difficulty
+                    value = 0.8
                 }
             }
-            else_if = {
-                limit = {
-                    has_character_modifier = slv_mod_8
-                }
+            else = {
                 multiply_variable = {
-                    which = colony_skill
-                    value = 1.4
-                }
-            }
-            else_if = {
-                limit = {
-                    has_character_modifier = slv_mod_9
-                }
-                multiply_variable = {
-                    which = colony_skill
-                    value = 1.45
-                }
-            }
-            else_if = {
-                limit = {
-                    has_character_modifier = slv_mod_10
-                }
-                multiply_variable = {
-                    which = colony_skill
-                    value = 1.5
+                    which = colony_difficulty
+                    value = 0.9
                 }
             }
         }
+        # *** Timer Roll ***
+        set_variable = {
+            which = stage_difficulty
+            which = colony_difficulty
+        }
+        divide_variable = {
+            which = stage_difficulty
+            value = 8 # we have 8 stages
+        }
         if = {
             limit = {
-                event_target:colonise_liege = {
+                check_variable = {
+                    which = stage_difficulty
+                    value <= 0.5
+                }
+            }
+            # Show Aprox time modifier best
+            if = {
+                limit = {
                     check_variable = {
-                        which = colony_skill
-                        value = 40
+                        which = colony_stage
+                        value = 1
                     }
+                }
+                remove_province_modifier = colony_status
+                add_province_modifier = {
+                    modifier = colony_status
+                    days = 2480
+                }
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = colony_stage
+                        value = 4
+                    }
+                }
+                remove_province_modifier = colony_status
+                add_province_modifier = {
+                    modifier = colony_status
+                    days = 1240
                 }
             }
             province_event = {
                 id = colony.3
-                days = 420				# 1Y
-                random = 128
+                days = 190				# Best case
+                random = 120
             }
-            event_target:colonise_liege = {
-                set_variable = {
-                    which = colony_years
+        }
+        else_if = {
+            limit = {
+                check_variable = {
+                    which = stage_difficulty
+                    value <= 1
+                }
+            }
+            # Show Aprox time modifier 1
+            if = {
+                limit = {
+                    check_variable = {
+                        which = colony_stage
+                        value = 1
+                    }
+                }
+                remove_province_modifier = colony_status
+                add_province_modifier = {
+                    modifier = colony_status
+                    days = 4080
+                }
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = colony_stage
+                        value = 4
+                    }
+                }
+                remove_province_modifier = colony_status
+                add_province_modifier = {
+                    modifier = colony_status
+                    days = 2040
+                }
+            }
+            province_event = {
+                id = colony.3
+                days = 380				# T1
+                random = 130
+            }
+        }
+        else_if = {
+            limit = {
+                check_variable = {
+                    which = stage_difficulty
+                    value <= 1.5
+                }
+            }
+            # Show Aprox time modifier 1.5
+            if = {
+                limit = {
+                    check_variable = {
+                        which = colony_stage
+                        value = 1
+                    }
+                }
+                remove_province_modifier = colony_status
+                add_province_modifier = {
+                    modifier = colony_status
+                    days = 5280
+                }
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = colony_stage
+                        value = 4
+                    }
+                }
+                remove_province_modifier = colony_status
+                add_province_modifier = {
+                    modifier = colony_status
+                    days = 2640
+                }
+            }
+            province_event = {
+                id = colony.3
+                days = 520				# T1.5
+                random = 140
+            }
+        }
+        else_if = {
+            limit = {
+                check_variable = {
+                    which = stage_difficulty
+                    value <= 2
+                }
+            }
+            # Show Aprox time modifier 2
+            if = {
+                limit = {
+                    check_variable = {
+                        which = colony_stage
+                        value = 1
+                    }
+                }
+                remove_province_modifier = colony_status
+                add_province_modifier = {
+                    modifier = colony_status
+                    days = 7040
+                }
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = colony_stage
+                        value = 4
+                    }
+                }
+                remove_province_modifier = colony_status
+                add_province_modifier = {
+                    modifier = colony_status
+                    days = 3520
+                }
+            }
+            province_event = {
+                id = colony.3
+                days = 	730			# T2
+                random = 150
+            }
+        }
+        else_if = {
+            limit = {
+                check_variable = {
+                    which = stage_difficulty
+                    value <= 3
+                }
+            }
+            # Show Aprox time modifier 3
+            limit = {
+                check_variable = {
+                    which = colony_stage
                     value = 1
                 }
             }
-        }
-        if = {
-            limit = {
-                event_target:colonise_liege = {
-                    check_variable = {
-                        which = colony_skill
-                        value = 30
-                    }
-                }
-            }
-            province_event = {
-                id = colony.3
-                days = 555				# 1.5Y
-                random = 128				# 180
-            }
-            event_target:colonise_liege = {
-                set_variable = {
-                    which = colony_years
-                    value = 1.5
-                }
+            remove_province_modifier = colony_status
+            add_province_modifier = {
+                modifier = colony_status
+                years = 26
             }
         }
         if = {
             limit = {
-                event_target:colonise_liege = {
-                    check_variable = {
-                        which = colony_skill
-                        value = 20
-                    }
-                }
-            }
-            province_event = {
-                id = colony.3
-                days = 730				# 1095				# 2y
-                random = 180				# 180
-            }
-            event_target:colonise_liege = {
-                set_variable = {
-                    which = colony_years
-                    value = 2
-                }
-            }
-        }
-        else_if = {
-            limit = {
-                event_target:colonise_liege = {
-                    check_variable = {
-                        which = colony_skill
-                        value = 15
-                    }
-                }
-            }
-            province_event = {
-                id = colony.3
-                days = 910				#	2.5Y
-                random = 180				# 180
-            }
-            event_target:colonise_liege = {
-                set_variable = {
-                    which = colony_years
-                    value = 2.5
-                }
-            }
-        }
-        else_if = {
-            limit = {
-                event_target:colonise_liege = {
-                    check_variable = {
-                        which = colony_skill
-                        value = 10
-                    }
-                }
-            }
-            province_event = {
-                id = colony.3
-                days = 1095
-                random = 250
-            }
-            event_target:colonise_liege = {
-                set_variable = {
-                    which = colony_years
-                    value = 3
-                }
-            }
-        }
-        else = {
-            province_event = {
-                id = colony.3
-                days = 1460
-                random = 250
-            }
-            event_target:colonise_liege = {
-                set_variable = {
-                    which = colony_years
+                check_variable = {
+                    which = colony_stage
                     value = 4
                 }
             }
-        }
-        event_target:colonise_liege = {
-            character_event = {
-                id = colony.50
+            remove_province_modifier = colony_status
+            add_province_modifier = {
+                modifier = colony_status
+                years = 13
             }
         }
+        province_event = {
+            id = colony.3
+            days = 	1000			# T3
+            random = 160
+        }
     }
+    else_if = {
+        limit = {
+
+            check_variable = {
+                which = stage_difficulty
+                value <= 4
+            }
+
+        }
+        # Show Aprox time modifier 4
+        if = {
+            limit = {
+                check_variable = {
+                    which = colony_stage
+                    value = 1
+                }
+            }
+            remove_province_modifier = colony_status
+            add_province_modifier = {
+                modifier = colony_status
+                years = 36
+            }
+        }
+        if = {
+            limit = {
+                check_variable = {
+                    which = colony_stage
+                    value = 4
+                }
+            }
+            remove_province_modifier = colony_status
+            add_province_modifier = {
+                modifier = colony_status
+                years = 18
+            }
+        }
+        province_event = {
+            id = colony.3
+            days = 	1460			# T4
+            random = 170
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = stage_difficulty
+                value <= 5
+            }
+        }
+        # Show Aprox time modifier 5
+        if = {
+            limit = {
+                check_variable = {
+                    which = colony_stage
+                    value = 1
+                }
+            }
+            remove_province_modifier = colony_status
+            add_province_modifier = {
+                modifier = colony_status
+                years = 47
+            }
+        }
+        if = {
+            limit = {
+                check_variable = {
+                    which = colony_stage
+                    value = 4
+                }
+            }
+            remove_province_modifier = colony_status
+            add_province_modifier = {
+                modifier = colony_status
+                years = 24
+            }
+        }
+        province_event = {
+            id = colony.3
+            days = 	1825			# T5
+            random = 300
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = stage_difficulty
+                value <= 6
+            }
+        }
+        # Show Aprox time modifier 6
+        if = {
+            limit = {
+                check_variable = {
+                    which = colony_stage
+                    value = 1
+                }
+            }
+            remove_province_modifier = colony_status
+            add_province_modifier = {
+                modifier = colony_status
+                years = 54
+            }
+        }
+        if = {
+            limit = {
+                check_variable = {
+                    which = colony_stage
+                    value = 4
+                }
+            }
+            remove_province_modifier = colony_status
+            add_province_modifier = {
+                modifier = colony_status
+                years = 27
+            }
+        }
+        province_event = {
+            id = colony.3
+            days = 	2190			# T6
+            random = 243
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = stage_difficulty
+                value <= 7
+            }
+        }
+        # Show Aprox time modifier 7
+        if = {
+            limit = {
+                check_variable = {
+                    which = colony_stage
+                    value = 1
+                }
+            }
+            remove_province_modifier = colony_status
+            add_province_modifier = {
+                modifier = colony_status
+                years = 63
+            }
+        }
+        if = {
+            limit = {
+                check_variable = {
+                    which = colony_stage
+                    value = 4
+                }
+            }
+            remove_province_modifier = colony_status
+            add_province_modifier = {
+                modifier = colony_status
+                years = 32
+            }
+        }
+        province_event = {
+            id = colony.3
+            days = 	2555			# T7
+            random = 293
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = stage_difficulty
+                value <=  8
+            }
+        }
+        # Show Aprox time modifier 8
+        if = {
+            limit = {
+                check_variable = {
+                    which = colony_stage
+                    value = 1
+                }
+            }
+            remove_province_modifier = colony_status
+            add_province_modifier = {
+                modifier = colony_status
+                years = 72
+            }
+        }
+        if = {
+            limit = {
+                check_variable = {
+                    which = colony_stage
+                    value = 4
+                }
+            }
+            remove_province_modifier = colony_status
+            add_province_modifier = {
+                modifier = colony_status
+                years = 36
+            }
+        }
+        province_event = {
+            id = colony.3
+            days = 	2920			# T8
+            random = 324
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = stage_difficulty
+                value <= 9
+            }
+        }
+        # Show Aprox time modifier 9
+        if = {
+            limit = {
+                check_variable = {
+                    which = colony_stage
+                    value = 1
+                }
+            }
+            remove_province_modifier = colony_status
+            add_province_modifier = {
+                modifier = colony_status
+                years = 90
+            }
+        }
+        if = {
+            limit = {
+                check_variable = {
+                    which = colony_stage
+                    value = 4
+                }
+            }
+            remove_province_modifier = colony_status
+            add_province_modifier = {
+                modifier = colony_status
+                years = 45
+            }
+        }
+        province_event = {
+            id = colony.3
+            days = 	3285			# T9
+            random = 1095
+        }
+    }
+    else = { #  more than 9
+        # Show Aprox time modifier 10
+        if = {
+            limit = {
+                check_variable = {
+                    which = colony_stage
+                    value = 1
+                }
+            }
+            remove_province_modifier = colony_status
+            add_province_modifier = {
+                modifier = colony_status
+                years = 105 # Lol
+            }
+        }
+        if = {
+            limit = {
+                check_variable = {
+                    which = colony_stage
+                    value = 4
+                }
+            }
+            remove_province_modifier = colony_status
+            add_province_modifier = {
+                modifier = colony_status
+                years = 52
+            }
+        }
+        province_event = {
+            id = colony.3
+            days = 	3650			# T10
+            random = 1216
+        }
+    }
+
 }
+
 
 # [ Progress event ]
 province_event = {
@@ -510,98 +1118,29 @@ province_event = {
     }
     hide_window = yes
     immediate = {
-        #name = "Ok"
-        #Colony work
+        change_variable = {
+            which = colony_stage
+            value = 1
+        }
         if = {
-            limit = {
-                has_instances_of_province_modifier = {
-                    modifier = colony_work
-                    amount = 1
+            limit = { # 100 %
+                check_variable = {
+                    which = colony_stage
+                    value >= 8
                 }
             }
-            remove_province_modifiers = {
-                modifier = colony_work
-                amount = 1
-            }
-            if = {
-                limit = {
-                    traditional_nomad_territory_trigger = yes
-                    has_instances_of_province_modifier = {
-                        modifier = colony_work
-                        amount = 1
-                    }
-                }
-                remove_holding_modifiers = {
-                    modifier = colony_work
-                    amount = 1
-                }
-            }
-            province_event = {
-                id = colony.2				# Next timer
-            }
+            province_finish_colony = yes
+            # Event for player
         }
-        else_if = {
-            # Halfway
+        else_if = { # 50 %
             limit = {
-                has_province_modifier = colony
-                #NOT = {
-                #	has_province_modifier = partial_colony
-                #}
-            }
-            add_province_modifier = {
-                name = colony_work
-                stacking = yes
-                duration = -1
-            }
-            add_province_modifier = {
-                name = colony_work
-                stacking = yes
-                duration = -1
-            }
-            add_province_modifier = {
-                name = colony_work
-                stacking = yes
-                duration = -1
-            }
-            province_event = {
-                id = colony.4				#Partial Colony
-            }
-            province_event = {
-                id = colony.2				# Next timer
-            }
-        }
-        else_if = {
-            # End
-            limit = {
-                has_province_modifier = partial_colony
-                NOT = {
-                    has_instances_of_province_modifier = {
-                        modifier = colony_work
-                        amount = 1
-                    }
+                check_variable = {
+                    which = colony_stage
+                    value = 4
                 }
             }
-            if = {
-                limit = {
-                    NOT = {
-                        any_province_holding = {
-                            holding_type = temple
-                        }
-                    }
-                }
-                build_holding = {
-                    type = temple
-                }
-            }
-            any_province_holding = {
-                limit = {
-                    holding_type = temple
-                }
-                add_building = tp_town_1
-            }
-            province_event = {
-                id = colony.4				#Finish colony
-            }
+            province_set_colony_culture = yes
+            # Event for player
         }
     }
 }
@@ -1178,31 +1717,7 @@ province_event = {
     }
 }
 
-#***Timers***
-province_event = { # Less than a year
-    id = colony.20
-    is_triggered_only = yes
-    hide_window = yes
-    immediate = {
-        province_event = {
-            id = colony.3
-            days = 365
-            random = 128
-        }
-    }
-}
-province_event = { # 1 year
-    id = colony.21
-    is_triggered_only = yes
-    hide_window = yes
-    immediate = {
-        province_event = {
-            id = colony.3
-            days = 420				# 1Y
-            random = 128
-        }
-    }
-}
+
 province_event = {
     id = colony.50
     is_triggered_only = yes
@@ -1213,7 +1728,7 @@ province_event = {
     }
     option = {
         name="Ok"
-        
+
     }
 
 }

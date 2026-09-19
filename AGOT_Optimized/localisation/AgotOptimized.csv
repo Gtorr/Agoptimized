@@ -65,5 +65,5 @@ ct_unsu;Unsullied Legion;;;;;;;;;;;;;
 EVDESCcolony50;A group of settlers has come to our colony at [From.Capital.GetName], we expect the next group to arrive in  [Root.colony_years.GetValue] Years;;;;;;;;;;;;;
 OPTtimer;Colony Skill: [Root.colony_years.GetValue];;;;;;;;;;;;;
 EVTTOOLTIPSLAVERYRAID;Our forces have captured §G[ROOT.slaves_captured.GetValue]§! slaves for our camps.;;;;;;;;;;;;;
-colony_status;This colony will take §G[ROOT.colony_difficulty.GetValue]§!;;;;;;;;;;;;;
-colony_status_desc;Current stage: §G[ROOT.colony_stage.GetValue]§!] \ 8;;;;;;;;;;;;;
+colony_status;Stg> §G[ROOT.colony_stage.GetValue]§! \ 8;;;;;;;;;;;;;
+colony_status_desc;The colony is expected to finish before this date.;;;;;;;;;;;;;
