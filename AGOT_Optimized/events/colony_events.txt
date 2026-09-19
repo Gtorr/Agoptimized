@@ -1,8 +1,17 @@
 namespace = colony
-# [colony.100]	#On start cull any non top holding / Kill every courtier
 # [colony.1] Target colony is selected
 # [colony.2] # [ Roll next timer ]
 # [colony.3] # [ Progress is made ]
+# [colony.20] # [ Timer 0 ] (years)
+# [colony.21] # [ Timer 1 ] (years)
+# [colony.22] # [ Timer 2 ] (years)
+# [colony.23] # [ Timer 3 ] (years)
+# [colony.24] # [ Timer 4 ] (years)
+# [colony.25] # [ Timer 5 ] (years)
+# [colony.26] # [ Timer 6 ] (years)
+# [colony.27] # [ Timer 7 ] (years)
+# [colony.28] # [ Timer 8 ] (years)
+# [colony.29] # [ Timer 9 ] (years)
 #**********************************************************************
 province_event = {
     id = colony.1
@@ -1169,14 +1178,47 @@ province_event = {
     }
 }
 
-#Timer Region .2x years
-province_event = {
+#***Timers***
+province_event = { # Less than a year
     id = colony.20
     is_triggered_only = yes
+    hide_window = yes
+    immediate = {
+        province_event = {
+            id = colony.3
+            days = 365
+            random = 128
+        }
+    }
 }
-
-character_event = {
+province_event = { # 1 year
+    id = colony.21
+    is_triggered_only = yes
+    hide_window = yes
+    immediate = {
+        province_event = {
+            id = colony.3
+            days = 420				# 1Y
+            random = 128
+        }
+    }
+}
+province_event = {
     id = colony.50
+    is_triggered_only = yes
+    picture = GFX_evt_castle_construction
+    desc = EVDESCcolony50
+    immediate = {
+        
+    }
+    option = {
+        name="Ok"
+        province_set_colony_difficulty = yes
+    }
+
+}
+character_event = { # Debug
+    id = colony.51
     is_triggered_only = yes
     picture = GFX_evt_castle_construction
     desc = EVDESCcolony50
@@ -1184,6 +1226,7 @@ character_event = {
         name = "Ok"
     }
 }
+
 
 province_event = {
     id = colony.99
@@ -1198,7 +1241,7 @@ province_event = {
             modifier = colony_work
             amount = 99
         }
-        province_set_colony_culture = yes 
+        province_set_colony_culture = yes
         province_finish_colony = yes
     }
 }

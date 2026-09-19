@@ -603,10 +603,6 @@ province_set_colony_difficulty = {
             event_target:colonise_liege = {
                 job_treasurer = {
                     OR = {
-                        check_variable = {
-                            which = colony_stage #First roll is always with treasurer bonus
-                            value = 0
-                        }
                         liege = { ai = yes }
                         AND = {
                             has_job_action = action_oversee_construction
@@ -684,6 +680,199 @@ province_set_colony_difficulty = {
                 which = colony_difficulty
                 value = 0.9
             }
+        }
+    }
+
+    # *** Timer Roll ***
+    export_to_variable = {
+        which = stage_difficulty
+        which = colony_difficulty
+    }
+    divide_variable = {
+        which = stage_difficulty
+        value = 4
+    }
+
+    if = {
+        limit = {
+            NOT = {
+                check_variable = {
+                    which = stage_difficulty
+                    value = 0.5
+                }
+            }
+        }
+        province_event = {
+            id = colony.3
+            days = 190				# Best case
+            random = 120
+        }
+    }
+    else_if = {
+        limit = {
+            NOT = {
+                check_variable = {
+                    which = stage_difficulty
+                    value = 1
+                }
+            }
+        }
+        province_event = {
+            id = colony.3
+            days = 380				# T1
+            random = 130
+        }
+    }
+    else_if = {
+        limit = {
+            NOT = {
+                check_variable = {
+                    which = stage_difficulty
+                    value = 1.5
+                }
+            }
+        }
+        province_event = {
+            id = colony.3
+            days = 520				# T1.5
+            random = 140
+        }
+    }
+    else_if = {
+        limit = {
+            NOT = {
+                check_variable = {
+                    which = stage_difficulty
+                    value = 2
+                }
+            }
+        }
+        province_event = {
+            id = colony.3
+            days = 	730			# T2
+            random = 150
+        }
+    }
+    else_if = {
+        limit = {
+            NOT = {
+                check_variable = {
+                    which = stage_difficulty
+                    value = 3
+                }
+            }
+        }
+        province_event = {
+            id = colony.3
+            days = 	1000			# T3
+            random = 160
+        }
+    }
+    else_if = {
+        limit = {
+            NOT = {
+                check_variable = {
+                    which = stage_difficulty
+                    value = 4
+                }
+            }
+        }
+        province_event = {
+            id = colony.3
+            days = 	1460			# T4
+            random = 170
+        }
+    }
+    else_if = {
+        limit = {
+            NOT = {
+                check_variable = {
+                    which = stage_difficulty
+                    value = 5
+                }
+            }
+        }
+        province_event = {
+            id = colony.3
+            days = 	1825			# T5
+            random = 180
+        }
+    }
+    else_if = {
+        limit = {
+
+            NOT = {
+                check_variable = {
+                    which = stage_difficulty
+                    value = 6
+                }
+            }
+        }
+        province_event = {
+            id = colony.3
+            days = 	2190			# T6
+            random = 190
+        }
+    }
+    else_if = {
+        limit = {
+            NOT = {
+                check_variable = {
+                    which = stage_difficulty
+                    value = 7
+                }
+            }
+        }
+        province_event = {
+            id = colony.3
+            days = 	2555			# T7
+            random = 200
+        }
+    }
+    else_if = {
+        limit = {
+            NOT = {
+                check_variable = {
+                    which = stage_difficulty
+                    value = 8
+                }
+            }
+        }
+        province_event = {
+            id = colony.3
+            days = 	2920			# T8
+            random = 210
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = stage_difficulty
+                value = 8
+            }
+        }
+        random_list = {
+            1 = {
+                province_event = {
+                    id = colony.3
+                    days = 	3285			# T9
+                    random = 220
+                }
+            }
+            1 = {
+                province_event = {
+                    id = colony.3
+                    days = 	3650			# T10
+                    random = 230
+                }
+            }
+        }
+    }
+    else = { #Turbo!
+        province_event = {
+            id = colony.3
+            days = 128				# Best case
+            random = 64
         }
     }
 }

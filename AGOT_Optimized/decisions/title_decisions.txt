@@ -17,7 +17,7 @@
 # move_crown_focus moved to 5 years -  was 1y
 # build_valyrian_road moved to 10 years - was 3y
 title_decisions = {
-		colonise_province = {
+	colonise_province = {
 		is_high_prio = yes
 		filter = all
 		ai_target_filter = primary_title
@@ -545,7 +545,28 @@ title_decisions = {
 			}
 		}
 	}
-	
+
+	test_colony_timer = {
+		ai = no
+		filter = all
+		from_potential = {
+			ai = no
+		}
+		potential = {
+			location = {
+				has_province_flag = colony_province
+			}
+		}
+		effect = {
+			location = {
+				province_event = {
+					id = colony.50
+				}
+			}
+		}
+	}
+
+
 	abandon_province = {
 		filter = sub_realm_owned
 		ai_target_filter = primary_title

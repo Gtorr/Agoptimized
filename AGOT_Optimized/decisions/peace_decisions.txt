@@ -13,6 +13,7 @@ decisions = {
             NOT = { trait = incapable }
             NOT = { is_inaccessible_trigger = yes }
         }
+        
         effect = {
             character_event = { id = going_out_events.10 }
             add_character_modifier = {
