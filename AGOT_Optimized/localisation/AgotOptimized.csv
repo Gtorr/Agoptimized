@@ -65,5 +65,6 @@ ct_unsu;Unsullied Legion;;;;;;;;;;;;;
 EVDESCcolony50;A group of settlers has come to our colony at [From.Capital.GetName], we expect the next group to arrive in  [Root.colony_years.GetValue] Years;;;;;;;;;;;;;
 OPTtimer;Colony Skill: [Root.colony_years.GetValue];;;;;;;;;;;;;
 EVTTOOLTIPSLAVERYRAID;Our forces have captured §G[ROOT.slaves_captured.GetValue]§! slaves for our camps.;;;;;;;;;;;;;
-colony_status;Stg> §G[ROOT.colony_stage.GetValue]§! \ 8;;;;;;;;;;;;;
-colony_status_desc;The colony is expected to finish before this date.;;;;;;;;;;;;;
+colony_status;The colony is expected to finish before this date.;;;;;;;;;;;;;
+colony_status_desc;On average this colony will finish in §G[ROOT.colony_stage.GetValue]§! Years since its foundation. \nStage: §G[ROOT.colony_stage.GetValue]§! \ 8;;;;;;;;;;;;;
+EVDESCcolony99;A massive group of settlers has come to our colony at [From.Capital.GetName], The colony had a sudden growth and is now complete.;;;;;;;;;;;;;

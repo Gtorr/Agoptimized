@@ -41,7 +41,7 @@ province_event = {
             # Full ruin colony
             set_variable = {
                 which = colony_difficulty
-                value = 15		#Nomad Timer
+                value = 20
             }
         }
         #***Rules and mods***
@@ -131,7 +131,7 @@ province_event = {
             }
             multiply_variable = {
                 which = colony_difficulty
-                value = 1.5
+                value = 1.25
             }
         }
         else_if = {
@@ -140,7 +140,7 @@ province_event = {
             }
             multiply_variable = {
                 which = colony_difficulty
-                value = 2
+                value = 1.75
             }
         }
         else_if = {
@@ -149,7 +149,7 @@ province_event = {
             }
             multiply_variable = {
                 which = colony_difficulty
-                value = 3
+                value = 2.15
             }
         }
         #***Other Maluses***
@@ -159,7 +159,7 @@ province_event = {
             }
             multiply_variable = {
                 which = colony_difficulty
-                value = 1.3
+                value = 1.2
             }
         }
         if = {
@@ -417,6 +417,7 @@ province_event = {
                 value = 0.85
             }
         }
+        
         if = {
             limit = {
                 has_province_modifier = partial_colony

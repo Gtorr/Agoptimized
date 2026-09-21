@@ -1,13 +1,11 @@
 AGOT_Optimized/.cwtools/
-
+.bat
 # CWtools
 *.cwt
 *.nfo
 *.editorconfig
 *.ini
 
-# luarocks build files
-*.src.rock
 *.zip
 *.tar.gz
 
@@ -16,8 +14,6 @@ AGOT_Optimized/.cwtools/
 *.os
 *.ko
 *.obj
-*.elf
-
 
 # Executables
 *.exe
