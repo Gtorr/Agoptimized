@@ -1289,4 +1289,16 @@ province_finish_colony = {
         }
         decrease_depopulation_effect = true
     }
+    change_variable  = {
+        which = colony_difficulty
+        value = 0
+    }
+    change_variable = {
+        which = stage_difficulty
+        value = 0
+    }
+    change_variable = {
+        which = colony_stage
+        value = 0
+    }
 }

@@ -1,245 +1,153 @@
-#Unoccupied Province Events 
+# Unoccupied Province Events
 # Override by Gt, removed mtth triggers
 namespace = unoccupied
-#************************************************
-#Establish colony in ruin (from colonisation CB)
-#************************************************
+# ************************************************
+# Establish colony in ruin (from colonisation CB)
+# ************************************************
 character_event = {
 	id = unoccupied.3
 	desc = "EVTDESCunoccupied.3"
 	picture = "GFX_evt_castle_construction"
 	is_triggered_only = yes
+
 	immediate = {
-		#AI takes loan if shortage of cash
+		# AI takes loan if shortage of cash
 		if = {
 			limit = {
 				ai = yes
 				OR = {
 					AND = {
-						has_game_rule = {
-							name = colinisation_cost
-							value = expensive
-						}
-						NOT = {
+						has_game_rule = { name = colinisation_cost value = expensive }
+						NOR = {
 							wealth = 1600
-						}
-						NOT = {
-							any_owned_bloodline = {
-								has_bloodline_flag = bloodline_scourge
-							}
+							any_owned_bloodline = { has_bloodline_flag = bloodline_scourge }
 						}
 					}
 					AND = {
-						has_game_rule = {
-							name = colinisation_cost
-							value = normal
-						}
-						NOT = {
+						has_game_rule = { name = colinisation_cost value = normal }
+						NOR = {
 							wealth = 1000
-						}
-						NOT = {
-							any_owned_bloodline = {
-								has_bloodline_flag = bloodline_scourge
-							}
+							any_owned_bloodline = { has_bloodline_flag = bloodline_scourge }
 						}
 					}
 					AND = {
-						has_game_rule = {
-							name = colinisation_cost
-							value = cheap
-						}
-						NOT = {
+						has_game_rule = { name = colinisation_cost value = cheap }
+						NOR = {
 							wealth = 400
-						}
-						NOT = {
-							any_owned_bloodline = {
-								has_bloodline_flag = bloodline_scourge
-							}
+							any_owned_bloodline = { has_bloodline_flag = bloodline_scourge }
 						}
 					}
 					AND = {
-						has_game_rule = {
-							name = colinisation_cost
-							value = expensive
-						}
-						NOT = {
-							wealth = 1000
-						}
-						any_owned_bloodline = {
-							has_bloodline_flag = bloodline_scourge
-						}
+						has_game_rule = { name = colinisation_cost value = expensive }
+						NOT = { wealth = 1000 }
+						any_owned_bloodline = { has_bloodline_flag = bloodline_scourge }
 					}
 					AND = {
-						has_game_rule = {
-							name = colinisation_cost
-							value = normal
-						}
-						NOT = {
-							wealth = 625
-						}
-						any_owned_bloodline = {
-							has_bloodline_flag = bloodline_scourge
-						}
+						has_game_rule = { name = colinisation_cost value = normal }
+						NOT = { wealth = 625 }
+						any_owned_bloodline = { has_bloodline_flag = bloodline_scourge }
 					}
 					AND = {
-						has_game_rule = {
-							name = colinisation_cost
-							value = cheap
-						}
-						NOT = {
-							wealth = 250
-						}
-						any_owned_bloodline = {
-							has_bloodline_flag = bloodline_scourge
-						}
+						has_game_rule = { name = colinisation_cost value = cheap }
+						NOT = { wealth = 250 }
+						any_owned_bloodline = { has_bloodline_flag = bloodline_scourge }
 					}
 				}
-				NOT = {
+				NOR = {
 					has_character_flag = loan_taken
-				}
-				NOT = {
 					has_character_modifier = loan_timer
-				}
-				NOT = {
 					has_character_flag = offended_moneylenders
 				}
 			}
-			add_character_modifier = {
-				name = "loan_timer"
-				duration = 1825
-			}
+			add_character_modifier = { name = "loan_timer" duration = 1825 }
 			set_character_flag = loan_taken
-			#400g loan
+			# 400g loan
 			if = {
-				limit = {
-					NOT = {
-						monthly_income = 10
-					}
-				}
-				set_variable = {
-					which = "loan_amount"
-					value = 400
-				}
+				limit = { NOT = { monthly_income = 10 } }
+				set_variable = { which = "loan_amount" value = 400 }
 			}
-			#600g loan
+			# 600g loan
 			if = {
 				limit = {
 					monthly_income = 10
-					NOT = {
-						monthly_income = 15
-					}
+					NOT = { monthly_income = 15 }
 				}
-				set_variable = {
-					which = "loan_amount"
-					value = 600
-				}
+				set_variable = { which = "loan_amount" value = 600 }
 			}
-			#800g loan
+			# 800g loan
 			if = {
 				limit = {
 					monthly_income = 15
-					NOT = {
-						monthly_income = 20
-					}
+					NOT = { monthly_income = 20 }
 				}
-				set_variable = {
-					which = "loan_amount"
-					value = 800
-				}
+				set_variable = { which = "loan_amount" value = 800 }
 			}
-			#1000g loan
+			# 1000g loan
 			if = {
-				limit = {
-					monthly_income = 20
-				}
-				set_variable = {
-					which = "loan_amount"
-					value = 1000
-				}
+				limit = { monthly_income = 20 }
+				set_variable = { which = "loan_amount" value = 1000 }
 			}
 			set_character_flag = loan_amount_found
-			character_event = {
-				id = bankruptcy.1
-			}
+			character_event = { id = bankruptcy.1 }
 		}
 	}
+
 	option = {
-		name = "EVTOPTAunoccupied.3"		#Yes
-		liege = {
-			save_event_target_as = colonise_liege
-		}
-		#record liege just in case
+		name = "EVTOPTAunoccupied.3"		# Yes
+		liege = { save_event_target_as = colonise_liege }
+		# record liege just in case
 		if = {
-			#record patrician status
+			# record patrician status
 			limit = {
 				is_patrician = yes
 				is_merchant_republic = no
 			}
 			set_character_flag = is_patrician
 		}
-		FROMFROM = {
+		fromfrom = {
 			hidden_tooltip = {
 				if = {
-					limit = {
-						culture_group = unoccupied_group
-					}
+					limit = { culture_group = unoccupied_group }
 					set_defacto_liege = event_target:colonise_liege
 				}
 			}
 		}
 		event_target:colonisation_target = {
 			location = {
-				#build castle if needed
+				# build castle if needed
 				if = {
 					limit = {
 						NOT = {
 							any_province_holding = {
-								NOT = {
+								NOR = {
 									holding_type = nomad
-								}
-								NOT = {
 									holding_type = temple
-								}
-								NOT = {
 									holding_type = tribal
 								}
 							}
 						}
 					}
-					build_holding = {
-						type = castle
-						holder = ROOT
-					}
+					build_holding = { type = castle holder = root }
 					random_province_holding = {
 						limit = {
 							holding_type = castle
-							holder_scope = {
-								character = ROOT
-							}
+							holder_scope = { character = root }
 						}
 						save_event_target_as = new_city_holding
 						location = {
-							province_event = {
-								id = unoccupied.399
-							}
+							province_event = { id = unoccupied.399 }
 						}
 						if = {
-							limit = {
-								ROOT = {
-									is_feudal = yes
-								}
-							}
+							limit = { root = { is_feudal = yes } }
 							make_capital_holding = yes
 						}
 					}
 				}
 				county = {
-					gain_title = ROOT
+					gain_title = root
 					hidden_tooltip = {
 						any_de_jure_vassal_title = {
-							limit = {
-								has_holder = yes
-							}
+							limit = { has_holder = yes }
 							remove_building = ca_sub_barony_ruin
 							remove_building = ct_sub_barony_ruin
 							clr_title_flag = sub_barony_ruin
@@ -247,14 +155,12 @@ character_event = {
 					}
 				}
 				hidden_tooltip = {
-					#just in case coloniser erroneously becomes independent
-					ROOT = {
+					# just in case coloniser erroneously becomes independent
+					root = {
 						if = {
 							limit = {
-								NOT = {
+								NOR = {
 									vassal_of = event_target:colonise_liege
-								}
-								NOT = {
 									character = event_target:colonise_liege
 								}
 							}
@@ -263,96 +169,66 @@ character_event = {
 					}
 				}
 				if = {
-					limit = {
-						has_province_flag = ca_colony_6
-					}
+					limit = { has_province_flag = ca_colony_6 }
 					capital_holding = {
 						if = {
-							limit = {
-								holding_type = castle
-							}
+							limit = { holding_type = castle }
 							add_building = ca_colony_6
 						}
 						if = {
-							limit = {
-								holding_type = city
-							}
+							limit = { holding_type = city }
 							add_building = ct_colony_6
 						}
 					}
 				}
 				else_if = {
-					limit = {
-						has_province_flag = ca_colony_5
-					}
+					limit = { has_province_flag = ca_colony_5 }
 					capital_holding = {
 						if = {
-							limit = {
-								holding_type = castle
-							}
+							limit = { holding_type = castle }
 							add_building = ca_colony_5
 						}
 						if = {
-							limit = {
-								holding_type = city
-							}
+							limit = { holding_type = city }
 							add_building = ct_colony_5
 						}
 					}
 				}
 				else_if = {
-					limit = {
-						has_province_flag = ca_colony_4
-					}
+					limit = { has_province_flag = ca_colony_4 }
 					capital_holding = {
 						if = {
-							limit = {
-								holding_type = castle
-							}
+							limit = { holding_type = castle }
 							add_building = ca_colony_4
 						}
 						if = {
-							limit = {
-								holding_type = city
-							}
+							limit = { holding_type = city }
 							add_building = ct_colony_4
 						}
 					}
 				}
 				else_if = {
-					limit = {
-						has_province_flag = ca_colony_3
-					}
+					limit = { has_province_flag = ca_colony_3 }
 					capital_holding = {
 						if = {
-							limit = {
-								holding_type = castle
-							}
+							limit = { holding_type = castle }
 							add_building = ca_colony_3
 						}
 						if = {
-							limit = {
-								holding_type = city
-							}
+							limit = { holding_type = city }
 							add_building = ct_colony_3
 						}
 					}
 				}
 				else_if = {
-					limit = {
-						has_province_flag = ca_colony_2
-					}
+					limit = { has_province_flag = ca_colony_2 }
 					capital_holding = {
 						if = {
-							limit = {
-								holding_type = castle
-							}
+							limit = { holding_type = castle }
 							add_building = ca_colony_2
 						}
 						if = {
-							limit = {
-								holding_type = city
-							}
+							limit = { holding_type = city }
 							add_building = ct_colony_2
 						}
 					}
@@ -361,194 +237,112 @@ character_event = {
 					set_province_flag = ca_colony_1
 					capital_holding = {
 						if = {
-							limit = {
-								holding_type = castle
-							}
+							limit = { holding_type = castle }
 							add_building = ca_colony_1
 						}
 						if = {
-							limit = {
-								holding_type = city
-							}
+							limit = { holding_type = city }
 							add_building = ct_colony_1
 						}
 					}
 				}
 				set_province_flag = colony_province
 				if = {
-					limit = {
-						has_province_flag = ruined_province
-					}
-					ROOT = {
+					limit = { has_province_flag = ruined_province }
+					root = {
 						if = {
 							limit = {
-								has_game_rule = {
-									name = colinisation_cost
-									value = expensive
-								}
-								NOT = {
-									any_owned_bloodline = {
-										has_bloodline_flag = bloodline_scourge
-									}
-								}
+								has_game_rule = { name = colinisation_cost value = expensive }
+								NOT = { any_owned_bloodline = { has_bloodline_flag = bloodline_scourge } }
 							}
 							wealth = -1600
 						}
 						else_if = {
 							limit = {
-								has_game_rule = {
-									name = colinisation_cost
-									value = normal
-								}
-								NOT = {
-									any_owned_bloodline = {
-										has_bloodline_flag = bloodline_scourge
-									}
-								}
+								has_game_rule = { name = colinisation_cost value = normal }
+								NOT = { any_owned_bloodline = { has_bloodline_flag = bloodline_scourge } }
 							}
 							wealth = -1000
 						}
 						else_if = {
 							limit = {
-								has_game_rule = {
-									name = colinisation_cost
-									value = cheap
-								}
-								NOT = {
-									any_owned_bloodline = {
-										has_bloodline_flag = bloodline_scourge
-									}
-								}
+								has_game_rule = { name = colinisation_cost value = cheap }
+								NOT = { any_owned_bloodline = { has_bloodline_flag = bloodline_scourge } }
 							}
 							wealth = -400
 						}
 						else_if = {
 							limit = {
-								has_game_rule = {
-									name = colinisation_cost
-									value = expensive
-								}
-								any_owned_bloodline = {
-									has_bloodline_flag = bloodline_scourge
-								}
+								has_game_rule = { name = colinisation_cost value = expensive }
+								any_owned_bloodline = { has_bloodline_flag = bloodline_scourge }
 							}
 							wealth = -1200
 						}
 						else_if = {
 							limit = {
-								has_game_rule = {
-									name = colinisation_cost
-									value = normal
-								}
-								any_owned_bloodline = {
-									has_bloodline_flag = bloodline_scourge
-								}
+								has_game_rule = { name = colinisation_cost value = normal }
+								any_owned_bloodline = { has_bloodline_flag = bloodline_scourge }
 							}
 							wealth = -625
 						}
 						else_if = {
 							limit = {
-								has_game_rule = {
-									name = colinisation_cost
-									value = cheap
-								}
-								any_owned_bloodline = {
-									has_bloodline_flag = bloodline_scourge
-								}
+								has_game_rule = { name = colinisation_cost value = cheap }
+								any_owned_bloodline = { has_bloodline_flag = bloodline_scourge }
 							}
 							wealth = -250
 						}
 					}
 				}
 				else_if = {
-					limit = {
-						traditional_nomad_territory_trigger = yes
-					}
-					ROOT = {
+					limit = { traditional_nomad_territory_trigger = yes }
+					root = {
 						if = {
 							limit = {
-								has_game_rule = {
-									name = colinisation_cost
-									value = expensive
-								}
-								NOT = {
-									any_owned_bloodline = {
-										has_bloodline_flag = bloodline_scourge
-									}
-								}
+								has_game_rule = { name = colinisation_cost value = expensive }
+								NOT = { any_owned_bloodline = { has_bloodline_flag = bloodline_scourge } }
 							}
 							wealth = -800
 						}
 						else_if = {
 							limit = {
-								has_game_rule = {
-									name = colinisation_cost
-									value = normal
-								}
-								NOT = {
-									any_owned_bloodline = {
-										has_bloodline_flag = bloodline_scourge
-									}
-								}
+								has_game_rule = { name = colinisation_cost value = normal }
+								NOT = { any_owned_bloodline = { has_bloodline_flag = bloodline_scourge } }
 							}
 							wealth = -500
 						}
 						else_if = {
 							limit = {
-								has_game_rule = {
-									name = colinisation_cost
-									value = cheap
-								}
-								NOT = {
-									any_owned_bloodline = {
-										has_bloodline_flag = bloodline_scourge
-									}
-								}
+								has_game_rule = { name = colinisation_cost value = cheap }
+								NOT = { any_owned_bloodline = { has_bloodline_flag = bloodline_scourge } }
 							}
 							wealth = -200
 						}
 						else_if = {
 							limit = {
-								has_game_rule = {
-									name = colinisation_cost
-									value = expensive
-								}
-								any_owned_bloodline = {
-									has_bloodline_flag = bloodline_scourge
-								}
+								has_game_rule = { name = colinisation_cost value = expensive }
+								any_owned_bloodline = { has_bloodline_flag = bloodline_scourge }
 							}
 							wealth = -500
 						}
 						else_if = {
 							limit = {
-								has_game_rule = {
-									name = colinisation_cost
-									value = normal
-								}
-								any_owned_bloodline = {
-									has_bloodline_flag = bloodline_scourge
-								}
+								has_game_rule = { name = colinisation_cost value = normal }
+								any_owned_bloodline = { has_bloodline_flag = bloodline_scourge }
 							}
 							wealth = -250
 						}
 						else_if = {
 							limit = {
-								has_game_rule = {
-									name = colinisation_cost
-									value = cheap
-								}
-								any_owned_bloodline = {
-									has_bloodline_flag = bloodline_scourge
-								}
+								has_game_rule = { name = colinisation_cost value = cheap }
+								any_owned_bloodline = { has_bloodline_flag = bloodline_scourge }
 							}
 							wealth = -125
 						}
 					}
 				}
 				if = {
-					limit = {
-						has_province_modifier = ruined_province
-					}
+					limit = { has_province_modifier = ruined_province }
 					remove_province_modifier = ruined_province
 				}
 				# if = {
@@ -559,45 +353,32 @@ character_event = {
 				# limit = { has_province_modifier = jogos_nhai_domain }
 				# remove_province_modifier = jogos_nhai_domain
 				# }
-				add_province_modifier = {
-					name = colony
-					duration = -1
-				}
-				province_event = {
-					id = colony.1
-				}
+				add_province_modifier = { name = colony duration = -1 }
+				province_event = { id = colony.1 }
 			}
-			custom_tooltip = {
-				text = TOOLTIPunoccupied.3
-			}
+			custom_tooltip = { text = TOOLTIPunoccupied.3 }
 		}
 		hidden_tooltip = {
 			event_target:colonisation_target = {
 				any_de_jure_vassal_title = {
 					limit = {
-						holder_scope = {
-							culture_group = unoccupied_group
-						}
+						holder_scope = { culture_group = unoccupied_group }
 					}
-					set_defacto_liege = ROOT
+					set_defacto_liege = root
 				}
 			}
-			FROMFROM = {
+			fromfrom = {
 				if = {
-					limit = {
-						culture_group = unoccupied_group
-					}
+					limit = { culture_group = unoccupied_group }
 					clear_wealth = yes
 					wealth = -500
 					death = yes
 				}
 			}
 			any_realm_character = {
-				limit = {
-					culture_group = unoccupied_group
-				}
+				limit = { culture_group = unoccupied_group }
 				any_demesne_title = {
-					gain_title = ROOT
+					gain_title = root
 					copy_title_laws = event_target:colonisation_target
 				}
 				clear_wealth = yes
@@ -605,7 +386,7 @@ character_event = {
 				death = yes
 			}
 			if = {
-				#maintain patrician status
+				# maintain patrician status
 				limit = {
 					has_character_flag = is_patrician
 					is_patrician = no
@@ -616,32 +397,23 @@ character_event = {
 		}
 	}
 	option = {
-		name = "EVTOPTBunoccupied.3"		#Change my mind
-		ai_chance = {
-			factor = 0
-		}
+		name = "EVTOPTBunoccupied.3"		# Change my mind
+		ai_chance = { factor = 0 }
 		any_war = {
 			if = {
 				limit = {
 					using_cb = colonisation
-					attacker = {
-						character = ROOT
-					}
+					attacker = { character = root }
 				}
 				end_war = invalid
 			}
 		}
 		hidden_tooltip = {
-			FROM = {
-				FROM = {
+			from = {
+				from = {
 					any_realm_province = {
-						limit = {
-							has_province_flag = ruined_province
-						}
-						add_province_modifier = {
-							name = ruined_province
-							duration = -1
-						}
+						limit = { has_province_flag = ruined_province }
+						add_province_modifier = { name = ruined_province duration = -1 }
 					}
 				}
 			}
@@ -649,102 +421,99 @@ character_event = {
 	}
 }
 
-character_event = { #Cleared
+# Cleared
+character_event = {
 	id = unoccupied.499
 	title = "EVTTITLEunoccupied.499"
 	is_triggered_only = yes
+
 	trigger = {
 		always = no
 	}
+
 	option = {
 		name = OK
 	}
 }
-#************************************************
-#Famine
-#************************************************
+
+# ************************************************
+# Famine
+# ************************************************
 province_event = {
 	id = unoccupied.6
 	desc = "EVTDESCunoccupied.6"
 	picture = "GFX_evt_china_famine"
 	is_triggered_only = yes
 	hide_window = yes
+
 	trigger = {
-		has_province_flag = colony_province
-		OR = {			
+		OR = {
 			has_province_flag = ruined_province
 			traditional_nomad_territory_trigger = yes
 		}
-		NOT = {
+		NOR = {
 			has_province_modifier = colony_famine
-		}
-		owner = {
-			NOT = {
-				culture_group = unoccupied_group
-			}
+			owner = { culture_group = unoccupied_group }
 		}
 	}
+
 	immediate = {
 		owner = {
-			character_event = {
-				id = unoccupied.601
-			}
+			character_event = { id = unoccupied.601 }
 		}
 	}
 	##option = {
 	#	name = "EVTOPTAunoccupied.6"		#Offer relief
-	#}
+	# }
 }
 
-#***********************************************
-#Cull ruin courtiers
-#************************************************
+# ***********************************************
+# Cull ruin courtiers
+# ************************************************
 character_event = {
 	id = unoccupied.2
 	desc = "EVTDESCunoccupied.2"
 	picture = "GFX_evt_castle_construction"
-	is_triggered_only = yes #on_yearly_pulse
+	is_triggered_only = yes # on_yearly_pulse
 	culture_group = unoccupied_group
+
 	trigger = {
 		is_ruler = no
 	}
+
 	option = {
-		name = "EVTOPTAunoccupied.2"		#Yes
-		#location = {
+		name = "EVTOPTAunoccupied.2"		# Yes
+		# location = {
 		# Removed new char creation
-		#}
-		clear_wealth = ROOT
+		# }
+		clear_wealth = root
 		wealth = -500
 		death = yes
 	}
 }
 
-#************************************************
-#Make sure ruin_rel never becomes human
-#************************************************
+# ************************************************
+# Make sure ruin_rel never becomes human
+# ************************************************
 province_event = {
 	id = unoccupied.202
 	is_triggered_only = yes
 	desc = EVTDESCunoccupied.202
 	picture = "GFX_evt_castle_construction"
 	has_flag = ruined_province
+
 	trigger = {
-		NOT = {
+		NOR = {
 			has_province_flag = colony_province
-		}
-		owner = {
-			NOT = {
-				culture_group = unoccupied_group
-			}
+			owner = { culture_group = unoccupied_group }
 		}
 	}
+
 	immediate = {
 		if = {
-			#if this has become nomad land, remove ruin status
+			# if this has become nomad land, remove ruin status
 			limit = {
-				owner = {
-					is_nomadic = yes
-				}
+				owner = { is_nomadic = yes }
 				traditional_nomad_territory_trigger = yes
 			}
 			clr_province_flag = ruined_province
@@ -765,16 +534,15 @@ province_event = {
 			}
 			trait = ruin
 		}
-		new_character = {
-			save_event_target_as = new_ruin
-		}
+		new_character = { save_event_target_as = new_ruin }
 	}
+
 	option = {
 		name = OK
 		event_target:new_ruin = {
-			ROOT = {
+			root = {
 				if = {
-					#Make sure a suitable holding is present, to avoid CTD
+					# Make sure a suitable holding is present, to avoid CTD
 					limit = {
 						NOT = {
 							any_province_holding = {
@@ -786,51 +554,43 @@ province_event = {
 						}
 					}
 					any_province_holding = {
-						limit = {
-							holding_type = nomad
-						}
-						destroy_settlement = THIS
+						limit = { holding_type = nomad }
+						destroy_settlement = this
 					}
-					build_holding = {
-						type = castle
-						holder = event_target:new_ruin
-					}
+					build_holding = { type = castle holder = event_target:new_ruin }
 				}
-				county = {
-					gain_title = event_target:new_ruin
-				}
+				county = { gain_title = event_target:new_ruin }
 			}
 			set_character_flag = new_ruin
-			set_defacto_liege = THIS
-			character_event = {
-				id = unoccupied.101
-			}
+			set_defacto_liege = this
+			character_event = { id = unoccupied.101 }
 		}
 	}
 }
-#************************************************
-#Spawn some courtiers, or not maybe
-#************************************************
+
+# ************************************************
+# Spawn some courtiers, or not maybe
+# ************************************************
 character_event = {
 	id = unoccupied.101
 	desc = "EVTDESCunoccupied.101"
 	is_triggered_only = yes
 
 	option = {
-		name = "EVTOPTAunoccupied.2" #Yes
-		set_defacto_liege = THIS
+		name = "EVTOPTAunoccupied.2" # Yes
+		set_defacto_liege = this
 		if = {
 			limit = { has_character_flag = new_ruin }
 			clr_character_flag = new_ruin
 			primary_title = {
-				any_direct_de_jure_vassal_title = {	
+				any_direct_de_jure_vassal_title = {
 					limit = { has_holder = yes }
-					gain_title = ROOT
+					gain_title = root
 					create_character = {
 						name = ""
-						religion=ROOT
-						culture=ROOT	
-						dynasty=none
+						religion = root
+						culture = root
+						dynasty = none
 						attributes = {
 							martial = 0
 							diplomacy = 0
@@ -840,25 +600,24 @@ character_event = {
 						}
 					}
 					new_character = {
-						PREV = { gain_title = PREV }
-						set_defacto_liege = ROOT
+						prev = { gain_title = prev }
+						set_defacto_liege = root
 						if = {
 							limit = { culture = ruin }
 							add_trait = ruin
 						}
 						# if = {
-							# limit = { 
-								# OR = {
-									# culture = dothraki_domain_culture 
-									# culture = jogos_domain_culture
-								# }
-							# }
-							# add_trait = dothraki_domain
-						# }							
+						# limit = {
+						# OR = {
+						# culture = dothraki_domain_culture
+						# culture = jogos_domain_culture
+						# }
+						# }
+						# add_trait = dothraki_domain
+						# }
 					}
 				}
-			}	
-		
+			}
 		}
 		if = {
 			limit = { has_dlc = "Reapers" }
@@ -871,21 +630,20 @@ character_event = {
 				remove_province_modifier = prosperity_modifier_2
 				remove_province_modifier = prosperity_modifier_3
 				# add_province_modifier = {
-					# name = depopulated_3
-					# duration = -1
+				# name = depopulated_3
+				# duration = -1
 				# }
 				clr_province_flag = recent_depopulation_1
 				clr_province_flag = recent_depopulation_2
 				clr_province_flag = recent_depopulation_3
 			}
 		}
-		primary_title = {	
+		primary_title = {
 			any_direct_de_jure_vassal_title = {
 				limit = { has_holder = yes }
 				remove_holding_modifier = recently_conquered
 				remove_holding_modifier = new_administration
 				remove_holding_modifier = looted_modifier
-				
 				remove_building = ca_colony_1
 				remove_building = ct_colony_1
 				remove_building = ca_colony_2
@@ -898,19 +656,16 @@ character_event = {
 				remove_building = ct_colony_5
 				remove_building = ca_colony_6
 				remove_building = ct_colony_6
-				
 				remove_building = ca_asoiaf_slavepit_1
 				remove_building = ct_asoiaf_slavepit_1
-				remove_building = tp_asoiaf_slavepit_1	
+				remove_building = tp_asoiaf_slavepit_1
 				remove_building = no_asoiaf_slavepit_1
-
 				remove_building = ca_asoiaf_unsullied_1
 				remove_building = ct_asoiaf_unsullied_1
 				remove_building = fp_asoiaf_unsullied_1
 				remove_building = ca_asoiaf_unsullied_cent_1
 				remove_building = ct_asoiaf_unsullied_cent_1
 				remove_building = fp_asoiaf_unsullied_cent_1
-				
 				remove_building = ca_asoiaf_ironshipyard
 				remove_building = ca_large_goldmine
 				remove_building = ca_goldmine
@@ -931,7 +686,6 @@ character_event = {
 				remove_building = ca_stable_1
 				remove_building = ca_town_1
 				remove_building = ca_shipyard_1
-				
 				remove_building = ct_amphitheatre
 				remove_building = ct_sothoryos_1
 				remove_building = ct_qohor_forest_1
@@ -943,7 +697,6 @@ character_event = {
 				remove_building = ct_barracks_1
 				remove_building = ct_marketplace_1
 				remove_building = ct_port_1
-				
 				remove_building = tp_monastery_1
 				remove_building = tp_wall_q_1
 				remove_building = tp_wall_1
@@ -951,277 +704,301 @@ character_event = {
 				remove_building = tp_elite_barracks_1
 				remove_building = tp_town_1
 				remove_building = tp_shipyard_1
-			}	
+			}
 		}
-		location = {
-			destroy_hospital = THIS
-			destroy_fort = THIS
-		}
+		location = { destroy_hospital = this destroy_fort = this }
 		if = {
 			limit = { culture = ruin }
 			remove_trait = ruin
 			add_trait = ruin
-			capital_scope = { 
-				add_province_modifier = {
-					name = ruined_province
-					duration = -1
-				}
+			capital_scope = {
+				add_province_modifier = { name = ruined_province duration = -1 }
 				set_province_flag = ruined_province
 			}
-		}	
+		}
 		set_government_type = ruin_government
 		any_demesne_title = {
 			limit = {
-				NOT = { higher_tier_than = DUKE }
-				NOT = { tier = BARON }
+				NOR = {
+					higher_tier_than = DUKE
+					tier = BARON
+				}
 			}
 			set_variable = { which = "de_facto_empire" value = 0 }
 			set_variable = { which = "de_facto_kingdom" value = 0 }
 		}
-		character_event = { id = maintenance.34 days = 1 } #refil levy
-	}	
+		character_event = { id = maintenance.34 days = 1 } # refil levy
+	}
 }
 
-#************************************************
-#Colony stage complete
-#************************************************
+# ************************************************
+# Colony stage complete
+# ************************************************
 province_event = {
 	id = unoccupied.4
 	picture = "GFX_evt_castle_construction"
-	is_triggered_only = yes
-	desc = "This event should not happen, move along"
+
+	desc = {
+		text = EVTDESCunoccupied.4
+		trigger = {
+			NOT = { has_province_modifier = partial_colony }
+		}
+	}
+	desc = {
+		text = EVTDESCunoccupied.5
+		trigger = {
+			has_province_modifier = partial_colony
+		}
+	}
 	trigger = {
 		OR = {
+			has_province_flag = colony_province
 			has_province_flag = ruined_province
 			traditional_nomad_territory_trigger = yes
 		}
 		owner = {
-			NOT = {
-				culture_group = unoccupied_group
+			NOT = { culture_group = unoccupied_group }
+		}
+	}
+	option = {
+		name = {
+			text = "EVTOPTAunoccupied.4" #Yes
+			trigger = { NOT = { has_province_modifier = partial_colony } }
+		}
+		name = {
+			text = "EVTOPTAunoccupied.5" #Yes
+			trigger = { has_province_modifier = partial_colony }
+		}
+		if = {
+			limit = { has_province_modifier = partial_colony }
+			owner = {
+				job_treasurer = {
+					if = {
+						limit = {
+							OR = {
+								liege = { ai = yes }
+								AND = {
+									has_job_action = action_oversee_construction
+									location = { province_id = ROOT }
+								}
+							}
+						}
+						prestige = 100
+						hidden_tooltip = {
+							change_variable = { which = "services_rendered" value = 2 }
+							reverse_opinion = {
+								modifier = opinion_service_rendered
+								who = ROOT
+								years = 3
+							}
+						}
+					}
+				}
 			}
 		}
 	}
-	option = { 
-		name="Bug"
-	}
 }
 
-#************************************************
-#Dredge Harbour?
-#************************************************
+# ************************************************
+# Dredge Harbour?
+# ************************************************
 province_event = {
 	id = unoccupied.8
 	picture = GFX_evt_busy_trading_dock_republic
 	is_triggered_only = yes
 	hide_window = yes
 	has_flag = colony_province
+
 	trigger = {
 		OR = {
 			has_province_flag = ruined_province
 			traditional_nomad_territory_trigger = yes
 		}
 		port = yes
-		NOT = {
+		NOR = {
 			has_province_flag = dredged
-		}
-		NOT = {
 			has_province_modifier = colony_slow_economy
-		}
-		owner = {
-			NOT = {
-				culture_group = unoccupied_group
-			}
+			owner = { culture_group = unoccupied_group }
 		}
 	}
+
 	immediate = {
 		owner = {
-			character_event = {
-				id = unoccupied.801
-			}
+			character_event = { id = unoccupied.801 }
 		}
 	}
+
 	option = {
 		name = "EVTOPTAunoccupied.8"
 	}
 }
 
-#************************************************
-#Build Roads?
-#************************************************
+# ************************************************
+# Build Roads?
+# ************************************************
 province_event = {
 	id = unoccupied.9
 	picture = GFX_evt_market
 	is_triggered_only = yes
 	hide_window = yes
+	has_flag = colony_province
+
 	trigger = {
-		has_province_flag = colony_province
 		OR = {
 			has_province_flag = ruined_province
 			traditional_nomad_territory_trigger = yes
 		}
-		NOT = {
+		NOR = {
 			has_province_flag = roads
-		}
-		NOT = {
 			has_province_modifier = colony_slow_economy
-		}
-		owner = {
-			NOT = {
-				culture_group = unoccupied_group
-			}
+			owner = { culture_group = unoccupied_group }
 		}
 	}
+
 	immediate = {
 		owner = {
-			character_event = {
-				id = unoccupied.901
-			}
+			character_event = { id = unoccupied.901 }
 		}
 	}
+
 	option = {
 		name = "EVTOPTAunoccupied.9"
 	}
 }
-#************************************************
-#Oldstones regalia # TODO> Make it generic
-#************************************************
+
+# ************************************************
+# Oldstones regalia
+# ************************************************
 province_event = {
 	id = unoccupied.11
 	is_triggered_only = yes
 	hide_window = yes
 	has_flag = colony_province
+
 	trigger = {
 		province_id = 81
 		has_province_flag = ruined_province
-		NOT = {
+		NOR = {
 			has_province_flag = regalia_found
-		}
-		owner = {
-			NOT = {
-				culture = ruin
-			}
-			NOT = {
-				has_character_flag = no_oldstones_regalia
+			owner = {
+				OR = {
+					culture = ruin
+					has_character_flag = no_oldstones_regalia
+				}
 			}
 		}
 	}
+
 	immediate = {
 		owner = {
-			narrative_event = {
-				id = unoccupied.1101
-			}
+			narrative_event = { id = unoccupied.1101 }
 		}
 	}
+
 	option = {
 		name = OK
 	}
 }
-#************************************************
-#Summerhall dragon egg
-#************************************************
+
+# ************************************************
+# Summerhall dragon egg
+# ************************************************
 province_event = {
 	id = unoccupied.12
 	is_triggered_only = yes
 	hide_window = yes
 	has_global_flag = summerhall_established
 	has_flag = colony_province
+
 	trigger = {
 		province_id = 306
 		has_province_flag = ruined_province
 		owner = {
-			NOT = {
+			NOR = {
 				culture = ruin
-			}
-			NOT = {
 				has_character_flag = summerhall_dragon_egg
 			}
 		}
-		NOT = {
-			has_game_rule = {
-				name = dragon_hatching_taming
-				value = off
-			}
-		}
+		has_game_rule = { name = dragon_hatching_taming value != off }
 	}
-	#mean_time_to_happen = {
+
+	# mean_time_to_happen = {
 	#	years = 60
-	#}
+	# }
 	immediate = {
 		owner = {
-			narrative_event = {
-				id = unoccupied.1201
-			}
+			narrative_event = { id = unoccupied.1201 }
 		}
 	}
+
 	option = {
 		name = OK
 	}
 }
-#************************************************
-#Find old religious scrolls
-#************************************************
+
+# ************************************************
+# Find old religious scrolls
+# ************************************************
 province_event = {
 	id = unoccupied.13
 	is_triggered_only = yes
 	hide_window = yes
 	has_flag = colony_province
+
 	trigger = {
 		OR = {
 			has_province_flag = ruined_province
 			traditional_nomad_territory_trigger = yes
 		}
-		NOT = {
+		NOR = {
 			region = world_dothraki
-		}
-		NOT = {
 			has_province_flag = scrolls_found
-		}
-		owner = {
-			NOT = {
-				culture_group = unoccupied_group
-			}
+			owner = { culture_group = unoccupied_group }
 		}
 	}
+
 	#	mean_time_to_happen = {
 	#		years = 25
 	#	}
 	immediate = {
 		set_province_flag = scrolls_found
 		owner = {
-			character_event = {
-				id = unoccupied.1301
-			}
+			character_event = { id = unoccupied.1301 }
 		}
 	}
+
 	option = {
 		name = OK
 	}
 }
-#************************************************
-#Province broken by dragon converted to a ruin
-#************************************************
+
+# ************************************************
+# Province broken by dragon converted to a ruin
+# ************************************************
 province_event = {
 	id = unoccupied.14
 	desc = "You should not see this, please report as a bug (unoccupied.14)"
 	picture = "GFX_evt_siege"
 	is_triggered_only = yes
+
 	trigger = {
 		county = {
 			holder_scope = {
-				is_alive = no
-				NOT = { trait = high_valyrian }
+				NOR = {
+					is_alive = yes
+					trait = high_valyrian
+				}
 			}
 		}
 		# OR = {
-			# has_province_modifier = burning
-			# has_province_modifier = burned1
-			# has_province_modifier = burned2
-			# has_province_modifier = burned3
+		# has_province_modifier = burning
+		# has_province_modifier = burned1
+		# has_province_modifier = burned2
+		# has_province_modifier = burned3
 		# }
 	}
 
-	#mean_time_to_happen = { days = 30 }
-
+	# mean_time_to_happen = { days = 30 }
 	immediate = {
 		if = {
 			limit = {
@@ -1234,9 +1011,7 @@ province_event = {
 			}
 			county = {
 				holder_scope = {
-					any_vassal = {
-						set_defacto_liege = THIS
-					}
+					any_vassal = { set_defacto_liege = this }
 				}
 			}
 			set_province_flag = dragon_intel
@@ -1246,7 +1021,7 @@ province_event = {
 		county = {
 			random_character = {
 				limit = {
-					has_claim = PREV
+					has_claim = prev
 					is_ruler = no
 					OR = {
 						NOT = { age = 14 }
@@ -1255,26 +1030,27 @@ province_event = {
 						can_marry = yes
 					}
 				}
-				gain_title = PREV
+				gain_title = prev
 			}
 			if = {
-				limit = { holder_scope = { is_alive = no } }
+				limit = {
+					holder_scope = { is_alive = no }
+				}
 				create_character = {
-					#religion = ROOT
-					#culture = ROOT
+					# religion = ROOT
+					# culture = ROOT
 					dynasty = actually_culture
 					random_traits = yes
 				}
 				new_character = {
-					ROOT = {
-						county = {
-							gain_title = PREVPREV
-						}
+					root = {
+						county = { gain_title = PREVPREV }
 					}
 				}
 			}
 		}
 	}
+
 	option = {
 		name = OK
 	}
