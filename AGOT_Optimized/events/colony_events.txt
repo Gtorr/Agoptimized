@@ -1861,7 +1861,7 @@ character_event = {
     id = colony.101
     is_triggered_only = yes
     picture = GFX_evt_castle_construction
-    desc = "Colonies will finish now"
+    desc = "All colonies will finish now"
     option = {
         name = "Ok"
         any_province = {
@@ -1872,7 +1872,7 @@ character_event = {
                 }
             }
             province_event = {
-                id = 99
+                id = colony.99
             }
         }
     }

@@ -737,7 +737,7 @@ character_event = {
 province_event = {
 	id = unoccupied.4
 	picture = "GFX_evt_castle_construction"
-
+	is_triggered_only = yes
 	desc = {
 		text = EVTDESCunoccupied.4
 		trigger = {
