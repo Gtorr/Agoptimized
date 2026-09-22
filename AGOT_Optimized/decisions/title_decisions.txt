@@ -202,12 +202,12 @@ title_decisions = {
 								character = FROM
 							}
 						}
-						#save_event_target_as = new_city_holding
-						#location = {
-						#	province_event = {
-						#		id = unoccupied.399
-						#	}
-						#}
+						save_event_target_as = new_city_holding
+						location = {
+							province_event = {
+								id = unoccupied.399
+							}
+						}
 						#increase base value, seperate event to avoid 'break'
 						if = {
 							limit = {

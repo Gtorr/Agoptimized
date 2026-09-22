@@ -1,5 +1,5 @@
 AGOT_Optimized/.cwtools/
-.bat
+*.bat
 # CWtools
 *.cwt
 *.nfo
