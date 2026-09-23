@@ -1,86 +1,104 @@
 has_plot_to_divine = {
-	OR = {
-		any_plotter = {
+    OR = {
+        any_plotter = {
             target = ROOT
-			plot_target_char = {
-				always = yes
-			}
-			NOT = {
-				has_plot = plot_rescue_prisoner
-			}
-			NOT = {
-				plot_is_known_by = ROOT
-			}
-			NOT = {
-				character = ROOT
-			}
-		}
-		any_spouse = {
-			any_plotter = {
-				plot_target_char = {
-					always = yes
-				}
-				NOT = {
-					has_plot = plot_rescue_prisoner
-				}
-				NOT = {
-					plot_is_known_by = ROOT
-				}
-				NOT = {
-					character = ROOT
-				}
-			}
-		}
-		any_close_relative = {
-			OR = {
-				AND = {
-					dynasty = ROOT
-					at_location = ROOT					#Added 23/7/26
-				}
-				is_child_of = ROOT
-				is_grandchild_of = ROOT
-				is_parent_of = ROOT
-				is_grandparent_of = ROOT
-				sibling = ROOT
-			}
-			any_plotter = {
-				plot_target_char = {
-					always = yes
-				}
-				NOT = {
-					has_plot = plot_rescue_prisoner
-				}
-				NOT = {
-					plot_is_known_by = ROOT
-				}
-				NOT = {
-					character = ROOT
-				}
-			}
-		}
-	}
+            plot_target_char = {
+                always = yes
+            }
+            NOR = {
+                has_plot = plot_rescue_prisoner
+                has_plot = plot_replace_castellan
+                has_plot = plot_replace_chancellor
+                has_plot = plot_replace_marshal
+                has_plot = plot_replace_treasurer
+                has_plot = plot_replace_spymaster
+                has_plot = plot_replace_councillor
+            }
+            NOT = {
+                plot_is_known_by = ROOT
+            }
+            NOT = {
+                character = ROOT
+            }
+        }
+        any_spouse = {
+            any_plotter = {
+                plot_target_char = {
+                    always = yes
+                }
+                NOR = {
+                    has_plot = plot_rescue_prisoner
+                    has_plot = plot_replace_castellan
+                    has_plot = plot_replace_chancellor
+                    has_plot = plot_replace_marshal
+                    has_plot = plot_replace_treasurer
+                    has_plot = plot_replace_spymaster
+                    has_plot = plot_replace_councillor
+                }
+                NOT = {
+                    plot_is_known_by = ROOT
+                }
+                NOT = {
+                    character = ROOT
+                }
+            }
+        }
+        any_close_relative = {
+            OR = {
+                AND = {
+                    dynasty = ROOT
+                    at_location = ROOT					#Added 23/7/26 GT.
+                }
+                is_child_of = ROOT
+                is_grandchild_of = ROOT
+                is_parent_of = ROOT
+                is_grandparent_of = ROOT
+                sibling = ROOT
+            }
+            any_plotter = {
+                plot_target_char = {
+                    always = yes
+                }
+                NOR = {
+                    has_plot = plot_rescue_prisoner
+                    has_plot = plot_replace_castellan
+                    has_plot = plot_replace_chancellor
+                    has_plot = plot_replace_marshal
+                    has_plot = plot_replace_treasurer
+                    has_plot = plot_replace_spymaster
+                    has_plot = plot_replace_councillor
+                }
+                NOT = {
+                    plot_is_known_by = ROOT
+                }
+                NOT = {
+                    character = ROOT
+                }
+            }
+        }
+    }
 }
 
 can_recive_dragon_dreams = {
-	is_ruler = yes
-	OR = {
-		trait = dragon_dreams
-		AND = {
-			any_courtier = {
-				trait = dragon_dreams
-				opinion = {
-					who = ROOT
-					value = 0
-				}
-				is_incapable = no
-				prisoner = no
-				NOT = {
-					is_inaccessible_trigger = true
-				}
-				NOT = {
-					character = ROOT
-				}
-			}
-		}
-	}
+    is_ruler = yes
+    OR = {
+        trait = dragon_dreams
+        AND = {
+            any_courtier = {
+                trait = dragon_dreams
+                opinion = {
+                    who = ROOT
+                    value = 0
+                }
+                is_incapable = no
+                prisoner = no
+                NOT = {
+                    is_inaccessible_trigger = true
+                }
+                NOT = {
+                    character = ROOT
+                }
+            }
+        }
+    }
 }

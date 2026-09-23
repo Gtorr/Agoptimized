@@ -1,16 +1,19 @@
 
 ## Colonisation ##
-Colony cost now corresponds to the selected rule.
+-Colony cost now corresponds to the selected rule.
 -Colony time closer to selected rules.
--Colonies only display 2 update events witch can be now disabled.
--Hovering on the (new) colony settlers modifier now indicates when the colony is expected to advance.
-Colony cheat finishes the colony in one go.
+-Colonies only display 2 update events like the original.
+-Hovering on the (new) colony status modifier now indicates when the colony is expected to finish aprox.
+-Colony cheat finishes the colony in one go.
+-Ported every original mtth modifier to the new system.
 -Steward job bonus is now accounted for randomly over time and it has more impact.
 
 ## Other fixes ##
-Fixed namespace error for ai slavery law event.
-Revised Slavery Bonuses.
-Demnese size slavery malus now applies correctly.
-dragon dreams event was firing whithout a plot to reveal.
+-Fixed namespace error for ai slavery law event.
+-Revised Slavery Bonuses.
+-Demnese size slavery malus now applies correctly.
+-dragon dreams event was firing whithout a plot to reveal.
+-divination skips council plots
+
 
 

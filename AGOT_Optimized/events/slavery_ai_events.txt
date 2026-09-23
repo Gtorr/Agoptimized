@@ -44,7 +44,7 @@ character_event = {
 		#	which = num_slaves
 		#}
 		refresh_slave_bonus_ai = yes
-		wealth = 100
+		wealth = 200
 	}
 	#*********************
 	option = {
@@ -131,7 +131,7 @@ character_event = {
 			which = num_slaves
 			value = 1000
 		}
-		wealth = -200
+		wealth = -250
 	}
 	#*********************
 	option = {
