@@ -11,9 +11,27 @@ character_event = {
 	trigger = {
 		NOT = {
 			has_dynasty_flag = high_valyrian
-		}
-		NOT = {
 			has_character_flag = high_valyrian
+			OR = {
+				dynasty = 496				#Targaryen
+				dynasty = 57				#Blackfyre
+				dynasty = 52				#Velaryon
+				dynasty = 497				#Aegons "of Essos"
+				dynasty = 359				# Qoherys 
+				dynasty = 50				# Celtigar 
+				dynasty = 7000				# Bittersteel
+				dynasty = 18878				# Bloodraven 
+				dynasty = 18879				# Seastar 
+				dynasty = 1771				# Saerys
+				dynasty = 1772				# Saerynar 
+				dynasty = 1773				# Saerystos 
+				#Targ Cadets
+				dynasty = 450204
+				dynasty = 450205
+				dynasty = 450206
+				dynasty = 450207
+				has_dynasty_flag = high_valyrian
+			}
 		}
 		has_game_rule = {
 			name = high_valyrian_cull
@@ -107,7 +125,8 @@ character_event = {
 				}
 				has_character_flag = can_become_high_valyrian
 			}
-			random_list = { #wtf
+			random_list = {
+				#wtf
 				#50% chance to be high valyrian, else east/west
 				50 = {
 					modifier = {

@@ -7,12 +7,9 @@ city = {
 		ai_creation_factor = 999
 		gold_cost = 150
 		build_time = 365
-		tax_income = 5
-		knights = 100
-		heavy_infantry = 500
-		ligh_infantry = -500
-		light_infantry_morale = -0.25		#Slave Soldiers
-		heavy_infantry_morale = 0.25		#Mercs
+		tax_income = 3
+		light_infantry_morale = -0.3		#Slave Soldiers
+		heavy_infantry_morale = 0.2		#Mercs
 	}
 	ct_house_of_pleasure = {
 		desc = bg_house_of_pleasure
@@ -32,11 +29,12 @@ city = {
 		}
 		prerequisites = {
 			ct_marketplace_1
+			ct_slv_market
 		}
 		ai_creation_factor = 900
-		gold_cost = 200
+		gold_cost = 400
 		build_time = 365
-		tax_income = 3
+		tax_income = 4
 		extra_tech_building_start = 99999
 	}
 	ct_fight_pit = {
@@ -46,11 +44,12 @@ city = {
 		}
 		prerequisites = {
 			ct_marketplace_1
+			ct_slv_market
 		}
 		ai_creation_factor = 500
 		gold_cost = 250
 		build_time = 365
-		heavy_infantry = 150
+		heavy_infantry = 250
 		tax_income = 1
 		levy_reinforce_rate = 0.1
 		extra_tech_building_start = 99999
