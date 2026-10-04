@@ -1,0 +1,798 @@
+decisions = {
+	create_e_iron_throne = {
+		ai = no
+		is_high_prio = yes	
+		only_playable = yes
+		potential = {
+			OR = {
+				tier = EMPEROR
+				AND = {
+					OR = {
+						ai = no
+						has_landed_title = c_kings_landing
+					}	
+					e_iron_throne = { ROOT = { has_claim = PREV } }
+					226 = { has_province_flag = kings_landing_established }
+				}
+			}	
+			e_iron_throne = { has_holder = no }
+			is_alternate_start = no
+		}
+		allow = {
+			war = no	
+			prisoner = no
+			NOT = { is_inaccessible_trigger = yes }
+			OR = {
+				AND = {
+					realm_size = 500				
+					custom_tooltip = {
+						text = create_e_iron_throne_allow
+						hidden_tooltip = { 
+							any_realm_title = {
+								count = 4
+								higher_tier_than = DUKE
+								OR = {
+									title = e_north
+									title = e_riverlands
+									title = e_vale
+									title = e_westerlands
+									title = e_stormlands
+									title = e_reach
+									title = e_dorne
+									title = e_iron_isles
+									title = k_north
+									title = k_riverlands
+									title = k_vale
+									title = k_westerlands
+									title = k_stormlands
+									title = k_reach
+									title = k_dorne
+									title = k_iron_isles
+									title = k_crownlands
+								}
+							}	
+						}
+					}
+				}
+				custom_tooltip = {
+					text = create_e_iron_throne_allowKL
+					hidden_tooltip = { 
+						has_landed_title = c_kings_landing
+						e_iron_throne = { ROOT = { has_claim = PREV } }
+						226 = { has_province_flag = kings_landing_established }
+					}
+				}
+			}	
+		}
+		effect = {
+			hidden_tooltip = {
+				set_global_flag = e_iron_throne_created
+				set_character_flag = changing_westerosi_kingdom_tier #to stop other maintenance triggering
+				primary_title = {
+					save_event_target_as = old_primary_title
+					if = {
+						limit = { 226 = { NOT = { has_province_flag = kings_landing_established } } }
+						set_global_flag = non_iron_throne_westeros
+						set_global_flag = KL_not_capital
+					}	
+					if = {
+						limit = { title = e_north }
+						k_north = { gain_title = ROOT copy_title_laws = event_target:old_primary_title }
+					}
+					if = {
+						limit = { title = e_riverlands }
+						k_riverlands = { gain_title = ROOT copy_title_laws = event_target:old_primary_title }
+					}	
+					if = {
+						limit = { title = e_vale }
+						k_vale = { gain_title = ROOT copy_title_laws = event_target:old_primary_title }
+					}
+					if = {
+						limit = { title = e_westerlands }
+						k_westerlands = { gain_title = ROOT copy_title_laws = event_target:old_primary_title }
+					}
+					if = {
+						limit = { title = e_reach }
+						k_reach = { gain_title = ROOT copy_title_laws = event_target:old_primary_title }
+					}
+					if = {
+						limit = { title = e_stormlands }
+						k_stormlands = { gain_title = ROOT copy_title_laws = event_target:old_primary_title }
+					}
+					if = {
+						limit = { title = e_dorne }
+						k_dorne = { gain_title = ROOT copy_title_laws = event_target:old_primary_title }
+					}
+					if = {
+						limit = { title = e_iron_isles }
+						k_iron_isles = { gain_title = ROOT copy_title_laws = event_target:old_primary_title }
+					}					
+				}
+			}
+			e_iron_throne = { 
+				gain_title = ROOT 
+				hidden_tooltip = { copy_title_laws = event_target:old_primary_title }
+			}
+			hidden_tooltip = {
+				#Gain dejure realm
+				any_title = { #Make small kingdoms, e.g. Claw, Dragonstone, dejure part of Westeros
+					limit = {
+						tier = KING
+						NOT = { title = k_the_most_devout }
+						NOT = { title = k_nightswatch }
+						NOT = { title = k_beyond_wall }
+						NOT = { empire = { always = yes } }
+						any_de_jure_vassal_title = {
+							location = { region = world_westeros }
+						}
+						NOT = {
+							capital_scope = { 
+								NOT = { province_id = 1 }
+								NOT = { region = world_westeros }
+							}
+						}
+					}
+					de_jure_liege = e_iron_throne
+				}
+				any_title = { #any other kingdoms part of new realm
+					limit = {
+						tier = KING
+						NOT = { title = k_the_most_devout }
+						NOT = { title = k_nightswatch }
+						NOT = { title = k_beyond_wall }
+						OR = {
+							has_holder = no
+							holder_scope = {
+								OR = {
+									character = ROOT
+									is_liege_or_above = ROOT								
+								}
+							}	
+						}
+						any_de_jure_vassal_title = {
+							holder_scope = {
+								OR = {
+									character = ROOT
+									is_liege_or_above = ROOT								
+								}
+							}
+						}
+						dejure_liege_title = { 
+							tier = EMPEROR
+							NOT = { title = e_iron_throne }
+							OR = {
+								capital_scope = { region = world_westeros }
+								title = e_iron_isles #These titles dont have capitals
+								title = e_riverlands
+							}	
+							OR = {
+								has_holder = no
+								holder_scope = { character = ROOT }
+							}
+						}
+					}
+					de_jure_liege = e_iron_throne
+				}
+				any_demesne_title = {
+					limit = {
+						tier = EMPEROR
+						NOT = { title = e_iron_throne }
+						OR = {
+							capital_scope = { region = world_westeros }
+							title = e_iron_isles #These titles dont have capitals
+							title = e_riverlands
+						}						
+					}
+					destroy_landed_title = THIS
+				}	
+				if = {
+					limit = { ai = no }
+					chronicle = {
+						entry = CHRONICLE_CREATE_E_IRON_THRONE
+						picture = GFX_evt_ironthrone
+					}	
+				}
+				e_rebels = {
+					persistent_event_target:chronicle_player = {
+						if = {
+							limit = { NOT = { character = ROOT } }
+							chronicle = {
+								entry = CHRONICLE_CREATE_E_IRON_THRONE
+								portrait = [Root.GetID]
+							}	
+						}
+					}
+				}	
+				clr_character_flag = changing_westerosi_kingdom_tier
+			}	
+			recalc_succession = yes
+		}
+		ai_will_do = {
+			factor = 100
+		}		
+	}
+	establish_kingsguard = {
+		ai = no
+		is_high_prio = yes
+		only_independent = yes
+		potential = {
+			has_landed_title = e_iron_throne
+			OR = {
+				ai = no
+				NOT = { has_global_flag = aegons_conquest }
+			}
+			NOT = { is_title_active = d_kingsguard }
+			NOT = { has_global_flag = kingsguard_initialising }			
+		}
+		allow = {
+			has_landed_title = e_iron_throne
+			custom_tooltip = {
+				text = TOOLTIPestablish_kingsguardCHARACTER
+				any_realm_character = {
+					can_be_kingsguard_candidate_trigger = yes
+				}
+			}
+			custom_tooltip = {
+				text = TOOLTIPestablish_kingsguardCIVILWAR
+				OR = {
+					war = no
+					NOT = { trait = civil_war }
+				}
+			}
+		}
+		effect = {
+			set_global_flag = kingsguard_initialising
+			clr_character_flag = selecting_kingsguard
+			clr_character_flag = ignore_kg
+			character_event = { id = kingsguard.295 tooltip = "TOOLTIPESTABLISHKG" }
+			if = {
+				limit = { ai = no }
+				chronicle = {
+					entry = CHRONICLE_CREATE_KINGSGUARD
+					picture = GFX_kingsguard
+				}	
+			}
+		}
+		ai_check_interval = 3
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				NOT = { any_vassal = { tier = KING } }
+			}
+		}
+	}
+	##Expand Red Keep
+	expand_red_keep = {
+		ai = no
+		is_high_prio = yes
+		only_independent = yes
+		potential = {
+			has_landed_title = e_iron_throne
+			has_landed_title = c_kings_landing
+			OR = {
+				has_global_flag = red_keep_established
+				has_global_flag = KL_red_keep_1_done
+				has_global_flag = KL_red_keep_2_done
+				has_global_flag = KL_red_keep_3_done
+			}
+		}
+		allow = {
+			has_landed_title = c_kings_landing
+			NOT = { has_character_modifier = in_seclusion }
+		}
+		effect = {
+			treasury = -250
+			custom_tooltip = { text = TOOLTIPKL_expand_red_keep }
+			if = {
+				limit = { has_global_flag = red_keep_established }
+				clr_global_flag = red_keep_established
+				set_global_flag = KL_red_keep_1
+			}	
+			if = {
+				limit = { has_global_flag = KL_red_keep_1_done }
+				clr_global_flag = KL_red_keep_1_done
+				set_global_flag = KL_red_keep_2
+			}	
+			if = {
+				limit = { has_global_flag = KL_red_keep_2_done }
+				clr_global_flag = KL_red_keep_2_done
+				set_global_flag = KL_red_keep_3
+			}	
+			if = {
+				limit = { has_global_flag = KL_red_keep_3_done }
+				clr_global_flag = KL_red_keep_3_done
+				set_global_flag = KL_red_keep_4
+			}	
+		}
+		ai_check_interval = 3
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				war = yes
+			}
+			modifier = {
+				factor = 0.2
+				NOT = { treasury = 200 }
+			}
+		}
+	}
+	##Expand Fortifications
+	expand_fortifications = {
+		ai = no
+		is_high_prio = yes
+		only_independent = yes
+		potential = {
+			has_landed_title = e_iron_throne
+			has_landed_title = c_kings_landing
+			OR = {
+				has_global_flag = KL_established
+				has_global_flag = KL_fortifications_1_done
+				has_global_flag = KL_fortifications_2_done
+				has_global_flag = KL_fortifications_3_done
+			}
+		}
+		allow = {
+			has_landed_title = c_kings_landing
+			NOT = { has_character_modifier = in_seclusion }
+		}
+		effect = {
+			treasury = -250
+			custom_tooltip = { text = TOOLTIPKL_expand_fortifications }
+			if = {
+				limit = { has_global_flag = KL_established }
+				clr_global_flag = KL_established
+				set_global_flag = KL_fortifications_1
+			}	
+			if = {
+				limit = { has_global_flag = KL_fortifications_1_done }
+				clr_global_flag = KL_fortifications_1_done
+				set_global_flag = KL_fortifications_2
+			}	
+			if = {
+				limit = { has_global_flag = KL_fortifications_2_done }
+				clr_global_flag = KL_fortifications_2_done
+				set_global_flag = KL_fortifications_3
+			}	
+			if = {
+				limit = { has_global_flag = KL_fortifications_3_done }
+				clr_global_flag = KL_fortifications_3_done
+				set_global_flag = KL_fortifications_4
+			}	
+		}
+		ai_check_interval = 3
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				war = yes
+			}
+			modifier = {
+				factor = 0.2
+				NOT = { treasury = 200 }
+			}
+		}
+	}
+	##Establish Navy
+	expand_navy = {
+		ai = no
+		is_high_prio = yes
+		only_independent = yes
+		potential = {
+			has_landed_title = e_iron_throne
+			has_landed_title = c_kings_landing
+			OR = {
+				has_global_flag = KL_navy_established
+				has_global_flag = KL_expand_navy_1_done
+				has_global_flag = KL_expand_navy_2_done
+			}
+		}
+		allow = {
+			has_landed_title = c_kings_landing
+			NOT = { has_character_modifier = in_seclusion }
+		}
+		effect = {
+			treasury = -200
+			custom_tooltip = { text = TOOLTIPKL_expand_navy }
+			if = {
+				limit = { has_global_flag = KL_navy_established }
+				clr_global_flag = KL_navy_established
+				set_global_flag = KL_expand_navy_1
+			}	
+			if = {
+				limit = { has_global_flag = KL_expand_navy_1_done }
+				clr_global_flag = KL_expand_navy_1_done
+				set_global_flag = KL_expand_navy_2
+			}	
+			if = {
+				limit = { has_global_flag = KL_expand_navy_2_done }
+				clr_global_flag = KL_expand_navy_2_done
+				set_global_flag = KL_expand_navy_3
+			}	
+		}
+		ai_check_interval = 3
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.5
+			}
+			modifier = {
+				factor = 0
+				war = yes
+			}
+			modifier = {
+				factor = 0.1
+				NOT = { treasury = 200 }
+			}
+		}
+	}
+
+	coronation = {
+		is_high_prio = yes
+		only_independent = yes
+		potential = {
+			has_landed_title = e_iron_throne		
+			is_republic = no
+			is_theocracy = no
+			NOT = { government = alliance_government }
+			NOT = { government = feudal_government_LP }			
+			NOT = { has_character_flag = crowned_by_high_septon }
+			NAND = { #Uses DLC coronation
+				has_dlc = "Holy Fury"
+				religion = the_seven
+			}
+			is_alternate_start = no
+		}
+		allow = {
+			show_only_failed_conditions = yes
+			prisoner = no
+			NOT = { is_heretic = yes }
+			NOT = { trait = incapable }
+			conditional_tooltip = {
+				trigger = { religion = the_seven }
+				NOT = { trait = excommunicated }
+			}
+			custom_tooltip = {
+				text = TOOLTIPcoronationREJECTED
+				hidden_tooltip = {
+					NOT = {
+						any_opinion_modifier_target = {
+							has_opinion_modifier = { who = ROOT modifier = coronation_rejected }
+							OR = {
+								controls_religion = yes
+								AND = {
+									liege = { character = ROOT }
+									has_job_title = job_spiritual
+								}
+								has_landed_title = k_the_most_devout
+							}						
+						}
+					}
+				}
+			}
+			conditional_tooltip = {
+				trigger = { 
+					NOT = { has_dlc = "Sons of Abraham" }
+					OR = {
+						religion = the_seven
+						is_old_gods_religion_trigger = yes
+						religion = pirate
+						religion = corsair
+						religion = dothraki_pagan
+					}
+				}
+				custom_tooltip = {
+					text = TOOLTIPcoronationNEWHIGHSEPTON
+					OR = {					
+						NOT = { has_global_flag = need_new_high_septon }
+						had_global_flag = { flag = need_new_high_septon days = 600 }
+					}
+				}	
+			}			
+			custom_tooltip = {
+				text = TOOLTIPcoronationONGOING
+				OR = {
+					NOT = { has_character_flag = wants_coronation }
+					had_character_flag = { flag = wants_coronation days = 365 }
+				}
+			}
+			custom_tooltip = {
+				text = TOOLTIPcoronationAEGONSCONQUEST
+				NOT = { has_global_flag = aegons_conquest }
+			}
+			NOT = { is_inaccessible_trigger = yes }	
+			custom_tooltip = {
+				text = is_not_busy_trigger_tooltip
+				hidden_tooltip = { NOT = { has_character_flag = do_not_disturb } }
+			}			
+		}
+		effect = {
+			set_character_flag = wants_coronation
+			wealth = -30
+			character_event = { id = coronation.1 }
+			hidden_tooltip = { character_event = { id = 72999 days = 365 } } # Safety catch flag clearing
+		}
+		ai_check_interval = 12
+		ai_will_do = {
+			factor = 1000
+		}
+	}
+	demand_kings_landing = {
+		ai = no
+		is_high_prio = yes
+		only_independent = yes
+		potential = {
+			has_landed_title = e_iron_throne
+			is_alternate_start = no
+			NOT = { has_global_flag = KL_not_capital }
+			OR = {
+				AND = {
+					NOT = { has_landed_title = d_kings_landing }
+					d_kings_landing = {
+						ROOT = { has_claim = PREV }
+						holder_scope = {
+							top_liege = { character = ROOT }
+							NOT = { war_with = ROOT }
+							OR = {
+								NOT = { has_character_flag = demanded_kings_landing }
+								had_character_flag = { flag = demanded_kings_landing days = 200 }
+							}
+							OR = {
+								ROOT = { ai = no }
+								NOT = { has_opinion_modifier = { who = ROOT modifier = opinion_granted_duchy } }		
+							}	
+							NOT = { has_dynasty_flag = kings_landing_title_grant } #was not given the title by the king
+						}
+					}
+				}	
+				AND = {
+					NOT = { has_landed_title = c_kings_landing }
+					c_kings_landing = {
+						ROOT = { has_claim = PREV }
+						holder_scope = {
+							top_liege = { character = ROOT }
+							NOT = { war_with = ROOT }
+							OR = {
+								NOT = { has_character_flag = demanded_kings_landing }
+								had_character_flag = { flag = demanded_kings_landing days = 200 }
+							}
+							OR = {
+								ROOT = { ai = no }
+								NOT = { has_opinion_modifier = { who = ROOT modifier = opinion_granted_county } }		
+							}	
+						}
+					}
+				}
+			}
+			OR = {
+				ai = no
+				NOT = { has_character_flag = demanded_kings_landing }
+				had_character_flag = { flag = demanded_kings_landing days = 3650 }	
+			}			
+		}
+		allow = {
+			prestige = 50
+			OR = {
+				AND = {
+					NOT = { has_landed_title = d_kings_landing }
+					d_kings_landing = {
+						ROOT = { has_claim = PREV }
+					}
+				}	
+				AND = {
+					NOT = { has_landed_title = c_kings_landing }
+					c_kings_landing = {
+						ROOT = { has_claim = PREV }
+					}
+				}
+			}	
+			NOT = { is_inaccessible_trigger = yes }
+		}
+		effect = {
+			if = {
+				limit = { ai = yes }
+				set_character_flag = demanded_kings_landing
+			}
+			if = { 
+				limit = {
+					NOT = { has_landed_title = d_kings_landing }
+					d_kings_landing = {
+						holder_scope = {
+							top_liege = { character = ROOT }
+							NOT = { war_with = ROOT }
+							OR = {
+								NOT = { has_character_flag = demanded_kings_landing }
+								had_character_flag = { flag = demanded_kings_landing days = 200 }
+							}
+							OR = {
+								ROOT = { ai = no }
+								NOT = { has_opinion_modifier = { who = ROOT modifier = opinion_granted_duchy } }		
+							}	
+						}
+					}
+				}
+				d_kings_landing = {
+					holder_scope = {
+						letter_event = { id = 63070 days = 4 tooltip = "EVTTOOLTIP63070" }  # "vassal_request_events.txt"
+						set_character_flag = demanded_kings_landing 
+					}
+				}			
+			}	
+			if = { 	
+				limit = {
+					NOT = { has_landed_title = c_kings_landing }
+					c_kings_landing = {
+						holder_scope = {
+							top_liege = { character = ROOT }
+							NOT = { war_with = ROOT }
+							OR = {
+								NOT = { has_character_flag = demanded_kings_landing }
+								had_character_flag = { flag = demanded_kings_landing days = 200 }
+							}
+							OR = {
+								ROOT = { ai = no }
+								NOT = { has_opinion_modifier = { who = ROOT modifier = opinion_granted_county } }		
+							}
+							NOT = { has_landed_title = d_kings_landing }
+						}
+					}
+				}
+				c_kings_landing = {
+					holder_scope = {
+						letter_event = { id = 63070 days = 4 tooltip = "EVTTOOLTIP63070" }  # "vassal_request_events.txt"
+						set_character_flag = demanded_kings_landing 
+					}
+				}			
+			}
+		}
+		ai_check_interval = 2
+		ai_will_do = {
+			factor = 1000 
+		}
+	}
+	move_capital_to_kings_landing = {
+		ai = no
+		is_high_prio = yes
+		only_independent = yes
+		potential = {
+			primary_title = { title = e_iron_throne }
+			NOT = { has_global_flag = KL_not_capital }
+			is_alternate_start = no
+			capital_holding = { location = { NOT = { province_id = 226 } } }
+			has_landed_title = b_red_keep
+			is_feudal = yes	 		
+			c_kings_landing = { 
+				location = { 
+					has_province_flag = kings_landing_established
+				}
+			}
+		}
+		allow = {	
+		}
+		effect = {
+			b_red_keep = { 
+				ROOT = { capital = PREV }
+			}
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+	}
+	
+	##Build Road Network
+	build_road_network = {
+		ai = no
+		is_high_prio = yes
+		only_independent = yes
+		potential = {
+			has_landed_title = e_iron_throne
+			is_alternate_start = no
+			NOT = { has_global_flag = building_westeros_road_network }
+		}
+		allow = {
+			war = no
+			#Must have at capital in a westerosi road node
+			capital_scope = {
+				OR = {		
+					custom_tooltip = {
+						text = TOOLTIPbuild_road_networkKL
+						hidden_tooltip = {
+							AND = {
+								province_id = 226 #King's Landing
+								has_province_flag = kings_landing_established
+							}
+						}
+					}	
+					province_id = 304 #Storm's End
+					province_id = 107 #Harrenhal
+					province_id = 97  #Lord Harroway's Town
+					province_id = 101 #Riverrun
+					province_id = 182 #Casterly Rock
+					province_id = 183 #Lannisport
+					province_id = 267 #Highgarden
+					province_id = 286 #Oldtown
+					province_id = 47 #Winterfell
+					province_id = 136 #The Eyrie
+					province_id = 78 #The Freylands
+					province_id = 77 #The Twins
+				}
+			}	
+			OR = {
+				stewardship = 18
+				job_castellan = {
+					custom_tooltip = {
+						text = TOOLTIPbuild_road_networkCASTELLAN
+						hidden_tooltip = { stewardship = 18 }
+					}
+				}	
+			}
+			NOT = { has_character_modifier = in_seclusion }
+		}
+		effect = {
+			character_event = { id = iron_throne.1 tooltip = TOOLTIPbuild_road_network }
+			set_global_flag = building_westeros_road_network
+			
+			hidden_tooltip = { character_event = { id = iron_throne.3 days = 3 } } #levy a special tax?
+		}
+		ai_check_interval = 6
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.1
+				NOT = { treasury = 200 }
+			}
+		}
+	}
+	
+	# Build Summerhall
+	build_summerhall = {
+		ai = no
+		is_high_prio = yes
+		only_independent = yes
+		potential = {
+			has_landed_title = e_iron_throne
+			has_landed_title = c_summerhall
+			NOT = { has_global_flag = summerhall_established }
+			NOT = { has_global_flag = building_summerhall }
+			NOT = { 306 = { has_province_modifier = buidling_summerhall } }
+			OR = {
+				dynasty = 496 #Targaryen
+				dynasty = 57 #Blackfyre
+				dynasty = 7000 #Bittersteel
+				#Targ Cadets
+				dynasty = 450204
+				dynasty = 450205
+				dynasty = 450206
+				dynasty = 450207
+			}
+		}
+		allow = {
+			has_landed_title = c_summerhall
+			war = no
+			OR = {
+				stewardship = 18
+				job_castellan = {
+					custom_tooltip = {
+						text = TOOLTIPbuild_road_networkCASTELLAN
+						hidden_tooltip = { stewardship = 18 }
+					}
+				}	
+			}
+			wealth = 250
+		}
+		effect = {
+			character_event = { id = iron_throne.10 tooltip = TOOLTIPbuild_summerhall }
+			wealth = -250
+			set_global_flag = building_summerhall
+		}
+		ai_check_interval = 6
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.1
+				NOT = { treasury = 250 }
+			}
+		}
+	}
+}

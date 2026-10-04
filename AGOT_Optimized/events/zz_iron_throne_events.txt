@@ -1,0 +1,1425 @@
+namespace = iron_throne
+# Mtth to pulse override by ~Gt.
+#Road Section Complete
+character_event = {
+	id = iron_throne.2
+	is_triggered_only = yes
+	desc = "EVTDESCiron_throne.2"
+	picture = GFX_KINGS_LANDING
+	only_independent = yes
+	war = no
+	has_global_flag = building_westeros_road_network
+	
+	trigger = {
+		has_landed_title = e_iron_throne		
+		e_iron_throne = { has_title_flag = building_road_network }
+	}
+	
+	# mean_time_to_happen = {
+	# 	months = 36
+
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		OR = {
+	# 			ai = yes
+	# 			job_treasurer = { 
+	# 				has_job_action = action_oversee_construction
+	# 				location = { is_capital = yes }
+	# 			}
+	# 		}	
+	# 	}
+	# 	modifier = {
+	# 		factor = 1.5
+	# 		NOT = { stewardship = 4 }
+	# 	}
+	# 	modifier = {
+	# 		factor = 1.5
+	# 		NOT = { stewardship = 7 }
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		stewardship = 12
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		stewardship = 15
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		stewardship = 18
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		stewardship = 21
+	# 	}
+	# 	modifier = {
+	# 		factor = 1.5
+	# 		job_castellan = { NOT = { stewardship = 9 } }
+	# 	}
+	# 	modifier = {
+	# 		factor = 1.5
+	# 		job_castellan = { NOT = { stewardship = 12 } }
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		job_castellan = { stewardship = 16 }
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		job_castellan = { stewardship = 18 }
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		job_castellan = { stewardship = 20 }
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		job_castellan = { stewardship = 22 }
+	# 	}
+	# }
+	
+	option = {
+		name = "EVTOPTAiron_throne.2"
+		job_castellan = {
+			prestige = 75
+			hidden_tooltip = { 
+				change_variable = { which = "services_rendered" value = 1 } 
+				reverse_opinion = {
+					modifier = opinion_service_rendered
+					who = ROOT
+					years = 3
+				}				
+			}
+		}
+		prestige = 75
+		e_iron_throne = { 
+			clr_title_flag = building_road_network
+			if = {
+				limit = { has_title_flag = building_road_kings_landing_storms_end }
+				clr_title_flag = building_road_kings_landing_storms_end
+				304 = { #storm's end
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_storms_end = { add_building = ca_kingsroad }					
+				}
+				299 = { #parchments
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_parchments = { add_building = ca_kingsroad }
+				}
+				296 = { #bronzegate
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_bronzegate = { add_building = ca_kingsroad }
+				}
+				232 = { #wendwater
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_woodmere = { add_building = ca_kingsroad }
+				}
+				226 = { #king's landing
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_red_keep = { add_building = ca_kingsroad }
+				}
+			}	
+			if = {
+				limit = { has_title_flag = building_road_kings_landing_harroways_town }
+				clr_title_flag = building_road_kings_landing_harroways_town
+				226 = { #king's landing
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_red_keep = { add_building = ca_kingsroad }
+				}
+				225 = { #stokeworth
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_stokeworth  = { add_building = ca_kingsroad }
+				}
+				210 = { #rollingford
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_rollingford = { add_building = ca_kingsroad }
+				}
+				205 = { #sow's horn
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_sows_horn = { add_building = ca_kingsroad }
+				}
+				116 = { #butterwell
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_shoreham = { add_building = ca_kingsroad }
+				}
+				107 = { #harrenhal
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_harrenhal = { add_building = ca_kingsroad }
+				}
+				97 = { #lord harroway's town
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_harroway = { add_building = ca_kingsroad }
+				}
+			}
+			if = {
+				limit = { has_title_flag = building_road_kings_landing_gold_road }
+				clr_title_flag = building_road_kings_landing_gold_road
+				182 = { #casterly rock
+					add_province_modifier = { name = goldroad duration = -1 }
+					#set_province_flag = goldroad
+					#b_casterly_rock = { add_building = ca_goldroad }
+				}
+				183 = { #lannisport
+					add_province_modifier = { name = goldroad duration = -1 }
+					#set_province_flag = goldroad
+					#b_lannisport = { add_building = ca_goldroad }
+				}
+				184 = { #tendring
+					add_province_modifier = { name = goldroad duration = -1 }
+					#set_province_flag = goldroad
+					#b_tendring = { add_building = ca_goldroad }
+				}
+				1132 = { #moreland
+					add_province_modifier = { name = goldroad duration = -1 }
+					#set_province_flag = goldroad
+					#b_moreland_keep = { add_building = ca_goldroad }
+				}
+				191 = { #deep den
+					add_province_modifier = { name = goldroad duration = -1 }
+					#set_province_flag = goldroad
+					#b_deep_den = { add_building = ca_goldroad }
+				}
+				192 = { #drox castle
+					add_province_modifier = { name = goldroad duration = -1 }
+					#set_province_flag = goldroad
+					#b_drox_castle = { add_building = ca_goldroad }
+				}
+				194 = { #payne hall
+					add_province_modifier = { name = goldroad duration = -1 }
+					#set_province_flag = goldroad
+					#b_payne_hall = { add_building = ca_goldroad }
+				}
+				202 = { #byford
+					add_province_modifier = { name = goldroad duration = -1 }
+					#set_province_flag = goldroad
+					#b_byford = { add_building = ca_goldroad }
+				}
+				222 = { #bramsfort
+					add_province_modifier = { name = goldroad duration = -1 }
+					#set_province_flag = goldroad
+					#b_bramsfort = { add_building = ca_goldroad }
+				}
+				226 = { #king's landing
+					#set_province_flag = goldroad
+					#b_red_keep = { add_building = ca_goldroad }
+				}
+			}
+			if = {
+				limit = { has_title_flag = building_road_kings_landing_rose_road }
+				clr_title_flag = building_road_kings_landing_rose_road
+				226 = { #king's landing
+					#set_province_flag = roseroad
+					#b_red_keep = { add_building = ca_roseroad }
+				}
+				295 = { #langward hall
+					add_province_modifier = { name = roseroad duration = -1 }
+					#set_province_flag = roseroad
+					#b_langward_hall = { add_building = ca_roseroad }
+				}
+				227 = { #dalston keep
+					add_province_modifier = { name = roseroad duration = -1 }
+					#set_province_flag = roseroad
+					#b_dalston_keep = { add_building = ca_roseroad }
+				}
+				255 = { #roseford
+					add_province_modifier = { name = roseroad duration = -1 }
+					#set_province_flag = roseroad
+					#b_rosewatch = { add_building = ca_roseroad }
+				}
+				253 = { #bitterbridge
+					add_province_modifier = { name = roseroad duration = -1 }
+					#set_province_flag = roseroad
+					#b_caswell_castle = { add_building = ca_roseroad }
+				}
+				254 = { #longtable
+					add_province_modifier = { name = roseroad duration = -1 }
+					#set_province_flag = roseroad
+					#b_longtable = { add_building = ca_roseroad }
+				}
+				256 = { #inchfield
+					add_province_modifier = { name = roseroad duration = -1 }
+					#set_province_flag = roseroad
+					#b_inchbrook = { add_building = ca_roseroad }
+				}
+				267 = { #highgarden
+					add_province_modifier = { name = roseroad duration = -1 }
+					#set_province_flag = roseroad
+					#b_highgarden = { add_building = ca_roseroad }
+				}
+			}
+			if = {
+				limit = { has_title_flag = building_road_oldtown_highgarden }
+				clr_title_flag = building_road_oldtown_highgarden
+				267 = { #highgarden
+					add_province_modifier = { name = roseroad duration = -1 }
+					#set_province_flag = roseroad
+					#b_highgarden = { add_building = ca_roseroad }
+				}
+				276 = { #middlebury
+					add_province_modifier = { name = roseroad duration = -1 }
+					#set_province_flag = roseroad
+					#b_windflower_keep = { add_building = ca_roseroad }
+				}
+				275 = { #darkdell
+					add_province_modifier = { name = roseroad duration = -1 }
+					#set_province_flag = roseroad
+					#b_darkdell = { add_building = ca_roseroad }
+				}
+				284 = { #sommerset
+					add_province_modifier = { name = roseroad duration = -1 }
+					#set_province_flag = roseroad
+					#b_sommerset = { add_building = ca_roseroad }
+				}
+				283 = { #honeyholt
+					add_province_modifier = { name = roseroad duration = -1 }
+					#set_province_flag = roseroad
+					#b_honeyholt = { add_building = ca_roseroad }
+				}
+				286 = { #oldtown
+					add_province_modifier = { name = roseroad duration = -1 }
+					#set_province_flag = roseroad
+					#b_the_hightower = { add_building = ca_roseroad }
+				}
+			}
+			if = {
+				limit = { has_title_flag = building_road_river_road }
+				clr_title_flag = building_road_river_road
+				97 = { #lord harroway's town
+					#set_province_flag = river_road
+					#b_harroway = { add_building = ca_river_road }
+				}
+				96 = { #lychester
+					add_province_modifier = { name = river_road duration = -1 }
+					#set_province_flag = river_road
+					#b_castlelynchester = { add_building = ca_river_road }
+				}
+				91 = { #stone hedge
+					add_province_modifier = { name = river_road duration = -1 }
+					#set_province_flag = river_road
+					#b_stonehedge = { add_building = ca_river_road }
+				}
+				101 = { #riverrun
+					add_province_modifier = { name = river_road duration = -1 }
+					#set_province_flag = river_road
+					#b_riverrun = { add_building = ca_river_road }
+				}
+				102 = { #branstone
+					add_province_modifier = { name = river_road duration = -1 }
+					#set_province_flag = river_road
+					#b_branstoneholdfast = { add_building = ca_river_road }
+				}
+				175 = { #nunn's deep
+					add_province_modifier = { name = river_road duration = -1 }
+					#set_province_flag = river_road
+					#b_nunns_deep = { add_building = ca_river_road }
+				}
+				174 = { #golden tooth
+					add_province_modifier = { name = river_road duration = -1 }
+					#set_province_flag = river_road
+					#b_golden_tooth = { add_building = ca_river_road }
+				}
+				176 = { #oxcross
+					add_province_modifier = { name = river_road duration = -1 }
+					#set_province_flag = river_road
+					#b_oxcross = { add_building = ca_river_road }
+				}
+				178 = { #sarsfield
+					add_province_modifier = { name = river_road duration = -1 }
+					#set_province_flag = river_road
+					#b_sarsfield = { add_building = ca_river_road }
+				}
+				182 = { #casterly rock
+					#set_province_flag = river_road
+					#b_casterly_rock = { add_building = ca_river_road }
+				}
+				183 = { #lannisport
+					#set_province_flag = river_road
+					#b_lannisport = { add_building = ca_river_road }
+				}
+			}
+			if = {
+				limit = { has_title_flag = building_road_neck_road }
+				clr_title_flag = building_road_neck_road
+				97 = { #lord harroway's town
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_harroway = { add_building = ca_kingsroad }
+				}
+				108 = { #Darry
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_castledarry = { add_building = ca_kingsroad }
+				}
+				84 = { #wycombe
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_wycombe = { add_building = ca_kingsroad }
+				}
+				83 = { #erenford
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_erenfordhall = { add_building = ca_kingsroad }
+				}
+				78 = { #freylands
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_sevenstreams = { add_building = ca_kingsroad }
+				}
+			}
+			if = {
+				limit = { has_title_flag = building_road_north_road }
+				clr_title_flag = building_road_north_road
+				61 = { #whitford
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_fordswatch = { add_building = ca_kingsroad }
+				}
+				57 = { #king's course
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_wayfarerswatch = { add_building = ca_kingsroad }
+				}
+				49 = { #castle cerwyn
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_castlecerwyn = { add_building = ca_kingsroad }
+				}
+				47 = { #winterfell
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_winterfell = { add_building = ca_kingsroad }
+				}			
+			}
+			if = {
+				limit = { has_title_flag = building_road_ocean_road }
+				clr_title_flag = building_road_ocean_road
+				267 = { #highgarden
+					#set_province_flag = oceanroad
+					#b_highgarden = { add_building = ca_oceanroad }
+				}
+				265 = { #westbrook
+					add_province_modifier = { name = oceanroad duration = -1 }
+					#set_province_flag = oceanroad
+					#b_westbrook = { add_building = ca_oceanroad }
+				}
+				240 = { #catswold
+					add_province_modifier = { name = oceanroad duration = -1 }
+					#set_province_flag = oceanroad
+					#b_the_brandyhouse = { add_building = ca_oceanroad }
+				}
+				235 = { #old oak
+					add_province_modifier = { name = oceanroad duration = -1 }
+					#set_province_flag = oceanroad
+					#b_old_oak = { add_building = ca_oceanroad }
+				}
+				197 = { #crakehall
+					add_province_modifier = { name = oceanroad duration = -1 }
+					#set_province_flag = oceanroad
+					#b_crakehall = { add_building = ca_oceanroad }
+				}
+				185 = { #hawthorne
+					add_province_modifier = { name = oceanroad duration = -1 }
+					#set_province_flag = oceanroad
+					#b_hawthorn = { add_building = ca_oceanroad }
+				}
+				183 = { #lannisport
+					#set_province_flag = oceanroad
+					#b_lannisport = { add_building = ca_oceanroad }
+				}
+				182 = { #casterly rock
+					#set_province_flag = oceanroad
+					#b_casterly_rock = { add_building = ca_oceanroad }
+				}			
+			}
+			if = {
+				limit = { has_title_flag = building_road_high_road }
+				clr_title_flag = building_road_high_road
+				97 = { #lord harroway's town
+					#set_province_flag = high_road
+					#b_harroway = { add_building = ca_high_road }
+				}
+				95 = { #chiltern
+					add_province_modifier = { name = high_road duration = -1 }
+					#set_province_flag = high_road
+					#b_chilterncastle = { add_building = ca_high_road }
+				}
+				134 = { #darkmoor
+					add_province_modifier = { name = high_road duration = -1 }
+					#set_province_flag = high_road
+					#b_burning_heath = { add_building = ca_high_road }
+				}
+				140 = { #bloody gate
+					add_province_modifier = { name = high_road duration = -1 }
+					#set_province_flag = high_road
+					#b_bloody_gate = { add_building = ca_high_road }
+				}		
+				136 = { #the eyrie
+					add_province_modifier = { name = high_road duration = -1 }
+					#set_province_flag = high_road
+					#b_the_eyrie = { add_building = ca_high_road }
+				}		
+			}
+			if = {
+				limit = { has_title_flag = building_road_harroways_town_storms_end }
+				clr_title_flag = building_road_harroways_town_storms_end
+				304 = { #storm's end
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_storms_end = { add_building = ca_kingsroad }					
+				}
+				299 = { #parchments
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_parchments = { add_building = ca_kingsroad }
+				}
+				296 = { #bronzegate
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_bronzegate = { add_building = ca_kingsroad }
+				}
+				232 = { #wendwater
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_woodmere = { add_building = ca_kingsroad }
+				}
+				226 = { #king's landing
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_red_keep = { add_building = ca_kingsroad }
+				}
+				225 = { #stokeworth
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_stokeworth  = { add_building = ca_kingsroad }
+				}
+				210 = { #rollingford
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_rollingford = { add_building = ca_kingsroad }
+				}
+				205 = { #sow's horn
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_sows_horn = { add_building = ca_kingsroad }
+				}
+				116 = { #butterwell
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_shoreham = { add_building = ca_kingsroad }
+				}
+				107 = { #harrenhal
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_harrenhal = { add_building = ca_kingsroad }
+				}
+				97 = { #lord harroway's town
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_harroway = { add_building = ca_kingsroad }
+				}		
+			}
+			if = {
+				limit = { has_title_flag = building_road_harroways_town_highgarden }
+				clr_title_flag = building_road_harroways_town_highgarden
+				
+				226 = { #king's landing
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_red_keep = { add_building = ca_kingsroad }
+				}
+				225 = { #stokeworth
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_stokeworth  = { add_building = ca_kingsroad }
+				}
+				210 = { #rollingford
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_rollingford = { add_building = ca_kingsroad }
+				}
+				205 = { #sow's horn
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_sows_horn = { add_building = ca_kingsroad }
+				}
+				116 = { #butterwell
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_shoreham = { add_building = ca_kingsroad }
+				}
+				107 = { #harrenhal
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_harrenhal = { add_building = ca_kingsroad }
+				}
+				97 = { #lord harroway's town
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_harroway = { add_building = ca_kingsroad }
+				}
+				
+				
+				
+				295 = { #langward hall
+					add_province_modifier = { name = roseroad duration = -1 }
+					#set_province_flag = roseroad
+					#b_langward_hall = { add_building = ca_roseroad }
+				}
+				227 = { #dalston keep
+					add_province_modifier = { name = roseroad duration = -1 }
+					#set_province_flag = roseroad
+					#b_dalston_keep = { add_building = ca_roseroad }
+				}
+				255 = { #roseford
+					add_province_modifier = { name = roseroad duration = -1 }
+					#set_province_flag = roseroad
+					#b_rosewatch = { add_building = ca_roseroad }
+				}
+				253 = { #bitterbridge
+					add_province_modifier = { name = roseroad duration = -1 }
+					#set_province_flag = roseroad
+					#b_caswell_castle = { add_building = ca_roseroad }
+				}
+				254 = { #longtable
+					add_province_modifier = { name = roseroad duration = -1 }
+					#set_province_flag = roseroad
+					#b_longtable = { add_building = ca_roseroad }
+				}
+				256 = { #inchfield
+					add_province_modifier = { name = roseroad duration = -1 }
+					#set_province_flag = roseroad
+					#b_inchbrook = { add_building = ca_roseroad }
+				}
+				267 = { #highgarden
+					add_province_modifier = { name = roseroad duration = -1 }
+					#set_province_flag = roseroad
+					#b_highgarden = { add_building = ca_roseroad }
+				}	
+			}
+			if = {
+				limit = { has_title_flag = building_road_storms_end_highgarden }
+				clr_title_flag = building_road_storms_end_highgarden
+				267 = { #highgarden
+					add_province_modifier = { name = roseroad duration = -1 }
+					#set_province_flag = roseroad
+					#b_highgarden = { add_building = ca_roseroad }
+				}	
+				268 = { #cider hall
+					add_province_modifier = { name = roseroad duration = -1 }
+					#set_province_flag = roseroad
+					#b_cider_hall = { add_building = ca_roseroad }
+				}
+				269 = { #new barrel
+					add_province_modifier = { name = roseroad duration = -1 }
+					#set_province_flag = roseroad
+					#b_new_barrel = { add_building = ca_roseroad }
+				}
+				270 = { #ashford
+					add_province_modifier = { name = roseroad duration = -1 }
+					#set_province_flag = roseroad
+					#b_ashford_castle = { add_building = ca_roseroad }
+				}
+				306 = { #summerhall
+					add_province_modifier = { name = roseroad duration = -1 }
+					#set_province_flag = roseroad
+					#b_summerhall = { add_building = ca_roseroad }
+				}
+				294 = { #felwood
+					add_province_modifier = { name = roseroad duration = -1 }
+					#set_province_flag = roseroad
+					#b_felwood = { add_building = ca_roseroad }
+				}
+				301 = { #galemont
+					add_province_modifier = { name = roseroad duration = -1 }
+					#set_province_flag = roseroad
+					#b_galemont_fort = { add_building = ca_roseroad }
+				}
+				304 = { #storm's end
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = roseroad
+					#b_storms_end = { add_building = ca_roseroad }					
+				}	
+			}
+			if = {
+				limit = { has_title_flag = building_road_storms_end_lannisport }
+				clr_title_flag = building_road_storms_end_lannisport
+				304 = { #storm's end
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_storms_end = { add_building = ca_kingsroad }					
+				}
+				299 = { #parchments
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_parchments = { add_building = ca_kingsroad }
+				}
+				296 = { #bronzegate
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_bronzegate = { add_building = ca_kingsroad }
+				}
+				232 = { #wendwater
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_woodmere = { add_building = ca_kingsroad }
+				}
+				226 = { #king's landing
+					add_province_modifier = { name = kingsroad duration = -1 }
+					#set_province_flag = kingsroad
+					#b_red_keep = { add_building = ca_kingsroad }
+				}	
+				
+				182 = { #casterly rock
+					add_province_modifier = { name = goldroad duration = -1 }
+					#set_province_flag = goldroad
+					#b_casterly_rock = { add_building = ca_goldroad }
+				}
+				183 = { #lannisport
+					add_province_modifier = { name = goldroad duration = -1 }
+					#set_province_flag = goldroad
+					#b_lannisport = { add_building = ca_goldroad }
+				}
+				184 = { #tendring
+					add_province_modifier = { name = goldroad duration = -1 }
+					#set_province_flag = goldroad
+					#b_tendring = { add_building = ca_goldroad }
+				}
+				1132 = { #moreland
+					add_province_modifier = { name = goldroad duration = -1 }
+					#set_province_flag = goldroad
+					#b_moreland_keep = { add_building = ca_goldroad }
+				}
+				191 = { #deep den
+					add_province_modifier = { name = goldroad duration = -1 }
+					#set_province_flag = goldroad
+					#b_deep_den = { add_building = ca_goldroad }
+				}
+				192 = { #drox castle
+					add_province_modifier = { name = goldroad duration = -1 }
+					#set_province_flag = goldroad
+					#b_drox_castle = { add_building = ca_goldroad }
+				}
+				194 = { #payne hall
+					add_province_modifier = { name = goldroad duration = -1 }
+					#set_province_flag = goldroad
+					#b_payne_hall = { add_building = ca_goldroad }
+				}
+				202 = { #byford
+					add_province_modifier = { name = goldroad duration = -1 }
+					#set_province_flag = goldroad
+					#b_byford = { add_building = ca_goldroad }
+				}
+				222 = { #bramsfort
+					add_province_modifier = { name = goldroad duration = -1 }
+					#set_province_flag = goldroad
+					#b_bramsfort = { add_building = ca_goldroad }
+				}
+			}
+		}	
+		hidden_tooltip = { character_event = { id = iron_throne.1 days = 1 } } #next section	
+	}	
+}	
+# First stage completed
+character_event = {
+	id = iron_throne.13
+	desc = EVTDESCiron_throne.13
+	picture = GFX_evt_castle_construction
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = EVTOPTAiron_throne.13
+		306 = {
+			add_province_modifier = {
+				name = summerhall_stage1
+				duration = -1
+			}
+		}
+		job_treasurer = { custom_tooltip = { text = TOOLTIPbuild_summerhall_treasurer } }
+	}
+}
+# Craftsman finds ore vein
+character_event = {
+	id = iron_throne.14
+	desc = EVTDESCiron_throne.14
+	picture = GFX_evt_council
+	border = GFX_event_normal_frame_economy
+	
+	only_independent = yes
+	
+	trigger = {
+		has_landed_title = c_summerhall
+		306 = {	
+			has_province_modifier = buidling_summerhall
+			OR = { 
+				has_province_modifier = summerhall_stage1
+				has_province_modifier = summerhall_stage2
+				has_province_modifier = summerhall_stage3
+			}
+			NOT = { has_province_flag = summerhall_ore_found }
+			NOT = { has_province_modifier = summerhall_ore_found }
+		}
+	}
+	
+	mean_time_to_happen = {
+		years = 1
+		#Slavery helps
+		modifier = {
+			factor = 0.9
+			306 = { has_province_modifier = slave_modifier_1 }
+		}
+		modifier = {
+			factor = 0.85
+			306 = { has_province_modifier = slave_modifier_2 }
+		}
+		modifier = {
+			factor = 0.8
+			306 = { has_province_modifier = slave_modifier_3 }
+		}
+		modifier = {
+			factor = 0.75
+			306 = { has_province_modifier = slave_modifier_4 }
+		}
+		modifier = {
+			factor = 0.7
+			306 = { has_province_modifier = slave_modifier_5 }
+		}
+		modifier = {
+			factor = 0.9
+			stewardship = 10
+		}
+		modifier = {
+			factor = 0.9
+			stewardship = 12
+		}
+		modifier = {
+			factor = 0.9
+			stewardship = 14
+		}
+		modifier = {
+			factor = 0.9
+			stewardship = 16
+		}
+		modifier = {
+			factor = 0.9
+			stewardship = 18
+		}
+		modifier = {
+			factor = 0.9
+			stewardship = 20
+		}
+		modifier = {
+			factor = 0.9
+			stewardship = 22
+		}
+		modifier = {
+			factor = 0.9
+			trait = diligent
+		}
+		modifier = {
+			factor = 0.9
+			trait = ambitious
+		}
+		modifier = {
+			factor = 0.9
+			trait = ruthless
+		}
+		modifier = {
+			factor = 0.9
+			job_treasurer = { trait = diligent }
+		}
+		modifier = {
+			factor = 0.9
+			job_treasurer = { trait = ruthless }
+		}
+		modifier = {
+			factor = 0.9
+			job_treasurer = { 
+				has_job_action = action_oversee_construction
+				stewardship = 14
+			}
+		}
+		modifier = {
+			factor = 0.9
+			job_treasurer = { 
+				has_job_action = action_oversee_construction
+				stewardship = 16
+			}
+		}
+		modifier = {
+			factor = 0.9
+			job_treasurer = { 
+				has_job_action = action_oversee_construction
+				stewardship = 18
+			}
+		}
+		modifier = {
+			factor = 0.9
+			job_treasurer = { 
+				has_job_action = action_oversee_construction
+				stewardship = 20
+			}
+		}
+		modifier = {
+			factor = 0.9
+			job_treasurer = { 
+				has_job_action = action_oversee_construction
+				stewardship = 22
+			}
+		}
+		modifier = {
+			factor = 0.9
+			job_treasurer = { 
+				has_job_action = action_oversee_construction
+				stewardship = 24
+			}
+		}
+		modifier = {
+			factor = 0.9
+			job_treasurer = { 
+				has_job_action = action_oversee_construction
+				stewardship = 26
+			}
+		}
+		modifier = {
+			factor = 0.9
+			job_treasurer = { 
+				has_job_action = action_oversee_construction
+				stewardship = 28
+			}
+		}
+		modifier = {
+			factor = 0.9
+			job_treasurer = { 
+				has_job_action = action_oversee_construction
+				stewardship = 30
+			}
+		}
+		modifier = {
+			factor = 1.2
+			event_target:summerhall_craftsman = {
+				has_character_flag = peasant_craftsman
+			}
+		}
+		modifier = {
+			factor = 0.8
+			event_target:summerhall_craftsman = {
+				has_character_flag = local_craftsman
+			}
+		}
+		modifier = {
+			factor = 0.7
+			event_target:summerhall_craftsman = {
+				has_character_flag = braavosi_craftsman
+			}
+		}
+	}
+	
+	option = { # Use the money to increase building speed
+		name = EVTOPTAiron_throne.14
+		306 = {
+			add_province_modifier = {
+				name = summerhall_ore_found
+				duration = -1
+			}
+		}
+	}
+	option = { # Just give me the money
+		name = EVTOPTBiron_throne.14
+		wealth = 150
+		306 = { set_province_flag = summerhall_ore_found }
+	}
+}
+# Investment from traders
+character_event = {
+	id = iron_throne.15
+	is_triggered_only = yes
+	desc = EVTDESCiron_throne.15
+	picture = GFX_evt_busy_trading_dock_republic
+	border = GFX_event_normal_frame_economy
+	
+	only_independent = yes
+	
+	trigger = {
+		has_landed_title = c_summerhall
+		306 = {	
+			has_province_modifier = buidling_summerhall
+			OR = { 
+				has_province_modifier = summerhall_stage1
+				has_province_modifier = summerhall_stage2
+				has_province_modifier = summerhall_stage3
+			}
+			NOT = { has_province_flag = summerhall_trader_investment }
+			NOT = { has_province_modifier = summerhall_trader_investment }
+		}
+	}
+	
+	# mean_time_to_happen = {
+	# 	years = 1
+	# 	#Slavery helps
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		306 = { has_province_modifier = slave_modifier_1 }
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.85
+	# 		306 = { has_province_modifier = slave_modifier_2 }
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.8
+	# 		306 = { has_province_modifier = slave_modifier_3 }
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.75
+	# 		306 = { has_province_modifier = slave_modifier_4 }
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.7
+	# 		306 = { has_province_modifier = slave_modifier_5 }
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		stewardship = 10
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		stewardship = 12
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		stewardship = 14
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		stewardship = 16
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		stewardship = 18
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		stewardship = 20
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		stewardship = 22
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		trait = diligent
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		trait = ambitious
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		trait = ruthless
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		job_treasurer = { trait = diligent }
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		job_treasurer = { trait = ruthless }
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		job_treasurer = { 
+	# 			has_job_action = action_oversee_construction
+	# 			stewardship = 14
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		job_treasurer = { 
+	# 			has_job_action = action_oversee_construction
+	# 			stewardship = 16
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		job_treasurer = { 
+	# 			has_job_action = action_oversee_construction
+	# 			stewardship = 18
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		job_treasurer = { 
+	# 			has_job_action = action_oversee_construction
+	# 			stewardship = 20
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		job_treasurer = { 
+	# 			has_job_action = action_oversee_construction
+	# 			stewardship = 22
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		job_treasurer = { 
+	# 			has_job_action = action_oversee_construction
+	# 			stewardship = 24
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		job_treasurer = { 
+	# 			has_job_action = action_oversee_construction
+	# 			stewardship = 26
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		job_treasurer = { 
+	# 			has_job_action = action_oversee_construction
+	# 			stewardship = 28
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		job_treasurer = { 
+	# 			has_job_action = action_oversee_construction
+	# 			stewardship = 30
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		factor = 1.2
+	# 		event_target:summerhall_craftsman = {
+	# 			has_character_flag = peasant_craftsman
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.8
+	# 		event_target:summerhall_craftsman = {
+	# 			has_character_flag = local_craftsman
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.7
+	# 		event_target:summerhall_craftsman = {
+	# 			has_character_flag = braavosi_craftsman
+	# 		}
+	# 	}
+	# }
+	
+	immediate = {
+		random_independent_ruler = {
+			limit = { 
+				OR = {
+					government = merchant_republic_government
+					government = triarch_merchant_republic_government
+				}
+			}
+			save_event_target_as = merchant_republic_investor
+		}
+	}
+	
+	option = { # Use the money to increase building speed
+		name = EVTOPTAiron_throne.15
+		event_target:merchant_republic_investor = {
+			wealth = -80
+			add_friend = ROOT
+		}
+		306 = {
+			add_province_modifier = {
+				name = summerhall_trader_investment
+				duration = -1
+			}
+		}
+	}
+	option = { # Just give me the money
+		name = EVTOPTBiron_throne.15
+		event_target:merchant_republic_investor = {
+			wealth = -80
+			add_rival = ROOT
+		}
+		wealth = 80
+		306 = { set_province_flag = summerhall_trader_investment }
+	}
+}
+# A stage has been completed
+character_event = {
+	id = iron_throne.16
+	picture = GFX_evt_castle_construction
+	border = GFX_event_normal_frame_economy
+	
+	only_independent = yes
+	
+	desc = {
+		text = EVTDESCAiron_throne.16
+		trigger = {
+			306 = { has_province_modifier = summerhall_stage1 }
+		}
+	}
+	desc = {
+		text = EVTDESCBiron_throne.16
+		trigger = {
+			306 = { has_province_modifier = summerhall_stage2 }
+		}
+	}
+	desc = {
+		text = EVTDESCCiron_throne.16
+		trigger = {
+			306 = { has_province_modifier = summerhall_stage3 }
+		}
+	}
+	
+	trigger = {
+		has_landed_title = c_summerhall
+		306 = {	
+			has_province_modifier = buidling_summerhall
+			OR = { 
+				has_province_modifier = summerhall_stage1
+				has_province_modifier = summerhall_stage2
+				has_province_modifier = summerhall_stage3
+				has_province_modifier = summerhall_complete
+			}
+		}
+	}
+	
+	# mean_time_to_happen = {
+	# 	years = 1
+	# 	#Slavery helps
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		306 = { has_province_modifier = slave_modifier_1 }
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.85
+	# 		306 = { has_province_modifier = slave_modifier_2 }
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.8
+	# 		306 = { has_province_modifier = slave_modifier_3 }
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.75
+	# 		306 = { has_province_modifier = slave_modifier_4 }
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.7
+	# 		306 = { has_province_modifier = slave_modifier_5 }
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		stewardship = 10
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		stewardship = 12
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		stewardship = 14
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		stewardship = 16
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		stewardship = 18
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		stewardship = 20
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		stewardship = 22
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		trait = diligent
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		trait = ambitious
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		trait = ruthless
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		job_treasurer = { trait = diligent }
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		job_treasurer = { trait = ruthless }
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		job_treasurer = { 
+	# 			has_job_action = action_oversee_construction
+	# 			stewardship = 14
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		job_treasurer = { 
+	# 			has_job_action = action_oversee_construction
+	# 			stewardship = 16
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		job_treasurer = { 
+	# 			has_job_action = action_oversee_construction
+	# 			stewardship = 18
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		job_treasurer = { 
+	# 			has_job_action = action_oversee_construction
+	# 			stewardship = 20
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		job_treasurer = { 
+	# 			has_job_action = action_oversee_construction
+	# 			stewardship = 22
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		job_treasurer = { 
+	# 			has_job_action = action_oversee_construction
+	# 			stewardship = 24
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		job_treasurer = { 
+	# 			has_job_action = action_oversee_construction
+	# 			stewardship = 26
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		job_treasurer = { 
+	# 			has_job_action = action_oversee_construction
+	# 			stewardship = 28
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		job_treasurer = { 
+	# 			has_job_action = action_oversee_construction
+	# 			stewardship = 30
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		306 = { has_province_modifier = summerhall_ore_found }
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		306 = { has_province_modifier = summerhall_trader_investment }
+	# 	}
+	# 	modifier = {
+	# 		factor = 1.2
+	# 		event_target:summerhall_craftsman = {
+	# 			has_character_flag = peasant_craftsman
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.8
+	# 		event_target:summerhall_craftsman = {
+	# 			has_character_flag = local_craftsman
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.7
+	# 		event_target:summerhall_craftsman = {
+	# 			has_character_flag = braavosi_craftsman
+	# 		}
+	# 	}
+	# }
+	
+	immediate = {
+		job_treasurer = { 
+			if = {
+				limit = {
+					OR = {
+						ROOT = { ai = yes }
+						has_job_action = action_oversee_construction
+					}
+				}
+				hidden_tooltip = { 
+					change_variable = { which = "services_rendered" value = 1 } 
+					reverse_opinion = {
+						modifier = opinion_service_rendered
+						who = ROOT
+						years = 3
+					}				
+				}
+			}	
+		}
+	}
+	
+	option = { # Using if clauses didn't work for some reason
+		name = EVTOPTAiron_throne.16
+		trigger = { 306 = { has_province_modifier = summerhall_stage1 } }
+		306 = {
+			remove_province_modifier = summerhall_stage1
+			add_province_modifier = {
+				name = summerhall_stage2
+				duration = -1
+			}
+		}
+	}
+	option = {
+		name = EVTOPTAiron_throne.16
+		trigger = { 306 = { has_province_modifier = summerhall_stage2 } }
+		306 = {
+			remove_province_modifier = summerhall_stage2
+			add_province_modifier = {
+				name = summerhall_stage3
+				duration = -1
+			}
+		}
+	}
+	option = {
+		name = EVTOPTAiron_throne.16
+		trigger = { 306 = { has_province_modifier = summerhall_stage3 } }
+		306 = {
+			remove_province_modifier = summerhall_stage3
+			remove_province_modifier = buidling_summerhall
+			if = {
+				limit = { has_province_modifier = summerhall_ore_found }
+				remove_province_modifier = summerhall_ore_found
+			}
+			if = {
+				limit = { has_province_modifier = summerhall_trader_investment }
+				remove_province_modifier = summerhall_trader_investment
+			}
+			clr_province_flag = summerhall_ore_found
+			clr_province_flag = summerhall_trader_investment
+			add_province_modifier = {
+				name = summerhall_complete
+				duration = -1
+			}
+		}
+		hidden_tooltip = { narrative_event = { id = iron_throne.17 days = 25 random = 15 } }
+	}
+}

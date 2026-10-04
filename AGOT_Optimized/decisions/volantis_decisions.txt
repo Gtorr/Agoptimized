@@ -1,0 +1,900 @@
+decisions = {
+	# purchase_freehold = { #now happens automatically upon election
+		# potential = {
+			# is_ruler = no			
+			# any_liege = {
+				# government = triarch_merchant_republic_government
+			# }
+			# is_adult = yes
+			# wealth = 100
+			# NOT = { has_character_flag = title_freeholder }
+			# NOT = { has_minor_title = title_freeholder }
+			# can_press_claims_trigger = yes			
+		# }
+		# allow = {
+			# NOT = { trait = incapable }
+			# prisoner = no
+			# NOT = { is_inaccessible_trigger = yes }
+		# }
+		# effect = {
+			# wealth = -100
+			# set_character_flag = title_freeholder
+			# give_minor_title = title_freeholder
+		# }
+		# ai_will_do = {
+			# factor = 1000
+		# }
+	# }	
+	
+	volantis_switch_party = {
+		ai = no
+		only_playable = yes
+		potential = {
+			ai = no
+			OR = {
+				trait = elephant
+				trait = tiger
+			}	
+			OR = {
+				government = triarch_merchant_republic_government
+				any_liege = { government = triarch_merchant_republic_government }
+			}			
+		}
+		allow = {
+			NOT = { trait = incapable }
+			prisoner = no
+			NOT = { is_inaccessible_trigger = yes }
+		}
+		effect = {
+			prestige = -200
+			wealth = -250
+			if = {
+				limit = { government = triarch_merchant_republic_government }
+				if = {
+					limit = { trait = elephant }		
+					custom_tooltip = {
+						text = TOOLTIPELEPHANTSANGRY
+						hidden_tooltip = {
+							any_realm_character = {
+								limit = { trait = elephant }
+								opinion = { who = ROOT modifier = opinion_betrayed_party }
+							}
+						}
+					}					
+				}
+				if = {
+					limit = { trait = tiger }		
+					custom_tooltip = {
+						text = TOOLTIPTIGERSANGRY
+						hidden_tooltip = {
+							any_realm_character = {
+								limit = { trait = tiger }
+								opinion = { who = ROOT modifier = opinion_betrayed_party }
+							}
+						}
+					}					
+				}
+				prestige = -200
+			}
+			if = {
+				limit = { 
+					is_merchant_republic = no 
+					has_character_flag = triarch
+				}
+				if = {
+					limit = { trait = elephant }		
+					custom_tooltip = {
+						text = TOOLTIPELEPHANTSANGRY
+						hidden_tooltip = {
+							any_liege = {
+								limit = { government = triarch_merchant_republic_government }
+								if = {
+									limit = { trait = elephant }
+									opinion = { who = ROOT modifier = opinion_betrayed_party }
+								}
+								any_realm_character = {
+									limit = { trait = elephant }
+									opinion = { who = ROOT modifier = opinion_betrayed_party }
+								}
+							}	
+						}
+					}					
+				}
+				if = {
+					limit = { trait = tiger }		
+					custom_tooltip = {
+						text = TOOLTIPELEPHANTSANGRY
+						hidden_tooltip = {
+							any_liege = {
+								limit = { government = triarch_merchant_republic_government }
+								if = {
+									limit = { trait = tiger }
+									opinion = { who = ROOT modifier = opinion_betrayed_party }
+								}
+								any_realm_character = {
+									limit = { trait = tiger }
+									opinion = { who = ROOT modifier = opinion_betrayed_party }
+								}
+							}	
+						}
+					}					
+				}
+				prestige = -200
+			}
+			if = {
+				limit = { trait = tiger }
+				remove_trait = tiger
+				add_trait = elephant
+				break = yes
+				chronicle = {
+					entry = CHRONICLE_JOINED_ELEPHANTS
+					portrait = [Root.GetID]
+				}
+			}
+			if = {
+				limit = { trait = elephant }
+				remove_trait = elephant
+				add_trait = tiger		
+				chronicle = {
+					entry = CHRONICLE_JOINED_TIGERS
+					portrait = [Root.GetID]
+				}
+			}		
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	commission_triarch_statue = {
+		ai = no
+		only_playable = yes
+		potential = {
+			OR = {
+				is_ruler = yes
+				has_minor_title = title_triarch
+			}	
+			OR = {
+				AND = {
+					has_minor_title = title_triarch
+					any_liege = { government = triarch_merchant_republic_government }
+				}
+				government = triarch_merchant_republic_government 
+				father_even_if_dead = { 
+					is_alive = no
+					primary_title = { 
+						is_primary_holder_title = yes
+						holder_scope = { government = triarch_merchant_republic_government } 
+					}
+					NOT = { trait = triarch_statue }
+
+				}
+			}
+			NOT = { has_character_flag = commissioned_triarch_statue }
+		}
+		allow = {
+			wealth = 150
+			prisoner = no
+			OR = {
+				prestige = 800
+				ruled_years = 10
+				diplomacy = 15
+			}
+			NOT = { is_inaccessible_trigger = yes }
+		}
+		effect = {
+			wealth = -150
+			set_character_flag = commissioned_triarch_statue
+			hidden_tooltip = { 
+				character_event = { id = volantis.500 }
+			}
+		}
+		ai_check_interval = 36
+		ai_will_do = {
+			factor = 1
+			
+			modifier = {
+				factor = 0.3
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					NOT = { wealth = 400 }
+					has_character_modifier = loan_timer
+				}	
+				OR = {
+					stewardship = 9
+					trait = temperate
+					NOT = { 
+						OR = {
+							trait = gluttonous 
+							trait = proud
+							trait = charitable
+						}	
+					}	
+				}	
+			}	
+			modifier = {
+				factor = 0.05
+				OR = {
+					trait = humble
+					trait = greedy
+					trait = temperate
+				}	
+			}	
+			modifier = {
+				factor = 5
+				trait = proud
+			}
+		}
+	}	
+}
+#Triarch decisions
+targetted_decisions = {
+	grant_freehold = {
+		ai = no
+		ai_target_filter = home_court
+		filter = sub_realm
+		only_playable = yes
+		from_potential = {
+			is_playable = yes
+			is_theocracy = no
+			OR = {
+				any_liege = { 
+					OR = {
+						government = triarch_merchant_republic_government 
+						is_valyrian_freehold_trigger = yes	
+					}	
+				}
+				government = triarch_merchant_republic_government 
+				is_valyrian_freehold_trigger = yes	
+			}			
+		}
+		potential = {
+			is_liege_or_above = FROM
+			is_ruler = no		
+			NOT = { trait = dragon }	
+			NOT = { has_character_flag = title_freeholder }					
+		}
+		allow = {
+			FROM = { wealth = 100 }
+			FROM = {
+				OR = {
+					has_regent = no
+					regent = { opinion = { who = ROOT value = 0 } }
+				}
+			}
+			prisoner = no
+			can_press_claims_trigger = yes
+		}
+		effect = {
+			FROM = { wealth = -100 }
+			set_character_flag = title_freeholder
+			give_minor_title = title_freeholder
+			wealth = 50
+			opinion = {
+				who = FROM
+				modifier = opinion_granted_barony
+			}
+		}
+		ai_check_interval = 24
+		ai_will_do = {
+			factor = 0.15
+			
+			modifier = {
+				factor = 0
+				FROM = { NOT = { wealth = 300 } }
+			}
+			modifier = { #Will do if..
+				factor = 0
+				NOT = {
+					OR = {
+						reverse_opinion = { who = FROM value = 50 } #really like this character
+						is_close_relative = FROM #is relative
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				NOT = { reverse_opinion = { who = FROM value = -49 } }
+			}
+			modifier = {
+				factor = 0.5
+				NOT = { reverse_opinion = { who = FROM value = -24 } }
+			}
+			modifier = {
+				factor = 4
+				FROM = { trait = charitable }
+			}
+			modifier = {
+				factor = 0.25
+				FROM = { trait = greedy }
+			}	
+		}
+	}	
+	revoke_freehold = {
+		ai = no
+		filter = court
+		ai_target_filter = court
+		only_playable = yes
+		from_potential = {
+			is_playable = yes
+			is_theocracy = no
+			OR = {
+				any_liege = { 
+					OR = {
+						government = triarch_merchant_republic_government 
+						is_valyrian_freehold_trigger = yes	
+					}	
+				}
+				government = triarch_merchant_republic_government 
+				is_valyrian_freehold_trigger = yes	
+			}			
+		}
+		potential = {
+			prisoner = yes
+			is_liege_or_above = FROM
+			is_ruler = no
+			has_character_flag = title_freeholder			
+		}
+		allow = {
+			FROM = {
+				OR = {
+					has_regent = no
+					regent = { NOT = { opinion = { who = ROOT value = -25 } } }
+				}
+			}
+			prisoner = yes
+			custom_tooltip = {
+				text = TOOLTIPtriarch_imprisonTRIARCH
+				hidden_tooltip = { NOT = { has_character_flag = triarch } }
+			}
+		}
+		effect = {
+			FROM = { 
+				wealth = 75
+				prestige = -50
+				if = {
+					limit = {
+						NOT = {
+							ROOT = { just_execution_reason_PREV_trigger = yes }
+						}
+					}				
+					custom_tooltip = {
+						text = TOOLTIPINCREASETYRANY2
+						hidden_tooltip = {
+							change_variable = { which = "tyrant" value = 10 } 
+							character_event = { id = maintenance.1 } #tyrant trait
+						}
+					}
+				}
+			}
+			clr_character_flag = title_freeholder
+			remove_title = title_freeholder
+			# if = {
+				# limit = { NOT = { wealth = 100 } }
+				# clear_wealth = THIS #does not work
+			# }	
+			if = {
+				limit = { 
+					wealth = 10
+					NOT = { wealth = 20 }
+				}
+				wealth = -15
+			}
+			if = {
+				limit = { 
+					wealth = 20
+					NOT = { wealth = 30 }
+				}
+				wealth = -25
+			}
+			if = {
+				limit = { 
+					wealth = 30
+					NOT = { wealth = 40 }
+				}
+				wealth = -35
+			}
+			if = {
+				limit = { 
+					wealth = 40
+					NOT = { wealth = 50 }
+				}
+				wealth = -45
+			}
+			if = {
+				limit = { 
+					wealth = 50
+					NOT = { wealth = 65 }
+				}
+				wealth = -60
+			}
+			if = {
+				limit = {
+					wealth = 65
+					NOT = { wealth = 80 }
+				}
+				wealth = -75
+			}
+			if = {
+				limit = {
+					wealth = 80
+					NOT = { wealth = 100 }
+				}
+				wealth = -90
+			}
+			if = {
+				limit = { wealth = 100 }
+				wealth = -100
+			}	
+			prestige = -50
+			opinion = {
+				who = FROM
+				modifier = opinion_revoked_my_title
+			}
+		}
+		ai_will_do = {
+			factor = 0.05
+			
+			modifier = {
+				factor = 0.02
+				FROM = {
+					NOT = { trait = arbitrary }
+					NOT = {
+						ROOT = { just_execution_reason_PREV_trigger = yes }
+					}
+				}	
+			}
+			modifier = {
+				factor = 0
+				reverse_opinion = { who = FROM value = 20 }
+			}
+			modifier = {
+				factor = 2
+				NOT = { reverse_opinion = { who = FROM value = -24 } }
+			}
+			modifier = {
+				factor = 4
+				NOT = { reverse_opinion = { who = FROM value = -49 } }
+			}			
+			modifier = {
+				factor = 0
+				FROM = { trait = honorable }
+			}
+			modifier = {
+				factor = 4
+				FROM = { trait = ruthless }
+			}
+			modifier = {
+				factor = 0.25
+				FROM = { trait = charitable }
+			}
+			modifier = {
+				factor = 4
+				FROM = { trait = greedy }
+			}	
+		}
+	}	
+	triarch_imprison = {
+		ai = no
+		ai_target_filter = realm
+		filter = realm
+		only_rulers = yes
+		diplomacy_icon = GFX_IMPRISON_CHARACTER_INTERACTION_icon
+		
+		from_potential = {
+			is_ruler = yes
+			has_minor_title = title_triarch
+			any_liege = { government = triarch_merchant_republic_government }
+			is_merchant_republic = no			
+		}
+		potential = {
+			NOT = { character = FROM }
+			NOT = { trait = dragon }
+			NOT = { culture_group = unoccupied_group }
+			NOT = { culture_group = winter_group }
+			NOT = { is_liege_or_above = FROM }	
+			is_merchant_republic = no	
+			any_liege = { 
+				government = triarch_merchant_republic_government 
+				is_vassal_or_below = FROM
+			}			
+		}
+		allow = {	
+			FROM = { 
+				prestige = 50 
+				custom_tooltip = {
+					text = TOOLTIPtriarch_imprisonPROGRESS
+					hidden_tooltip = { NOT = { has_character_flag = triarch_imprisonment_in_progress } }
+				}	
+			}			
+			custom_tooltip = {
+				text = TOOLTIPtriarch_imprisonTRIARCH
+				hidden_tooltip = { NOT = { has_character_flag = triarch } }
+			}		
+			prisoner = no
+			NOT = { trait = slave }
+			custom_tooltip = {
+				text = TOOLTIPtriarch_imprisonREJECTED
+				hidden_tooltip = { NOT = { has_opinion_modifier = { who = FROM modifier = triarch_imprisonment_rejected } } }
+			}		
+		}
+		effect = {			
+			top_liege = {
+				random_realm_character = {
+					limit = {
+						has_character_flag = triarch
+						NOT = { character = FROM }
+						NOT = { character = ROOT }
+						is_merchant_republic = no
+						prisoner = no
+					}
+					FROM = { 
+						set_character_flag = triarch_imprisonment_in_progress 
+						prestige = -50
+					}
+					character_event = { id = volantis.130 days = 1 tooltip = TOOLTIPvolantis.130 } 
+					set_character_flag = triarch_imprisonment_in_progress
+				}
+			}
+			if = { #display imprisonment chance to player
+				limit = { FROM = { ai = no } }
+				random = {
+					chance = 50
+					modifier = {
+						factor = 0.26
+						attribute_diff = {
+							character = FROM
+							attribute = intrigue
+							value = 12
+						}
+					}
+					modifier = {
+						factor = 0.6
+						attribute_diff = {
+							character = FROM
+							attribute = intrigue
+							value = 9
+						}
+					}
+					modifier = {
+						factor = 0.74
+						attribute_diff = {
+							character = FROM
+							attribute = intrigue
+							value = 6
+						}
+					}
+					modifier = {
+						factor = 0.81
+						attribute_diff = {
+							character = FROM
+							attribute = intrigue
+							value = 4
+						}
+					}
+					modifier = {
+						factor = 0.86
+						attribute_diff = {
+							character = FROM
+							attribute = intrigue
+							value = 2
+						}
+					}
+					modifier = {
+						factor = 1.14
+						FROM = {
+							attribute_diff = {
+								character = ROOT
+								attribute = intrigue
+								value = 2
+							}
+						}	
+					}
+					modifier = {
+						factor = 1.14
+						FROM = {
+							attribute_diff = {
+								character = ROOT
+								attribute = intrigue
+								value = 4
+							}
+						}	
+					}
+					modifier = {
+						factor = 1.14
+						FROM = {
+							attribute_diff = {
+								character = ROOT
+								attribute = intrigue
+								value = 6
+							}
+						}	
+					}
+					modifier = {
+						factor = 1.14
+						FROM = {
+							attribute_diff = {
+								character = ROOT
+								attribute = intrigue
+								value = 9
+							}
+						}	
+					}
+					modifier = {
+						factor = 1.14
+						FROM = {
+							attribute_diff = {
+								character = ROOT
+								attribute = intrigue
+								value = 12
+							}
+						}	
+					}
+					custom_tooltip = { text = TOOLTIPtriarch_imprisonCHANCE }
+				}
+			}	
+		}
+		ai_check_interval = 24
+		ai_will_do = {
+			factor = 0.15
+			
+			modifier = {
+				factor = 0.05
+				reverse_opinion = { who = FROM value = 10 }	
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					is_friend = FROM	
+					reverse_opinion = { who = FROM value = 50 }	
+					AND = {
+						is_close_relative = FROM
+						NOT = { FROM = { is_foe = ROOT } }
+					}
+					FROM = { war = yes }
+				}	
+			}
+			modifier = { #Motives
+				factor = 0
+				NOT = { FROM = { is_foe = ROOT } } #enemy
+				OR = {
+					is_ruler = no
+					FROM = {
+						NOR = {
+							trait = ruthless
+							trait = paranoid
+						}
+					}
+					AND = {
+						OR = { #powerful competitor
+							NOT = { relative_power = { who = FROM power = 0.9 } }
+							FROM = { lower_tier_than = COUNT }
+							AND = {
+								NOT = { trait = elephant }
+								NOT = { trait = tiger }
+							}
+							NOR = { #Must be of Valyrian blood, or not be in a valyrian republic
+								true_valyrian_culture_trigger = yes
+								culture = FROM
+							}						
+						}
+						OR = { #threat to the realm
+							in_faction = no
+							in_faction = faction_liege_loyalist
+							in_faction = faction_crown_loyalist
+							NOT = { liege = { government = triarch_merchant_republic_government } }
+							NOT = { relative_power_to_liege = 0.25 }
+							liege = { reverse_opinion = { who = PREV value = -24 } }
+							trait = elephant
+							trait = tiger
+						}
+					}	
+				}	
+			}
+		}
+	}
+	name_co_triarch_for_life = {
+		ai = no
+		ai_target_filter = dynasty
+		filter = dynasty
+		only_playable = yes
+		is_high_prio = yes
+		from_potential = {
+			OR = {
+				is_valyrian_freehold_trigger = yes
+				government = triarch_merchant_republic_government	
+			}
+			primary_title = { has_law = republic_triarch_for_life }
+		}
+		potential = {		
+			conditional_tooltip = {
+				trigger = { FROM = { is_merchant_republic = yes } }
+				FROM = { family_palace = { current_heir = { character = ROOT } } }
+			}
+			conditional_tooltip = {
+				trigger = { FROM = { is_merchant_republic = no } }
+				FROM = { current_heir = { character = ROOT } }
+			}		
+			dynasty = FROM
+			is_liege_or_above = FROM					
+			NOT = { has_character_flag = title_triarch_for_life }					
+		}
+		allow = {
+			FROM = {
+				prisoner = no
+				NOT = { is_incapable = yes }
+				is_adult = yes
+			}
+			conditional_tooltip = {
+				trigger = { FROM = { government = triarch_merchant_republic_government	} }
+				has_minor_title = title_triarch
+			}	
+			conditional_tooltip = {
+				trigger = { FROM = { is_valyrian_freehold_trigger = yes } }
+				has_job_title = job_castellan
+				liege = { character = FROM }
+			}
+			OR = {
+				diplomacy = 10
+				trait = dragon_rider
+				prestige = 500
+			}
+			prisoner = no
+			NOT = { is_incapable = yes }		
+		}
+		effect = {
+			if = {
+				limit = { 
+					NOT = { has_minor_title = title_patrician_heir } 
+					liege = { character = FROM }
+					FROM = { is_merchant_republic = yes }
+				}
+				give_minor_title = title_patrician_heir
+			}
+			if = {
+				limit = { FROM = { government = triarch_merchant_republic_government } }
+				set_character_flag = title_triarch_for_life
+				give_minor_title = title_triarch_for_life		
+				opinion = {
+					who = FROM
+					modifier = opinion_named_me_co_triarch_for_life
+					months = 1200
+				}
+				custom_tooltip = {
+					text = TOOLTIPname_co_triarch_for_lifeREALM
+					hidden_tooltip = {
+						FROM = {
+							if = {
+								limit = { trait = tiger }
+								any_realm_character = {
+									limit = { 
+										trait = tiger 
+										NOT = { dynasty = ROOT }
+									}
+									opinion = { who = PREV modifier = opinion_co_triarch_for_life }
+									opinion = { who = ROOT modifier = opinion_co_triarch_for_life }
+								}
+								any_realm_character = {
+									limit = { 
+										trait = elephant 
+										NOT = { dynasty = ROOT } 
+									}
+									opinion = { who = PREV modifier = opinion_co_triarch_for_life multiplier = 3 }
+									opinion = { who = ROOT modifier = opinion_co_triarch_for_life multiplier = 3 }
+								}
+							}	
+							if = {
+								limit = { trait = elephant }
+								any_realm_character = {
+									limit = { 
+										trait = tiger 
+										NOT = { dynasty = ROOT }
+									}
+									opinion = { who = PREV modifier = opinion_co_triarch_for_life multiplier = 3 }
+									opinion = { who = ROOT modifier = opinion_co_triarch_for_life multiplier = 3 }
+								}
+								any_realm_character = {
+									limit = { 
+										trait = elephant 
+										NOT = { dynasty = ROOT } 
+									}
+									opinion = { who = PREV modifier = opinion_co_triarch_for_life }
+									opinion = { who = ROOT modifier = opinion_co_triarch_for_life }
+								}
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = { FROM = { is_valyrian_freehold_trigger = yes } }
+				set_character_flag = title_archon_for_life
+				give_minor_title = title_archon_for_life		
+				opinion = {
+					who = FROM
+					modifier = opinion_named_me_co_archon_for_life
+					months = 1200
+				}
+				custom_tooltip = {
+					text = TOOLTIPname_co_archon_for_lifeREALM
+					hidden_tooltip = {
+						FROM = {
+							any_realm_character = {
+								limit = { 
+									true_valyrian_culture_trigger = yes
+									NOT = { dynasty = ROOT }
+								}
+								opinion = { who = PREV modifier = opinion_co_archon_for_life }
+								opinion = { who = ROOT modifier = opinion_co_archon_for_life }
+							}
+						}
+					}
+				}			
+			}
+			hidden_tooltip = {
+				any_playable_ruler = { #inform realm
+					limit = { 
+						ai = no
+						OR = {
+							is_liege_or_above = FROM
+							liege_before_war = { character = FROM }
+							any_liege = { liege_before_war = { character = FROM } }
+							character = FROM
+						}
+					}
+					character_event = { id = volantis.260 }
+				}
+			}
+		}
+		ai_check_interval = 24
+		ai_will_do = {
+			factor = 1
+			
+			modifier = {
+				factor = 0
+				FROM = {
+					NOR = {
+						opinion = { who = ROOT value = -24 }
+						trait = familyperson
+						trait = proud
+					}
+				}	
+			}
+			modifier = { #wrong party
+				factor = 0
+				OR = {
+					AND = {
+						FROM = { trait = elephant }
+						NOT = { trait = elephant }
+					}
+					AND = {
+						FROM = { trait = tiger }
+						NOT = { trait = tiger }
+					}
+				}
+				FROM = {
+					NOR = {
+						opinion = { who = ROOT value = 25 }
+						trait = familyperson
+					}
+				}	
+			}	
+			modifier = { #wants return of elections
+				factor = 0
+				FROM = {
+					trait = just
+					NOR = {
+						trait = familyperson
+						trait = proud
+						trait = ambitious
+						trait = greedy
+						trait = ruthless
+					}
+				}	
+			}
+		}
+	}	
+}

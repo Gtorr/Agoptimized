@@ -1,120 +1,604 @@
 namespace = ai_decisions_events
+#AI closes gates on disease  
+#ai_decisions.1
+#ai_decisions.2
+#Ai Wildfire events         
+#ai_decisions.10		#Ai Builds alchemist guild
+#ai_decisions.11		#Ai makes wildfire
+#Ai Call for help against WW ~ ai_decisions.30
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #AI closes gates on disease
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~
 province_event = {
-    id = ai_decisions_events.1
-    is_triggered_only = yes
-    ai = yes
-    only_rulers = yes
-    hide_window = yes
-    has_dlc = "Reapers"
-    trigger  = {
-        has_disease = yes
-    }
-    immediate = {
-        holder_scope = {
-            character_event = { id = ai_decisions_events.2 }
-        }
-    }
+	id = ai_decisions.1
+	is_triggered_only = yes	# On Outbreak
+	ai = yes
+	only_rulers = yes
+	hide_window = yes
+	has_dlc = "Reapers"
+	trigger = {
+		has_disease = yes
+	}
+	immediate = {
+		holder_scope = {
+			character_event = {
+				id = ai_decisions.2
+			}
+		}
+	}
 }
+
 character_event = {
-    id = ai_decisions_events.2
-    is_triggered_only = yes
-    ai = yes
-    only_rulers = yes
-    hide_window = yes
-    has_dlc = "Reapers"
+	id = ai_decisions.2	# Yearround
+	is_triggered_only = yes
+	ai = yes
+	only_rulers = yes
+	hide_window = yes
+	has_dlc = "Reapers"
+	trigger = {
+		capital_scope = {
+			has_disease = yes
+		}
+		NOR = {
+			is_tribal = yes
+			is_nomadic = yes
+			is_inaccessible_trigger = yes
+		}
+		NOT = {
+			has_character_modifier = in_seclusion
+		}
+	}
+	immediate = {
+		if = {
+			limit = {
+				has_minor_title = title_commander
+			}
+			remove_title = title_commander
+		}
+		set_character_flag = do_not_disturb
+		add_character_modifier = {
+			name = in_seclusion
+			duration = -1
+		}
+		if = {
+			# If you are a councillor, stop working and return home
+			limit = {
+				host = {
+					NOT = {
+						character = ROOT
+					}
+				}
+				OR = {
+					is_councillor = yes
+					has_minor_title = title_councilmember_king
+					has_minor_title = title_councilmember_emperor
+				}
+			}
+			force_host = ROOT
+		}
+		hidden_tooltip = {
+			character_event = {
+				id = RIP.12000
+			}
+			any_courtier = {
+				# Unlanded councillors stop working in order to go into seclusion with their liege
+				limit = {
+					prisoner = no
+					is_councillor = yes
+					is_landed = no
+					liege = {
+						character = ROOT
+					}
+					NOT = {
+						character = ROOT
+					}
+				}
+				add_character_modifier = {
+					name = in_seclusion
+					duration = -1
+				}
+			}
+			any_courtier = {
+				# Unlanded non-councillors join their liege in seclusion
+				limit = {
+					prisoner = no
+					is_councillor = no
+					is_landed = no
+					liege = {
+						character = ROOT
+					}
+					NOT = {
+						character = ROOT
+					}
+				}
+				add_character_modifier = {
+					name = in_seclusion
+					duration = -1
+				}
+			}
+			any_courtier = {
+				# Landed councillors return home while you, their liege, is in seclusion
+				limit = {
+					prisoner = no
+					OR = {
+						is_councillor = yes
+						has_minor_title = title_councilmember_king
+						has_minor_title = title_councilmember_emperor
+					}
+					is_landed = yes
+					liege = {
+						character = ROOT
+					}
+					NOT = {
+						character = ROOT
+					}
+				}
+				force_host = THIS
+			}
+			any_vassal = {
+				character_event = {
+					id = RIP.12001
+					days = 7
+					random = 7
+				}
+			}
+			if = {
+				#Notify employer that councillor is going into seclusion
+				limit = {
+					is_councillor = yes
+					liege = {
+						ai = no
+					}
+				}
+				liege = {
+					letter_event = {
+						id = RIP.12101
+						days = 1
+					}
+				}
+			}
+		}
+	}
+}
 
-    trigger = {
-        capital_scope = {
-            has_disease = yes
-        }
-        OR = {
-            is_landed = yes
-            is_patrician = yes
-        }
-        NOR = {
-            is_tribal = yes
-            is_nomadic = yes
-            is_inaccessible_trigger = yes
-        }
-        NOT = { has_character_modifier = in_seclusion }
-    }
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#Ai Wildfire events
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#build_alchemist_guild
+character_event = {
+	id = ai_decisions.10	# on_bi_yearly_pulse
+	is_triggered_only = yes
+	ai = yes
+	only_playable = yes
+	is_in_society = yes
+	hide_window = yes
+	trigger = {
+		NOT = {
+			has_character_flag = wildfire_alchemist
+		}
+		society_member_of = alchemists_guild
+	}
+	immediate = {
+		if = {
+			limit = {
+				has_quest = quest_alchemists_build_guild
+				NOT = {
+					has_character_modifier = building_alchemist_guild
+				}
+				capital_scope = {
+					NOT = {
+						has_province_modifier = alchemist_guild
+					}
+					owner = {
+						character = ROOT
+					}
+				}
+				NOT = {
+					has_character_flag = flag_making_wildfire
+				}
+				wealth = 150
+				NOT = {
+					is_inaccessible_trigger = yes
+				}
+			}
+			set_character_flag = wildfire_alchemist
+			set_character_flag = flag_making_wildfire
+			wealth = -100
+			character_event = {
+				id = wildfire.1
+				tooltip = "EVTTOOLTIPwildfire.1"
+			}
+		}
+	}
+}
 
-    immediate = {
-        if = {
-            limit = {
-                has_minor_title = title_commander
-            }
-            remove_title = title_commander
-        }
-        set_character_flag = do_not_disturb
-        add_character_modifier = {
-            name = in_seclusion
-            duration = -1
-        }
-        if = { # If you are a councillor, stop working and return home
-            limit = {
-                host = { NOT = { character = ROOT } }
-                OR = {
-                    is_councillor = yes
-                    has_minor_title = title_councilmember_king
-                    has_minor_title = title_councilmember_emperor
-                }
-            }
-            force_host = ROOT
-        }
-        hidden_tooltip = {
-            character_event = { id = RIP.12000 }
-            any_courtier = { # Unlanded councillors stop working in order to go into seclusion with their liege
-                limit = {
-                    prisoner = no
-                    is_councillor = yes
-                    is_landed = no
-                    liege = { character = ROOT }
-                    NOT = { character = ROOT }
-                }
-                add_character_modifier = {
-                    name = in_seclusion
-                    duration = -1
-                }
-            }
-            any_courtier = { # Unlanded non-councillors join their liege in seclusion
-                limit = {
-                    prisoner = no
-                    is_councillor = no
-                    is_landed = no
-                    liege = { character = ROOT }
-                    NOT = { character = ROOT }
-                }
-                add_character_modifier = {
-                    name = in_seclusion
-                    duration = -1
-                }
-            }
-            any_courtier = { # Landed councillors return home while you, their liege, is in seclusion
-                limit = {
-                    prisoner = no
-                    OR = {
-                        is_councillor = yes
-                        has_minor_title = title_councilmember_king
-                        has_minor_title = title_councilmember_emperor
-                    }
-                    is_landed = yes
-                    liege = { character = ROOT }
-                    NOT = { character = ROOT }
-                }
-                force_host = THIS
-            }
-            any_vassal = {
-                character_event = { id = RIP.12001 days = 7 random = 7 }
-            }
-            if = { #Notify employer that councillor is going into seclusion
-                limit = {
-                    is_councillor = yes
-                    liege = { ai = no }
-                }
-                liege = { letter_event = { id = RIP.12101 days = 1 } }
-            }
-        }
-    }
+#make_wildfire
+character_event = {
+	id = ai_decisions.11
+	is_triggered_only = yes	# on_bi_yearly_pulse
+	has_character_flag = wildfire_alchemist
+	ai = yes
+	only_playable = yes
+	is_in_society = yes
+	hide_window = yes
+	trigger = {
+		society_member_of = alchemists_guild
+		capital_scope = {
+			has_province_modifier = alchemist_guild
+			owner = {
+				character = ROOT
+			}
+		}
+		NOT = {
+			has_character_flag = flag_making_wildfire
+		}
+		wealth = 100
+		has_regent = no
+		capital_scope = {
+			NOT = {
+				has_province_modifier = making_wildfire
+			}
+			NOT = {
+				has_province_modifier = destroying_wildfire
+			}
+			NOT = {
+				has_province_modifier = wildfire_5
+			}
+			NOT = {
+				has_province_modifier = wildfire_outbreak
+			}
+			NOT = {
+				has_province_modifier = asoiaf_normal_winter
+			}
+			NOT = {
+				has_province_modifier = asoiaf_harsh_winter
+			}
+		}
+		society = {
+			any_society_member = {
+				liege = {
+					character = ROOT
+				}
+				society_rank >= 2
+				NOT = {
+					character = ROOT
+				}
+				NOT = {
+					is_inaccessible_trigger = yes
+				}
+			}
+		}
+	}
+	immediate = {
+		if = {
+			limit = {
+				OR = {
+					trait = fire_obsessed
+					trait = possessed
+				}
+			}
+			set_character_flag = flag_making_wildfire
+			character_event = {
+				id = wildfire.4
+				tooltip = "EVTTOOLTIPwildfire.4"
+			}
+		}
+		else = {
+			random_list = {
+				10 = {
+					#Nope
+				}
+				2 = {
+					#Yes			 
+					# Targaryen Modifier
+					mult_modifier = {
+						factor = 1.5
+						OR = {
+							dynasty = 496
+							regent = {
+								dynasty = 496
+							}
+						}
+					}
+					# Stockpile Modifiers
+					mult_modifier = {
+						factor = 0.5
+						capital_scope = {
+							OR = {
+								has_province_modifier = wildfire_1
+								has_province_modifier = wildfire_2
+								has_province_modifier = wildfire_3
+								has_province_modifier = wildfire_4
+							}
+						}
+					}
+					mult_modifier = {
+						factor = 0.5
+						capital_scope = {
+							OR = {
+								has_province_modifier = wildfire_2
+								has_province_modifier = wildfire_3
+								has_province_modifier = wildfire_4
+							}
+						}
+					}
+					mult_modifier = {
+						factor = 0.5
+						capital_scope = {
+							OR = {
+								has_province_modifier = wildfire_3
+								has_province_modifier = wildfire_4
+							}
+						}
+					}
+					mult_modifier = {
+						factor = 0.5
+						capital_scope = {
+							has_province_modifier = wildfire_4
+						}
+					}
+					mult_modifier = {
+						factor = 4
+						trait = lunatic
+					}
+					mult_modifier = {
+						factor = 2
+						trait = brave
+					}
+					mult_modifier = {
+						factor = 2
+						trait = wroth
+					}
+					mult_modifier = {
+						factor = 2
+						trait = cruel
+					}
+					mult_modifier = {
+						factor = 2
+						trait = mystic
+					}
+					mult_modifier = {
+						factor = 0.5
+						trait = kind
+					}
+					mult_modifier = {
+						factor = 0.5
+						trait = craven
+					}
+					mult_modifier = {
+						factor = 0.25
+						trait = paranoid
+					}
+					# Situational Modifiers
+					mult_modifier = {
+						factor = 2
+						war = yes
+					}
+					mult_modifier = {
+						factor = 2
+						any_current_enemy = {
+							location = {
+								owner = {
+									character = ROOT
+								}
+							}
+						}
+					}
+					mult_modifier = {
+						factor = 2
+						any_current_enemy = {
+							location = {
+								ROOT = {
+									capital_scope = {
+										province_id = PREVPREV
+									}
+								}
+							}
+						}
+					}
+					set_character_flag = flag_making_wildfire
+					character_event = {
+						id = wildfire.4
+						tooltip = "EVTTOOLTIPwildfire.4"
+					}
+				}
+			}
+		}
+	}
+}
+
+character_event = {
+	id = ai_decisions.12	#More Wilddfire Actions
+	is_triggered_only = yes	# on_bi_yearly_pulse
+	has_character_flag = wildfire_alchemist
+	ai = yes
+	only_playable = yes
+	is_in_society = yes
+	hide_window = yes
+	immediate = {
+	}
+}
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#Ai Call for help against WW
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~
+character_event = {
+	id = ai_decisions.30
+	is_triggered_only = yes
+	ai = yes
+	only_playable = yes
+	has_global_flag = cold_winds
+	hide_window = yes
+	trigger = {
+		war = yes
+		NOT = {
+			trait = nightswatch
+		}
+		any_war = {
+			OR = {
+				attacker = {
+					character = ROOT
+				}
+				defender = {
+					character = ROOT
+				}
+			}
+			OR = {
+				attacker = {
+					trait = white_walker
+					OR = {
+						has_landed_title = d_winter
+						has_landed_title = d_winter_essos
+					}
+				}
+				defender = {
+					trait = white_walker
+					OR = {
+						has_landed_title = d_winter
+						has_landed_title = d_winter_essos
+					}
+				}
+			}
+		}
+	}
+	immediate = {
+		any_playable_ruler = {
+			limit = {
+				OR = {
+					higher_tier_than = COUNT
+					AND = {
+						tier = COUNT
+						any_demesne_province = {
+							OR = {
+								kingdom = {
+									title = k_beyond_wall
+								}
+								any_neighbor_province = {
+									owner = {
+										culture_group = winter_group
+									}
+								}
+							}
+						}
+					}
+					has_game_rule = {
+						name = shattered_realms
+						value = counties
+					}					#call everyone in shattered counties
+					is_shattered_world = yes
+					has_landed_title = d_nightswatch
+				}
+				OR = {
+					demesne_size = 1
+					trait = nightswatch
+				}
+				NOR = {
+					d_winter = {
+						holder_scope = {
+							war_with = PREVPREV
+						}
+					}
+					d_winter_essos = {
+						holder_scope = {
+							war_with = PREVPREV
+						}
+					}
+					is_liege_or_above = ROOT
+					any_liege = {
+						OR = {
+							d_winter = {
+								holder_scope = {
+									war_with = PREVPREV
+								}
+							}
+							d_winter_essos = {
+								holder_scope = {
+									war_with = PREVPREV
+								}
+							}
+						}
+					}
+				}
+				OR = {
+					#Only wildlings south of the wall can ask for aid
+					ROOT = {
+						OR = {
+							NOR = {
+								trait = wildling
+								trait = deserter
+							}
+							capital_scope = {
+								NOT = {
+									region = world_beyond_the_wall
+								}
+							}
+						}
+					}
+					trait = wildling
+					trait = deserter
+				}
+				NOT = {
+					war_with = ROOT
+				}
+				NOT = {
+					any_liege = {
+						war_with = ROOT
+					}
+				}
+				NOT = {
+					culture_group = winter_group
+				}
+				NOT = {
+					culture_group = unoccupied_group
+				}
+				OR = {
+					AND = {
+						capital_scope = {
+							region = world_westeros
+						}
+						d_winter = {
+							holder_scope = {
+								war_with = ROOT
+							}
+						}
+					}
+					AND = {
+						capital_scope = {
+							NOT = {
+								region = world_westeros
+							}
+						}
+						d_winter_essos = {
+							holder_scope = {
+								war_with = ROOT
+							}
+						}
+					}
+				}
+				NOT = {
+					has_character_modifier = ignored_cold_winds_call
+				}
+			}
+			if = {
+				limit = {
+					independent = yes
+				}
+				character_event = {
+					id = cold_winds.9
+					tooltip = "EVTTOOLTIP999900043"
+				}
+			}
+			if = {
+				#ask vassals a couple of days later, in case liege joins
+				limit = {
+					independent = no
+				}
+				character_event = {
+					id = cold_winds.9
+					days = 2
+					tooltip = "EVTTOOLTIP999900043"
+				}
+			}
+		}
+	}
 }

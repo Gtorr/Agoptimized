@@ -1,0 +1,293 @@
+decisions = {
+
+	ironborn_reaving = {
+		is_high_prio = yes
+		potential = {
+			religion_group = drowned_god_group 
+			culture_group = iron_isles_culture
+			age = 16			
+			NOT = { is_inaccessible_trigger = yes }
+			OR = {
+				demesne_size = 1
+				liege = { 
+					religion_group = drowned_god_group 
+					culture_group = iron_isles_culture
+					war = no
+					NOT = { has_character_flag = reaving_begins }
+					NOT = { any_courtier = { has_character_flag = reaving_begins } }
+				}
+			}		
+			NOT = { trait = kingsguard }
+			NOT = { trait = maester }
+			NOT = { trait = archmaester }
+			NOT = { trait = nightswatch }			
+			OR = {
+				NOT = { has_character_flag = ironborn_reaving }
+				had_character_flag = { flag = ironborn_reaving days = 1825 }
+			}	
+		}
+		allow = {
+			show_only_failed_conditions = yes
+			age = 16
+			wealth = 50
+			war = no
+			prisoner = no	
+			in_command = no
+			is_ill = no
+			has_epidemic = no
+			NOT = { is_inaccessible_trigger = yes }
+			NOT = { has_severe_disability_trigger = yes }
+			NOT = { trait = imbecile }		
+			custom_tooltip = {
+				text = is_not_busy_trigger_tooltip
+				hidden_tooltip = { NOT = { has_character_flag = do_not_disturb } }
+			}			
+		}
+		effect = {
+			clr_character_flag = ironborn_reaving
+			set_character_flag = ironborn_reaving
+			prestige = 20
+			piety = 20
+			wealth = -50	
+			custom_tooltip = { text = TOOLTIPINVITEREAVING }
+			hidden_tooltip = {
+				set_character_flag = do_not_disturb
+				character_event = { id = raid_events.1  } # Choose reaving destination
+				character_event = { id = raid_events.3 days = 30 } # Reaving start
+				set_variable = { which = "reaving_party_skill" value = 0 }
+				if = {
+					limit = { 
+						demesne_size = 1 
+						NOT = { tier = BARON } 
+					}
+					any_courtier = { 
+						limit = {
+							war = no
+							prisoner = no	
+							in_command = no
+							is_ill = no
+							NOT = { trait = dragon }
+						}
+						letter_event = { id = raid_events.2 days = 2 } 
+					}
+				}	
+				if = {
+					limit = { 
+						OR = {
+							NOT = { demesne_size = 1 } 
+							tier = BARON
+						}	
+					}
+					liege = {
+						any_courtier = { 
+							limit = {
+								war = no
+								prisoner = no	
+								in_command = no
+								is_ill = no
+								NOT = { trait = dragon }
+							}
+							letter_event = { id = raid_events.2 days = 2 } 
+						}
+					}	
+				}	
+				any_ward = {
+					limit = { 
+						war = no
+						prisoner = no	
+						in_command = no
+						is_ill = no
+						same_realm = ROOT
+						NOT = { liege = { character = ROOT } }
+						NOT = { liege = { any_courtier = { character = ROOT } } }
+						NOT = { trait = dragon }
+					}	
+					letter_event = { id = raid_events.2 days = 2 }
+				}
+				any_dynasty_member = {
+					limit = { 
+						war = no
+						prisoner = no	
+						in_command = no
+						is_ill = no
+						is_close_relative = ROOT
+						same_realm = ROOT
+						NOT = { educator = { character = ROOT } }
+						NOT = { liege = { character = ROOT } }
+						NOT = { liege = { any_courtier = { character = ROOT } } }
+					}	
+					letter_event = { id = raid_events.2 days = 2 }
+				}
+			}
+		}
+		ai_check_interval = 12
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.2
+			}		
+			modifier = {
+				factor = 0
+				is_female = yes
+				OR = {
+					female_get_masculine_event_trigger = no
+					NOT = { higher_tier_than = BARON }
+				}	
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					is_ill = yes
+					trait = craven
+					trait = slothful
+					trait = depressed
+					trait = wounded
+					is_weak_trigger = yes
+					trait = kind
+					trait = content
+					age = 36
+				}	
+			}
+			modifier = {
+				factor = 0.25
+				is_ruler = no
+			}
+			modifier = {
+				factor = 5
+				trait = ambitious
+			}
+			modifier = {
+				factor = 2
+				trait = brave
+			}
+			modifier = {
+				factor = 2
+				trait = wroth
+			}
+			modifier = {
+				factor = 0.25
+				trait = poor_warrior
+			}	
+			modifier = {
+				factor = 1.5
+				OR = {
+					trait = skilled_warrior
+					trait = master_warrior
+				}	
+			}			
+			modifier = {
+				factor = 0
+				NOT = {
+					OR = {
+						trait = poor_warrior
+						trait = trained_warrior
+						trait = skilled_warrior
+						trait = master_warrior
+					}	
+				}	
+			}
+			modifier = {
+				factor = 0
+				NOT = { martial = 12 }	
+			}
+		}
+	}
+	
+	steal_spearwife = {
+		potential = {
+			age = 16
+			OR = {
+				is_female = no
+				female_get_masculine_event_trigger = yes
+			}	
+			culture_group = free_folk
+			can_marry_trigger = yes
+			NOT = { has_severe_disability_trigger = yes }			
+			OR = { #Either
+				is_ruler = yes
+				liege = { dynasty = ROOT } #Liege's family
+				any_claim = { higher_tier_than = COUNT } #Important claimant
+				AND = { #Non-random in king court
+					father_even_if_dead = { always = yes }
+					liege = { higher_tier_than = DUKE }					
+					OR = { #AND Must be important
+						has_job_title = job_spymaster
+						has_job_title = job_marshal
+						has_job_title = job_treasurer
+						has_job_title = job_chancellor
+						has_job_title = job_castellan
+						any_claim = { NOT = { tier = BARON } }
+						any_heir_title = { always = yes }
+						prestige = 400
+						trait = dragon_rider
+					}						
+				}				
+			}
+			OR = {
+				NOT = { has_character_flag = stealing_spearwife }
+				had_character_flag = { flag = stealing_spearwife days = 50 }
+			}	
+		}
+		allow = {		
+			prisoner = no
+			is_married = no
+			in_command = no
+			is_ill = no
+			location = { culture_group = free_folk }
+			NOT = { is_inaccessible_trigger = yes }			
+		}
+		effect = {				
+			set_character_flag = stealing_spearwife
+			hidden_tooltip = { 
+				character_event = { id = wildling.50 days = 10 } 
+			}
+			custom_tooltip = { text = TOOLTIP_steal_spearwife }
+		}
+		ai_check_interval = 6
+		ai_will_do = {
+			factor = 1
+			
+			modifier = {
+				factor = 0.3
+			}
+			modifier = {
+				factor = 0
+				is_female = yes
+				NOR = {
+					combat_rating = 60
+					trait = brave
+					trait = lustful
+					has_ambition = obj_get_married
+				}
+			}
+			modifier = {
+				factor = 0.33
+				is_female = yes
+			}
+			modifier = {
+				factor = 6
+				OR = {
+					trait = ambitious
+					trait = brave
+					trait = lustful
+					trait = wroth
+					trait = ruthless
+					has_ambition = obj_get_married
+				}
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					trait = craven
+					trait = homosexual
+					trait = content
+					trait = shy
+				}
+			}
+			modifier = {
+				factor = 0
+				NOT = { combat_rating = 30 }	
+			}				
+		}
+	}
+}

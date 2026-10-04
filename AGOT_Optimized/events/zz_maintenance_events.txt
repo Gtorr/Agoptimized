@@ -1,0 +1,69 @@
+namespace = maintenance
+#In debt modifier
+#Lacking Ito
+character_event = {
+	id = maintenance.56
+	is_triggered_only = yes
+	only_playable = yes
+	hide_window = yes
+	
+	trigger = {
+		NOT = { wealth = 0 }
+		NOT = { has_character_flag = debt_modifier }
+	}
+	
+	immediate = {
+		set_character_flag = debt_modifier
+		character_event = { id = maintenance.57 days = 1 }
+		
+		#raise harsh tax???
+		character_event = { id = 38023 days = 50 random = 150 }
+	}
+	
+	option = {
+		name = OK
+	}
+}
+character_event = {
+	id = maintenance.57
+	is_triggered_only = yes
+	hide_window = yes
+	only_playable = yes
+	
+	trigger = {
+		has_character_flag = debt_modifier
+	}
+	
+	immediate = {
+		remove_character_modifier = negative_money_1
+		remove_character_modifier = negative_money_2
+		remove_character_modifier = negative_money_3
+		if = {
+			limit = {
+				OR = {
+					wealth = 1
+					is_ruler = no
+				}
+			}
+			clear_delayed_event = { id = maintenance.57 }
+			clr_character_flag = debt_modifier			
+			break = yes
+		}
+		character_event = { id = maintenance.57 days = 90 } #check modifier tri-monthly		
+		if = {
+			limit = { NOT = { wealth = -400 } }
+			add_character_modifier = { name = negative_money_3 duration = -1 }
+			break = yes
+		}
+		if = {
+			limit = { NOT = { wealth = -200 } }
+			add_character_modifier = { name = negative_money_2 duration = -1 }
+			break = yes
+		}
+		add_character_modifier = { name = negative_money_1 duration = -1 }
+	}
+	
+	option = {
+		name = OK
+	}
+}

@@ -1,0 +1,937 @@
+society_decisions = {
+	build_alchemist_guild = {
+		ai = no
+		is_high_prio = yes
+		only_playable = yes
+		potential = {
+			society_member_of = alchemists_guild
+			has_quest = quest_alchemists_build_guild
+			NOT = { has_character_modifier = building_alchemist_guild }
+			capital_scope = {			
+				NOT = { has_province_modifier = alchemist_guild }
+				owner = { character = ROOT }
+			}
+			NOT = { has_character_flag = flag_making_wildfire }
+		}
+		allow = {
+			wealth = 300
+			NOT = { is_inaccessible_trigger = yes }
+		}
+		effect = {
+			set_character_flag = flag_making_wildfire
+			wealth = -300
+			character_event = { id = wildfire.1 tooltip = "EVTTOOLTIPwildfire.1" }
+		}
+		ai_check_interval = 12
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_character_modifier = loan_timer
+				OR = {
+					stewardship = 9
+					trait = temperate
+					NOT = { 
+						OR = {
+							trait = gluttonous 
+							trait = hedonist
+							trait = slothful
+						}	
+					}	
+				}	
+			}	
+		}
+	}
+	
+	make_wildfire = {
+		ai = no
+		only_playable = yes
+		is_high_prio = yes
+		potential = {
+			society_member_of = alchemists_guild
+			#NOT = { tier = BARON }
+			capital_scope = {
+				has_province_modifier = alchemist_guild
+				owner = { character = ROOT }
+			}
+			NOT = { has_character_flag = flag_making_wildfire }
+		}
+		allow = {
+			wealth = 100
+			has_regent = no
+			capital_scope = {
+				NOT = { has_province_modifier = making_wildfire }
+				NOT = { has_province_modifier = destroying_wildfire }
+				NOT = { has_province_modifier = wildfire_5 }
+				NOT = { has_province_modifier = wildfire_outbreak }
+				NOT = { has_province_modifier = asoiaf_normal_winter }
+				NOT = { has_province_modifier = asoiaf_harsh_winter }
+			}
+			society = {
+				any_society_member = {
+					liege = { character = ROOT }
+					society_rank >= 2
+					NOT = { character = ROOT }
+					NOT = { is_inaccessible_trigger = yes }
+				}
+			}	
+		}
+		effect = {
+			set_character_flag = flag_making_wildfire
+			character_event = { id = wildfire.4 tooltip = "EVTTOOLTIPwildfire.4" }
+		}
+		ai_check_interval = 12
+		ai_will_do = {
+			factor = 0.2
+			
+			# Targaryen Modifier
+			modifier = {
+				factor = 1.5
+				OR = {
+					dynasty = 496
+					regent = { dynasty = 496 }
+				}
+			}
+			# Stockpile Modifiers
+			modifier = {
+				factor = 0.5
+				capital_scope = {
+					OR = {
+						has_province_modifier = wildfire_1
+						has_province_modifier = wildfire_2
+						has_province_modifier = wildfire_3
+						has_province_modifier = wildfire_4
+					}
+				}
+			}
+			modifier = {
+				factor = 0.5
+				capital_scope = {
+					OR = {
+						has_province_modifier = wildfire_2
+						has_province_modifier = wildfire_3
+						has_province_modifier = wildfire_4
+					}
+				}
+			}
+			modifier = {
+				factor = 0.5
+				capital_scope = {
+					OR = {
+						has_province_modifier = wildfire_3
+						has_province_modifier = wildfire_4
+					}
+				}
+			}
+			modifier = {
+				factor = 0.5
+				capital_scope = {
+					has_province_modifier = wildfire_4
+				}
+			}
+		
+			# Ruler Personality Effects
+			modifier = {
+				factor = 16
+				trait = fire_obsessed
+			}
+			modifier = {
+				factor = 16
+				trait = possessed
+			}
+			modifier = {
+				factor = 4
+				trait = lunatic
+			}
+			modifier = {
+				factor = 2
+				trait = brave
+			}
+			modifier = {
+				factor = 2
+				trait = wroth
+			}
+			modifier = {
+				factor = 2
+				trait = cruel
+			}
+			modifier = {
+				factor = 2
+				trait = mystic
+			}
+			modifier = {
+				factor = 0.5
+				trait = kind
+			}
+			modifier = {
+				factor = 0.5
+				trait = craven
+			}
+			modifier = {
+				factor = 0.25
+				trait = paranoid
+			}
+		
+			# Situational Modifiers
+			modifier = {
+				factor = 2
+				war = yes
+			}
+			modifier = {
+				factor = 2
+				any_current_enemy = {
+					location = { owner = { character = ROOT } }
+				}
+			}
+			modifier = {
+				factor = 2
+				any_current_enemy = {
+					location = { ROOT = { capital_scope = { province_id = PREVPREV } } }
+				}
+			}
+		}
+	}
+	donate_to_alchemist_guild = {
+		ai = no
+		is_high_prio = yes
+		only_playable = yes
+		potential = {
+			society_member_of = alchemists_guild
+		}
+		allow = {
+			wealth = 50
+			has_regent = no		
+			NOT = { has_character_modifier = donated_to_alchemist_guild }
+		}
+		effect = {
+			wealth = -50
+			add_society_currency_minor_effect = yes
+			add_character_modifier = {
+				name = donated_to_alchemist_guild
+				duration = 730
+			}
+		}
+		ai_check_interval = 12
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.6
+			}
+			modifier = {
+				factor = 0
+				war = yes	
+			}
+			modifier = {
+				factor = 0
+				has_character_modifier = loan_timer
+				OR = {
+					stewardship = 9
+					trait = temperate
+					NOT = { 
+						OR = {
+							trait = gluttonous 
+							trait = hedonist
+							trait = slothful
+						}	
+					}	
+				}	
+			}			
+		}
+	}
+	hire_alchemist = {
+		ai = no
+		only_playable = yes
+		is_high_prio = yes
+		potential = {
+			society_member_of = alchemists_guild
+			#NOT = { tier = BARON }
+		}
+		allow = {
+			has_society_currency_minor_trigger = yes
+			has_regent = no		
+			NOT = { has_character_modifier = hired_alchemist }
+		}
+		effect = {
+			if = {
+				limit = { society_rank == 1 }
+				wealth = -50
+			}	
+			if = {
+				limit = { society_rank == 2 }
+				wealth = -30
+			}
+			if = {
+				limit = { society_rank == 3 }
+				wealth = -15
+			}			
+			detract_society_currency_minor_effect = yes
+			add_character_modifier = {
+				name = hired_alchemist
+				duration = 1825
+			}
+			character_event = { id = wildfire.55 tooltip = TOOLTIPwildfire.55 }
+		}
+		ai_check_interval = 12
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.6
+			}
+			modifier = {
+				factor = 0
+				any_courtier = {
+					society_member_of = alchemists_guild
+					is_ruler = no
+					society_rank >= 2
+					is_incapable = no
+					prisoner = no
+				}
+			}
+			modifier = {
+				factor = 0
+				NOT = { wealth = 50 }	
+			}
+			modifier = {
+				factor = 0
+				war = yes	
+			}
+			modifier = {
+				factor = 0
+				has_character_modifier = loan_timer
+				OR = {
+					stewardship = 9
+					trait = temperate
+					NOT = { 
+						OR = {
+							trait = gluttonous 
+							trait = hedonist
+							trait = slothful
+						}	
+					}	
+				}	
+			}			
+		}
+	}
+	create_fake_valuables = {
+		ai = no
+		only_playable = yes
+		is_high_prio = yes
+		potential = {
+			society_member_of = alchemists_guild
+			society_rank >= 2
+		}
+		allow = {
+			has_society_currency_minor_trigger = yes
+			NOT = { trait = honest }
+			NOT = { trait = honorable }
+			has_regent = no		
+			NOT = { has_character_modifier = made_fake_valuables }
+		}
+		effect = {			
+			detract_society_currency_minor_effect = yes
+			hidden_tooltip = {
+				add_character_modifier = {
+					name = made_fake_valuables
+					duration = 1095
+				}
+			}	
+			character_event = { id = wildfire.80 tooltip = TOOLTIPwildfire.80 }
+		}
+		ai_check_interval = 12
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.1
+			}
+			modifier = {
+				factor = 4
+				trait = greedy
+			}
+			modifier = {
+				factor = 2
+				trait = deceitful
+			}
+			modifier = {
+				factor = 2
+				trait = ruthless
+			}
+			modifier = {
+				factor = 0.25
+				trait = charitable
+			}
+			modifier = {
+				factor = 0.25
+				trait = just
+			}
+		}
+	}
+	transmutate_metals = {
+		ai = no
+		only_playable = yes
+		is_high_prio = yes		
+		potential = {
+			society_member_of = alchemists_guild
+			has_global_flag = alchemist_transmutation_discovered			
+		}
+		allow = {
+			magic_returned_trigger = yes
+			OR = {
+				custom_tooltip = {
+					text = TOOLTIPalchemist_transmutation
+					has_character_flag = alchemist_transmutation
+				}
+				custom_tooltip = {
+					text = TOOLTIPalchemist_transmutationCOURTIER
+					any_courtier = {
+						society_member_of = alchemists_guild
+						has_character_flag = alchemist_transmutation
+						prisoner = no
+						is_incapable = no
+						liege = { character = ROOT }
+						ai = yes
+					}	
+				}
+			}
+			has_society_currency_medium_trigger = yes
+			has_regent = no		
+			NOT = { has_character_modifier = transmutated_metals }
+		}
+		effect = {			
+			detract_society_currency_medium_effect = yes
+			hidden_tooltip = {
+				add_character_modifier = {
+					name = transmutated_metals
+					duration = 1095
+				}
+			}	
+			character_event = { id = wildfire.130 tooltip = TOOLTIPwildfire.130 }
+		}
+		ai_check_interval = 12
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.1
+			}
+			modifier = {
+				factor = 4
+				trait = greedy
+			}
+			modifier = {
+				factor = 2
+				trait = deceitful
+			}
+			modifier = {
+				factor = 2
+				trait = ruthless
+			}
+			modifier = {
+				factor = 0.25
+				trait = charitable
+			}
+			modifier = {
+				factor = 0.25
+				trait = just
+			}
+		}
+	}
+	elixir_of_immortaility = {
+		ai = no
+		is_high_prio = yes		
+		potential = {
+			society_member_of = alchemists_guild
+			has_global_flag = alchemist_elixirs_discovered	
+			immortal = no
+		}
+		allow = {
+			magic_returned_trigger = yes
+			society_rank == 4
+			custom_tooltip = {
+				text = TOOLTIPalchemist_elixirs
+				has_character_flag = alchemist_elixirs
+			}			
+			has_society_currency_major_trigger = yes
+			has_regent = no		
+			NOT = { has_character_modifier = attempted_elixir_of_immortaility }
+		}
+		effect = {			
+			hidden_tooltip = {
+				add_character_modifier = {
+					name = attempted_elixir_of_immortaility
+					duration = 1095
+					hidden = yes
+				}
+			}	
+			character_event = { id = wildfire.160 tooltip = TOOLTIPwildfire.160 }
+		}
+		ai_check_interval = 12
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				OR = {
+					trait = content
+					trait = craven
+				}
+			}
+			modifier = {
+				factor = 0
+				NOR = {
+					NOT = { trait = humble }
+					trait = ambitious
+					trait = greedy
+					trait = envious							
+				}
+			}
+		}
+	}
+	use_wildfire_siege_offensive = {
+		ai = no
+		is_high_prio = yes
+		only_playable = yes
+		potential = {
+			society_member_of = alchemists_guild
+			OR = {
+				ai = no
+				siege = { is_attacker = yes }
+			}
+		}
+		allow = {
+			prisoner = no
+			is_incapable = no
+			custom_tooltip = {
+				text = TOOLTIPuse_wildfire_siege_offensiveLEADER
+				hidden_tooltip = { siege = { is_attacker = yes } }
+			}
+			custom_tooltip = {
+				text = TOOLTIPuse_wildfire_siege_offensiveWILDFIRE
+				hidden_tooltip = { 
+					capital_scope = {
+						owner = { character = ROOT }
+						has_province_modifier = alchemist_guild
+						NOT = { has_province_modifier = wildfire_outbreak }
+						OR = {
+							has_province_modifier = wildfire_1
+							has_province_modifier = wildfire_2
+							has_province_modifier = wildfire_3
+							has_province_modifier = wildfire_4
+							has_province_modifier = wildfire_5
+						}
+					}	
+				}
+			}
+			has_society_currency_minor_trigger = yes
+			OR = {
+				society_rank >= 2
+				any_courtier = {
+					society_rank >= 2
+					society_member_of = alchemists_guild
+				}
+			}
+			custom_tooltip = {
+				text = TOOLTIPuse_wildfire_siege_offensiveTRANSPORTING
+				NOT = { has_character_flag = flag_transporting_wildfire_slow }
+				NOT = { has_character_flag = flag_transporting_wildfire_normal }
+				NOT = { has_character_flag = flag_transporting_wildfire_fast }
+			}	
+			NOT = { has_character_modifier = used_wildfire_in_siege }
+		}
+		effect = {			
+			character_event = { id = wildfire.14 tooltip = TOOLTIPwildfire.14 }
+		}
+		ai_will_do = {
+			factor = 1
+			
+			modifier = {
+				factor = 0.1
+			}
+			modifier = {
+				factor = 2
+				location = { 
+					is_capital = yes
+					owner = { any_current_enemy = { character = ROOT } }
+				}
+			}
+			modifier = {
+				factor = 2
+				trait = fire_obsessed
+			}
+			modifier = {
+				factor = 2
+				trait = possessed
+			}
+			modifier = {
+				factor = 2
+				trait = lunatic
+			}
+			modifier = {
+				factor = 2
+				trait = wroth
+			}
+			modifier = {
+				factor = 0.5
+				trait = patient
+			}
+			modifier = {
+				factor = 0.5
+				trait = craven
+			}
+			modifier = {
+				factor = 1.25
+				capital_scope = { has_province_modifier = wildfire_2 }
+			}
+			modifier = {
+				factor = 1.66
+				capital_scope = { has_province_modifier = wildfire_3 }
+			}
+			modifier = {
+				factor = 2.5
+				capital_scope = { has_province_modifier = wildfire_4 }
+			}
+			modifier = {
+				factor = 5
+				capital_scope = { has_province_modifier = wildfire_5 }
+			}
+		}
+	}
+}
+decisions = {
+	destroy_wildfire = {
+		ai = no
+		only_playable = yes
+		potential = {
+			#NOT = { tier = BARON }
+			capital_scope = {
+				has_province_modifier = alchemist_guild
+				OR = {
+					has_province_modifier = wildfire_1
+					has_province_modifier = wildfire_2
+					has_province_modifier = wildfire_3
+					has_province_modifier = wildfire_4
+					has_province_modifier = wildfire_5
+				}
+				NOT = { has_province_modifier = making_wildfire }
+				NOT = { has_province_modifier = destroying_wildfire }
+				NOT = { has_province_modifier = wildfire_outbreak }
+				owner = { character = ROOT }
+			}
+			NOT = { has_character_flag = flag_making_wildfire }
+		}
+		allow = {
+			wealth = 100
+		}
+		effect = {
+			set_character_flag = flag_making_wildfire
+			character_event = { id = wildfire.5 tooltip = "EVTTOOLTIPwildfire.5" }
+		}
+		ai_check_interval = 12
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.5
+			}
+			modifier = {
+				factor = 0.1
+				society_member_of = alchemists_guild
+			}		
+			# Targaryen Modifier
+			modifier = {
+				factor = 0.75
+				OR = {
+					dynasty = 496
+					regent = {
+						dynasty = 496
+					}
+				}
+			}
+			# Stockpile Modifiers
+			modifier = {
+				factor = 2
+				capital_scope = {
+					OR = {
+						has_province_modifier = wildfire_1
+						has_province_modifier = wildfire_2
+						has_province_modifier = wildfire_3
+						has_province_modifier = wildfire_4
+						has_province_modifier = wildfire_5
+					}
+				}
+			}
+			modifier = {
+				factor = 2
+				capital_scope = {
+					OR = {
+						has_province_modifier = wildfire_2
+						has_province_modifier = wildfire_3
+						has_province_modifier = wildfire_4
+						has_province_modifier = wildfire_5
+					}
+				}
+			}
+			modifier = {
+				factor = 2
+				capital_scope = {
+					OR = {
+						has_province_modifier = wildfire_3
+						has_province_modifier = wildfire_4
+						has_province_modifier = wildfire_5
+					}
+				}
+			}
+			modifier = {
+				factor = 2
+				capital_scope = {
+					OR = {
+						has_province_modifier = wildfire_4
+						has_province_modifier = wildfire_5
+					}
+				}
+			}
+			modifier = {
+				factor = 2
+				capital_scope = {
+					has_province_modifier = wildfire_5
+				}
+			}
+		
+			# Ruler Personality Effects
+			modifier = {
+				factor = 0.0625
+				trait = fire_obsessed
+			}
+			modifier = {
+				factor = 0.0625
+				trait = possessed
+			}
+			modifier = {
+				factor = 0.25
+				trait = lunatic
+			}
+			modifier = {
+				factor = 0.5
+				trait = brave
+			}
+			modifier = {
+				factor = 0.5
+				trait = wroth
+			}
+			modifier = {
+				factor = 0.5
+				trait = cruel
+			}
+			modifier = {
+				factor = 0.5
+				trait = mystic
+			}
+			modifier = {
+				factor = 0.5
+				trait = slothful
+			}
+			modifier = {
+				factor = 2
+				trait = diligent
+			}
+			modifier = {
+				factor = 2
+				trait = craven
+			}
+			modifier = {
+				factor = 4
+				trait = paranoid
+			}
+		
+			# Situational Modifiers
+			modifier = {
+				factor = 0.5
+				war = yes
+			}
+			modifier = {
+				factor = 0.5
+				any_current_enemy = {
+					location = { owner = { character = ROOT } }
+				}
+			}
+			modifier = {
+				factor = 0.5
+				any_current_enemy = {
+					location = { ROOT = { capital_scope = { province_id = PREVPREV } } }
+				}
+			}
+			modifier = {
+				factor = 0
+				has_character_modifier = loan_timer
+				OR = {
+					stewardship = 9
+					trait = temperate
+					NOT = { 
+						OR = {
+							trait = gluttonous 
+							trait = hedonist
+							trait = slothful
+						}	
+					}	
+				}	
+			}
+		}
+	}
+}
+targeted_decisions = {
+	learn_how_to_make_wildfire = {
+		is_high_prio = yes
+		ai = no
+		is_in_society = yes
+		
+		filter = realm
+		ai_target_filter = self
+		
+		from_potential = {			
+			society_member_of = alchemists_guild
+			ai = no
+			has_quest = quest_alchemists_make_wildfire
+			NOT = { has_character_flag = flag_learning_wildfire }
+		}
+		potential = {			
+			society_member_of = alchemists_guild	
+			NOT = { character = FROM }		
+		}
+		allow = {
+			society_rank >= 2
+			liege = { character = FROM }
+			FROM = {
+				wealth = 50
+				NOT = { is_inaccessible_trigger = yes }
+				prisoner = no
+			}
+			NOT = { is_inaccessible_trigger = yes }		
+		}
+		effect = {
+			FROM = {
+				set_character_flag = flag_learning_wildfire
+				wealth = -50
+				character_event = { id = wildfire.67 tooltip = "EVTTOOLTIPwildfire.67" }
+			}	
+		}
+		ai_will_do = {
+			factor = 0	
+		}
+	}
+	wildfire_healing = { 
+		ai = no
+		is_in_society = yes
+		ai_target_filter = home_court_including_me
+		filter = realm_including_me
+		is_high_prio = yes
+		
+		from_potential = {
+			society_member_of = alchemists_guild
+			has_global_flag = alchemist_elixirs_discovered	
+		}
+
+		potential = {			
+			OR = { 
+				character = FROM
+				is_liege_or_above = FROM
+				same_liege = FROM
+				dynasty = FROM
+				is_close_relative = FROM
+			}
+			OR = {
+				is_ill = yes
+				trait = wounded
+				trait = depressed				
+				trait = stressed
+				trait = lovers_pox
+			}
+			NOT_mythical_creature_trigger = yes
+		}
+					
+		allow = { 	
+			magic_returned_trigger = yes		
+			FROM = {
+				OR = {
+					custom_tooltip = {
+						text = TOOLTIPalchemist_elixirs
+						has_character_flag = alchemist_elixirs
+					}
+					custom_tooltip = {
+						text = TOOLTIPalchemist_elixirsCOURTIER
+						any_courtier = {
+							society_member_of = alchemists_guild
+							has_character_flag = alchemist_elixirs
+							prisoner = no
+							is_incapable = no
+							liege = { character = ROOT_FROM }
+							ai = yes
+						}	
+					}
+				}
+				has_society_currency_minor_trigger = yes
+				conditional_tooltip = {
+					trigger = { ai = no }
+					in_command = no
+				}	
+			}
+			at_location = FROM
+			NOT = { has_character_modifier = wildfire_healing_timer }
+			NOT = { is_inaccessible_trigger = yes } 
+			OR = {
+				is_adult = yes
+				is_close_relative = FROM
+			}
+		}
+				
+		effect = {
+			hidden_tooltip = {
+				FROM = {				
+					save_event_target_as = healing_proposer
+					random_courtier = {
+						limit = {
+							society_member_of = alchemists_guild
+							has_character_flag = alchemist_elixirs
+							prisoner = no
+							is_incapable = no
+							liege = { character = ROOT_FROM }
+							ai = yes
+						}	
+						save_event_target_as = alchemist_healer
+					}
+					if = {
+						limit = { has_character_flag = alchemist_elixirs }
+						save_event_target_as = alchemist_healer
+					}
+				}	
+				add_character_modifier = {
+					name = wildfire_healing_timer
+					duration = 365
+				}
+			}			
+			character_event = { id = wildfire.150 tooltip = TOOLTIPwildfire.150 }
+		}		
+		ai_check_interval = 2
+		ai_will_do = { 
+			factor = 1
+			modifier = {
+				factor = 0.2 # Slow it down a bit
+			}
+			modifier = {
+				factor = 0
+				NOT = { character = FROM }
+				OR = {
+					trait = slave
+					NOT = { reverse_opinion = { who = FROM value = 0 } }
+				}
+			}
+			modifier = {
+				factor = 4
+				is_close_relative = FROM
+			}
+			modifier = {
+				factor = 2
+				is_ruler = yes
+			}
+			modifier = {
+				factor = 3
+				reverse_opinion = { who = FROM value = 50 }
+			}
+		} 
+	}
+}	

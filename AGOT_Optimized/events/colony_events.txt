@@ -678,7 +678,6 @@ province_event = {
                 }
             }
         }
-
         #***Days Passed ***
         if = {
             limit = {
@@ -738,6 +737,7 @@ province_event = {
             value = 8			# we have 8 stages
         }
         if = {
+            #Timer 0
             limit = {
                 check_variable = {
                     which = stage_difficulty
@@ -778,6 +778,7 @@ province_event = {
             }
         }
         else_if = {
+            #Timer 1
             limit = {
                 check_variable = {
                     which = stage_difficulty
@@ -818,6 +819,7 @@ province_event = {
             }
         }
         else_if = {
+            #Timer 2
             limit = {
                 check_variable = {
                     which = stage_difficulty
@@ -858,6 +860,7 @@ province_event = {
             }
         }
         else_if = {
+            #Timer 3
             limit = {
                 check_variable = {
                     which = stage_difficulty
@@ -897,7 +900,8 @@ province_event = {
                 random = 220
             }
         }
-        else_if = {
+        else_if = {#Timer 4
+
             limit = {
                 check_variable = {
                     which = stage_difficulty
@@ -905,310 +909,312 @@ province_event = {
                 }
             }
             # Show Aprox time modifier 3
-            limit = {
-                check_variable = {
-                    which = colony_stage
-                    value = 1
+            if = {
+                limit = {
+                    check_variable = {
+                        which = colony_stage
+                        value = 1
+                    }
+                }
+                remove_province_modifier = colony_status
+                add_province_modifier = {
+                    modifier = colony_status
+                    years = 26
                 }
             }
-            remove_province_modifier = colony_status
-            add_province_modifier = {
-                modifier = colony_status
-                years = 26
-            }
-        }
-        if = {
-            limit = {
-                check_variable = {
-                    which = colony_stage
-                    value = 4
+            else_if = {
+                limit = {
+                    check_variable = {
+                        which = colony_stage
+                        value = 4
+                    }
+                }
+                remove_province_modifier = colony_status
+                add_province_modifier = {
+                    modifier = colony_status
+                    years = 13
                 }
             }
-            remove_province_modifier = colony_status
-            add_province_modifier = {
-                modifier = colony_status
-                years = 13
+            province_event = {
+                id = colony.3
+                days = 1000				# T3
+                random = 300
             }
         }
-        province_event = {
-            id = colony.3
-            days = 1000			# T3
-            random = 300
-        }
-    }
-    else_if = {
-        limit = {
-            check_variable = {
-                which = stage_difficulty
-                value <= 4
-            }
-        }
-        # Show Aprox time modifier 4
-        if = {
+        else_if = {#Timer 5
             limit = {
                 check_variable = {
-                    which = colony_stage
-                    value = 1
+                    which = stage_difficulty
+                    value <= 4
                 }
             }
-            remove_province_modifier = colony_status
-            add_province_modifier = {
-                modifier = colony_status
-                years = 36
+            # Show Aprox time modifier 4
+            if = {
+                limit = {
+                    check_variable = {
+                        which = colony_stage
+                        value = 1
+                    }
+                }
+                remove_province_modifier = colony_status
+                add_province_modifier = {
+                    modifier = colony_status
+                    years = 36
+                }
+            }
+            else_if = {
+                limit = {
+                    check_variable = {
+                        which = colony_stage
+                        value = 4
+                    }
+                }
+                remove_province_modifier = colony_status
+                add_province_modifier = {
+                    modifier = colony_status
+                    years = 18
+                }
+            }
+            province_event = {
+                id = colony.3
+                days = 1460			# T4
+                random = 170
             }
         }
-        if = {
+        else_if = { #Timer 4
             limit = {
                 check_variable = {
-                    which = colony_stage
-                    value = 4
+                    which = stage_difficulty
+                    value <= 5
                 }
             }
-            remove_province_modifier = colony_status
-            add_province_modifier = {
-                modifier = colony_status
-                years = 18
+            # Show Aprox time modifier 5
+            if = {
+                limit = {
+                    check_variable = {
+                        which = colony_stage
+                        value = 1
+                    }
+                }
+                remove_province_modifier = colony_status
+                add_province_modifier = {
+                    modifier = colony_status
+                    years = 47
+                }
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = colony_stage
+                        value = 4
+                    }
+                }
+                remove_province_modifier = colony_status
+                add_province_modifier = {
+                    modifier = colony_status
+                    years = 24
+                }
+            }
+            province_event = {
+                id = colony.3
+                days = 1825			# T5
+                random = 300
             }
         }
-        province_event = {
-            id = colony.3
-            days = 1460			# T4
-            random = 170
-        }
-    }
-    else_if = {
-        limit = {
-            check_variable = {
-                which = stage_difficulty
-                value <= 5
-            }
-        }
-        # Show Aprox time modifier 5
-        if = {
+        else_if = {
             limit = {
                 check_variable = {
-                    which = colony_stage
-                    value = 1
+                    which = stage_difficulty
+                    value <= 6
                 }
             }
-            remove_province_modifier = colony_status
-            add_province_modifier = {
-                modifier = colony_status
-                years = 47
+            # Show Aprox time modifier 6
+            if = {
+                limit = {
+                    check_variable = {
+                        which = colony_stage
+                        value = 1
+                    }
+                }
+                remove_province_modifier = colony_status
+                add_province_modifier = {
+                    modifier = colony_status
+                    years = 54
+                }
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = colony_stage
+                        value = 4
+                    }
+                }
+                remove_province_modifier = colony_status
+                add_province_modifier = {
+                    modifier = colony_status
+                    years = 27
+                }
+            }
+            province_event = {
+                id = colony.3
+                days = 2190			# T6
+                random = 243
             }
         }
-        if = {
+        else_if = {
             limit = {
                 check_variable = {
-                    which = colony_stage
-                    value = 4
+                    which = stage_difficulty
+                    value <= 7
                 }
             }
-            remove_province_modifier = colony_status
-            add_province_modifier = {
-                modifier = colony_status
-                years = 24
+            # Show Aprox time modifier 7
+            if = {
+                limit = {
+                    check_variable = {
+                        which = colony_stage
+                        value = 1
+                    }
+                }
+                remove_province_modifier = colony_status
+                add_province_modifier = {
+                    modifier = colony_status
+                    years = 63
+                }
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = colony_stage
+                        value = 4
+                    }
+                }
+                remove_province_modifier = colony_status
+                add_province_modifier = {
+                    modifier = colony_status
+                    years = 32
+                }
+            }
+            province_event = {
+                id = colony.3
+                days = 2555			# T7
+                random = 293
             }
         }
-        province_event = {
-            id = colony.3
-            days = 1825			# T5
-            random = 300
-        }
-    }
-    else_if = {
-        limit = {
-            check_variable = {
-                which = stage_difficulty
-                value <= 6
-            }
-        }
-        # Show Aprox time modifier 6
-        if = {
+        else_if = {
             limit = {
                 check_variable = {
-                    which = colony_stage
-                    value = 1
+                    which = stage_difficulty
+                    value <= 8
                 }
             }
-            remove_province_modifier = colony_status
-            add_province_modifier = {
-                modifier = colony_status
-                years = 54
+            # Show Aprox time modifier 8
+            if = {
+                limit = {
+                    check_variable = {
+                        which = colony_stage
+                        value = 1
+                    }
+                }
+                remove_province_modifier = colony_status
+                add_province_modifier = {
+                    modifier = colony_status
+                    years = 72
+                }
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = colony_stage
+                        value = 4
+                    }
+                }
+                remove_province_modifier = colony_status
+                add_province_modifier = {
+                    modifier = colony_status
+                    years = 36
+                }
+            }
+            province_event = {
+                id = colony.3
+                days = 2920			# T8
+                random = 324
             }
         }
-        if = {
+        else_if = {
             limit = {
                 check_variable = {
-                    which = colony_stage
-                    value = 4
+                    which = stage_difficulty
+                    value <= 9
                 }
             }
-            remove_province_modifier = colony_status
-            add_province_modifier = {
-                modifier = colony_status
-                years = 27
-            }
-        }
-        province_event = {
-            id = colony.3
-            days = 2190			# T6
-            random = 243
-        }
-    }
-    else_if = {
-        limit = {
-            check_variable = {
-                which = stage_difficulty
-                value <= 7
-            }
-        }
-        # Show Aprox time modifier 7
-        if = {
-            limit = {
-                check_variable = {
-                    which = colony_stage
-                    value = 1
+            # Show Aprox time modifier 9
+            if = {
+                limit = {
+                    check_variable = {
+                        which = colony_stage
+                        value = 1
+                    }
+                }
+                remove_province_modifier = colony_status
+                add_province_modifier = {
+                    modifier = colony_status
+                    years = 80
                 }
             }
-            remove_province_modifier = colony_status
-            add_province_modifier = {
-                modifier = colony_status
-                years = 63
-            }
-        }
-        if = {
-            limit = {
-                check_variable = {
-                    which = colony_stage
-                    value = 4
+            if = {
+                limit = {
+                    check_variable = {
+                        which = colony_stage
+                        value = 4
+                    }
+                }
+                remove_province_modifier = colony_status
+                add_province_modifier = {
+                    modifier = colony_status
+                    years = 40
                 }
             }
-            remove_province_modifier = colony_status
-            add_province_modifier = {
-                modifier = colony_status
-                years = 32
+            province_event = {
+                id = colony.3
+                days = 3285			# T9
+                random = 320
             }
         }
-        province_event = {
-            id = colony.3
-            days = 2555			# T7
-            random = 293
-        }
-    }
-    else_if = {
-        limit = {
-            check_variable = {
-                which = stage_difficulty
-                value <= 8
-            }
-        }
-        # Show Aprox time modifier 8
-        if = {
-            limit = {
-                check_variable = {
-                    which = colony_stage
-                    value = 1
+        else = {
+            #  more than 9
+            # Show Aprox time modifier 10
+            if = {
+                limit = {
+                    check_variable = {
+                        which = colony_stage
+                        value = 1
+                    }
+                }
+                remove_province_modifier = colony_status
+                add_province_modifier = {
+                    modifier = colony_status
+                    years = 88
                 }
             }
-            remove_province_modifier = colony_status
-            add_province_modifier = {
-                modifier = colony_status
-                years = 72
-            }
-        }
-        if = {
-            limit = {
-                check_variable = {
-                    which = colony_stage
-                    value = 4
+            if = {
+                limit = {
+                    check_variable = {
+                        which = colony_stage
+                        value = 4
+                    }
+                }
+                remove_province_modifier = colony_status
+                add_province_modifier = {
+                    modifier = colony_status
+                    years = 44
                 }
             }
-            remove_province_modifier = colony_status
-            add_province_modifier = {
-                modifier = colony_status
-                years = 36
+            province_event = {
+                id = colony.3
+                days = 3650			# T10
+                random = 365
             }
-        }
-        province_event = {
-            id = colony.3
-            days = 2920			# T8
-            random = 324
-        }
-    }
-    else_if = {
-        limit = {
-            check_variable = {
-                which = stage_difficulty
-                value <= 9
-            }
-        }
-        # Show Aprox time modifier 9
-        if = {
-            limit = {
-                check_variable = {
-                    which = colony_stage
-                    value = 1
-                }
-            }
-            remove_province_modifier = colony_status
-            add_province_modifier = {
-                modifier = colony_status
-                years = 80
-            }
-        }
-        if = {
-            limit = {
-                check_variable = {
-                    which = colony_stage
-                    value = 4
-                }
-            }
-            remove_province_modifier = colony_status
-            add_province_modifier = {
-                modifier = colony_status
-                years = 40
-            }
-        }
-        province_event = {
-            id = colony.3
-            days = 3285			# T9
-            random = 320
-        }
-    }
-    else = {
-        #  more than 9
-        # Show Aprox time modifier 10
-        if = {
-            limit = {
-                check_variable = {
-                    which = colony_stage
-                    value = 1
-                }
-            }
-            remove_province_modifier = colony_status
-            add_province_modifier = {
-                modifier = colony_status
-                years = 88
-            }
-        }
-        if = {
-            limit = {
-                check_variable = {
-                    which = colony_stage
-                    value = 4
-                }
-            }
-            remove_province_modifier = colony_status
-            add_province_modifier = {
-                modifier = colony_status
-                years = 44
-            }
-        }
-        province_event = {
-            id = colony.3
-            days = 3650			# T10
-            random = 365
         }
     }
 }
@@ -1238,7 +1244,7 @@ province_event = {
             }
             province_finish_colony = yes
             province_event = {
-                id = unoccupied.4  # Event for player
+                id = unoccupied.4				# Event for player
             }
         }
         else_if = {
@@ -1249,7 +1255,7 @@ province_event = {
                 }
                 check_variable = {
                     which = colony_stage
-                    value  >= 4
+                    value >= 4
                 }
             }
             province_set_colony_culture = yes
@@ -1269,11 +1275,11 @@ province_event = {
                 decrease_depopulation_effect = yes
             }
             province_event = {
-                id = unoccupied.4 # Event for player
+                id = unoccupied.4				# Event for player
             }
         }
         province_event = {
-            id = colony.2 # Next Timer
+            id = colony.2			# Next Timer
         }
     }
 }
@@ -1290,7 +1296,8 @@ province_event = {
             limit = {
                 has_province_modifier = famine
             }
-            province_event = { # deal with famine
+            province_event = {
+                # deal with famine
                 id = colony.20
                 days = 24
                 random = 12
@@ -1308,14 +1315,11 @@ province_event = {
     picture = GFX_evt_castle_construction
     desc = "Famine"
     immediate = {
-
     }
     option = {
         name = "Ok"
     }
 }
-
-
 
 province_event = {
     id = colony.50

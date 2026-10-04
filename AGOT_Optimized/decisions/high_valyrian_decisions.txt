@@ -29,7 +29,7 @@ decisions = {
 				character_event = { id = valyria.82 tooltip = TOOLTIPvalyria.82 }
 			}
 		}
-		ai_check_interval = 18
+		ai_check_interval = 180
 		ai_will_do = {
 			factor = 0.025
 			modifier = { #Motives
@@ -219,7 +219,7 @@ targetted_decisions = {
 	}
 	grant_purity_of_blood = {
 		only_playable = yes
-		ai_target_filter = vassals_including_me
+		ai = no
 		filter = all_including_me
 		from_potential = {
 			is_ruler = yes

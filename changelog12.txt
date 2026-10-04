@@ -1,4 +1,16 @@
 
+## Decisions set to ai=no.
+-wildfire_decisions.txt | Ai has on_action script
+-cold_winds.txt  | Ai has on_action script
+-iron_throne_decisions.txt | Ai has on_action script
+-volantis_decisions.txt
+-Ai script for divination and glass candle.
+
+##Script Improvements
+-maintenance.56 and 57 #In debt modifier lacked pre-triggers and Ito
+-Removed 14 Mtth events from valyria_events.txt, this removes some historical events from the freehold submod,
+to restore full freehold submod delete zzz_valyria_events.txt.
+
 ## Colonisation ##
 -Colony cost now corresponds to the selected rule.
 -Colony time closer to selected rules.

@@ -1,0 +1,2831 @@
+
+namespace = valyria
+# Mtth moved to Pulse ~Gt.
+	
+###Council petitions building project###
+character_event = {
+	id = valyria.40
+	is_triggered_only = yes
+	desc = "EVTDESCvalyria.40" 
+	picture = GFX_evt_busy_trading_dock_republic
+	
+	only_independent = yes
+	capable_only = yes
+	prisoner = no
+	war = no
+
+	trigger = {
+		is_valyrian_freehold_trigger = yes
+		wealth = 300
+		capital_scope = {
+			any_province_holding = { holding_type = city }
+		}	
+	}
+	
+	# mean_time_to_happen = { 
+	# 	years = 20
+	# 	modifier = {
+	# 		factor = 0.75
+	# 		wealth = 500
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.75
+	# 		wealth = 750
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.75
+	# 		wealth = 1000
+	# 	}
+	# }
+	
+	immediate = {
+		capital_scope = {
+			random_province_holding = {
+				limit = { holding_type = city }
+				preferred_limit = { base_value_6_trigger = yes }
+				preferred_limit = { base_value_5_trigger = yes }
+				preferred_limit = { base_value_4_trigger = yes }
+				preferred_limit = { base_value_3_trigger = yes }
+				save_event_target_as = freehold_capital
+			}
+		}	
+		event_target:freehold_capital = {
+			random_list = {
+				10 = {
+					trigger = { NOT = { has_building = ct_wall_5 } }
+					ROOT = { set_character_flag = ct_wall }
+				}
+				10 = {
+					trigger = { NOT = { has_building = ct_marketplace_6 } }
+					ROOT = { set_character_flag = ct_marketplace }
+				}
+				10 = {
+					trigger = { NOT = { has_building = ct_wall_q_5 } }
+					ROOT = { set_character_flag = ct_wall_q }
+				}
+				10 = {
+					trigger = { NOT = { has_building = ct_training_grounds_5 } }
+					ROOT = { set_character_flag = ct_training_grounds }
+				}
+				10 = {
+					trigger = { NOT = { has_building = ct_port_5 } }
+					ROOT = { set_character_flag = ct_port }
+				}
+				10 = {
+					trigger = { NOT = { has_building = ct_barracks_6 } }
+					ROOT = { set_character_flag = ct_barracks }
+				}
+			}
+		}		
+	}
+	
+	option = {
+		name = "EVTOPTAvalyria.40" #Yes, fund it
+		ai_chance = {
+			factor = 75
+			modifier = {
+				factor = 3
+				trait = diligent
+			}
+			modifier = {
+				factor = 3
+				trait = charitable
+			}
+			modifier = {
+				factor = 2
+				trait = humble
+			}
+			modifier = {
+				factor = 2
+				trait = ambitious
+			}
+			modifier = {
+				factor = 2
+				wealth = 900
+			}
+		}
+		event_target:freehold_capital = {
+			if = {
+				limit = { ROOT = { has_character_flag = ct_wall } } 
+				if = {
+					limit = { 
+						has_building = ct_wall_4
+						NOT = { has_building = ct_wall_5 }
+					} 
+					add_building = ct_wall_5
+					ROOT = { wealth = -180 }
+				}
+				if = {
+					limit = { 
+						has_building = ct_wall_3 
+						NOT = { has_building = ct_wall_4 }
+					} 
+					add_building = ct_wall_4
+					ROOT = { wealth = -120 }
+				}
+				if = {
+					limit = { 
+						has_building = ct_wall_2
+						NOT = { has_building = ct_wall_3 }
+					} 
+					add_building = ct_wall_3
+					ROOT = { wealth = -120 }
+				}
+				if = {
+					limit = { 
+						has_building = ct_wall_1 
+						NOT = { has_building = ct_wall_2 }
+					} 
+					add_building = ct_wall_2
+					ROOT = { wealth = -60 }
+				}
+				if = {
+					limit = { NOT = { has_building = ct_wall_1 } }
+					add_building = ct_wall_1
+					ROOT = { wealth = -60 }
+				}				
+			}
+			if = {
+				limit = { ROOT = { has_character_flag = ct_marketplace } } 
+				if = {
+					limit = { 
+						has_building = ct_marketplace_5
+						NOT = { has_building = ct_marketplace_6 }
+					} 
+					add_building = ct_marketplace_5
+					ROOT = { wealth = -550 }
+				}
+				if = {
+					limit = { 
+						has_building = ct_marketplace_4
+						NOT = { has_building = ct_marketplace_5 }
+					} 
+					add_building = ct_marketplace_5
+					ROOT = { wealth = -450 }
+				}
+				if = {
+					limit = { 
+						has_building = ct_marketplace_3 
+						NOT = { has_building = ct_marketplace_4 }
+					} 
+					add_building = ct_marketplace_4
+					ROOT = { wealth = -350 }
+				}
+				if = {
+					limit = { 
+						has_building = ct_marketplace_2
+						NOT = { has_building = ct_marketplace_3 }
+					} 
+					add_building = ct_marketplace_3
+					ROOT = { wealth = -240 }
+				}
+				if = {
+					limit = { 
+						has_building = ct_marketplace_1 
+						NOT = { has_building = ct_marketplace_2 }
+					} 
+					add_building = ct_marketplace_2
+					ROOT = { wealth = -144 }
+				}
+				if = {
+					limit = { NOT = { has_building = ct_marketplace_1 } }
+					add_building = ct_marketplace_1
+					ROOT = { wealth = -120 }
+				}				
+			}
+			if = {
+				limit = { ROOT = { has_character_flag = ct_port } } 
+				if = {
+					limit = { 
+						has_building = ct_port_4
+						NOT = { has_building = ct_port_5 }
+					} 
+					add_building = ct_port_5
+					ROOT = { wealth = -450 }
+				}
+				if = {
+					limit = { 
+						has_building = ct_port_3 
+						NOT = { has_building = ct_port_4 }
+					} 
+					add_building = ct_port_4
+					ROOT = { wealth = -350 }
+				}
+				if = {
+					limit = { 
+						has_building = ct_port_2
+						NOT = { has_building = ct_port_3 }
+					} 
+					add_building = ct_port_3
+					ROOT = { wealth = -240 }
+				}
+				if = {
+					limit = { 
+						has_building = ct_port_1 
+						NOT = { has_building = ct_port_2 }
+					} 
+					add_building = ct_port_2
+					ROOT = { wealth = -144 }
+				}
+				if = {
+					limit = { NOT = { has_building = ct_port_1 } }
+					add_building = ct_port_1
+					ROOT = { wealth = -120 }
+				}				
+			}
+			if = {
+				limit = { ROOT = { has_character_flag = ct_wall_q } } 
+				if = {
+					limit = { 
+						has_building = ct_wall_q_4
+						NOT = { has_building = ct_wall_q_5 }
+					} 
+					add_building = ct_wall_q_5
+					ROOT = { wealth = -120 }
+				}
+				if = {
+					limit = { 
+						has_building = ct_wall_q_3 
+						NOT = { has_building = ct_wall_q_4 }
+					} 
+					add_building = ct_wall_q_4
+					ROOT = { wealth = -120 }
+				}
+				if = {
+					limit = { 
+						has_building = ct_wall_q_2
+						NOT = { has_building = ct_wall_q_3 }
+					} 
+					add_building = ct_wall_q_3
+					ROOT = { wealth = -60 }
+				}
+				if = {
+					limit = { 
+						has_building = ct_wall_q_1 
+						NOT = { has_building = ct_wall_q_2 }
+					} 
+					add_building = ct_wall_q_2
+					ROOT = { wealth = -60 }
+				}
+				if = {
+					limit = { NOT = { has_building = ct_wall_q_1 } }
+					add_building = ct_wall_q_1
+					ROOT = { wealth = -60 }
+				}				
+			}
+			if = {
+				limit = { ROOT = { has_character_flag = ct_training_grounds } } 
+				if = {
+					limit = { 
+						has_building = ct_training_grounds_4
+						NOT = { has_building = ct_training_grounds_5 }
+					} 
+					add_building = ct_training_grounds_5
+					ROOT = { wealth = -550 }
+				}
+				if = {
+					limit = { 
+						has_building = ct_training_grounds_3 
+						NOT = { has_building = ct_training_grounds_4 }
+					} 
+					add_building = ct_training_grounds_4
+					ROOT = { wealth = -450 }
+				}
+				if = {
+					limit = { 
+						has_building = ct_training_grounds_2
+						NOT = { has_building = ct_training_grounds_3 }
+					} 
+					add_building = ct_training_grounds_3
+					ROOT = { wealth = -350 }
+				}
+				if = {
+					limit = { 
+						has_building = ct_training_grounds_1 
+						NOT = { has_building = ct_training_grounds_2 }
+					} 
+					add_building = ct_training_grounds_2
+					ROOT = { wealth = -240 }
+				}
+				if = {
+					limit = { NOT = { has_building = ct_training_grounds_1 } }
+					add_building = ct_training_grounds_1
+					ROOT = { wealth = -180 }
+				}				
+			}
+			if = {
+				limit = { ROOT = { has_character_flag = ct_barracks } }
+				if = {
+					limit = { 
+						has_building = ct_barracks_5
+						NOT = { has_building = ct_barracks_6 }
+					} 
+					add_building = ct_barracks_6
+					ROOT = { wealth = -550 }
+				}					
+				if = {
+					limit = { 
+						has_building = ct_barracks_4
+						NOT = { has_building = ct_barracks_5 }
+					} 
+					add_building = ct_barracks_5
+					ROOT = { wealth = -450 }
+				}
+				if = {
+					limit = { 
+						has_building = ct_barracks_3 
+						NOT = { has_building = ct_barracks_4 }
+					} 
+					add_building = ct_barracks_4
+					ROOT = { wealth = -350 }
+				}
+				if = {
+					limit = { 
+						has_building = ct_barracks_2
+						NOT = { has_building = ct_barracks_3 }
+					} 
+					add_building = ct_barracks_3
+					ROOT = { wealth = -240 }
+				}
+				if = {
+					limit = { 
+						has_building = ct_barracks_1 
+						NOT = { has_building = ct_barracks_2 }
+					} 
+					add_building = ct_barracks_2
+					ROOT = { wealth = -144 }
+				}
+				if = {
+					limit = { NOT = { has_building = ct_barracks_1 } }
+					add_building = ct_barracks_1
+					ROOT = { wealth = -120 }
+				}				
+			}
+		}
+		clr_character_flag = ct_wall
+		clr_character_flag = ct_marketplace
+		clr_character_flag = ct_port	
+		clr_character_flag = ct_wall_q
+		clr_character_flag = ct_training_grounds
+		clr_character_flag = ct_barracks
+		prestige = 50	
+	}
+	option = {
+		name = "EVTOPTBvalyria.40" #No
+		ai_chance = {
+			factor = 25
+			modifier = {
+				factor = 3
+				trait = slothful
+			}
+			modifier = {
+				factor = 3
+				trait = greedy
+			}
+			modifier = {
+				factor = 2
+				trait = proud
+			}
+			modifier = {
+				factor = 2
+				trait = content
+			}
+		}
+		prestige = -100
+		any_courtier_or_vassal = {
+			limit = {
+				liege = { character = ROOT }
+				OR = {
+					is_voter = yes
+					is_councillor = yes
+				}
+			}
+			opinion = { who = ROOT modifier = opinion_no_fund_project }
+		}	
+		clr_character_flag = ct_wall
+		clr_character_flag = ct_marketplace
+		clr_character_flag = ct_port	
+		clr_character_flag = ct_wall_q
+		clr_character_flag = ct_training_grounds
+		clr_character_flag = ct_barracks
+	}
+}
+#Elected councillor appointed regent
+character_event = {
+	id = valyria.45
+	is_triggered_only = yes
+	desc = "EVTDESCvalyria.45" 
+	
+	only_independent = yes
+	
+	trigger = { 
+		is_valyrian_freehold_trigger = yes
+		has_regent = yes 
+		regent = { NOT = { has_character_flag = elected_valyrian_councillor } }
+		any_courtier_or_vassal = {
+			OR = {
+				is_voter = yes
+				is_councillor = yes
+			}
+			has_character_flag = elected_valyrian_councillor		
+			NOT = { is_incapable = yes }		
+			prisoner = no
+		}
+	}
+	
+	option = {
+		name = OK
+		random_courtier_or_vassal = {
+			limit = {
+				OR = {
+					is_voter = yes
+					is_councillor = yes
+				}
+				has_character_flag = elected_valyrian_councillor		
+				NOT = { is_incapable = yes }		
+				prisoner = no
+			}		
+			gain_regency_effect = yes
+		}
+	}
+}	
+
+####
+
+# Free City culture melting pot
+province_event = {
+	id = valyria.65
+	is_triggered_only = yes
+	desc = "EVTDESCvalyria.65"
+	picture = GFX_evt_culture_change
+	trigger = {
+		OR = {
+			region = world_free_cities
+			province_id = 747
+			region = world_sothoryos
+		}	
+		NOT = { region = world_rhoynar }
+		NOT = { culture_group = valyrian }
+		NOT = { culture_group = free_cities }
+		owner = {
+			OR = {
+				culture_group = valyrian
+				culture_group = free_cities
+			}
+			NOT = { culture_group = unoccupied_group }
+		}
+		OR = {
+			owner = { culture_group = dornish }
+			any_neighbor_province = { culture_group = dornish }
+		}
+	}
+	
+	# mean_time_to_happen = {
+	# 	months = 120
+		
+	# 	modifier = {
+	# 		factor = 0.25
+	# 		owner = { culture_group = free_cities }
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.75
+	# 		has_province_flag = recent_depopulation_1
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.5
+	# 		has_province_flag = recent_depopulation_2
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.25
+	# 		has_province_flag = recent_depopulation_3
+	# 	}
+	# }
+	
+	immediate = { 
+		duchy = { save_event_target_as = ROOT_duchy } 
+	}
+
+	option = {
+		name = "EVTOPTAvalyria.65"
+		#try liege's region first
+		if = {
+			limit = {
+				owner = { 
+					OR = {
+						has_landed_title = k_pentos
+						any_liege = { has_landed_title = k_pentos }
+					}	
+				}
+				OR = {
+					region = world_pentos
+					region = world_stepstones
+					any_neighbor_province = { culture = pentosi }
+				}
+			}
+			culture = pentosi
+		}
+		else_if = {
+			limit = {
+				owner = { 
+					OR = {
+						has_landed_title = k_braavos
+						any_liege = { has_landed_title = k_braavos }
+					}	
+				}
+				OR = {
+					region = world_braavos
+					region = world_stepstones
+					any_neighbor_province = { culture = braavosi }
+				}
+			}
+			culture = braavosi
+		}
+		else_if = {
+			limit = {
+				owner = { 
+					OR = {
+						has_landed_title = k_lys
+						any_liege = { has_landed_title = k_lys }
+					}	
+				}
+				OR = {
+					region = world_lys
+					region = world_stepstones
+					any_neighbor_province = { culture = lysene }
+				}
+			}
+			culture = lysene
+			religion = weeping_lady
+		}
+		else_if = {
+			limit = {
+				owner = { 
+					OR = {
+						has_landed_title = k_qohor
+						any_liege = { has_landed_title = k_qohor }
+					}	
+				}
+				OR = {
+					region = world_qohor
+					region = world_stepstones
+					any_neighbor_province = { culture = qohorik }
+				}
+			}
+			culture = qohorik
+		}
+		else_if = {
+			limit = {
+				owner = { 
+					OR = {
+						has_landed_title = k_norvos
+						any_liege = { has_landed_title = k_norvos }
+					}	
+				}
+				OR = {
+					region = world_norvos
+					region = world_stepstones
+					any_neighbor_province = { culture = norvosi }
+				}
+			}
+			culture = norvosi
+		}
+		else_if = {
+			limit = {
+				owner = { 
+					OR = {
+						has_landed_title = k_myr
+						any_liege = { has_landed_title = k_myr }
+					}	
+				}
+				OR = {
+					region = world_myr
+					region = world_stepstones
+					any_neighbor_province = { culture = myrman }
+				}
+			}
+			culture = myrman
+		}
+		else_if = {
+			limit = {
+				owner = { 
+					OR = {
+						has_landed_title = k_tyrosh
+						any_liege = { has_landed_title = k_tyrosh }
+					}	
+				}
+				OR = {
+					region = world_tyrosh
+					region = world_stepstones
+					any_neighbor_province = { culture = tyroshi }
+				}
+			}
+			culture = tyroshi
+			religion = trios
+		}
+		else_if = {
+			limit = {
+				owner = { 
+					OR = {
+						has_landed_title = k_volantis
+						any_liege = { has_landed_title = k_volantis }
+					}	
+				}
+				OR = {
+					region = world_volantis
+					region = world_stepstones
+					any_neighbor_province = { culture = volantene }
+				}
+			}
+			culture = volantene
+		}
+		else_if = {
+			limit = {
+				owner = { 
+					OR = {
+						has_landed_title = k_lorath
+						any_liege = { has_landed_title = k_lorath }
+					}	
+				}
+				OR = {
+					region = world_lorath
+					region = world_stepstones
+					any_neighbor_province = { culture = lorathi }
+				}
+			}
+			culture = lorathi
+		}
+		else_if = {
+			limit = {
+				owner = { 
+					OR = {
+						has_landed_title = d_gogossos
+						any_liege = { has_landed_title = d_gogossos }
+					}	
+				}
+				OR = {
+					province_id = 747
+					region = world_sothoryos
+					region = world_stepstones
+					any_neighbor_province = { culture = gogossosi }
+				}
+			}
+			culture = gogossosi
+		}
+		# else_if = {
+			# limit = {
+				# owner = { any_liege = { has_landed_title = k_essaria  } }
+				# OR = {
+					# region = world_essaria
+					# any_neighbor_province = { culture = essarian }
+				# }
+			# }
+			# culture = essarian
+		# }
+		
+		##Then go by region
+		else_if = {
+			limit = {
+				region = world_pentos
+			}
+			culture = pentosi
+		}
+		else_if = {
+			limit = {
+				region = world_braavos
+				any_neighbor_province = { culture_group = free_cities }
+			}
+			random_neighbor_province = {
+				limit = { culture_group = free_cities }
+				ROOT = { culture = PREV }
+			}
+		}
+		else_if = {
+			limit = {
+				region = world_braavos
+			}		
+			culture = braavosi
+		}
+		
+		else_if = {
+			limit = {
+				region = world_lys
+			}
+			culture = lysene
+			religion = weeping_lady
+		}
+		else_if = {
+			limit = {
+				region = world_qohor
+			}
+			culture = qohorik
+		}
+		else_if = {
+			limit = {
+				region = world_norvos
+			}
+			culture = norvosi
+		}
+		else_if = {
+			limit = {
+				region = world_myr
+			}
+			culture = myrman
+		}
+		else_if = {
+			limit = {
+				region = world_tyrosh
+			}
+			culture = tyroshi
+			religion = trios
+		}
+		else_if = {
+			limit = {
+				region = world_volantis
+			}
+			culture = volantene
+		}
+		else_if = {
+			limit = {
+				region = world_lorath
+			}
+			culture = lorathi
+		}
+		else_if = {
+			limit = {
+				OR = {
+					province_id = 747
+					region = world_sothoryos
+				}
+			}
+			culture = gogossosi
+		}
+		else_if = {
+			limit = { 
+				region = world_stepstones 
+				owner = { culture_group = free_cities }
+			}
+			owner = { ROOT = { culture = PREV } }
+		}
+		else_if = {
+			limit = { 
+				region = world_stepstones 
+			}
+			random_province = {
+				limit = {
+					culture_group = free_cities
+				}	
+				preferred_limit = {
+					OR = {
+						region = world_tyrosh
+						region = world_lys
+						region = world_myr
+					}
+				}
+				ROOT = { culture = PREV }
+			}
+		}
+		# else_if = {
+			# limit = {
+				# region = world_essaria
+			# }
+			# culture = essarian
+		# }
+		else = {
+			culture = eastern_valyrian
+		}
+		
+		if = {
+			limit = { 
+				owner = {
+					OR = {
+						has_landed_title = event_target:ROOT_duchy
+						completely_controls = event_target:ROOT_duchy
+						any_liege = { 
+							OR = {
+								has_landed_title = event_target:ROOT_duchy
+								completely_controls = event_target:ROOT_duchy
+							}	
+						}
+					}
+				}
+			}
+			custom_tooltip = {
+				text = TOOLTIPvalyria.65_DEJURE
+				if = {
+					limit = { culture = pentosi }
+					event_target:ROOT_duchy = { de_jure_liege = k_pentos }
+				}	
+				else_if = {
+					limit = { culture = braavosi }
+					event_target:ROOT_duchy = { de_jure_liege = k_braavos }
+				}
+				else_if = {
+					limit = { culture = lysene }
+					event_target:ROOT_duchy = { de_jure_liege = k_lys }
+				}
+				else_if = {
+					limit = { culture = qohorik }
+					event_target:ROOT_duchy = { de_jure_liege = k_qohor }
+				}
+				else_if = {
+					limit = { culture = norvosi }
+					event_target:ROOT_duchy = { de_jure_liege = k_norvos }
+				}
+				else_if = {
+					limit = { culture = myrman }
+					event_target:ROOT_duchy = { de_jure_liege = k_myr }
+				}
+				else_if = {
+					limit = { culture = tyroshi }
+					event_target:ROOT_duchy = { de_jure_liege = k_tyrosh }
+				}
+				else_if = {
+					limit = { culture = volantene }
+					event_target:ROOT_duchy = { 
+						de_jure_liege = k_volantis 
+						if = {
+							limit = { title = d_volantis }
+							d_volaena = { de_jure_liege = k_volantis }
+						}
+					}
+				}
+				else_if = {
+					limit = { culture = lorathi }
+					event_target:ROOT_duchy = { de_jure_liege = k_lorath }
+				}
+				else_if = {
+					limit = { culture = essarian }
+					event_target:ROOT_duchy = { de_jure_liege = k_essaria }
+				}
+				else_if = {
+					limit = { 
+						culture = eastern_valyrian 
+						region = world_essaria
+					}
+					event_target:ROOT_duchy = { de_jure_liege = k_essaria }
+				}
+			}	
+		}
+		
+		culture_scope = { 
+			if = {
+				limit = { check_variable = { which = defunct value = 1 } }
+				set_variable = { which = defunct value = 0 } 
+			}
+		}
+	}
+}
+
+#Valyrian colony expansion
+province_event = {
+	id = valyria.75
+	is_triggered_only = yes
+	desc = "EVTDESCvalyria.75"
+	picture = GFX_evt_prospering_province
+	
+	has_flag = valyria_primary_colony
+	
+	trigger = {
+		NOT = { has_province_flag = colony_province }
+		NOT = { check_variable = { which = valyria_primary_colony_stage value = 3 } }
+		owner = {
+			OR = {
+				culture_group = valyrian
+				culture_group = free_cities
+			}
+			OR = {
+				has_landed_title = e_new_valyria
+				top_liege = { has_landed_title = e_new_valyria }
+				suzerain = { has_landed_title = e_new_valyria }
+				top_liege = { suzerain = { has_landed_title = e_new_valyria } }
+			}
+		}
+		is_occupied = no
+	}
+	
+	# mean_time_to_happen = {
+	# 	months = 480
+		
+	# 	modifier = {
+	# 		factor = 1.5
+	# 		has_province_modifier = asoiaf_mild_winter
+	# 	}
+	# 	modifier = {
+	# 		factor = 2
+	# 		has_province_modifier = asoiaf_normal_winter
+	# 	}
+	# 	modifier = {
+	# 		factor = 3
+	# 		has_province_modifier = asoiaf_harsh_winter
+	# 	}
+
+	# 	#Slavery
+	# 	modifier = {
+	# 		factor = 0.9
+	# 		has_province_modifier = slave_modifier_1
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.8
+	# 		has_province_modifier = slave_modifier_2
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.7
+	# 		has_province_modifier = slave_modifier_3
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.6
+	# 		has_province_modifier = slave_modifier_4
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.5
+	# 		has_province_modifier = slave_modifier_5
+	# 	}
+		
+	# 	#misc modifiers from other sources
+	# 	modifier = {
+	# 		factor = 0.95
+	# 		has_province_modifier = master_builder
+	# 	}
+	# 	modifier = {
+	# 		factor = 1.3
+	# 		has_province_modifier = sabotaged_building
+	# 	}
+	# 	modifier = {
+	# 		factor = 1.5
+	# 		has_province_modifier = smugglers_ring
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.8
+	# 		has_province_modifier = stone_quarry
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.8
+	# 		has_province_modifier = friendly_innovations
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.8
+	# 		has_province_modifier = carpenters_guild
+	# 	}
+	# 	modifier = {
+	# 		factor = 1.3
+	# 		has_province_modifier = outlawed_guild
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.975
+	# 		has_province_modifier = prosperity_modifier_2
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.95
+	# 		has_province_modifier = prosperity_modifier_3
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.85
+	# 		has_province_modifier = logging_company_province
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.85
+	# 		has_province_modifier = inspired_peasantry
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.85
+	# 		has_province_modifier = new_roads
+	# 	}
+	# 	modifier = {
+	# 		factor = 1.2
+	# 		has_province_modifier = sabotaged_buildings
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.8
+	# 		has_province_modifier = blast_furnace
+	# 	}	
+	# }
+	
+	immediate = { 
+		change_variable = { which = valyria_primary_colony_stage value = 1 }
+		owner = { save_event_target_as = province_owner }
+	}
+
+	option = {
+		name = "EVTOPTAvalyria.75"
+		random_province_holding = {
+			limit = { holding_type = city }
+			preferred_limit = { base_value_5_trigger = yes }
+			preferred_limit = { base_value_4_trigger = yes }
+			preferred_limit = { base_value_3_trigger = yes }
+			preferred_limit = { base_value_2_trigger = yes }
+			increase_holding_base_value_effect = yes
+		}
+		if = { #Old VOlantis
+			limit = { province_id = 419 }
+			if = {
+				limit = { is_variable_equal = { which = valyria_primary_colony_stage value = 1 } }
+				build_holding = {
+				   title = b_rhoyne_manor
+				   type = castle
+				   holder = event_target:province_owner
+				}
+				build_holding = {
+				   title = b_blood_palace
+				   type = castle
+				   holder = event_target:province_owner
+				}
+				build_holding = {
+				   title = b_izulepsia
+				   type = castle
+				   holder = event_target:province_owner
+				}
+			}
+			else_if = {
+				limit = { is_variable_equal = { which = valyria_primary_colony_stage value = 2 } }
+				#Add free colony in new volantis
+				417 = {
+					tooltip = { county = { gain_title = ROOT } }
+					save_event_target_as = valyrian_colony_target
+					ROOT = { owner = { character_event = { id = valyria.28 } } }#COLONISE
+				}
+				b_blackwall = { add_building = ca_asoiaf_essos_basevalue_3 }
+				b_rhoyne_manor = { add_building = ca_asoiaf_essos_basevalue_1 }
+				b_blood_palace = { add_building = ca_asoiaf_essos_basevalue_1 }
+				b_izulepsia = { add_building = ca_asoiaf_essos_basevalue_1 }
+			}
+			else = {
+				
+				b_blackwall = { add_building = ca_asoiaf_essos_basevalue_4 }
+				b_rhoyne_manor = { add_building = ca_asoiaf_essos_basevalue_2 }
+				b_blood_palace = { add_building = ca_asoiaf_essos_basevalue_2 }
+				b_izulepsia = { add_building = ca_asoiaf_essos_basevalue_2 }
+			}
+		}
+		else_if = { #Volantis
+			limit = { province_id = 417 }
+			if = {
+				limit = { is_variable_equal = { which = valyria_primary_colony_stage value = 1 } }
+				build_holding = {
+				   title = b_volantisharbor
+				   type = city
+				   holder = event_target:province_owner
+				}
+				hidden_tooltip = { b_volantisharbor = { add_building = ct_asoiaf_essos_basevalue_1 } }
+				build_holding = {
+				   title = b_brokengate
+				   type = castle
+				   holder = event_target:province_owner
+				}
+				hidden_tooltip = { b_brokengate = { add_building = ca_asoiaf_essos_basevalue_1 } }
+				build_holding = {
+				   title = b_longbridge
+				   type = city
+				   holder = event_target:province_owner
+				}
+				hidden_tooltip = { b_longbridge = { add_building = ct_asoiaf_essos_basevalue_1 } }
+			}
+			else_if = {
+				limit = { is_variable_equal = { which = valyria_primary_colony_stage value = 2 } }
+				b_volantisgates = { add_building = ca_asoiaf_essos_basevalue_3 }
+				b_volantisharbor = { add_building = ct_asoiaf_essos_basevalue_2 }
+				b_brokengate = { add_building = ca_asoiaf_essos_basevalue_2 }
+				b_longbridge = { add_building = ct_asoiaf_essos_basevalue_2 }
+			}
+			else = {
+				b_volantisharbor = { add_building = ct_asoiaf_essos_basevalue_3 }
+				b_brokengate = { add_building = ca_asoiaf_essos_basevalue_3 }
+				b_longbridge = { add_building = ct_asoiaf_essos_basevalue_3 }
+			}
+		}
+		else_if = { #Volon Therys
+			limit = { province_id = 420 }
+			if = {
+				limit = { is_variable_equal = { which = valyria_primary_colony_stage value = 1 } }
+				b_volontherys_castle = { add_building = ca_asoiaf_essos_basevalue_3 }
+			}
+			else_if = {
+				limit = { is_variable_equal = { which = valyria_primary_colony_stage value = 2 } }
+				b_volontherys_castle = { add_building = ca_asoiaf_essos_basevalue_4 }
+			}
+		}
+		else_if = { #Valysar
+			limit = { province_id = 422 }
+			if = {
+				limit = { is_variable_equal = { which = valyria_primary_colony_stage value = 1 } }
+				b_valysar_castle = { add_building = ca_asoiaf_essos_basevalue_3 }
+			}
+		}
+		else_if = { #Selhorys
+			limit = { province_id = 423 }
+			if = {
+				limit = { is_variable_equal = { which = valyria_primary_colony_stage value = 1 } }
+				b_selhorys_castle = { add_building = ca_asoiaf_essos_basevalue_3 }
+			}
+		}
+		else_if = { #Tyrosh
+			limit = { province_id = 367 }
+			if = {
+				limit = { is_variable_equal = { which = valyria_primary_colony_stage value = 1 } }
+				build_holding = {
+				   title = b_tyroshharbor
+				   type = city
+				   holder = event_target:province_owner
+				}
+				hidden_tooltip = { b_tyroshharbor = { add_building = ct_asoiaf_essos_basevalue_2 } }
+				build_holding = {
+				   title = b_fountaindrunkengod
+				   type = city
+				   holder = event_target:province_owner
+				}
+				hidden_tooltip = { b_fountaindrunkengod = { add_building = ct_asoiaf_essos_basevalue_2 } }
+				b_bleedingtower = { add_building = ca_asoiaf_essos_basevalue_4 }
+			}
+			else_if = {
+				limit = { is_variable_equal = { which = valyria_primary_colony_stage value = 2 } }
+				b_tyroshharbor = { add_building = ct_asoiaf_essos_basevalue_4 }
+				b_bleedingtower = { add_building = ca_asoiaf_essos_basevalue_5 }
+				b_fountaindrunkengod = { add_building = ct_asoiaf_essos_basevalue_4 }
+			}
+			else = {
+				b_tyroshharbor = { add_building = ct_asoiaf_essos_basevalue_5 }
+				b_bleedingtower = { add_building = ca_asoiaf_essos_basevalue_6 }
+				b_fountaindrunkengod = { add_building = ct_asoiaf_essos_basevalue_5 }
+			}
+		}
+		else_if = { #Lys
+			limit = { province_id = 368 }
+			if = {
+				limit = { is_variable_equal = { which = valyria_primary_colony_stage value = 1 } }
+				build_holding = {
+				   title = b_lyseneharbor
+				   type = city
+				   holder = event_target:province_owner
+				}
+				hidden_tooltip = { b_lyseneharbor = { add_building = ct_asoiaf_essos_basevalue_2 } }
+				build_holding = {
+				   title = b_pleasuregardens
+				   type = city
+				   holder = event_target:province_owner
+				}
+				hidden_tooltip = { b_pleasuregardens = { add_building = ct_asoiaf_essos_basevalue_1 } }
+				build_holding = {
+				   title = b_numys
+				   type = castle
+				   holder = event_target:province_owner
+				}
+				hidden_tooltip = { b_numys = { add_building = ca_asoiaf_essos_basevalue_1 } }
+				build_holding = {
+				   title = b_lentorys
+					type = castle
+				   holder = event_target:province_owner
+				}
+				hidden_tooltip = { b_lentorys = { add_building = ca_asoiaf_essos_basevalue_1 } }
+				b_tear_tower = { add_building = ca_asoiaf_essos_basevalue_3 }
+			}
+			else_if = {
+				limit = { is_variable_equal = { which = valyria_primary_colony_stage value = 2 } }
+				b_lyseneharbor = { add_building = ct_asoiaf_essos_basevalue_4 }
+				b_pleasuregardens = { add_building = ct_asoiaf_essos_basevalue_2 }
+				b_numys = { add_building = ca_asoiaf_essos_basevalue_2 }
+				b_lentorys = { add_building = ca_asoiaf_essos_basevalue_2 }
+			}
+			else = {
+				b_lyseneharbor = { add_building = ct_asoiaf_essos_basevalue_5 }
+				b_pleasuregardens = { add_building = ct_asoiaf_essos_basevalue_3 }
+				b_numys = { add_building = ca_asoiaf_essos_basevalue_3 }
+				b_lentorys = { add_building = ca_asoiaf_essos_basevalue_3 }
+			}
+		}
+		else_if = { #Pentos
+			limit = { province_id = 406 }
+			if = {
+				limit = { is_variable_equal = { which = valyria_primary_colony_stage value = 1 } }
+				build_holding = {
+				   title = b_pentosharbor
+				   type = city
+				   holder = event_target:province_owner
+				}
+				hidden_tooltip = { b_pentosharbor = { add_building = ct_asoiaf_essos_basevalue_2 } }
+				build_holding = {
+				   title = b_spicertowers
+				   type = castle
+				   holder = event_target:province_owner
+				}
+				hidden_tooltip = { b_spicertowers = { add_building = ca_asoiaf_essos_basevalue_2 } }
+				build_holding = {
+				   title = b_sunrisegate
+					type = castle
+				   holder = event_target:province_owner
+				}
+				hidden_tooltip = { b_sunrisegate = { add_building = ca_asoiaf_essos_basevalue_2 } }
+				b_princespalace = { add_building = ca_asoiaf_essos_basevalue_3 }
+			}
+			else_if = {
+				limit = { is_variable_equal = { which = valyria_primary_colony_stage value = 2 } }
+				b_pentosharbor = { add_building = ct_asoiaf_essos_basevalue_3 }
+				b_spicertowers = { add_building = ca_asoiaf_essos_basevalue_3 }
+				b_sunrisegate = { add_building = ca_asoiaf_essos_basevalue_3 }
+			}
+			else = {
+				b_pentosharbor = { add_building = ct_asoiaf_essos_basevalue_4 }
+				b_spicertowers = { add_building = ca_asoiaf_essos_basevalue_4 }
+				b_sunrisegate = { add_building = ca_asoiaf_essos_basevalue_4 }
+			}
+		}
+		else_if = { #Myr
+			limit = { province_id = 378 }
+			if = {
+				limit = { is_variable_equal = { which = valyria_primary_colony_stage value = 1 } }
+				build_holding = {
+				   title = b_myrishharbor
+				   type = city
+				   holder = event_target:province_owner
+				}
+				hidden_tooltip = { b_myrishharbor = { add_building = ct_asoiaf_essos_basevalue_2 } }
+				build_holding = {
+				   title = b_lace_tower
+				   type = castle
+				   holder = event_target:province_owner
+				}
+				hidden_tooltip = { b_lace_tower = { add_building = ca_asoiaf_essos_basevalue_1 } }
+				build_holding = {
+				   title = b_green_gate
+					type = castle
+				   holder = event_target:province_owner
+				}
+				hidden_tooltip = { b_green_gate = { add_building = ca_asoiaf_essos_basevalue_1 } }
+				b_vyrelos = { add_building = ca_asoiaf_essos_basevalue_3 }
+			}
+			else_if = {
+				limit = { is_variable_equal = { which = valyria_primary_colony_stage value = 2 } }
+				b_myrishharbor = { add_building = ct_asoiaf_essos_basevalue_4 }
+				b_lace_tower = { add_building = ca_asoiaf_essos_basevalue_2 }
+				b_green_gate = { add_building = ca_asoiaf_essos_basevalue_2 }
+			}
+			else = {
+				b_myrishharbor = { add_building = ct_asoiaf_essos_basevalue_5 }
+				b_lace_tower = { add_building = ca_asoiaf_essos_basevalue_3 }
+				b_green_gate = { add_building = ca_asoiaf_essos_basevalue_3 }
+			}
+		}
+		else_if = { #Norvos
+			limit = { province_id = 433 }
+			if = {
+				limit = { is_variable_equal = { which = valyria_primary_colony_stage value = 1 } }
+				build_holding = {
+				   title = b_lowernorvos
+				   type = city
+				   holder = event_target:province_owner
+				}
+				hidden_tooltip = { b_lowernorvos = { add_building = ct_asoiaf_essos_basevalue_2 } }
+				build_holding = {
+				   title = b_narrah
+				   type = castle
+				   holder = event_target:province_owner
+				}
+				hidden_tooltip = { b_narrah = { add_building = ca_asoiaf_essos_basevalue_1 } }
+				build_holding = {
+				   title = b_nyel
+					type = castle
+				   holder = event_target:province_owner
+				}
+				hidden_tooltip = { b_nyel = { add_building = ca_asoiaf_essos_basevalue_1 } }
+				b_noom = { add_building = ca_asoiaf_essos_basevalue_3 }
+				if = {
+					limit = { owner = { has_landed_title = d_bearded_priests } }
+					b_beardedtemple = {
+						add_building = tp_monastery_2
+						add_building = tp_wall_q_2
+						add_building = tp_elite_barracks_2
+					}
+				}
+			}
+			else_if = {
+				limit = { is_variable_equal = { which = valyria_primary_colony_stage value = 2 } }
+				b_lowernorvos = { add_building = ct_asoiaf_essos_basevalue_4 }
+				b_narrah = { add_building = ca_asoiaf_essos_basevalue_2 }
+				b_nyel = { add_building = ca_asoiaf_essos_basevalue_2 }
+				if = {
+					limit = { owner = { has_landed_title = d_bearded_priests } }
+					b_beardedtemple = {
+						add_building = tp_monastery_4
+						add_building = tp_wall_q_4
+						add_building = tp_elite_barracks_4
+					}
+				}
+			}
+			else = {
+				b_lowernorvos = { add_building = ct_asoiaf_essos_basevalue_5 }
+				b_narrah = { add_building = ca_asoiaf_essos_basevalue_3 }
+				b_nyel = { add_building = ca_asoiaf_essos_basevalue_3 }
+				if = {
+					limit = { owner = { has_landed_title = d_bearded_priests } }
+					b_beardedtemple = {
+						add_building = tp_monastery_5
+						add_building = tp_wall_q_5
+						add_building = tp_elite_barracks_6
+					}
+				}
+			}
+		}
+		else_if = { #Qohor
+			limit = { province_id = 476 }
+			if = {
+				limit = { is_variable_equal = { which = valyria_primary_colony_stage value = 1 } }
+				build_holding = {
+				   title = b_smiths_port
+				   type = city
+				   holder = event_target:province_owner
+				}
+				hidden_tooltip = { b_smiths_port = { add_building = ct_asoiaf_essos_basevalue_1 } }
+				build_holding = {
+				   title = b_city_guard
+				   type = castle
+				   holder = event_target:province_owner
+				}
+				hidden_tooltip = { b_city_guard = { add_building = ca_asoiaf_essos_basevalue_1 } }
+				build_holding = {
+				   title = b_goat_tower
+					type = castle
+				   holder = event_target:province_owner
+				}
+				hidden_tooltip = { b_goat_tower = { add_building = ca_asoiaf_essos_basevalue_1 } }
+				b_qohorwalls = { add_building = ca_asoiaf_essos_basevalue_3 }
+				if = {
+					limit = { owner = { has_landed_title = d_bearded_priests } }
+					b_beardedtemple = {
+						add_building = tp_monastery_2
+						add_building = tp_wall_q_2
+						add_building = tp_elite_barracks_2
+					}
+				}
+			}
+			else_if = {
+				limit = { is_variable_equal = { which = valyria_primary_colony_stage value = 2 } }
+				b_qohorwalls = { add_building = ca_asoiaf_essos_basevalue_4 }
+				b_smiths_port = { add_building = ct_asoiaf_essos_basevalue_2 }
+				b_city_guard = { add_building = ca_asoiaf_essos_basevalue_2 }
+				b_goat_tower= { add_building = ca_asoiaf_essos_basevalue_2 }
+			}
+			else = {
+				b_smiths_port = { add_building = ct_asoiaf_essos_basevalue_3 }
+				b_city_guard = { add_building = ca_asoiaf_essos_basevalue_3 }
+				b_goat_tower= { add_building = ca_asoiaf_essos_basevalue_3 }
+			}
+		}
+		else_if = { #Essaria
+			limit = { province_id = 542 }
+			if = {
+				limit = { is_variable_equal = { which = valyria_primary_colony_stage value = 1 } }
+				b_essaria = { add_building = ca_asoiaf_essos_basevalue_3 }
+				build_holding = {
+				   title = b_essaria4
+				   type = city
+				   holder = event_target:province_owner
+				}
+				hidden_tooltip = { b_essaria4 = { add_building = ct_asoiaf_essos_basevalue_2 } }
+				build_holding = {
+				   title = b_essaria3
+				   type = castle
+				   holder = event_target:province_owner
+				}
+				hidden_tooltip = { b_essaria3 = { add_building = ca_asoiaf_essos_basevalue_2 } }				
+			}
+			else_if = {
+				limit = { is_variable_equal = { which = valyria_primary_colony_stage value = 2 } }
+				b_essaria = { add_building = ca_asoiaf_essos_basevalue_4 }
+				b_essaria4 = { add_building = ct_asoiaf_essos_basevalue_3 }
+				b_essaria3 = { add_building = ca_asoiaf_essos_basevalue_3 }			
+			}
+			else = {
+				b_essaria4 = { add_building = ct_asoiaf_essos_basevalue_4 }
+				b_essaria3 = { add_building = ca_asoiaf_essos_basevalue_4 }	
+			}
+		}
+	}
+}
+#Valyrian heartland expansion
+province_event = {
+	id = valyria.78
+	is_triggered_only = yes
+	desc = "EVTDESCvalyria.78"
+	picture = GFX_evt_prospering_province
+	
+	trigger = {
+		NOT = { start_date = 4000.1.1 } #Pre-ghiscari wars
+		NOT = { has_province_flag = valyria_heartland_expansion }
+		OR = {
+			region = world_valyrian_peninsula
+			region = world_north_valyria
+		}
+		owner = {
+			OR = {
+				culture_group = valyrian
+				culture_group = free_cities
+			}
+			OR = {
+				has_landed_title = e_new_valyria
+				top_liege = { has_landed_title = e_new_valyria }
+				suzerain = { has_landed_title = e_new_valyria }
+				top_liege = { suzerain = { has_landed_title = e_new_valyria } }
+			}
+		}
+		e_new_valyria = {
+			holder_scope = {
+				yearly_income = 200 #base wealth needed
+			}
+		}
+		is_occupied = no
+	}
+	
+	mean_time_to_happen = {
+		months = 2400 #200 years
+		
+		modifier = {
+			factor = 2
+			owner = { war = yes }
+		}
+		modifier = {
+			factor = 2
+			owner = { any_liege = { war = yes } }
+		}
+		
+		modifier = {
+			factor = 0.66
+			e_new_valyria = { holder_scope = { yearly_income = 275 } }
+		}
+		modifier = {
+			factor = 0.66
+			e_new_valyria = { holder_scope = { yearly_income = 350 } }
+		}
+		modifier = {
+			factor = 0.66
+			e_new_valyria = { holder_scope = { yearly_income = 500 } }
+		}
+
+		modifier = {
+			factor = 2
+			e_ghiscar = { holder_scope = { culture_group = ghiscari } }
+		}
+		
+		modifier = {
+			factor = 0.66
+			is_capital = yes
+			owner = { has_landed_title = e_new_valyria }
+		}
+		
+		modifier = {
+			factor = 1.5
+			has_province_modifier = asoiaf_mild_winter
+		}
+		modifier = {
+			factor = 2
+			has_province_modifier = asoiaf_normal_winter
+		}
+		modifier = {
+			factor = 3
+			has_province_modifier = asoiaf_harsh_winter
+		}
+
+		#misc modifiers from other sources
+		modifier = {
+			factor = 0.95
+			has_province_modifier = master_builder
+		}
+		modifier = {
+			factor = 1.3
+			has_province_modifier = sabotaged_building
+		}
+		modifier = {
+			factor = 1.5
+			has_province_modifier = smugglers_ring
+		}
+		modifier = {
+			factor = 0.8
+			has_province_modifier = stone_quarry
+		}
+		modifier = {
+			factor = 0.8
+			has_province_modifier = friendly_innovations
+		}
+		modifier = {
+			factor = 0.8
+			has_province_modifier = carpenters_guild
+		}
+		modifier = {
+			factor = 1.3
+			has_province_modifier = outlawed_guild
+		}
+		modifier = {
+			factor = 0.975
+			has_province_modifier = prosperity_modifier_2
+		}
+		modifier = {
+			factor = 0.95
+			has_province_modifier = prosperity_modifier_3
+		}
+		modifier = {
+			factor = 0.85
+			has_province_modifier = logging_company_province
+		}
+		modifier = {
+			factor = 0.85
+			has_province_modifier = inspired_peasantry
+		}
+		modifier = {
+			factor = 0.85
+			has_province_modifier = new_roads
+		}
+		modifier = {
+			factor = 1.2
+			has_province_modifier = sabotaged_buildings
+		}
+		modifier = {
+			factor = 0.8
+			has_province_modifier = blast_furnace
+		}	
+	}
+	
+	immediate = { 
+		set_province_flag = valyria_heartland_expansion
+	}
+
+	option = {
+		name = "EVTOPTAvalyria.78"
+		any_province_holding = {
+			limit = { 
+				OR = {
+					holding_type = castle
+					holding_type = city 
+				}	
+			}
+			increase_holding_base_value_effect = yes
+		}
+	}
+}
+
+##The Ghiscari Wars##
+character_event = { #Ghiscar attacks Valyria
+	id = valyria.100
+	is_triggered_only = yes
+	desc = "EVTDESCvalyria.100" 
+	
+	only_independent = yes
+	prisoner =  no
+	has_global_flag = freehold_submod_initialised
+	
+	trigger = {		
+		tier = EMPEROR
+		has_landed_title = e_ghiscar
+		culture_group = ghiscari
+		war = no
+		e_new_valyria = {
+			has_holder = yes
+			holder_scope = {
+				true_valyrian_culture_trigger = yes
+				NOT = { same_realm = ROOT }
+				demesne_size = 1
+				NOT = { has_opinion_modifier = { who = ROOT modifier = opinion_de_facto_liege } }
+				NOT = { reverse_has_truce = ROOT }
+				independent = yes
+			}
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 480
+		
+		modifier = {
+			factor = 0.33
+			e_new_valyria = { holder_scope = { war = yes } }
+		}
+		modifier = {
+			factor = 0.33
+			trait = ambitious
+		}
+		modifier = {
+			factor = 0.66
+			trait = ruthless
+		}
+		modifier = {
+			factor = 0.66
+			trait = envious
+		}
+		modifier = {
+			factor = 0.66
+			trait = wroth
+		}
+		modifier = {
+			factor = 0.66
+			trait = diligent
+		}
+		modifier = {
+			factor = 1.5
+			trait = honorable
+		}
+		modifier = {
+			factor = 1.5
+			trait = kind
+		}
+		modifier = {
+			factor = 1.5
+			trait = patient
+		}
+		modifier = {
+			factor = 1.5
+			trait = slothful
+		}
+		modifier = {
+			factor = 3
+			trait = content
+		}
+	}
+		
+	option = {
+		name = "EVTOPTAvalyria.100" #Attack!
+		set_global_flag = ghiscari_war
+		e_new_valyria = {
+			holder_scope = {
+				random_realm_province = {
+					limit = {
+						duchy = {
+							holder_scope = {
+								OR = {
+									character = PREVPREVPREV
+									is_liege_or_above = PREVPREVPREV
+								}
+							}
+						}
+					}
+					preferred_limit = {
+						any_neighbor_province = {
+							owner = {
+								OR = {
+									character = ROOT
+									is_liege_or_above = ROOT
+								}
+							}
+						}
+					}
+					preferred_limit = {
+						empire = { title = e_ghiscar }
+					}
+					preferred_limit = {
+						kingdom = { title = k_north_valyria }
+					}
+					preferred_limit = {
+						region = world_summer_sea
+					}
+					preferred_limit = {
+						kingdom = { title = k_long_summer }
+					}
+					duchy = {
+						reverse_unsafe_war = {
+							target = ROOT
+							casus_belli = invasion
+						}
+					}
+				}
+			}
+		}
+	}	
+	option = {
+		name = "EVTOPTBvalyria.100" #No
+		trigger = { ai = no }
+	}
+}	
+
+###The Rhoynish Wars##
+narrative_event = { #Volantis attacks rhoynar city
+	id = valyria.150
+	is_triggered_only = yes
+	title = "EVTTITLEvalyria.150" 
+	desc = "EVTDESCvalyria.150" 
+	
+	has_global_flag = freehold_submod_initialised
+	only_independent = yes
+	culture_group = valyrian	
+	prisoner = no	
+	war = no
+	capable_only = yes
+	
+	trigger = {		
+		has_landed_title = k_volantis		
+		any_neighbor_independent_ruler = {
+			higher_tier_than = COUNT
+			culture = rhoynar
+			NOT = { reverse_has_truce = ROOT }
+			NOT = { has_non_aggression_pact_with = ROOT }
+			NOT = { is_allied_with = ROOT }
+			NOT = { reverse_opinion = { who = ROOT value = -25 } }
+		}
+		OR = {
+			trait = cynical
+			NOT = { trait = elephant }
+		}
+		NOT = { trait = content }
+		NOT = { has_global_flag = volantis_rhoynar_invasion }
+	}
+	
+	# mean_time_to_happen = {
+	# 	years = 200
+		
+	# 	modifier = {
+	# 		factor = 0.2
+	# 		year = 7250
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.33
+	# 		trait = ambitious
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.66
+	# 		trait = ruthless
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.66
+	# 		trait = envious
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.66
+	# 		trait = wroth
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.66
+	# 		trait = diligent
+	# 	}
+	# 	modifier = {
+	# 		factor = 1.5
+	# 		trait = honorable
+	# 	}
+	# 	modifier = {
+	# 		factor = 1.5
+	# 		trait = kind
+	# 	}
+	# 	modifier = {
+	# 		factor = 1.5
+	# 		trait = patient
+	# 	}
+	# 	modifier = {
+	# 		factor = 1.5
+	# 		trait = slothful
+	# 	}
+	# }
+	
+	immediate = {		
+		d_orange_shore = { #Try sarhoy first
+			holder_scope = {
+				if = {
+					limit = {
+						culture = rhoynar
+						NOT = { reverse_has_truce = ROOT }
+						NOT = { has_non_aggression_pact_with = ROOT }
+						NOT = { is_allied_with = ROOT }
+						NOT = { reverse_opinion = { who = ROOT value = -20 } }
+					}
+					save_event_target_as = rhoynar_target
+					break = yes
+				}
+			}
+		}
+		random_neighbor_independent_ruler = {
+			limit = {
+				higher_tier_than = COUNT
+				culture = rhoynar
+				NOT = { reverse_has_truce = ROOT }
+				NOT = { has_non_aggression_pact_with = ROOT }
+				NOT = { is_allied_with = ROOT }
+				NOT = { reverse_opinion = { who = ROOT value = -20 } }
+			}
+			save_event_target_as = rhoynar_target
+		}
+	}
+		
+	option = {
+		name = "EVTOPTAvalyria.150" #Attack!
+		set_global_flag = volantis_rhoynar_invasion
+		event_target:rhoynar_target = {
+			primary_title = {
+				reverse_war = {
+					target = ROOT
+					casus_belli = invasion
+				}
+			}
+		}
+	}	
+	option = {
+		name = "EVTOPTBvalyria.150" #No
+		trigger = { ai = no }
+	}
+}	
+###
+# Rhoynar-dornish melting pot
+province_event = {
+	id = valyria.158
+	is_triggered_only = yes
+	desc = "EVTDESCvalyria.158"
+	picture = GFX_evt_culture_change
+	
+	trigger = {
+		culture = dornish_andal
+		owner = {
+			OR = {
+				culture_group = dornish
+				any_liege = { culture_group = dornish }
+			}
+			NOT = { culture_group = unoccupied_group }
+		}
+		OR = {
+			owner = { culture_group = dornish }
+			any_neighbor_province = { culture_group = dornish }
+		}
+	}
+	
+	# mean_time_to_happen = {
+	# 	months = 120
+		
+	# 	modifier = {
+	# 		factor = 0.25
+	# 		owner = { culture_group = dornish }
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.75
+	# 		has_province_flag = recent_depopulation_1
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.5
+	# 		has_province_flag = recent_depopulation_2
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.25
+	# 		has_province_flag = recent_depopulation_3
+	# 	}
+	# }
+
+	option = {
+		name = "EVTOPTAvalyria.158"
+		if = {
+			limit = { region = world_east_dorne }
+			culture = salt_dornish
+		}
+		else_if = {
+			limit = { region = world_dornish_desert }
+			culture = sand_dornish
+		}
+		else_if = {
+			limit = { region = world_red_mountains }
+			culture = stone_dornish
+		}
+		else = {
+			culture = salt_dornish
+		}
+		culture_scope = { 
+			if = {
+				limit = { check_variable = { which = defunct value = 1 } }
+				set_variable = { which = defunct value = 0 } 
+			}
+		}
+		hidden_tooltip = { #check for dornish andal extinction
+			if = {
+				limit = { 
+					NOT = { any_province = { culture = dornish_andal } } 
+					dornish_andal = { NOT = { check_variable = { which = defunct value = 1 } } }
+				}
+				dornish_andal = {
+					set_variable = { which = defunct value = 1 } 
+				}
+			}
+		}
+	}
+}
+
+#Norvos Established
+narrative_event = {
+	id = valyria.200
+	is_triggered_only = yes
+	title = "EVTTITLEvalyria.200"
+	desc = "EVTDESCvalyria.200"
+	picture = "GFX_evt_norvos"
+	
+	only_independent = yes
+	major = yes
+	
+	trigger = {
+		has_landed_title = e_new_valyria
+		
+		NOT = { start_date = 4000.1.1 }
+		culture = high_valyrian
+	
+		NOT = { has_global_flag = norvos_founded }
+		433 = {
+			OR = {
+				owner = { culture_group = unoccupied_group }
+				AND = {
+					NOT = { empire = { title = e_new_valyria } }
+					e_new_valyria = { holder_scope = { NOT = { trait = civil_war } } }
+					owner = { 
+						top_liege = {
+							NOT = { same_realm = ROOT }
+							NOT_mythical_creature_trigger = yes
+							NOT = { culture_group = unoccupied_group }
+							NOT = { trait = nightswatch }
+							demesne_size = 1
+							higher_tier_than = BARON	
+							NOT = { suzerain = { character = ROOT } }
+							OR = { #Cannot attack vassals split by mega war
+								NOT = { has_opinion_modifier = { who = ROOT modifier = opinion_de_facto_liege } }
+								NOT = { ROOT = { higher_tier_than = PREV } }
+							}
+							NOT = { has_non_aggression_pact_with = ROOT }
+						}	
+					}
+				}				
+			}
+			
+		}
+		419 = { owner = { NOT = { culture_group = unoccupied_group } } } #Volantis
+		NOT = { e_ghiscar = { holder_scope = { culture_group = ghiscari } } } #post ghiscari wars only
+	}
+	
+	# mean_time_to_happen = {
+	# 	years = 200
+		
+	# 	modifier = {
+	# 		factor = 0.2
+	# 		OR = {
+	# 			has_global_flag = qohor_founded
+	# 			has_global_flag = lorath_founded
+	# 		}	
+	# 	}
+	# }
+	
+	immediate = {
+		if = {
+			limit = { character = ROOT }
+			set_global_flag = norvos_founded
+			create_random_soldier = {
+				female = no
+				culture = norvosi
+				dynasty = actually_culture
+				religion = bearded_priests
+				random_traits = yes			
+			}
+			new_character = {
+				prestige = 100
+				remove_trait = cynical
+				add_trait = zealous
+				random_list = {
+					15 = { add_trait = skilled_warrior }
+					5 = { add_trait = master_warrior }
+				}
+				add_priest_trait_effect = yes
+				remove_trait = slow
+				remove_trait = imbecile
+				remove_trait = dull
+				
+				remove_lifestyle_trait_effect = yes
+				
+				random_list = { # Flavor Randomization
+					35 = { 
+						# Nothing
+					}
+					15 = {
+						change_learning = 2
+					}
+					20 = {
+						add_trait = theologian
+					}
+					5 = {
+						add_trait = scholar
+					}
+					5 = {
+						add_trait = mystic
+					}
+					10 = {
+						change_learning = 4
+					}
+					5 = {
+						change_learning = 6
+					}
+					5 = {
+						trigger = { 
+							is_smart_incl_genius_trigger = no
+						}
+						add_trait = shrewd
+					}
+				}
+				while = {
+					limit = { NOT = { learning = 12 } }
+					change_learning = 1
+				}
+				activate_title = { status = yes title = d_bearded_priests }
+				d_bearded_priests = { gain_title = PREV }
+				save_event_target_as = norvos_holder
+			}	
+		}	
+	}
+	
+	option = { 
+		name = EVTOPTAvalyria.200
+		trigger = { character = ROOT }
+		433 = {
+			set_province_flag = valyria_primary_colony
+			county = {
+				gain_title = event_target:norvos_holder
+				hidden_tooltip = {
+					any_de_jure_vassal_title = {
+						limit = { has_holder = yes }
+						remove_building = ca_sub_barony_ruin
+						remove_building = ct_sub_barony_ruin
+					}
+				}
+			}
+			hidden_tooltip = {
+				remove_province_modifier = ruined_province
+				clr_province_flag = ruined_province
+				clr_province_flag = ca_colony_1
+				clr_province_flag = ca_colony_2
+				clr_province_flag = ca_colony_3
+				clr_province_flag = ca_colony_4
+				clr_province_flag = ca_colony_5
+				clr_province_flag = ca_colony_6
+				culture = norvosi
+				religion = bearded_priests
+			}
+		}
+		event_target:norvos_holder = {
+			hidden_tooltip = {
+				norvosi = { 
+					if = {
+						limit = { check_variable = { which = defunct value = 1 } }
+						set_variable = { which = defunct value = 0 } 
+					}
+				}
+				set_government_type = theocratic_feudal_government
+				character_event = { id = free_cities.223 } #setup
+				set_defacto_liege = ROOT
+				any_realm_character = {
+					limit = { culture_group = unoccupied_group }
+					any_demesne_title = { gain_title = event_target:norvos_holder }
+					clear_wealth = yes
+					wealth = -500
+					death = yes
+				}
+				spawn_unit = {
+					province = 433
+					home = 433	
+					troops = {
+						light_infantry = { 1800 1800 }
+						heavy_infantry = { 2500 2500 }
+						light_cavalry = { 300 300 }
+						archers = { 400 400 }
+					}
+					attrition = 1.0
+				}
+				create_random_soldier = {
+					female = no
+					culture = norvosi
+					dynasty = actually_culture
+					religion = bearded_priests
+					random_traits = yes			
+				}
+				new_character = {
+					remove_trait = cynical
+					add_trait = zealous
+					random_list = {
+						20 = { add_trait = trained_warrior }
+						10 = { add_trait = skilled_warrior }
+						5 = { add_trait = master_warrior }
+					}
+					add_priest_trait_effect = yes
+					remove_trait = slow
+					remove_trait = imbecile
+					remove_trait = dull
+					
+					remove_lifestyle_trait_effect = yes
+					
+					random_list = { # Flavor Randomization
+						35 = { 
+							# Nothing
+						}
+						15 = {
+							change_learning = 2
+						}
+						20 = {
+							add_trait = theologian
+						}
+						5 = {
+							add_trait = scholar
+						}
+						5 = {
+							add_trait = mystic
+						}
+						10 = {
+							change_learning = 4
+						}
+						5 = {
+							change_learning = 6
+						}
+						5 = {
+							trigger = { 
+								is_smart_incl_genius_trigger = no
+							}
+							add_trait = shrewd
+						}
+					}
+				}
+				create_random_soldier = {
+					female = no
+					culture = norvosi
+					dynasty = actually_culture
+					religion = bearded_priests
+					random_traits = yes			
+				}
+				new_character = {
+					remove_trait = cynical
+					add_trait = zealous
+					random_list = {
+						20 = { add_trait = trained_warrior }
+						10 = { add_trait = skilled_warrior }
+						5 = { add_trait = master_warrior }
+					}
+					add_priest_trait_effect = yes
+					remove_trait = slow
+					remove_trait = imbecile
+					remove_trait = dull
+					
+					remove_lifestyle_trait_effect = yes
+					
+					random_list = { # Flavor Randomization
+						35 = { 
+							# Nothing
+						}
+						15 = {
+							change_learning = 2
+						}
+						20 = {
+							add_trait = theologian
+						}
+						5 = {
+							add_trait = scholar
+						}
+						5 = {
+							add_trait = mystic
+						}
+						10 = {
+							change_learning = 4
+						}
+						5 = {
+							change_learning = 6
+						}
+						5 = {
+							trigger = { 
+								is_smart_incl_genius_trigger = no
+							}
+							add_trait = shrewd
+						}
+					}
+				}
+				create_random_soldier = {
+					female = no
+					culture = norvosi
+					dynasty = actually_culture
+					religion = bearded_priests
+					random_traits = yes			
+				}
+				new_character = {
+					remove_trait = cynical
+					add_trait = zealous
+					random_list = {
+						20 = { add_trait = trained_warrior }
+						10 = { add_trait = skilled_warrior }
+						5 = { add_trait = master_warrior }
+					}
+					add_priest_trait_effect = yes
+					remove_trait = slow
+					remove_trait = imbecile
+					remove_trait = dull
+					
+					remove_lifestyle_trait_effect = yes
+					
+					random_list = { # Flavor Randomization
+						35 = { 
+							# Nothing
+						}
+						15 = {
+							change_learning = 2
+						}
+						20 = {
+							add_trait = theologian
+						}
+						5 = {
+							add_trait = scholar
+						}
+						5 = {
+							add_trait = mystic
+						}
+						10 = {
+							change_learning = 4
+						}
+						5 = {
+							change_learning = 6
+						}
+						5 = {
+							trigger = { 
+								is_smart_incl_genius_trigger = no
+							}
+							add_trait = shrewd
+						}
+					}
+				}
+			}
+		}	
+	}
+	option = { 
+		name = OK
+		trigger = { NOT = { character = ROOT } }
+	}	
+}	
+#Qohor Established
+narrative_event = {
+	id = valyria.205
+	is_triggered_only = yes
+	title = "EVTTITLEvalyria.205"
+	desc = "EVTDESCvalyria.205"
+	picture = GFX_evt_bishop_aztec
+	
+	only_independent = yes
+	major = yes
+	
+	trigger = {
+		has_landed_title = e_new_valyria
+		
+		NOT = { start_date = 4000.1.1 }
+		culture = high_valyrian
+	
+		NOT = { has_global_flag = qohor_founded }
+		476 = {
+			OR = {
+				owner = { culture_group = unoccupied_group }
+				AND = {
+					NOT = { empire = { title = e_new_valyria } }
+					e_new_valyria = { holder_scope = { NOT = { trait = civil_war } } }
+					owner = { 
+						top_liege = {
+							NOT = { same_realm = ROOT }
+							NOT_mythical_creature_trigger = yes
+							NOT = { culture_group = unoccupied_group }
+							NOT = { trait = nightswatch }
+							demesne_size = 1
+							higher_tier_than = BARON	
+							NOT = { suzerain = { character = ROOT } }
+							OR = { #Cannot attack vassals split by mega war
+								NOT = { has_opinion_modifier = { who = ROOT modifier = opinion_de_facto_liege } }
+								NOT = { ROOT = { higher_tier_than = PREV } }
+							}
+							NOT = { has_non_aggression_pact_with = ROOT }
+						}	
+					}
+				}				
+			}
+			
+		}
+		419 = { owner = { NOT = { culture_group = unoccupied_group } } } #Volantis
+		NOT = { e_ghiscar = { holder_scope = { culture_group = ghiscari } } } #post ghiscari wars only
+	}
+	
+	# mean_time_to_happen = {
+	# 	years = 200
+	# 	modifier = {
+	# 		factor = 0.2
+	# 		OR = {
+	# 			has_global_flag = norvos_founded
+	# 			has_global_flag = lorath_founded
+	# 		}	
+	# 	}
+	# }
+	
+	immediate = {
+		if = {
+			limit = { character = ROOT }
+			set_global_flag = qohor_founded
+			create_random_steward = {
+				female = no
+				culture = qohorik
+				dynasty = actually_culture
+				religion = black_goat 
+				random_traits = yes			
+			}
+			new_character = {
+				prestige = 100
+				remove_trait = cynical
+				add_trait = zealous
+				random_list = {
+					25 = { }
+					35 = { add_trait = poor_warrior }
+					30 = { add_trait = trained_warrior }
+					10 = { add_trait = skilled_warrior }
+				}
+				remove_trait = slow
+				remove_trait = imbecile
+				remove_trait = dull
+				
+				remove_lifestyle_trait_effect = yes
+				
+				random_list = { # Flavor Randomization
+					35 = { 
+						# Nothing
+					}
+					15 = {
+						change_stewardship = 2
+					}
+					10 = {
+						add_trait = gardener
+					}
+					10 = {
+						add_trait = architect
+					}
+					10 = {
+						add_trait = administrator
+					}
+					10 = {
+						change_stewardship = 4
+					}
+					5 = {
+						change_stewardship = 6
+					}
+					5 = {
+						trigger = { 
+							is_smart_incl_genius_trigger = no
+						}
+						add_trait = shrewd
+					}
+				}
+				while = {
+					limit = { NOT = { stewardship = 12 } }
+					change_stewardship = 1
+				}
+				save_event_target_as = qohor_holder
+			}	
+		}	
+	}
+	
+	option = { 
+		name = EVTOPTAvalyria.205
+		trigger = { character = ROOT }
+		476 = {
+			set_province_flag = valyria_primary_colony
+			county = {
+				gain_title = event_target:qohor_holder
+				hidden_tooltip = {
+					any_de_jure_vassal_title = {
+						limit = { has_holder = yes }
+						remove_building = ca_sub_barony_ruin
+						remove_building = ct_sub_barony_ruin
+					}
+				}
+			}
+			duchy = {
+				if = {
+					limit = { has_holder = no }
+					gain_title = event_target:qohor_holder
+				}
+			}
+			hidden_tooltip = {
+				remove_province_modifier = ruined_province
+				clr_province_flag = ruined_province
+				clr_province_flag = ca_colony_1
+				clr_province_flag = ca_colony_2
+				clr_province_flag = ca_colony_3
+				clr_province_flag = ca_colony_4
+				clr_province_flag = ca_colony_5
+				clr_province_flag = ca_colony_6
+				culture = qohorik
+				religion = black_goat 
+			}
+		}
+		event_target:qohor_holder = {
+			hidden_tooltip = {
+				qohorik = { 
+					if = {
+						limit = { check_variable = { which = defunct value = 1 } }
+						set_variable = { which = defunct value = 0 } 
+					}
+				}
+				set_government_type = feudal_government
+				set_defacto_liege = ROOT
+				wealth = 250
+				if = {
+					limit = { 
+						tier = DUKE 
+						ROOT = { is_merchant_republic = no }
+					}
+					create_family_palace = yes
+					set_government_type = merchant_republic_government
+					recalc_succession = yes
+				}
+				any_realm_character = {
+					limit = { culture_group = unoccupied_group }
+					any_demesne_title = { gain_title = event_target:qohor_holder }
+					clear_wealth = yes
+					wealth = -500
+					death = yes
+				}
+				spawn_unit = {
+					province = 476
+					home = 476
+					troops = {
+						light_infantry = { 1800 1800 }
+						heavy_infantry = { 2500 2500 }
+						light_cavalry = { 300 300 }
+						archers = { 400 400 }
+					}
+					attrition = 1.0
+				}
+				
+				#create family
+				character_event = { id = roberts_rebellion.150 }
+				if = {
+					limit = {
+						is_married = yes
+						spouse = { is_alive = yes }
+						NOR = {
+							num_of_children = 3
+							any_sibling_even_if_dead = { count = 2 }
+						}	
+					}
+					character_event = { id = roberts_rebellion.151 }
+				}
+			}
+		}	
+	}
+	option = { 
+		name = OK
+		trigger = { NOT = { character = ROOT } }
+	}	
+}	
+
+#Braavos- slaves go missing on the way to sothoryos
+character_event = {
+	id = valyria.210
+	is_triggered_only = yes
+	desc = "EVTDESCvalyria.210"
+	picture = GFX_evt_slavery
+	
+	only_independent = yes
+	major = yes
+	
+	trigger = {
+		has_landed_title = e_new_valyria
+		
+		NOT = { start_date = 7589.1.1 }
+		culture = high_valyrian
+	
+		NOT = { has_global_flag = braavos_founded }
+		419 = { owner = { NOT = { culture_group = unoccupied_group } } } #Volantis
+		NOT = { e_ghiscar = { holder_scope = { culture_group = ghiscari } } } #post ghiscari wars only
+		primary_title = { has_law = slavery_2 }
+	}
+	
+	# mean_time_to_happen = {
+	# 	years = 400
+	# }
+	
+	immediate = {
+		set_global_flag = braavos_founded
+		hidden_tooltip = { #Find province
+			470 = { #Braavos
+				if = {
+					limit = {
+						has_province_flag = ruined_province
+						owner = { culture_group = unoccupied_group }
+					}
+					random = {
+						chance = 80
+						add_province_modifier = { name = braavos_home duration = -1 }
+						province_event = { id = valyria.211 days = 36500 random = 9125 } #uncloaking
+						break = yes
+					}
+				}
+			}
+			random_province = {
+				limit = {
+					has_province_flag = ruined_province
+					owner = { culture_group = unoccupied_group }
+					port = yes
+					NOT = { region = world_valyrian_peninsula }
+					NOT = { region = world_north_valyria }
+					NOT = { region = world_ghiscar }
+				}
+				preferred_limit = {
+					OR = {
+						region = world_free_cities
+						region = world_summer_sea
+					}
+					num_of_max_settlements = 5
+				}
+				preferred_limit = {
+					OR = {
+						region = world_westeros
+						region = world_shivering_sea
+						region = world_qarth
+						region = world_moraq
+					}
+					num_of_max_settlements = 6
+				}
+				preferred_limit = {
+					OR = {
+						region = world_free_cities
+						region = world_summer_sea
+					}
+				}
+				preferred_limit = {
+					OR = {
+						region = world_westeros
+						region = world_shivering_sea
+						region = world_qarth
+						region = world_moraq
+					}
+				}
+				preferred_limit = {
+					num_of_max_settlements = 5
+				}
+				add_province_modifier = { name = braavos_home duration = -1 }
+				province_event = { id = valyria.211 days = 36500 random = 9125 } #uncloaking
+			}
+		}
+	}
+	
+	option = { 
+		name = EVTOPTAvalyria.210
+	}	
+}
+
+#Rhllor Established
+narrative_event = {
+	is_triggered_only = yes
+	id = valyria.220
+	title = "EVTTITLEvalyria.220"
+	desc = "EVTDESCvalyria.220"
+	picture = "GFX_evt_red_priest_approaches"
+	
+	only_independent = yes
+	major = yes
+	
+	trigger = {
+		has_landed_title = e_new_valyria	
+		NOT = { start_date = 4000.1.1 }
+	
+		d_rhllor = { has_holder = no }
+		419 = { owner = { is_liege_or_above = ROOT } } #Volantis
+		417 = { #New Volantis
+			owner = { is_liege_or_above = ROOT } 
+			culture = volantene
+		} 
+	}
+	
+	# mean_time_to_happen = {
+	# 	years = 200
+	# }
+	
+	immediate = {
+		if = {
+			limit = { character = ROOT }
+			create_random_priest = {
+				female = no
+				culture = volantene
+				dynasty = actually_culture
+				religion = rhllor
+				random_traits = yes			
+			}
+			new_character = {
+				prestige = 100
+				remove_trait = cynical
+				add_trait = zealous
+				remove_trait = content
+				random_list = {
+					25 = { }
+					35 = { add_trait = poor_warrior }
+					30 = { add_trait = trained_warrior }
+					10 = { add_trait = skilled_warrior }
+				}
+				add_priest_trait_effect = yes
+				remove_trait = slow
+				remove_trait = imbecile
+				remove_trait = dull
+				
+				remove_lifestyle_trait_effect = yes
+				
+				random_list = { # Flavor Randomization
+					35 = { 
+						# Nothing
+					}
+					15 = {
+						change_learning = 2
+					}
+					20 = {
+						add_trait = theologian
+					}
+					5 = {
+						add_trait = scholar
+					}
+					5 = {
+						add_trait = mystic
+					}
+					10 = {
+						change_learning = 4
+					}
+					5 = {
+						change_learning = 6
+					}
+					5 = {
+						trigger = { 
+							is_smart_incl_genius_trigger = no
+						}
+						add_trait = shrewd
+					}
+				}
+				while = {
+					limit = { NOT = { learning = 12 } }
+					change_learning = 1
+				}
+				activate_title = { status = yes title = d_rhllor }
+				d_rhllor = { gain_title = PREV }
+				save_event_target_as = rhllor_holder
+				set_character_flag = first_red_priest
+				set_defacto_liege = ROOT
+				418 = { #the great plaza
+					if = {
+						limit = {
+							has_province_flag = ruined_province
+							owner = { culture_group = unoccupied_group }
+						}
+						remove_province_modifier = ruined_province
+						clr_province_flag = ruined_province
+						clr_province_flag = ca_colony_1
+						clr_province_flag = ca_colony_2
+						clr_province_flag = ca_colony_3
+						clr_province_flag = ca_colony_4
+						clr_province_flag = ca_colony_5
+						clr_province_flag = ca_colony_6
+						culture = volantene
+						county = { gain_title = ROOT }
+					}
+				}
+			}	
+		}	
+	}
+	
+	option = { 
+		name = EVTOPTAvalyria.220
+		trigger = { character = ROOT }
+		417 = {
+			religion = rhllor
+		}
+		if = {
+			limit = {
+				418 = {
+					owner = {
+						OR = {
+							character = ROOT
+							is_liege_or_above = ROOT
+							suzerain = { character = ROOT }
+							top_liege = { suzerain = { character = ROOT } }
+						}
+					}
+				}
+			}
+			418 = {		
+				county = {
+					gain_title = event_target:rhllor_holder
+				}
+				hidden_tooltip = {
+					religion = rhllor
+					culture = volantene
+					any_province_holding = {
+						limit = { has_holder = yes }
+						gain_title = event_target:rhllor_holder
+					}
+					random_province_holding = {
+						limit = { holding_type = temple }
+						make_capital_holding = yes
+					}
+				}
+			}
+		}	
+	}
+	option = { 
+		name = EVTOPTAvalyria.220
+		trigger = { NOT = { character = ROOT } }
+	}
+}	
+
+#######   Valyrian wild dragons.  Put in this file to avoid editing the main dragon file.
+
+#Random dragon appears on Valyrian peninsula
+province_event = { 
+	id = valyria.1000
+	is_triggered_only = yes
+	hide_window = yes
+	has_global_flag = freehold_submod_initialised
+		
+	trigger = { 
+		region = world_valyria 
+		has_global_flag = age_of_dragons
+	}	
+	
+	# mean_time_to_happen = {
+	# 	years = 100
+	# 	modifier = {
+	# 		factor = 3
+	# 		dragon = {
+	# 			location = { province_id = ROOT }
+	# 			is_alive = yes
+	# 			NOT = { any_friend = { always = yes } }
+	# 		}
+	# 	}
+	# }
+	
+	option = {
+		name = "Ok"
+		random_list = {
+			50 = {
+				create_character = {
+					dynasty = actually_culture
+					age = 5
+					culture = dragon_culture
+					religion = dragon_rel
+					historical = yes
+				}
+			}
+			50 = {
+				create_character = {
+					female = yes
+					dynasty = actually_culture
+					age = 5
+					culture = dragon_culture
+					religion = dragon_rel
+					historical = yes
+				}
+			}
+		}
+		new_character = {
+			#dynasty = mother_bastard
+			add_trait = dragon
+			add_trait = incapable_dragon
+			change_martial = 5
+			random = {
+				chance = 5
+				add_trait = fair_dragon
+			}
+			random = {
+				chance = 5
+				if = {
+					limit = { NOT = { trait = fair_dragon } }
+					add_trait = ugly_dragon
+				}	
+			}
+			random = {
+				chance = 5
+				add_trait = strong_dragon
+			}
+			random = {
+				chance = 33
+				add_trait = nimble_dragon
+			}
+			random = {
+				chance = 15
+				add_trait = fertile_dragon
+			}
+			random_list = {
+				1 = { add_trait = dragon_1 }
+				1 = { add_trait = dragon_2 }
+				1 = { add_trait = dragon_3 }
+				1 = { add_trait = dragon_4 }
+				1 = { add_trait = dragon_5 }
+				1 = { add_trait = dragon_6 }
+				1 = { add_trait = dragon_7 }
+				1 = { add_trait = dragon_8 }
+				1 = { add_trait = dragon_9 }
+				1 = { add_trait = dragon_10 }
+				1 = { add_trait = dragon_11 }
+				1 = { add_trait = dragon_12 }
+				1 = { add_trait = dragon_13 }
+				1 = { add_trait = dragon_14 }
+				1 = { add_trait = dragon_15 }
+				1 = { add_trait = dragon_16 }
+				1 = { add_trait = dragon_17 }
+				1 = { add_trait = dragon_18 }
+				1 = { add_trait = dragon_19 }
+				1 = { add_trait = dragon_20 }
+				1 = { add_trait = dragon_21 }
+				1 = { add_trait = dragon_22 }
+				1 = { add_trait = dragon_23 }
+				1 = { add_trait = dragon_24 }
+				1 = { add_trait = dragon_25 }
+				1 = { add_trait = dragon_26 }
+			}
+			character_event = { id = dragon.1599 }
+		}
+		# add_province_modifier = {
+			# name = dragon_lair
+			# duration = 75000
+		# }
+	}
+}
+
