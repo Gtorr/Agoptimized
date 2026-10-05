@@ -1,13 +1,15 @@
 
 ## Decisions set to ai=no.
--wildfire_decisions.txt | Ai has on_action script
--cold_winds.txt  | Ai has on_action script
+-wildfire_decisions.txt    | Ai has on_action script
+-cold_winds.txt            | Ai has on_action script
 -iron_throne_decisions.txt | Ai has on_action script
+-raid decisions.txt        | Ai has on_action script
 -volantis_decisions.txt
 -Ai script for divination and glass candle.
 
 ##Script Improvements
 -maintenance.56 and 57 #In debt modifier lacked pre-triggers and Ito
+-iron throne events.txt #Summerhall mtth province events 
 -Removed 14 Mtth events from valyria_events.txt, this removes some historical events from the freehold submod,
 to restore full freehold submod delete zzz_valyria_events.txt.
 
@@ -25,7 +27,7 @@ to restore full freehold submod delete zzz_valyria_events.txt.
 -Revised Slavery Bonuses.
 -Demnese size slavery malus now applies correctly.
 -dragon dreams event was firing whithout a plot to reveal.
--divination skips council plots
-
+-divination skips replace council plots.
+-On action ruin pop control events now as character events, not province.
 
 

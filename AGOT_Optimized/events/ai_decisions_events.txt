@@ -1,11 +1,11 @@
-namespace = ai_decisions_events
-#AI closes gates on disease  
-#ai_decisions.1
-#ai_decisions.2
-#Ai Wildfire events         
-#ai_decisions.10		#Ai Builds alchemist guild
-#ai_decisions.11		#Ai makes wildfire
-#Ai Call for help against WW ~ ai_decisions.30
+namespace = ai_decisions
+#ai_decisions.1  ~~~  AI closes gates on disease  
+#ai_decisions.2  ~~~  AI closes gates on disease         
+#ai_decisions.10 ~~~  Ai Builds alchemist guild
+#ai_decisions.11 ~~~  Ai makes wildfire
+#ai_decisions.30 ~~~  Ai Call for help against WW 
+#ai_decisions.40 ~~~  Ai ironborn reaving
+#ai_decisions.50 ~~~  Ai Iron Throne 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #AI closes gates on disease
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -426,14 +426,14 @@ character_event = {
 	id = ai_decisions.30
 	is_triggered_only = yes
 	ai = yes
-	only_playable = yes
+	only_independent = yes
 	has_global_flag = cold_winds
 	hide_window = yes
 	trigger = {
 		war = yes
-		NOT = {
-			trait = nightswatch
-		}
+		#NOT = {
+		#trait = nightswatch
+		#}
 		any_war = {
 			OR = {
 				attacker = {
@@ -462,6 +462,19 @@ character_event = {
 		}
 	}
 	immediate = {
+		if = {
+			limit = {
+				any_current_enemy = {
+					OR = {
+						has_landed_title = d_winter
+						has_landed_title = d_winter_essos
+					}
+					trait = white_walker
+					realm_size = 50
+				}
+			}
+			set_character_flag = essos_call
+		}
 		any_playable_ruler = {
 			limit = {
 				OR = {
@@ -484,7 +497,8 @@ character_event = {
 					has_game_rule = {
 						name = shattered_realms
 						value = counties
-					}					#call everyone in shattered counties
+					}
+					#call everyone in shattered counties
 					is_shattered_world = yes
 					has_landed_title = d_nightswatch
 				}
@@ -574,6 +588,9 @@ character_event = {
 							}
 						}
 					}
+					ROOT = {
+						has_character_flag = essos_call
+					}
 				}
 				NOT = {
 					has_character_modifier = ignored_cold_winds_call
@@ -599,6 +616,465 @@ character_event = {
 					tooltip = "EVTTOOLTIP999900043"
 				}
 			}
+		}
+		clr_character_flag = essos_call
+	}
+}
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#Ironborn Reaving
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~
+character_event = {
+	#Ironborn Reaving
+	id = ai_decisions.40
+	is_triggered_only = yes	# on 5y
+	hide_window = yes
+	ai = yes
+	only_playable = yes
+	religion_group = drowned_god_group
+	culture_group = iron_isles_culture
+	min_age = 16
+	trigger = {
+		NOT = {
+			is_inaccessible_trigger = yes
+		}
+		OR = {
+			liege = {
+				war = no
+				NOT = {
+					has_character_flag = reaving_begins
+				}
+				NOT = {
+					any_courtier = {
+						has_character_flag = reaving_begins
+					}
+				}
+			}
+		}
+		NOT = {
+			trait = kingsguard
+		}
+		NOT = {
+			trait = maester
+		}
+		NOT = {
+			trait = archmaester
+		}
+		NOT = {
+			trait = nightswatch
+		}
+		OR = {
+			NOT = {
+				has_character_flag = ironborn_reaving
+			}
+			had_character_flag = {
+				flag = ironborn_reaving
+				days = 1825
+			}
+		}
+		#wealth = 50
+		war = no
+		prisoner = no
+		in_command = no
+		is_ill = no
+		has_epidemic = no
+		NOT = {
+			has_severe_disability_trigger = yes
+		}
+		NOT = {
+			trait = imbecile
+		}
+		NOT = {
+			has_character_flag = do_not_disturb
+		}
+	}
+	immediate = {
+		clr_character_flag = ironborn_reaving
+		set_character_flag = ironborn_reaving
+		prestige = 20
+		piety = 20
+		#wealth = -50
+		set_character_flag = do_not_disturb
+		character_event = {
+			id = raid_events.1
+		}
+		# Choose reaving destination
+		character_event = {
+			id = raid_events.3
+			days = 30
+		}
+		# Reaving start
+		set_variable = {
+			which = "reaving_party_skill"
+			value = 0
+		}
+		if = {
+			limit = {
+				demesne_size = 1
+				NOT = {
+					tier = BARON
+				}
+			}
+			any_courtier = {
+				limit = {
+					war = no
+					prisoner = no
+					in_command = no
+					is_ill = no
+					NOT = {
+						trait = dragon
+					}
+				}
+				letter_event = {
+					id = raid_events.2
+					days = 2
+				}
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					NOT = {
+						demesne_size = 1
+					}
+					tier = BARON
+				}
+			}
+			liege = {
+				any_courtier = {
+					limit = {
+						war = no
+						prisoner = no
+						in_command = no
+						is_ill = no
+						NOT = {
+							trait = dragon
+						}
+					}
+					letter_event = {
+						id = raid_events.2
+						days = 2
+					}
+				}
+			}
+		}
+		any_ward = {
+			limit = {
+				war = no
+				prisoner = no
+				in_command = no
+				is_ill = no
+				same_realm = ROOT
+				NOT = {
+					liege = {
+						character = ROOT
+					}
+				}
+				NOT = {
+					liege = {
+						any_courtier = {
+							character = ROOT
+						}
+					}
+				}
+				NOT = {
+					trait = dragon
+				}
+			}
+			letter_event = {
+				id = raid_events.2
+				days = 2
+			}
+		}
+		any_dynasty_member = {
+			limit = {
+				war = no
+				prisoner = no
+				in_command = no
+				is_ill = no
+				is_close_relative = ROOT
+				same_realm = ROOT
+				NOT = {
+					educator = {
+						character = ROOT
+					}
+				}
+				NOT = {
+					liege = {
+						character = ROOT
+					}
+				}
+				NOT = {
+					liege = {
+						any_courtier = {
+							character = ROOT
+						}
+					}
+				}
+			}
+			letter_event = {
+				id = raid_events.2
+				days = 2
+			}
+		}
+	}
+}
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#Iron Throne Ai
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~
+character_event = {
+	id = ai_decisions.50
+	is_triggered_only = yes
+	ai = yes
+	only_rulers = yes
+	hide_window = yes
+	trigger = {
+		has_landed_title = e_iron_throne
+		war = no
+		NOT = {
+			trait = civil_war
+			has_character_modifier = in_seclusion
+		}
+	}
+	immediate = {
+		##------------Establish_kingsguard------
+		if = {
+			limit = {
+				NOT = {
+					is_title_active = d_kingsguard
+					has_global_flag = kingsguard_initialising
+					has_global_flag = aegons_conquest
+				}
+			}
+			set_global_flag = kingsguard_initialising
+			clr_character_flag = selecting_kingsguard
+			clr_character_flag = ignore_kg
+			character_event = {
+				id = kingsguard.295
+				tooltip = "TOOLTIPESTABLISHKG"
+			}
+		}
+		#Only one action per cycle
+		##----------##Build Road Network
+		if = {
+			limit = {
+				NOT = {
+					has_global_flag = building_westeros_road_network
+				}
+				wealth >= 250
+				is_alternate_start = no
+				OR = {
+					stewardship = 18
+					job_castellan = {
+						stewardship = 18
+					}
+				}
+				#Must have at capital in a westerosi road node
+				capital_scope = {
+					OR = {
+						AND = {
+							province_id = 226							#King's Landing
+							has_province_flag = kings_landing_established
+						}
+						# If this gives trouble can do like cowcompat ~Gt
+						province_id = 304						#Storm's End
+						province_id = 107						#Harrenhal
+						province_id = 97						#Lord Harroway's Town
+						province_id = 101						#Riverrun
+						province_id = 182						#Casterly Rock
+						province_id = 183						#Lannisport
+						province_id = 267						#Highgarden
+						province_id = 286						#Oldtown
+						province_id = 47						#Winterfell
+						province_id = 136						#The Eyrie
+						province_id = 78						#The Freylands
+						province_id = 77						#The Twins
+					}
+				}
+			}
+			character_event = {
+				id = iron_throne.1
+				tooltip = TOOLTIPbuild_road_network
+			}
+			set_global_flag = building_westeros_road_network
+			hidden_tooltip = {
+				character_event = {
+					id = iron_throne.3
+					days = 3
+				}
+			}
+			#levy a special tax?
+		}
+		##------------Expand RK------------##
+		else_if = {
+			limit = {
+				OR = {
+					has_landed_title = c_kings_landing
+					has_landed_title = b_red_keep
+				}
+				OR = {
+					has_global_flag = red_keep_established
+					has_global_flag = KL_red_keep_1_done
+					has_global_flag = KL_red_keep_2_done
+					has_global_flag = KL_red_keep_3_done
+				}
+				wealth >= 250
+			}
+			treasury = -250
+			custom_tooltip = {
+				text = TOOLTIPKL_expand_red_keep
+			}
+			if = {
+				limit = {
+					has_global_flag = red_keep_established
+				}
+				clr_global_flag = red_keep_established
+				set_global_flag = KL_red_keep_1
+			}
+			if = {
+				limit = {
+					has_global_flag = KL_red_keep_1_done
+				}
+				clr_global_flag = KL_red_keep_1_done
+				set_global_flag = KL_red_keep_2
+			}
+			if = {
+				limit = {
+					has_global_flag = KL_red_keep_2_done
+				}
+				clr_global_flag = KL_red_keep_2_done
+				set_global_flag = KL_red_keep_3
+			}
+			if = {
+				limit = {
+					has_global_flag = KL_red_keep_3_done
+				}
+				clr_global_flag = KL_red_keep_3_done
+				set_global_flag = KL_red_keep_4
+			}
+		}
+		##------------Kl Forts------------##
+		else_if = {
+			limit = {
+				OR = {
+					has_landed_title = c_kings_landing
+					has_landed_title = b_red_keep
+				}
+				OR = {
+					has_global_flag = KL_established
+					has_global_flag = KL_fortifications_1_done
+					has_global_flag = KL_fortifications_2_done
+					has_global_flag = KL_fortifications_3_done
+				}
+				wealth >= 250
+			}
+			wealth = -250
+			if = {
+				limit = {
+					has_global_flag = KL_established
+				}
+				clr_global_flag = KL_established
+				set_global_flag = KL_fortifications_1
+			}
+			if = {
+				limit = {
+					has_global_flag = KL_fortifications_1_done
+				}
+				clr_global_flag = KL_fortifications_1_done
+				set_global_flag = KL_fortifications_2
+			}
+			if = {
+				limit = {
+					has_global_flag = KL_fortifications_2_done
+				}
+				clr_global_flag = KL_fortifications_2_done
+				set_global_flag = KL_fortifications_3
+			}
+			if = {
+				limit = {
+					has_global_flag = KL_fortifications_3_done
+				}
+				clr_global_flag = KL_fortifications_3_done
+				set_global_flag = KL_fortifications_4
+			}
+		}
+		##------------Kl Navy------------##
+		else_if = {
+			limit = {
+				OR = {
+					has_landed_title = c_kings_landing
+					has_landed_title = b_red_keep
+				}
+				OR = {
+					has_global_flag = KL_navy_established
+					has_global_flag = KL_expand_navy_1_done
+					has_global_flag = KL_expand_navy_2_done
+				}
+				wealth >= 200
+			}
+			wealth = -200
+			if = {
+				limit = {
+					has_global_flag = KL_navy_established
+				}
+				clr_global_flag = KL_navy_established
+				set_global_flag = KL_expand_navy_1
+			}
+			if = {
+				limit = {
+					has_global_flag = KL_expand_navy_1_done
+				}
+				clr_global_flag = KL_expand_navy_1_done
+				set_global_flag = KL_expand_navy_2
+			}
+			if = {
+				limit = {
+					has_global_flag = KL_expand_navy_2_done
+				}
+				clr_global_flag = KL_expand_navy_2_done
+				set_global_flag = KL_expand_navy_3
+			}
+		}
+		##------------Summerhall------------##
+		else_if = {
+			limit = {
+				has_landed_title = c_summerhall
+				NOT = {
+					has_global_flag = summerhall_established
+				}
+				NOT = {
+					has_global_flag = building_summerhall
+				}
+				wealth >= 250
+				NOT = {
+					306 = {
+						has_province_modifier = buidling_summerhall
+					}
+				}
+				OR = {
+					dynasty = 496					#Targaryen
+					dynasty = 57					#Blackfyre
+					dynasty = 7000					#Bittersteel
+					#Targ Cadets
+					dynasty = 450204
+					dynasty = 450205
+					dynasty = 450206
+					dynasty = 450207
+				}
+				OR = {
+					stewardship = 18
+					job_castellan = {
+						stewardship = 18
+					}
+				}
+			}
+			character_event = {
+				id = iron_throne.10
+				tooltip = TOOLTIPbuild_summerhall
+			}
+			wealth = -250
+			set_global_flag = building_summerhall
 		}
 	}
 }

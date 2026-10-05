@@ -1,6 +1,6 @@
 decisions = {
-
 	ironborn_reaving = {
+		ai = no
 		is_high_prio = yes
 		potential = {
 			religion_group = drowned_god_group 
@@ -120,76 +120,8 @@ decisions = {
 				}
 			}
 		}
-		ai_check_interval = 12
 		ai_will_do = {
-			factor = 1
-			modifier = {
-				factor = 0.2
-			}		
-			modifier = {
-				factor = 0
-				is_female = yes
-				OR = {
-					female_get_masculine_event_trigger = no
-					NOT = { higher_tier_than = BARON }
-				}	
-			}
-			modifier = {
-				factor = 0
-				OR = {
-					is_ill = yes
-					trait = craven
-					trait = slothful
-					trait = depressed
-					trait = wounded
-					is_weak_trigger = yes
-					trait = kind
-					trait = content
-					age = 36
-				}	
-			}
-			modifier = {
-				factor = 0.25
-				is_ruler = no
-			}
-			modifier = {
-				factor = 5
-				trait = ambitious
-			}
-			modifier = {
-				factor = 2
-				trait = brave
-			}
-			modifier = {
-				factor = 2
-				trait = wroth
-			}
-			modifier = {
-				factor = 0.25
-				trait = poor_warrior
-			}	
-			modifier = {
-				factor = 1.5
-				OR = {
-					trait = skilled_warrior
-					trait = master_warrior
-				}	
-			}			
-			modifier = {
-				factor = 0
-				NOT = {
-					OR = {
-						trait = poor_warrior
-						trait = trained_warrior
-						trait = skilled_warrior
-						trait = master_warrior
-					}	
-				}	
-			}
-			modifier = {
-				factor = 0
-				NOT = { martial = 12 }	
-			}
+			factor = 0
 		}
 	}
 	
@@ -243,7 +175,7 @@ decisions = {
 			}
 			custom_tooltip = { text = TOOLTIP_steal_spearwife }
 		}
-		ai_check_interval = 6
+		ai_check_interval = 60
 		ai_will_do = {
 			factor = 1
 			

@@ -8,12 +8,13 @@ on_startup = {
 
 on_yearly_pulse = {
 	events = {
-		ai_decisions.2 			#Close gate on disease
-		slavery_player.40		#player gets slavery bonus ~~~Soon to deprecate ~GT.
-		divination.1			#Glass Candle
-		unoccupied.2			#Ruin Cull
-		lowborn_purge.0			#Purge Lowborns
-		maintenance.56 			#Character is in debt 
+		ai_decisions.2		#Close gate on disease
+		slavery_player.40	#player gets slavery bonus ~Soon to deprecate ~GT.
+		divination.1		#Glass Candle
+		divination.101		#Ai Glass candle
+		unoccupied.2		#Ruin Cull
+		lowborn_purge.0		#Purge Lowborns
+		maintenance.56		#Character is in debt 
 	}
 }
 
@@ -21,7 +22,9 @@ on_bi_yearly_pulse = {
 	events = {
 		ai_decisions.10		#Ai Builds alchemist guild
 		ai_decisions.11		#Ai makes wildfire
+		ai_decisions.30		#Ai calls for help vs WW
 		divination.10		#Dragon Dreams
+		divination.111		#Ai dragon dreams
 		unoccupied.14		#Province broken by dragon converted to a ruin
 		unoccupied.202		#Make sure ruin_rel never becomes human
 	}
@@ -31,6 +34,8 @@ on_five_year_pulse = {
 	events = {
 		high_valyrian.1		#high valyrian cull - very long event, migh have to do smthg with it
 		slavery_ai.2		#AI Slavery Script
+		ai_decisions.50		#Iron Throne Ai
+		ai_decisions.40		#Ai Ironborn Reaving
 	}
 }
 
@@ -38,6 +43,8 @@ on_decade_pulse = {
 	events = {
 		guilds_events.1		#Province Buildings effects Stonemason,Tailor
 		slavery_ai.4		#Ai enters slave trade
+		divination.100		#Find Ai with GC
+		divination.110		#Find Ai with dragon dreams
 	}
 }
 
@@ -47,8 +54,20 @@ on_outbreak = {
 	}
 }
 
+on_war_started = {
+	events = {
+		ai_decisions.30		#Ai calls for help vs WW
+	}
+}
+
+on_artifact_inheritance = {
+	events = {
+		divination.100		#Find Ai with GC
+	}
+}
+
 on_death = {
 	events = {
-		slavery_setup.20	#Inheritance of slaves event
+		slavery_setup.20		#Inheritance of slaves event
 	}
 }

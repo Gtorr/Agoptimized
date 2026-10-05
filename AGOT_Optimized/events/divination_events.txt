@@ -7,7 +7,7 @@ character_event = {
 	desc = EVTDESChigh_valyrian.50
 	picture = GFX_evt_comet
 	border = GFX_event_normal_frame_intrigue
-	ai = no	# TODO: Add a flag for this
+	ai = no	
 	only_capable = yes
 	only_playable = yes
 	min_age = 16
@@ -31,7 +31,7 @@ character_event = {
 	desc = EVTDESChigh_valyrian.25
 	picture = GFX_valyria_dragon
 	is_triggered_only = yes	#optimized_on_actions 2Y pulse
-	ai = no	#TODO flag
+	ai = no	
 	only_playable = yes
 	only_capable = yes
 	min_age = 16
@@ -41,6 +41,86 @@ character_event = {
 	}
 	option = {
 		name = "What dreams reveal ?"
+		divination_dragon_dream_effect = yes
+	}
+}
+
+#***
+# _____Ai versions GC____
+character_event = {
+	#Find ai chars with GC
+	id = divination.100
+	is_triggered_only = yes
+	ai = yes
+	hide_window = yes
+	only_playable = yes
+	only_capable = yes
+	min_age = 16
+	hide_window = yes
+	trigger = {
+		any_artifact = {
+			artifact_type = glass_candle
+			is_artifact_active = yes
+		}
+	}
+	immediate = {
+		set_character_flag = ai_glass_candle
+	}
+}
+character_event = {
+	#Ai uses GC
+	id = divination.101
+	is_triggered_only = yes
+	has_character_flag = ai_glass_candle
+	ai = yes
+	only_playable = yes
+	only_capable = yes
+	min_age = 16
+	hide_window = yes
+	trigger = {
+		any_artifact = {
+			artifact_type = glass_candle
+			is_artifact_active = yes
+		}
+	}
+	immediate = {
+		divination_glass_candle_effect = yes
+	}
+}
+
+#***
+# _____Ai versions DD____
+character_event = {
+	#Find ai chars with DD
+	id = divination.110
+	is_triggered_only = yes
+	ai = yes
+	only_playable = yes
+	only_capable = yes
+	min_age = 16
+	hide_window = yes
+	trigger = {
+		can_recive_dragon_dreams = yes
+	}
+	immediate = {
+		set_character_flag = ai_dragon_dreamer
+	}
+}
+character_event = {
+	#Ai has dragon dream
+	id = divination.111
+	is_triggered_only = yes
+	has_character_flag = ai_dragon_dreamer
+	ai = yes
+	hide_window = yes
+	only_playable = yes
+	only_capable = yes
+	min_age = 16
+	hide_window = yes
+	trigger = {
+		can_recive_dragon_dreams = yes
+	}
+	immediate = {
 		divination_dragon_dream_effect = yes
 	}
 }

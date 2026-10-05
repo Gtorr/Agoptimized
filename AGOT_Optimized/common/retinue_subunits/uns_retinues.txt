@@ -921,7 +921,7 @@ uns_reach_tree_retinue =
 	
 	modifier = {
 		light_cavalry_offensive = 0.2
-		heavy_cvalary_defensive = 0.4
+		knights_defensive = 0.4
 	}
 }
 
