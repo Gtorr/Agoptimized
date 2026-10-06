@@ -84,27 +84,40 @@ just remember Wurzeldieb buildings and Unsavory's retinues are
 integrated and not necessary.
 This mod might even work with a save, just run it with both Optimized and Continue.
 
--- Rambling and Yapping --
-Being honest, a part of me just wanted to push this project forward more as a 
-call for help than anything else, there is a LOT of script in this mod, and i can only 
-do so much, also after months of micro-improvements i'm not sure if this is
-going faster or is the same tbh, testing would be a valuable contribution.
+1.2 Changes>>
+-## Decisions set to ai=no.
+-wildfire_decisions.txt    | Ai has on_action script
+-cold_winds.txt            | Ai has on_action script
+-iron_throne_decisions.txt | Ai has on_action script
+-raid decisions.txt        | Ai has on_action script
+-volantis_decisions.txt
+-Ai script for divination and glass candle.
 
-This are the places that i think it can be an improvement:
-    -Mega-wars
-    -Banks
-    -Mainteinance
-    - ...
-Any suggestions for weak spots out there are welcome.
+##Script Improvements
+-maintenance.56 and 57 #In debt modifier lacked pre-triggers and Ito
+-iron throne events.txt #Summerhall mtth province events 
+-Removed 14 Mtth events from valyria_events.txt, this removes some historical events from the freehold submod,
+to restore full freehold submod delete zzz_valyria_events.txt.
 
-Then there is the Continue mod, Any suggestion about events that can be cut 
-or events that should be reinstated is very valuable for performance.
-Also, one sub goal of the mod is to fix the save corruption bug, since
-removing the event is a valid solution, the question is witch ones are crashing the game.
+## Colonisation ##
+-Colony cost now corresponds to the selected rule.
+-Colony time closer to selected rules.
+-Colonies only display 2 update events like the original.
+-Hovering on the (new) colony status modifier now indicates when the colony is expected to finish aprox.
+-Colony cheat finishes the colony in one go.
+-Ported every original mtth modifier to the new system.
+-Steward job bonus is now accounted for randomly over time and it has more impact.
 
-12>0.9
-14>0.8
-26>0.3
+## Other fixes ##
+-Fixed namespace error for ai slavery law event.
+-Revised Slavery Bonuses.
+-Demnese size slavery malus now applies correctly.
+-dragon dreams event was firing whithout a plot to reveal.
+-divination skips replace council plots.
+-On action ruin pop control events now as character events, not province.
+
+
+
 
 
 
