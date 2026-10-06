@@ -1,13 +1,35 @@
 namespace = slavery_setup
+# [slavery_setup.0] Init global flag
 # [slavery_setup.1] Give slaves to player
 # [slavery_setup.2] Give slaves to ai characters under slavery laws / Remove old slave buildings
 # [slavery_setup.10] Slavery laws sync on top liege change
 # [slavery_setup.20] On_death trasnfer slaves to heir event
 character_event = {
+	id = slavery_setup.0
+	is_triggered_only = yes	#On_Action game start
+	ai = no
+	hide_window = yes
+	trigger = {
+		is_save_game = no
+		has_game_rule = {
+			name = slavery
+			value = on
+		}
+	}
+	immediate = {
+		set_global_flag = slavery_on		#Pre_trigger
+		character_event = {
+			id = slavery_setup.1
+		}
+	}
+}
+
+character_event = {
 	id = slavery_setup.1
 	is_triggered_only = yes	#On_Action game start
 	desc = "Are you a slave trader ?"
 	ai = no
+	has_global_flag = slavery_on
 	trigger = {
 		is_save_game = no
 		#Condition for slaver chars
@@ -27,7 +49,6 @@ character_event = {
 		add_trait = slave_owner
 		remove_trait = slave_trader
 		set_character_flag = slaver		#Flag is for pre-triggers
-		
 	}
 	option = {
 		name = "No"
@@ -42,6 +63,10 @@ character_event = {
 	hide_window = yes
 	trigger = {
 		is_save_game = no
+		has_game_rule = {
+			name = slavery
+			value = on
+		}
 		#Condition for slaver chars
 		has_full_slavery_trigger = yes		# Slavery must be Legal
 		is_nomadic = no
@@ -100,7 +125,6 @@ character_event = {
 				value = 10000
 			}
 		}
-		
 		add_trait = slave_owner
 		set_character_flag = slaver		#Flag is for pre-triggers
 		remove_trait = slave_trader
@@ -145,7 +169,6 @@ character_event = {
 		}
 	}
 }
-
 
 character_event = {
 	id = slavery_setup.10

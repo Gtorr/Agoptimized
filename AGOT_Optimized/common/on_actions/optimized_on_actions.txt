@@ -1,8 +1,13 @@
 on_startup = {
 	events = {
-		slavery_setup.1		#Init slave for player
-		slavery_setup.2		#Populate Ai slaver chars
+		slavery_setup.0		#Init slave master flag ----NO SAVE
+		slavery_setup.2		#Populate Ai slaver chars ----NO SAVE
+
 		lowborn_purge.0		# Purge on save reload
+		colony.200			# Make sure ruin_rel never becomes human
+		colony.201			# Make sure ruin_rel never becomes human part 2
+		ai_decisions.2		#Close gate on disease
+		unoccupied.2		#Ruin Cull
 	}
 }
 
@@ -15,6 +20,7 @@ on_yearly_pulse = {
 		unoccupied.2		#Ruin Cull
 		lowborn_purge.0		#Purge Lowborns
 		maintenance.56		#Character is in debt 
+		colony.200			# Make sure ruin_rel never becomes human		
 	}
 }
 
@@ -24,30 +30,34 @@ on_bi_yearly_pulse = {
 		ai_decisions.11		#Ai makes wildfire
 		ai_decisions.30		#Ai calls for help vs WW
 		divination.10		#Dragon Dreams
-		divination.111		#Ai dragon dreams
-		unoccupied.14		#Province broken by dragon converted to a ruin
-		unoccupied.202		#Make sure ruin_rel never becomes human
+		divination.111		#Ai dragon dreams				
 	}
 }
 
 on_five_year_pulse = {
 	events = {
 		high_valyrian.1		#high valyrian cull - very long event, migh have to do smthg with it
+		slavery_ai.4		#Ai enters slave trade
 		slavery_ai.2		#AI Slavery Script
 		ai_decisions.50		#Iron Throne Ai
 		ai_decisions.40		#Ai Ironborn Reaving
+		colony.201			# Make sure ruin_rel never becomes human part 2
 	}
 }
 
 on_decade_pulse = {
 	events = {
-		guilds_events.1		#Province Buildings effects Stonemason,Tailor
-		slavery_ai.4		#Ai enters slave trade
+		guilds_events.1		#Province Buildings effects Stonemason,Tailor		
 		divination.100		#Find Ai with GC
 		divination.110		#Find Ai with dragon dreams
 	}
 }
 
+on_new_holder_inheritance = {
+	events = {
+		colony.200			# Make sure ruin_rel never becomes human
+	}
+}
 on_outbreak = {
 	events = {
 		ai_decisions.1		# AI closes gates on disease

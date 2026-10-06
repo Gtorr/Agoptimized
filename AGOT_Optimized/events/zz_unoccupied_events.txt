@@ -918,32 +918,30 @@ province_event = {
     is_triggered_only = yes
     hide_window = yes
     has_global_flag = summerhall_established
-    has_flag = colony_province
+    #has_flag = colony_province
 
     trigger = {
-        province_id = 306
-        has_province_flag = ruined_province
-        owner = {
-            NOR = {
-                culture = ruin
-                has_character_flag = summerhall_dragon_egg
-            }
-        }
+        #province_id = 306
+        #has_province_flag = ruined_province
+        # owner = {
+        #     NOR = {
+        #         culture = ruin
+        #         has_character_flag = summerhall_dragon_egg
+        #     }
+        # }
         has_game_rule = { name = dragon_hatching_taming value != off }
     }
 
     # mean_time_to_happen = {
     #	years = 60
     # }
+
     immediate = {
         owner = {
             narrative_event = { id = unoccupied.1201 }
         }
     }
 
-    option = {
-        name = OK
-    }
 }
 
 # ************************************************

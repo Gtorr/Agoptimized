@@ -1,6 +1,5 @@
 namespace = iron_throne
 # Mtth to pulse override by ~Gt.
-
 # First summerhall stage completed
 character_event = {
 	id = iron_throne.13
@@ -9,15 +8,12 @@ character_event = {
 	is_triggered_only = yes
 	option = {
 		name = EVTOPTAiron_throne.13
-		306 = {
-			add_province_modifier = {
-				name = summerhall_stage1
-				duration = -1
-			}
-		}
-		job_treasurer = {
-			custom_tooltip = {
-				text = TOOLTIPbuild_summerhall_treasurer
+		c_summerhall = {
+			location = {
+				add_province_modifier = {
+					name = summerhall_stage1
+					duration = -1
+				}
 			}
 		}
 		hidden_tooltip = {
@@ -508,6 +504,11 @@ province_event = {
 						id = iron_throne.16
 						days = 750
 						random = 250
+					}
+					province_event = {
+						id = unoccupied.12 #dragon egg
+						days = 250
+						random = 75
 					}
 				}
 			}
